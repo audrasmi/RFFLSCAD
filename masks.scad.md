@@ -1,0 +1,1 @@
+Shapes that are useful for masking with ```difference()``` and ```intersect()```.
