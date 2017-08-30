@@ -209,7 +209,7 @@ Difference it from the object to be filleted.  The center of the mask
 object should align exactly with the point of the corner to be filleted.
 
 
-Argument | What it is
+Arg      | What it is
 -------- | -----------------
 fillet   | Radius of the fillet.
 ang      | Angle between planes that you need to fillet the corner of.
@@ -225,7 +225,7 @@ Creates a shape that you can use to round 90 degree corners on a fillet.
 Difference it from the object to be filleted.  The center of the mask
 object should align exactly with the corner to be filleted.
 
-Argument | What it is
+Arg      | What it is
 -------- | -----------------
 r        | Radius of corner fillet.
 
@@ -248,7 +248,7 @@ Difference it from the cylinder to be filleted.  The center of the
 mask object should align exactly with the center of the end of the
 cylinder to be filleted.
 
-Argument | What it is
+Arg      | What it is
 -------- | -----------------
 r        | radius of cylinder to fillet. (Default: 1.0)
 fillet   | radius of the edge filleting. (Default: 0.25)
@@ -272,7 +272,7 @@ Difference it from the hole to be filleted.  The center of the
 mask object should align exactly with the center of the end of the
 hole to be filleted.
 
-Argument | What it is
+Arg      | What it is
 -------- | -----------------
 r        | radius of hole to fillet. (Default: 1.0)
 fillet   | radius of the edge filleting. (Default: 0.25)
