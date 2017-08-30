@@ -18,10 +18,10 @@ d2  | Upper diameter of cone that wedge is created from. (optional)
 
 Examples:
 
-	angle_pie_mask(ang=30, h=20, d=100);
-	angle_pie_mask(ang=35, h=30, d1=100, d2=60);
-	angle_pie_mask(ang=45, h=25, r=50);
-	angle_pie_mask(ang=60, h=30, r1=50, r2=30);
+    angle_pie_mask(ang=30, h=20, d=100);
+    angle_pie_mask(ang=35, h=30, d1=100, d2=60);
+    angle_pie_mask(ang=45, h=25, r=50);
+    angle_pie_mask(ang=60, h=30, r1=50, r2=30);
 
 
 
@@ -37,7 +37,7 @@ chamfer | Size of chamfer
 
 Example:
 
-	chamfer_mask_x(l=10.0, chamfer=2.0);
+    chamfer_mask_x(l=10.0, chamfer=2.0);
 
 
 
@@ -53,7 +53,7 @@ chamfer | Size of chamfer
 
 Example:
 
-	chamfer_mask_y(l=10.0, chamfer=2.0);
+    chamfer_mask_y(l=10.0, chamfer=2.0);
 
 
 
@@ -69,7 +69,7 @@ chamfer | Size of chamfer
 
 Example:
 
-	chamfer_mask_z(l=10.0, chamfer=2.0);
+    chamfer_mask_z(l=10.0, chamfer=2.0);
 
 
 
@@ -84,20 +84,21 @@ edges   | which edges do we want to chamfer.
 
 Array format of `edges` argument:
 
-          [
-              [Y+Z+, Y-Z+, Y-Z-, Y+Z-],
-              [X+Z+, X-Z+, X-Z-, X+Z-],
-              [X+Y+, X-Y+, X-Y-, X+Y-]
-          ]
+    [
+        [Y+Z+, Y-Z+, Y-Z-, Y+Z-],
+        [X+Z+, X-Z+, X-Z-, X+Z-],
+        [X+Y+, X-Y+, X-Y-, X+Y-]
+    ]
+
 Examples:
 
-	chamfer(size=[19,23,60], chamfer=3) {
-		cube(size=[10,40,90], center=true);
-	}
+    chamfer(size=[19,23,60], chamfer=3) {
+        cube(size=[10,40,90], center=true);
+    }
 
-	chamfer(size=[10,40,90], chamfer=2, edges=[[0,0,0,0], [1,1,0,0], [0,0,0,0]]) {
-		cube(size=[10,40,90], center=true);
-	}
+    chamfer(size=[10,40,90], chamfer=2, edges=[[0,0,0,0], [1,1,0,0], [0,0,0,0]]) {
+        cube(size=[10,40,90], center=true);
+    }
 
 
 
@@ -114,10 +115,10 @@ center  | If true, vertically center mask.
 
 Example:
 
-	difference() {
-		cube(size=100, center=false);
-		fillet_mask(h=100.1, r=10.0, center=false);
-	}
+    difference() {
+        cube(size=100, center=false);
+        fillet_mask(h=100.1, r=10.0, center=false);
+    }
 
 
 ## fillet\_mask\_x()
@@ -132,10 +133,10 @@ r       | Radius of the fillet.
 
 Example:
 
-	difference() {
-		cube(size=100, center=false);
-		right(50) fillet_mask_x(l=100.1, r=10.0);
-	}
+    difference() {
+        cube(size=100, center=false);
+        right(50) fillet_mask_x(l=100.1, r=10.0);
+    }
 
 
 
@@ -151,10 +152,10 @@ r       | Radius of the fillet.
 
 Example:
 
-	difference() {
-		cube(size=100, center=false);
-		back(50) fillet_mask_y(l=100.1, r=10.0);
-	}
+    difference() {
+        cube(size=100, center=false);
+        back(50) fillet_mask_y(l=100.1, r=10.0);
+    }
 
 
 
@@ -170,10 +171,10 @@ r       | Radius of the fillet.
 
 Example:
 
-	difference() {
-		cube(size=100, center=false);
-		up(50) fillet_mask_z(l=100.1, r=10.0);
-	}
+    difference() {
+        cube(size=100, center=false);
+        up(50) fillet_mask_z(l=100.1, r=10.0);
+    }
 
 
 ## fillet\_angled\_edge\_mask()
@@ -191,15 +192,15 @@ center  | If true, vertically center mask.
 
 Examples:
 
-	difference() {
-		angle_pie_mask(ang=30, h=20, d=100);
-		fillet_angled_edge_mask(h=21, r=10.0, ang=30);
-	}
-	
-	difference() {
-		angle_pie_mask(ang=120, h=50, d=100);
-		fillet_angled_edge_mask(h=51, r=30.0, ang=120, $fn=32);
-	}
+    difference() {
+        angle_pie_mask(ang=30, h=20, d=100);
+        fillet_angled_edge_mask(h=21, r=10.0, ang=30);
+    }
+    
+    difference() {
+        angle_pie_mask(ang=120, h=50, d=100);
+        fillet_angled_edge_mask(h=51, r=30.0, ang=120, $fn=32);
+    }
 
 
 ## fillet\_angled\_corner\_mask()
@@ -215,7 +216,7 @@ ang      | Angle between planes that you need to fillet the corner of.
 
 Example:
 
-	fillet_angled_corner_mask(fillet=100, ang=90);
+    fillet_angled_corner_mask(fillet=100, ang=90);
 
 
 
@@ -230,14 +231,14 @@ r        | Radius of corner fillet.
 
 Example:
 
-	$fa=1; $fs=1;
-	difference() {
-		cube(size=[6,10,16], center=true);
-		translate([0, 5, 8]) yrot(90) fillet_mask(h=7, r=3);
-		translate([3, 0, 8]) xrot(90) fillet_mask(h=11, r=3);
-		translate([3, 5, 0]) fillet_mask(h=17, r=3);
-		translate([3, 5, 8]) fillet_corner_mask(r=3);
-	}
+    $fa=1; $fs=1;
+    difference() {
+        cube(size=[6,10,16], center=true);
+        translate([0, 5, 8]) yrot(90) fillet_mask(h=7, r=3);
+        translate([3, 0, 8]) xrot(90) fillet_mask(h=11, r=3);
+        translate([3, 5, 0]) fillet_mask(h=17, r=3);
+        translate([3, 5, 8]) fillet_corner_mask(r=3);
+    }
 
 
 
@@ -256,12 +257,12 @@ ytilt    | angle of tilt of end of cylinder in the Y direction. (Default: 0)
 
 Example:
 
-	$fa=2; $fs=2;
-	difference() {
-		cylinder(r=50, h=100, center=true);
-		translate([0, 0, 50])
-			fillet_cylinder_mask(r=50, fillet=10, xtilt=30, ytilt=30);
-	}
+    $fa=2; $fs=2;
+    difference() {
+        cylinder(r=50, h=100, center=true);
+        translate([0, 0, 50])
+            fillet_cylinder_mask(r=50, fillet=10, xtilt=30, ytilt=30);
+    }
 
 
 
@@ -280,10 +281,10 @@ ytilt    | angle of tilt of end of cylinder in the Y direction. (Default: 0)
 
 Example:
 
-	$fa=2; $fs=2;
-	difference() {
-		cube([150,150,100], center=true);
-		cylinder(r=50, h=100.1, center=true);
-		up(50) fillet_hole_mask(r=50, fillet=10, xtilt=0, ytilt=0);
-	}
+    $fa=2; $fs=2;
+    difference() {
+        cube([150,150,100], center=true);
+        cylinder(r=50, h=100.1, center=true);
+        up(50) fillet_hole_mask(r=50, fillet=10, xtilt=0, ytilt=0);
+    }
 
