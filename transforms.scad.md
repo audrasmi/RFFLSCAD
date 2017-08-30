@@ -1,6 +1,8 @@
 This is the file that the most commonly used transformations, distributors, and manipulators are in.
 
 
+# Translation Commands
+
 ## move() { ... }
 Moves/translates children.
 
@@ -84,8 +86,7 @@ Example:
 
 
 
-## fwd() { ... }
-## forward() { ... }
+## fwd() { ... }, forward() { ... }
 Moves/translates children the given amount forward along the Y axis.
 
 Arg | What it is
@@ -138,6 +139,114 @@ Example:
 
 
 
+## place\_copies() { ... }, translate\_copies() { ... }
+Makes copies of the children at each of the given translation offsets.
+
+Arg | What it is
+--- | ----------------------
+a   | array of XYZ offset vectors. Default [[0,0,0]]
+
+Example:
+
+    place_copies([[-5,-5,0], [5,-5,0], [0,-5,7], [0,5,0]])
+        sphere(r=3,center=true);
+
+    translate_copies([[-5,-5,0], [5,-5,0], [0,-5,7], [0,5,0]])
+        sphere(r=3,center=true);
+
+
+
+## spread() { ... }, line\_of() { ... }
+Evenly distributes n duplicate children along an XYZ line.
+
+Arg | What it is
+--- | ----------------------
+p1  | starting point of line.  (Default: [0,0,0])
+p2  | ending point of line.  (Default: [10,0,0])
+n   | number of copies to distribute along the line. (Default: 2)
+
+Examples:
+
+    spread(p1=[0,0,0], p2=[-10,15,20], n=5) cube(size=[3,1,1], center=true);
+    line_of(p1=[0,0,0], p2=[-10,15,20], n=5) cube(size=[3,1,1], center=true);
+
+
+
+## xspread() { ... }
+Spreads out n copies of the given children along the X axis.
+
+Arg     | What it is
+------- | ----------------------
+spacing | spacing between copies. (Default: 1.0)
+n       | Number of copies to spread out. (Default: 2)
+
+Examples:
+
+    xspread(25) sphere(1);
+    xspread(25,3) sphere(1)
+    xspread(25, n=3) sphere(1)
+    xspread(spacing=20, n=4) sphere(1)
+
+
+
+## yspread() { ... }
+Spreads out n copies of the given children along the Y axis.
+
+Arg     | What it is
+------- | ----------------------
+spacing | spacing between copies. (Default: 1.0)
+n       | Number of copies to spread out. (Default: 2)
+
+Examples:
+
+    yspread(25) sphere(1);
+    yspread(25,3) sphere(1)
+    yspread(25, n=3) sphere(1)
+    yspread(spacing=20, n=4) sphere(1)
+
+
+
+## zspread() { ... }
+Spreads out n copies of the given children along the Z axis.
+
+Arg     | What it is
+------- | ----------------------
+spacing | spacing between copies. (Default: 1.0)
+n       | Number of copies to spread out. (Default: 2)
+
+Examples:
+
+    zspread(25) sphere(1);
+    zspread(25,3) sphere(1)
+    zspread(25, n=3) sphere(1)
+    zspread(spacing=20, n=4) sphere(1)
+
+
+
+## grid\_of() { ... }
+Makes a potentially 3D grid of duplicate children.
+
+Arg     | What it is
+------- | ----------------------
+xa      | array or range of X-axis values to offset by. (Default: [0])
+ya      | array or range of Y-axis values to offset by. (Default: [0])
+za      | array or range of Z-axis values to offset by. (Default: [0])
+count   | Optional number of copies to have per axis. (Default: none)
+spacing | spacing of copies per axis. Use with count. (Default: 0)
+
+Examples:
+
+    grid_of(xa=[0,2,3,5], ya=[3:5], za=[-4:2:6]) sphere(r=0.5,center=true);
+    grid_of(ya=[-6:3:6], za=[4,7]) sphere(r=1,center=true);
+    grid_of(count=3, spacing=10) sphere(r=1,center=true);
+    grid_of(count=[3, 1, 2], spacing=10) sphere(r=1,center=true);
+    grid_of(count=[3, 4], spacing=[10, 8]) sphere(r=1,center=true);
+    grid_of(count=[3, 4, 2], spacing=[10, 8, 5]) sphere(r=1,center=true, $fn=24);
+
+
+
+# Rotations Commands
+
 ## xrot() { ... }
 Rotates children around the Z axis by the given number of degrees.
 
@@ -174,181 +283,6 @@ a   | Angle to rotate in degrees.
 Example:
 
     zrot(90) cube(size=[9,1,4], center=true);
-
-
-
-## xscale() { ... }
-Scales children by the given factor in the X axis.
-
-Arg | What it is
---- | ---------------
-x   | Factor to scale by.
-
-Example:
-
-    xscale(3) sphere(r=100, center=true);
-
-
-
-## yscale() { ... }
-Scales children by the given factor in the Y axis.
-
-Arg | What it is
---- | ---------------
-y   | Factor to scale by.
-
-Example:
-
-    yscale(3) sphere(r=100, center=true);
-
-
-
-## zscale() { ... }
-Scales children by the given factor in the Z axis.
-
-Arg | What it is
---- | ---------------
-z   | Factor to scale by.
-
-Example:
-
-    zscale(3) sphere(r=100, center=true);
-
-
-
-## xflip() { ... }
-Mirrors the children along the X axis, kind of like xscale(-1)
-
-Example:
-
-    xflip() cube([10, 40, 90], center=false);
-
-
-
-## yflip() { ... }
-Mirrors the children along the Y axis, kind of like yscale(-1)
-
-Example:
-
-    yflip() cube([10, 40, 90], center=false);
-
-
-
-## zflip() { ... }
-Mirrors the children along the Z axis, kind of like zscale(-1)
-
-Example:
-
-    zflip() cube([10, 40, 90], center=false);
-
-
-
-## xskew() { ... }
-## skew\_yz() { ... }
-Skews children on the Y-Z plane, keeping constant in X.
-
-Arg | What it is
---- | ----------------------
-ya  | skew angle towards the +Y direction.
-za  | skew angle towards the +Z direction.
-
-Examples:
-
-    xskew(ya=15) cube(size=10);
-    skew_yz(ya=15) cube(size=10);
-    skew_yz(ya=15, za=30) cube(size=10);
-
-
-
-## yskew() { ... }
-## skew\_xz() { ... }
-Skews children on the X-Z plane, keeping constant in Y.
-
-Arg | What it is
---- | ----------------------
-xa  | skew angle towards the +X direction.
-za  | skew angle towards the +Z direction.
-
-Examples:
-
-    yskew(xa=15) cube(size=10);
-    skew_xz(xa=15) cube(size=10);
-    skew_xz(xa=15, za=30) cube(size=10);
-
-
-
-## zskew() { ... }
-## skew\_xy() { ... }
-Skews children on the X-Y plane, keeping constant in Z.
-
-Arg | What it is
---- | ----------------------
-xa  | Skew angle towards the +X direction.
-ya  | Skew angle towards the +Y direction.
-
-Examples:
-
-    zskew(xa=15) cube(size=10);
-    skew_xy(xa=15) cube(size=10);
-    skew_xy(xa=15, ya=30) cube(size=10);
-
-
-
-## chain\_hull() { ... }
-Performs hull operations between consecutive pairs of children,
-then unions all of the hull results.
-
-Examples:
-
-    chain_hull() {
-        cylinder(d=5, h=20);
-        translate([50, 0, 0]) cylinder(d=5, h=20);
-        translate([100, 50, 0]) cylinder(d=5, h=20);
-        translate([100, 100, 0]) cylinder(d=5, h=20);
-    }
-
-
-
-## mirror\_copy() { ... }
-Makes a copy of the children, mirrored across the given axes.
-
-Arg | What it is
---- | ----------------------
-v   | The normal vector of the plane to mirror across.
-
-Example:
-
-    mirror_copy([1,-1,0]) yrot(30) cylinder(h=10, r=1, center=true);
-
-
-
-## xflip\_copy() { ... }
-Makes a copy of the children, mirrored across the YZ plane. This leaves the
-originals in place, so there will be two instances of the clindren total.
-
-Example:
-
-    xflip_copy() yrot(30) cylinder(h=10, r=1, center=true);
-
-
-
-## yflip\_copy() { ... }
-Makes a copy of the children, mirrored across the XZ plane. This leaves the
-originals in place, so there will be two instances of the clindren total.
-
-Example:
-
-    yflip_copy() yrot(30) cylinder(h=10, r=1, center=true);
-
-
-
-## zflip\_copy() { ... }
-Makes a copy of the children, mirrored across the XY plane. This leaves the
-originals in place, so there will be two instances of the clindren total.
-
-Example:
-
-    zflip_copy() yrot(30) cylinder(h=10, r=1, center=true);
 
 
 
@@ -411,41 +345,6 @@ Example:
 
     zrot_copies(rots=[0,15,30,60,120,240]) translate([6,0,0]) cube(size=[9,1,4], center=true);
     zrot_copies(count=6, offset=15) translate([6,0,0]) cube(size=[9,1,4], center=true);
-
-
-
-## place\_copies() { ... }
-## translate\_copies() { ... }
-Makes copies of the children at each of the given translation offsets.
-
-Arg | What it is
---- | ----------------------
-a   | array of XYZ offset vectors. Default [[0,0,0]]
-
-Example:
-
-    place_copies([[-5,-5,0], [5,-5,0], [0,-5,7], [0,5,0]])
-        sphere(r=3,center=true);
-
-    translate_copies([[-5,-5,0], [5,-5,0], [0,-5,7], [0,5,0]])
-        sphere(r=3,center=true);
-
-
-
-## spread() { ... }
-## line\_of() { ... }
-Evenly distributes n duplicate children along an XYZ line.
-
-Arg | What it is
---- | ----------------------
-p1  | starting point of line.  (Default: [0,0,0])
-p2  | ending point of line.  (Default: [10,0,0])
-n   | number of copies to distribute along the line. (Default: 2)
-
-Examples:
-
-    spread(p1=[0,0,0], p2=[-10,15,20], n=5) cube(size=[3,1,1], center=true);
-    line_of(p1=[0,0,0], p2=[-10,15,20], n=5) cube(size=[3,1,1], center=true);
 
 
 
@@ -522,78 +421,170 @@ Example:
 
 
 
-## xspread() { ... }
-Spreads out n copies of the given children along the X axis.
+# Scaling Commands
 
-Arg     | What it is
-------- | ----------------------
-spacing | spacing between copies. (Default: 1.0)
-n       | Number of copies to spread out. (Default: 2)
+## xscale() { ... }
+Scales children by the given factor in the X axis.
+
+Arg | What it is
+--- | ---------------
+x   | Factor to scale by.
+
+Example:
+
+    xscale(3) sphere(r=100, center=true);
+
+
+
+## yscale() { ... }
+Scales children by the given factor in the Y axis.
+
+Arg | What it is
+--- | ---------------
+y   | Factor to scale by.
+
+Example:
+
+    yscale(3) sphere(r=100, center=true);
+
+
+
+## zscale() { ... }
+Scales children by the given factor in the Z axis.
+
+Arg | What it is
+--- | ---------------
+z   | Factor to scale by.
+
+Example:
+
+    zscale(3) sphere(r=100, center=true);
+
+
+
+# Mirroring Commands
+
+## xflip() { ... }
+Mirrors the children along the X axis, kind of like xscale(-1)
+
+Example:
+
+    xflip() cube([10, 40, 90], center=false);
+
+
+
+## yflip() { ... }
+Mirrors the children along the Y axis, kind of like yscale(-1)
+
+Example:
+
+    yflip() cube([10, 40, 90], center=false);
+
+
+
+## zflip() { ... }
+Mirrors the children along the Z axis, kind of like zscale(-1)
+
+Example:
+
+    zflip() cube([10, 40, 90], center=false);
+
+
+
+## mirror\_copy() { ... }
+Makes a copy of the children, mirrored across the given axes.
+
+Arg | What it is
+--- | ----------------------
+v   | The normal vector of the plane to mirror across.
+
+Example:
+
+    mirror_copy([1,-1,0]) yrot(30) cylinder(h=10, r=1, center=true);
+
+
+
+## xflip\_copy() { ... }
+Makes a copy of the children, mirrored across the YZ plane. This leaves the
+originals in place, so there will be two instances of the clindren total.
+
+Example:
+
+    xflip_copy() yrot(30) cylinder(h=10, r=1, center=true);
+
+
+
+## yflip\_copy() { ... }
+Makes a copy of the children, mirrored across the XZ plane. This leaves the
+originals in place, so there will be two instances of the clindren total.
+
+Example:
+
+    yflip_copy() yrot(30) cylinder(h=10, r=1, center=true);
+
+
+
+## zflip\_copy() { ... }
+Makes a copy of the children, mirrored across the XY plane. This leaves the
+originals in place, so there will be two instances of the clindren total.
+
+Example:
+
+    zflip_copy() yrot(30) cylinder(h=10, r=1, center=true);
+
+
+
+# Skew Commands
+
+## xskew() { ... }, skew\_yz() { ... }
+Skews children on the Y-Z plane, keeping constant in X.
+
+Arg | What it is
+--- | ----------------------
+ya  | skew angle towards the +Y direction.
+za  | skew angle towards the +Z direction.
 
 Examples:
 
-    xspread(25) sphere(1);
-    xspread(25,3) sphere(1)
-    xspread(25, n=3) sphere(1)
-    xspread(spacing=20, n=4) sphere(1)
+    xskew(ya=15) cube(size=10);
+    skew_yz(ya=15) cube(size=10);
+    skew_yz(ya=15, za=30) cube(size=10);
 
 
 
-## yspread() { ... }
-Spreads out n copies of the given children along the Y axis.
+## yskew() { ... }, skew\_xz() { ... }
+Skews children on the X-Z plane, keeping constant in Y.
 
-Arg     | What it is
-------- | ----------------------
-spacing | spacing between copies. (Default: 1.0)
-n       | Number of copies to spread out. (Default: 2)
-
-Examples:
-
-    yspread(25) sphere(1);
-    yspread(25,3) sphere(1)
-    yspread(25, n=3) sphere(1)
-    yspread(spacing=20, n=4) sphere(1)
-
-
-
-## zspread() { ... }
-Spreads out n copies of the given children along the Z axis.
-
-Arg     | What it is
-------- | ----------------------
-spacing | spacing between copies. (Default: 1.0)
-n       | Number of copies to spread out. (Default: 2)
+Arg | What it is
+--- | ----------------------
+xa  | skew angle towards the +X direction.
+za  | skew angle towards the +Z direction.
 
 Examples:
 
-    zspread(25) sphere(1);
-    zspread(25,3) sphere(1)
-    zspread(25, n=3) sphere(1)
-    zspread(spacing=20, n=4) sphere(1)
+    yskew(xa=15) cube(size=10);
+    skew_xz(xa=15) cube(size=10);
+    skew_xz(xa=15, za=30) cube(size=10);
 
 
 
-## grid\_of(xa=[0], ya=[0], za=[0], count=[], spacing=[])
-Makes a potentially 3D grid of duplicate children.
+## zskew() { ... }, skew\_xy() { ... }
+Skews children on the X-Y plane, keeping constant in Z.
 
-Arg     | What it is
-------- | ----------------------
-xa      | array or range of X-axis values to offset by. (Default: [0])
-ya      | array or range of Y-axis values to offset by. (Default: [0])
-za      | array or range of Z-axis values to offset by. (Default: [0])
-count   | Optional number of copies to have per axis. (Default: none)
-spacing | spacing of copies per axis. Use with count. (Default: 0)
+Arg | What it is
+--- | ----------------------
+xa  | Skew angle towards the +X direction.
+ya  | Skew angle towards the +Y direction.
 
 Examples:
 
-    grid_of(xa=[0,2,3,5], ya=[3:5], za=[-4:2:6]) sphere(r=0.5,center=true);
-    grid_of(ya=[-6:3:6], za=[4,7]) sphere(r=1,center=true);
-    grid_of(count=3, spacing=10) sphere(r=1,center=true);
-    grid_of(count=[3, 1, 2], spacing=10) sphere(r=1,center=true);
-    grid_of(count=[3, 4], spacing=[10, 8]) sphere(r=1,center=true);
-    grid_of(count=[3, 4, 2], spacing=[10, 8, 5]) sphere(r=1,center=true, $fn=24);
+    zskew(xa=15) cube(size=10);
+    skew_xy(xa=15) cube(size=10);
+    skew_xy(xa=15, ya=30) cube(size=10);
 
 
+
+# Mutator Commands
 
 ## top\_half() { ... }
 Clips off everything below the Z=0 plane.  Leaves just the top half.
@@ -676,6 +667,21 @@ Examples:
 
     back_half() sphere(30);
     back_half(200) sphere(150);
+
+
+
+## chain\_hull() { ... }
+Performs hull operations between consecutive pairs of children,
+then unions all of the hull results.
+
+Examples:
+
+    chain_hull() {
+        cylinder(d=5, h=20);
+        translate([50, 0, 0]) cylinder(d=5, h=20);
+        translate([100, 50, 0]) cylinder(d=5, h=20);
+        translate([100, 100, 0]) cylinder(d=5, h=20);
+    }
 
 
 
