@@ -35,7 +35,7 @@ Example:
 
 
 
-## metric\_nut(size=3, hole=true, $fn=undef, center=false)
+## metric\_nut()
 Makes an unthreaded model of a standard nut for a standard metric screw.
 
 Arg       | What it is
