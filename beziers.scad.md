@@ -1,4 +1,4 @@
-# Bezier functions and modules.
+Bezier functions and modules.
 
 
 # Functions
