@@ -144,7 +144,7 @@ Makes copies of the children at each of the given translation offsets.
 
 Arg | What it is
 --- | ----------------------
-a   | array of XYZ offset vectors. Default [[0,0,0]]
+a   | array of XYZ offset vectors. (Default \[\[0,0,0\]\])
 
 Example:
 
@@ -311,8 +311,11 @@ offset | Angle offset in degrees, for use with count.
 
 Example:
 
-    xrot_copies(rots=[0,15,30,60,120,240]) translate([0,6,0]) cube(size=[4,9,1], center=true);
-    xrot_copies(count=6, offset=15) translate([0,6,0]) cube(size=[4,9,1], center=true);
+    xrot_copies(rots=[0,15,30,60,120,240])
+        translate([0,6,0]) cube(size=[4,9,1], center=true);
+
+    xrot_copies(count=6, offset=15)
+        translate([0,6,0]) cube(size=[4,9,1], center=true);
 
 
 
@@ -327,8 +330,11 @@ offset | Angle offset in degrees, for use with count.
 
 Example:
 
-    yrot_copies(rots=[0,15,30,60,120,240]) translate([6,0,0]) cube(size=[9,4,1], center=true);
-    yrot_copies(count=6, offset=15) translate([6,0,0]) cube(size=[9,4,1], center=true);
+    yrot_copies(rots=[0,15,30,60,120,240])
+        translate([6,0,0]) cube(size=[9,4,1], center=true);
+
+    yrot_copies(count=6, offset=15)
+        translate([6,0,0]) cube(size=[9,4,1], center=true);
 
 
 
@@ -343,8 +349,11 @@ offset | Angle offset in degrees for first copy.
 
 Example:
 
-    zrot_copies(rots=[0,15,30,60,120,240]) translate([6,0,0]) cube(size=[9,1,4], center=true);
-    zrot_copies(count=6, offset=15) translate([6,0,0]) cube(size=[9,1,4], center=true);
+    zrot_copies(rots=[0,15,30,60,120,240])
+        translate([6,0,0]) cube(size=[9,1,4], center=true);
+
+    zrot_copies(count=6, offset=15)
+        translate([6,0,0]) cube(size=[9,1,4], center=true);
 
 
 
