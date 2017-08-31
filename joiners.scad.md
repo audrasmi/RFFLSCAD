@@ -1,6 +1,8 @@
 # Snap-together joiners
 These joiners are useful for making snap-together parts.
 
+
+
 ## half\_joiner\_clear()
 Creates a shape used to clear a volume to prepare to place a `half_joiner()` or `half_joiner2()`
 
@@ -181,7 +183,7 @@ Example:
 
 
 
-## joiner\_quad(xspacing=100, yspacing=50, h=40, w=10, l=10, a=30, screwsize=undef, guides=true)
+## joiner\_quad()
 Creates two pairs of opposing joiner shapes that are designed to mate with other `joiner_pair()`s.
 
 Arg       | What it is
