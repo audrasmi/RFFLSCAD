@@ -41,7 +41,7 @@ Takes a bezier curve and closes it with a matching path that is lowered by a giv
 
 # Modules
 
-## revolve\_bezier(bezier, splinesteps=16) {
+## revolve\_bezier()
 Takes a closed 2D bezier and rotates it around the X axis, forming a solid.
 
 Arg         | What it is
@@ -62,7 +62,7 @@ Example:
 
 
 
-## revolve\_bezier\_solid\_to\_axis(bezier, splinesteps=16) {
+## revolve\_bezier\_solid\_to\_axis()
 Takes a 2D bezier and rotates it around the X axis, forming a solid.
 
 Arg         | What it is
@@ -77,7 +77,7 @@ Example:
 
 
 
-## revolve\_bezier\_offset\_shell(bezier, offset=1, splinesteps=16) {
+## revolve\_bezier\_offset\_shell()
 Takes a 2D bezier and rotates it around the X axis, into a hollow shell.
 
 Arg         | What it is
@@ -93,7 +93,7 @@ Example:
 
 
 
-## extrude\_2d\_shapes\_along\_bezier(bezier, splinesteps=16) {
+## extrude\_2d\_shapes\_along\_bezier()
 Extrudes 2D children along a bezier path.
 
 Arg         | What it is
@@ -110,7 +110,7 @@ Example:
 
 
 
-## extrude\_bezier\_along\_bezier(bezier, path, pathsteps=16, bezsteps=16) {
+## extrude\_bezier\_along\_bezier()
 Takes a closed 2D bezier path, centered on the XY plane, and
 extrudes it perpendicularly along a 3D bezier path, forming a solid.
 
