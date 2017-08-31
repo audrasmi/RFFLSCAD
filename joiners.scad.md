@@ -5,6 +5,7 @@ These joiners are useful for making snap-together parts.
 
 ## half\_joiner\_clear()
 Creates a shape used to clear a volume to prepare to place a `half_joiner()` or `half_joiner2()`
+![half\_joiner\_clear()](half_joiner_clear.png)
 
 Arg       | What it is
 --------- | ------------------------
@@ -16,14 +17,15 @@ clearance | Extra side clearance for joiner.  (default 0)
 Example:
 
     difference() {
-        cube(size=50, center=true);
-        half_joiner_clear(h=50, w=10, clearance=2);
+        cube(size=30, center=true);
+        back(15) half_joiner_clear(h=30, w=10, clearance=2);
     }
 
 
 
 ## half\_joiner()
 Creates a joiner shape that is designed to mate with a `half_joiner2()` shape.
+![half\_joiner()](half_joiner.png)
 
 Arg       | What it is
 --------- | ------------------------
@@ -39,16 +41,17 @@ Example:
 
     union() {
         difference() {
-            cube(size=50, center=true);
-            half_joiner_clear(h=50, w=10, clearance=2);
+            cube(size=30, center=true);
+            back(15) half_joiner_clear(h=30, w=10, clearance=2);
         }
-        half_joiner(h=50, w=10, l=10, screwsize=3);
+        back(15) half_joiner(h=30, w=10, l=15, screwsize=3);
     }
 
 
 
 ## half\_joiner2()
 Creates a joiner shape that is designed to mate with a `half_joiner()` shape.
+![half\_joiner2()](half_joiner2.png)
 
 Arg       | What it is
 --------- | ------------------------
@@ -64,16 +67,17 @@ Example:
 
     union() {
         difference() {
-            cube(size=50, center=true);
-            half_joiner_clear(h=50, w=10, clearance=2);
+            cube(size=30, center=true);
+            back(15) half_joiner_clear(h=30, w=10, clearance=2);
         }
-        half_joiner2(h=50, w=10, l=10, screwsize=3);
+        back(15) half_joiner2(h=30, w=10, l=15, screwsize=3);
     }
 
 
 
 ## joiner\_clear()
 Creates a shape used to clear a volume to prepare to place a `joiner()`.
+![joiner\_clear()](joiner_clear.png)
 
 Arg       | What it is
 --------- | ------------------------
@@ -86,13 +90,14 @@ Example:
 
     difference() {
         cube(size=50, center=true);
-        joiner_clear(h=50, w=10, clearance=2);
+        back(25) joiner_clear(h=50, w=10, clearance=2);
     }
 
 
 
 ## joiner()
 Creates a joiner shape that is designed to mate with another rotated `joiner()` shape.
+![joiner()](joiner.png)
 
 Arg       | What it is
 --------- | ------------------------
@@ -109,15 +114,16 @@ Example:
     union() {
         difference() {
             cube(size=50, center=true);
-            joiner_clear(h=50, w=10, clearance=2);
+            back(25) joiner_clear(h=50, w=10, clearance=2);
         }
-        joiner(h=50, w=10, l=10, screwsize=3);
+        back(25) joiner(h=50, w=10, l=10, screwsize=3);
     }
 
 
 
 ## joiner\_pair\_clear()
 Creates shapes used to clear a volume to prepare to place a `joiner_pair()`.
+![joiner\_pair\_clear()](joiner_pair_clear.png)
 
 Arg       | What it is
 --------- | ------------------------
@@ -138,6 +144,7 @@ Example:
 
 ## joiner\_pair()
 Creates a pair of joiner shapes that are designed to mate with another `joiner_pair()`.
+![joiner\_pair()](joiner_pair.png)
 
 Arg       | What it is
 --------- | ------------------------
@@ -164,6 +171,7 @@ Example:
 
 ## joiner\_quad\_clear()
 Creates shapes used to clear a volume to prepare to place a `joiner_quad()`.
+![joiner\_quad\_clear()](joiner_quad_clear.png)
 
 Arg       | What it is
 --------- | ------------------------
@@ -185,6 +193,7 @@ Example:
 
 ## joiner\_quad()
 Creates two pairs of opposing joiner shapes that are designed to mate with other `joiner_pair()`s.
+![joiner\_quad()](joiner_quad.png)
 
 Arg       | What it is
 --------- | ------------------------
