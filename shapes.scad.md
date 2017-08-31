@@ -76,8 +76,7 @@ Examples:
 
 
 
-## chamf\_cyl()
-## chamferred\_cylinder()
+## chamf\_cyl(), chamferred\_cylinder()
 Creates a cylinder with chamferred edges.
 
 Arg       | What it does
@@ -100,8 +99,7 @@ Example:
 
 
 
-## rcylinder()
-## filleted\_cylinder()
+## rcylinder(), filleted\_cylinder()
 Creates a cylinder with filletted (rounded) ends.
 
 Arg     | What it does
