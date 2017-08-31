@@ -332,6 +332,7 @@ Example:
 
     yrot_copies(rots=[0,15,30,60,120,240])
         translate([6,0,0]) cube(size=[9,4,1], center=true);
+
     yrot_copies(count=6, offset=15)
         translate([6,0,0]) cube(size=[9,4,1], center=true);
 
@@ -350,6 +351,7 @@ Example:
 
     zrot_copies(rots=[0,15,30,60,120,240])
         translate([6,0,0]) cube(size=[9,1,4], center=true);
+
     zrot_copies(count=6, offset=15)
         translate([6,0,0]) cube(size=[9,1,4], center=true);
 
