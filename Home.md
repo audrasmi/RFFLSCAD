@@ -6,7 +6,7 @@ The library files are as follows:
   - [```masks.scad```](masks.scad): Shapes that are useful for masking with ```difference()``` and ```intersect()```.
   - [```math.scad```](math.scad): Useful helper functions and constants.
   - [```paths.scad```](paths.scad): Functions and modules to work with arbitrary 3D paths.
-  - [```bezier.scad```](bezier.scad): Functions and modules to work with bezier curves.
+  - [```beziers.scad```](beziers.scad): Functions and modules to work with bezier curves.
   - [```involute_gears.scad```](involute_gears.scad): Modules and functions to make involute gears and racks.
   - [```metric_screws.scad```](metric_screws.scad): Functions and modules to make holes for metric screws and nuts.
   - [```joiners.scad```](joiners.scad): Modules to make joiner shapes for connecting separately printed objects.
