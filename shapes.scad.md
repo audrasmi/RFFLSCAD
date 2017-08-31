@@ -18,19 +18,25 @@ Example:
 
     upcube([4, 5, 3]);
 
+![upcube](upcube.png)
+
 
 
 ## chamfcube()
 Makes a cube with chamfered edges.
 
-Arg      | What it does
--------- | --------------------------
-size     | size of cube [X,Y,Z].  (Default: [1,1,1])
-chamfer  | chamfer inset along axis.  (Default: 0.25)
+Arg          | What it does
+------------ | --------------------------
+size         | size of cube [X,Y,Z].  (Default: [1,1,1])
+chamfer      | chamfer inset along axis.  (Default: 0.25)
+chamfaxes    | Array [X, Y, Z] of boolean values to specify which axis edges should be chamfered.
+chamfcorners | boolean to specify if corners should be flat chamferred.
 
 Example:
 
-    chamfcube(size=[10,30,50], chamfer=1, chamfaxes=[1,1,1], chamfcorners=true);
+    chamfcube(size=[10,20,30], chamfer=1, chamfaxes=[1,1,1], chamfcorners=true);
+
+![chamfcube](chamfcube.png)
 
 
 
@@ -41,11 +47,14 @@ Arg      | What it does
 -------- | --------------------------
 size     | size of cube [X,Y,Z].  (Default: [1,1,1])
 r        | radius of edge/corner rounding.  (Default: 0.25)
+center   | if true, object will be centered.  If false, sits on top of XY plane.
 
 Examples:
 
     rrect(size=[9,4,1], r=1, center=true);
     rrect(size=[5,7,3], r=1, $fn=24);
+
+![rrect](rrect.png)
 
 
 
@@ -56,11 +65,14 @@ Arg      | What it does
 -------- | --------------------------
 size     | size of cube [X,Y,Z].  (Default: [1,1,1])
 r        | radius of edge/corner rounding.  (Default: 0.25)
+center   | if true, object will be centered.  If false, sits on top of XY plane.
 
 Examples:
 
-    rcube(size=[9,4,1], r=0.333, center=true, $fn=24);
-    rcube(size=[5,7,3], r=1);
+    rcube(size=[9,4,1], r=0.333, $fn=24);
+    rcube(size=[5,7,3], r=1, center=true);
+
+![rcube](rcube.png)
 
 
 
@@ -81,8 +93,10 @@ bottom    | boolean.  If true, chamfer the bottom edges. (Default: True)
 
 Example:
 
-    chamf_cyl(h=50, r=20, chamfer=5, angle=45, bottom=false, center=true);
+    chamf_cyl(h=50, d=40, chamfer=5, angle=45, bottom=false, center=true);
     chamferred_cylinder(h=50, r=20, chamfedge=10, angle=30, center=true);
+
+![chamf\_cyl](chamf_cyl.png)
 
 
 
@@ -102,6 +116,8 @@ Example:
 
     rcylinder(h=50, r=20, fillet=5, center=true, $fa=1, $fs=1);
 
+![rcylinder](rcylinder.png)
+
 
 
 ## pyramid()
@@ -119,6 +135,8 @@ circum  | base circumscribes the circle of the given radius or diam.
 Example:
 
     pyramid(h=3, d=4, n=6, circum=true);
+
+![pyramid](pyramid.png)
 
 
 
@@ -138,6 +156,8 @@ Example:
 
     prism(n=6, h=3, d=4, circum=true);
 
+![prism](prism.png)
+
 
 
 ## right\_triangle()
@@ -153,6 +173,8 @@ Examples:
     right_triangle([4, 1, 6], center=true);
     right_triangle([4, 1, 9]);
 
+![right\_triangle](right_triangle.png)
+
 
 
 ## trapezoid()
@@ -167,8 +189,11 @@ center  | vertically center the prism if true.  Sits on top of XY plane if false
 
 Example:
 
-    trapezoid(size1=[1,4], size2=[4,1], h=4, center=false);
     trapezoid(size1=[2,6], size2=[4,0], h=4, center=false);
+
+    trapezoid(size1=[1,4], size2=[4,1], h=4, center=false);
+
+![trapezoid](trapezoid.png)
 
 
 
@@ -183,6 +208,8 @@ h      | thickness of teardrop. (Default: 1)
 Example:
 
     teardrop(r=3, h=2, ang=30);
+
+![teardrop](teardrop.png)
 
 
 
@@ -200,6 +227,8 @@ Example:
 
     onion(h=15, r=10, maxang=30);
 
+![onion](onion.png)
+
 
 
 ## tube()
@@ -215,9 +244,11 @@ wall   | horizontal thickness of tube wall. (Default 0.5)
 
 Example:
 
-    tube(h=3, r=4, wall=1, center=true);
     tube(h=6, r=4, wall=2, $fn=6);
     tube(h=3, r1=5, r2=7, wall=2, center=true);
+    tube(h=3, r=4, wall=1, center=true);
+
+![tube](tube.png)
 
 
 
@@ -232,6 +263,8 @@ ir     | inside radius of the torus.
 Example:
 
     torus(or=30, ir=20, $fa=1, $fs=1);
+
+![torus](torus.png)
 
 
 
@@ -249,6 +282,12 @@ r2     | top radius of slot cone. (use instead of r)
 d      | diameter of slot circle. (default: 1.0)
 d1     | bottom diameter of slot cone. (use instead of d)
 d2     | top diameter of slot cone. (use instead of d)
+
+Example:
+
+    slot([0,0,0], [50,50,0], h=5, d=10);
+
+![slot](slot.png)
 
 
 
@@ -272,8 +311,10 @@ ea     | ending angle. (Default: 90.0)
 
 Examples:
 
-    arced_slot(d=100, h=15, sd=10, sa=60, ea=280);
     arced_slot(r=100, h=10, sd1=30, sd2=10, sa=45, ea=180, $fa=5, $fs=2);
+    arced_slot(d=100, h=15, sd=10, sa=60, ea=280);
+
+![arced\_slot](arced_slot.png)
 
 
 
@@ -294,6 +335,8 @@ Example:
 
     narrowing_strut(w=10, l=100, wall=5, ang=30);
 
+![narrowing\_strut](narrowing_strut.png)
+
 
 
 ## thinning\_wall()
@@ -313,6 +356,8 @@ Example:
 
     thinning_wall(h=50, l=100, thick=4, ang=30, strut=5, wall=2);
 
+![thinning\_wall](thinning_wall.png)
+
 
 
 ## thinning\_triangle()
@@ -329,9 +374,12 @@ strut    | the width of the diagonal brace.
 wall     | the thickness of the thinned portion of the wall.
 diagonly | boolean, which denotes only the diagonal brace should be thick.
 
-Example:
+Examples:
 
     thinning_triangle(h=50, l=100, thick=4, ang=30, strut=5, wall=2, diagonly=true);
+    thinning_triangle(h=60, l=75, thick=4, ang=30, strut=5, wall=2);
+
+![thinning\_triangle](thinning_triangle.png)
 
 
 
@@ -353,6 +401,8 @@ Example:
 
     thinning_brace(h=50, l=100, thick=4, ang=30, strut=5, wall=2);
 
+![thinning\_brace](thinning_brace.png)
+
 
 
 ## sparse\_strut3d()
@@ -372,6 +422,8 @@ Example:
 
     sparse_strut3d(h=40, w=40, l=120, thick=4, maxang=30, strut=5, max_bridge=20);
 
+![sparse\_strut3d](sparse_strut3d.png)
+
 
 
 ## sparse\_strut()
@@ -390,6 +442,8 @@ Example:
 
     sparse_strut(h=40, l=120, thick=4, maxang=30, strut=5, max_bridge=20);
 
+![sparse\_strut](sparse_strut.png)
+
 
 
 ## corrugated\_wall()
@@ -407,6 +461,8 @@ wall   | thickness of corrugations.
 Example:
 
     corrugated_wall(h=50, l=100, thick=4, strut=5, wall=2);
+
+![corrugated\_wall](corrugated_wall.png)
 
 
 
