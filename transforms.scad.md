@@ -144,7 +144,7 @@ Makes copies of the children at each of the given translation offsets.
 
 Arg | What it is
 --- | ----------------------
-a   | array of XYZ offset vectors. Default [[0,0,0]]
+a   | array of XYZ offset vectors. (Default \[\[0,0,0\]\])
 
 Example:
 
