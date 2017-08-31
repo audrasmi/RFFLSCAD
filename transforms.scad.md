@@ -311,8 +311,11 @@ offset | Angle offset in degrees, for use with count.
 
 Example:
 
-    xrot_copies(rots=[0,15,30,60,120,240]) translate([0,6,0]) cube(size=[4,9,1], center=true);
-    xrot_copies(count=6, offset=15) translate([0,6,0]) cube(size=[4,9,1], center=true);
+    xrot_copies(rots=[0,15,30,60,120,240])
+        translate([0,6,0]) cube(size=[4,9,1], center=true);
+
+    xrot_copies(count=6, offset=15)
+        translate([0,6,0]) cube(size=[4,9,1], center=true);
 
 
 
