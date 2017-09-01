@@ -33,7 +33,7 @@ bezsteps  | The corner fillets in the path will be converted into this number of
 
 Example:
 
-    wiring([[50,0,-50], [50,50,-50], [0,50,-50], [0,0,-50], [0,0,0]], fillet=10, wires=13);
-
+    path = [[50,0,-50], [50,50,-50], [0,50,-50], [0,0,-50], [0,0,0]];
+    wiring(path, fillet=10, wires=13);
 
 
