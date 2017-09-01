@@ -5,6 +5,7 @@ Math helper functions.
 
 
 ## Cpi() = 3.141592653589793236;
+Returns the value of pi, 3.141592653589793236.
 
 
 
