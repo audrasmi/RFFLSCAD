@@ -4,7 +4,7 @@ Math helper functions.
 # Functions
 
 
-## Cpi() = 3.141592653589793236;
+## Cpi()
 Returns the value of pi, 3.141592653589793236.
 
 
