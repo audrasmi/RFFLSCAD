@@ -132,6 +132,8 @@ circum  | base circumscribes the circle of the given radius or diam.
 
 Example:
 
+    pyramid(h=10, l=5, n=4);
+    pyramid(h=10, r=5, n=5);
     pyramid(h=3, d=4, n=6, circum=true);
 
 ![pyramid](pyramid.png)
