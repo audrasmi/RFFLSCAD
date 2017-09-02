@@ -248,7 +248,7 @@ Examples:
 # Rotations Commands
 
 ## xrot() { ... }
-Rotates children around the Z axis by the given number of degrees.
+Rotates children around the X axis by the given number of degrees.
 
 Arg | What it is
 --- | ---------------
