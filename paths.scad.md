@@ -92,7 +92,7 @@ Example:
 
     shape = [ [-15, 0], [0, 0], [-5, 10], [0, 10], [5, 10], [10, 5], [15, 0], [10, -5], [5, -10], [0, -10], [-5, -10], [-10, -5], [-15, 0] ];
     path = [ [0, 0, 0], [100, 33, 33], [200, -33, -33], [300, 0, 0] ];
-    extrude_2dpath_along_3dpath(shape, path, tilt=false);
+    extrude_2dpath_along_3dpath(shape, path);
 
 
 

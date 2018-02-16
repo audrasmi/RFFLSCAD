@@ -3,39 +3,62 @@ Bezier functions and modules.
 
 # Functions
 
-## bez\_point(curve,u)
-Formula to calculate points on a cubic bezier curve.
+## bez\_point(curve, u)
+Formula to calculate points on an N-point bezier curve. N=len(curve)-1
+
+Arg         | What it is
+----------- | --------------------------------
+curve       | An array of control point vectors.
+u           | Part of curve to get point of.  0 <= u <= 1
 
 
 
-## bezier\_polyline(bezier, splinesteps=16)
+## bezier\_polyline(bezier, splinesteps=16, N=3)
 Takes an array of bezier points and converts it into a 3D polyline.
+
+Arg         | What it is
+----------- | --------------------------------
+splinesteps | The number of line segments to divide each bezier segment into.
+N           | The number of points in each bezier segment.  Default=3 (cubic bezier)
 
 
 
 ## bezier\_polygon(bezier, splinesteps=16)
 Takes a closed 2D bezier path, and creates a 2D polygon from it.
 
+Arg         | What it is
+----------- | --------------------------------
+splinesteps | The number of line segments to divide each bezier segment into.
+N           | The number of points in each bezier segment.  Default=3 (cubic bezier)
+
 
 
 ## fillet3pts(p0, p1, p2, r)
-Generate bezier curve to fillet 2 line segments between 3 points.
-Returns two path points with surrounding cubic bezier control points.
+Generate a cubic (N=3) bezier curve to fillet 2 line segments between 3 points.
+Returns two path points with surrounding cubic (N=3) bezier control points.
 
 
 
 ## fillet\_path(pts, fillet)
-Takes a 3D polyline path and fillets it into a 3d cubic bezier path.
+Takes a 3D polyline path and fillets it into a 3d cubic (N=3) bezier path.
 
 
 
-## bezier\_close\_to\_axis(bezier)
-Takes a bezier path and closes it to the X axis.
+## bezier\_close\_to\_axis(bezier, N=3)
+Takes a 2D bezier path and closes it to the X axis.
+
+Arg         | What it is
+----------- | --------------------------------
+N           | The number of points in each bezier segment.  Default=3 (cubic bezier)
 
 
 
-## bezier\_offset(inset, bezier)
+## bezier\_offset(inset, bezier, N=3)
 Takes a bezier curve and closes it with a matching path that is lowered by a given amount towards the X axis.
+
+Arg         | What it is
+----------- | --------------------------------
+N           | The number of points in each bezier segment.  Default=3 (cubic bezier)
 
 
 
@@ -48,6 +71,7 @@ Arg         | What it is
 ----------- | --------------------------------
 bezier      | Array of points for the bezier path to rotate.
 splinesteps | Number of segments to divide each bezier segment into.
+N           | The number of points in each bezier segment.  Default=3 (cubic bezier)
 
 Example:
 
@@ -69,6 +93,7 @@ Arg         | What it is
 ----------- | --------------------------------
 bezier      | array of points for the bezier path to rotate.
 splinesteps | number of segments to divide each bezier segment into.
+N           | The number of points in each bezier segment.  Default=3 (cubic bezier)
 
 Example:
 
@@ -85,6 +110,7 @@ Arg         | What it is
 bezier      | array of points for the bezier path to rotate.
 offset      | the thickness of the created shell.
 splinesteps | number of segments to divide each bezier segment into.
+N           | The number of points in each bezier segment.  Default=3 (cubic bezier)
 
 Example:
 
@@ -100,6 +126,7 @@ Arg         | What it is
 ----------- | --------------------------------
 bezier      | array of points for the bezier path to extrude along.
 splinesteps | number of segments to divide each bezier segment into.
+N           | The number of points in each bezier segment.  Default=3 (cubic bezier)
 
 Example:
 
@@ -120,6 +147,8 @@ bezier      | Array of points of a bezier path, to be extruded.
 path        | Array of points of a bezier path, to extrude along.
 pathsteps   | number of steps to divide each path segment into.
 bezsteps    | number of steps to divide each bezier segment into.
+bezN        | The number of points in each extruded bezier segment.  Default=3 (cubic bezier)
+pathN       | The number of points in each path bezier segment.  Default=3 (cubic bezier)
 
 Example:
 
