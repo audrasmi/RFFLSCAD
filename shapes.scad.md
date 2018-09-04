@@ -197,13 +197,31 @@ Example:
 
 
 
+## teardrop2d()
+Makes a 2D teardrop shape. Useful for extruding into 3D printable holes.
+
+Arg    | What it does
+------ | -----------------------------------
+r      | radius of circular part of teardrop.  (Default: 1)
+d      | diameter of spherical portion of bottom. (Use instead of r)
+ang    | angle of hat walls from the Y axis.  (Default: 45 degrees)
+cap\_h | if given, height above center where the shape will be truncated.
+
+Example:
+
+    teardrop2d(r=30, ang=30);
+
+
+
 ## teardrop()
 Makes a teardrop shape in the XZ plane. Useful for 3D printable holes.
 
 Arg    | What it does
 ------ | -----------------------------------
 r      | radius of circular part of teardrop.  (Default: 1)
+d      | diameter of spherical portion of bottom. (Use instead of r)
 h      | thickness of teardrop. (Default: 1)
+cap\_h | if given, height above center where the shape will be truncated.
 
 Example:
 
@@ -253,15 +271,25 @@ Example:
 
 
 ## torus()
-Creates a torus with a given outer radius and inner radius.
+Creates a torus shape.
 
 Arg    | What it does
 ------ | -----------------------------------
-or     | outer radius of the torus.
-ir     | inside radius of the torus.
+r      | major radius of torus ring. (use with of 'r2', or 'd2')
+r2     | minor radius of torus ring. (use with of 'r', or 'd')
+d      | major diameter of torus ring. (use with of 'r2', or 'd2')
+d2     | minor diameter of torus ring. (use with of 'r', or 'd')
+or     | outer radius of the torus. (use with 'ir', or 'id')
+ir     | inside radius of the torus. (use with 'or', or 'od')
+od     | outer diameter of the torus. (use with 'ir' or 'id')
+id     | inside diameter of the torus. (use with 'or' or 'od')
 
 Example:
 
+    torus(r=30, r2=5);
+    torus(d=50, r2=5);
+    torus(d=60, d2=15);
+    torus(od=60, ir=15);
     torus(or=30, ir=20, $fa=1, $fs=1);
 
 ![torus](torus.png)
