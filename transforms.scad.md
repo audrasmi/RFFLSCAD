@@ -383,7 +383,7 @@ Examples:
 
 
 ## xring() { ... }
-Evenly distributes n duplicate children around a circle on the YZ plane.
+Evenly distributes n duplicate children around a circle on the YZ plane. Translates the children back by r, then copies them around the ring n times.
 
 Arg | What it is
 --- | ----------------------
@@ -399,7 +399,7 @@ Example:
 
 
 ## yring() { ... }
-Evenly distributes n duplicate children around a circle on the XZ plane.
+Evenly distributes n duplicate children around a circle on the XZ plane. Translates the children right by r, then copies them around the ring n times.
 
 Arg | What it is
 --- | ----------------------
@@ -415,7 +415,7 @@ Example:
 
 
 ## zring() { ... }
-Evenly distributes n duplicate children around a circle on the XY plane.
+Evenly distributes n duplicate children around a circle on the XY plane. Translates the children right by r, then copies them around the ring n times.
 
 Arg | What it is
 --- | ----------------------
@@ -501,45 +501,62 @@ Example:
 
 
 ## mirror\_copy() { ... }
-Makes a copy of the children, mirrored across the given axes.
+Makes a copy of the children, mirrored across the given plane.
 
-Arg | What it is
---- | ----------------------
-v   | The normal vector of the plane to mirror across.
+Arg    | What it is
+------ | ----------------------
+v      | The normal vector of the plane to mirror across.
+offset | distance to offset away from the plane.
 
 Example:
 
     mirror_copy([1,-1,0]) yrot(30) cylinder(h=10, r=1, center=true);
+    mirror_copy([1,1,1], offset=17.32) cylinder(h=10, r=1, center=false);
 
 
 
 ## xflip\_copy() { ... }
 Makes a copy of the children, mirrored across the YZ plane. This leaves the
-originals in place, so there will be two instances of the clindren total.
+originals in place, so there will be two instances of the children total.
+
+Arg    | What it is
+------ | ----------------------
+offset | distance to offset children away from the YZ plane.
 
 Example:
 
     xflip_copy() yrot(30) cylinder(h=10, r=1, center=true);
+    xflip_copy(offset=10) yrot(30) cylinder(h=10, r=1, center=false);
 
 
 
 ## yflip\_copy() { ... }
 Makes a copy of the children, mirrored across the XZ plane. This leaves the
-originals in place, so there will be two instances of the clindren total.
+originals in place, so there will be two instances of the children total.
+
+Arg    | What it is
+------ | ----------------------
+offset | distance to offset children away from the XZ plane.
 
 Example:
 
     yflip_copy() yrot(30) cylinder(h=10, r=1, center=true);
+    yflip_copy(offset=10) yrot(30) cylinder(h=10, r=1, center=false);
 
 
 
 ## zflip\_copy() { ... }
 Makes a copy of the children, mirrored across the XY plane. This leaves the
-originals in place, so there will be two instances of the clindren total.
+originals in place, so there will be two instances of the children total.
+
+Arg    | What it is
+------ | ----------------------
+offset | distance to offset children away from the XY plane.
 
 Example:
 
     zflip_copy() yrot(30) cylinder(h=10, r=1, center=true);
+    zflip_copy(offset=10) yrot(30) cylinder(h=10, r=1, center=false);
 
 
 
@@ -691,6 +708,5 @@ Examples:
         translate([100, 50, 0]) cylinder(d=5, h=20);
         translate([100, 100, 0]) cylinder(d=5, h=20);
     }
-
 
 
