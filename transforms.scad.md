@@ -432,6 +432,7 @@ Example:
 
     zring(n=3, r=20) cube(size=5, center=true);
     zring(n=5, r=50, rot=false) cube(size=5, center=true);
+    zring(n=3, r=10, sa=90) xspread(10) xrot(30) cylinder(h=10, d=1, center=false);
 
 
 
@@ -713,4 +714,3 @@ Examples:
         translate([100, 50, 0]) cylinder(d=5, h=20);
         translate([100, 100, 0]) cylinder(d=5, h=20);
     }
-
