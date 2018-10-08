@@ -383,45 +383,50 @@ Examples:
 
 
 ## xring() { ... }
-Evenly distributes n duplicate children around a circle on the YZ plane. Translates the children back by r, then copies them around the ring n times.
+Evenly distributes `n` duplicate children around a circle on the YZ plane, around the X axis.  First moves children away from the X axis by `r` distance, in direction `sa`. Then copies them around the axis of rotation, for a total of `n` copies.  If `rot` is true, each copy is rotated in place to orient to the center of rotation.
 
 Arg | What it is
 --- | ----------------------
-n   | Number of copy of the children.
-r   | Radius of the circle.
-rot | Rotate orientation of each copy if true.
+n   | Number of copies of children to distribute around the circle. (Default: 2)
+r   | Radius of ring to distribute children around. (Default: 0)
+sa  | Start angle for first (unrotated) copy.  (Default: 0)
+rot | If true, rotate each copy of children with respect to the center of the ring. (Default: true)
 
 Example:
 
     xring(n=3, r=20) cube(size=5, center=true);
     xring(n=5, r=50, rot=false) cube(size=5, center=true);
+    xring(n=3, r=10, sa=270) yspread(10) yrot(120) cylinder(h=10, d=1, center=false);
 
 
 
 ## yring() { ... }
-Evenly distributes n duplicate children around a circle on the XZ plane. Translates the children right by r, then copies them around the ring n times.
+Evenly distributes `n` duplicate children around a circle on the XZ plane, around the Y axis.  First moves children away from the Y axis by `r` distance, in direction `sa`. Then copies them around the axis of rotation, for a total of `n` copies.  If `rot` is true, each copy is rotated in place to orient to the center of rotation.
 
 Arg | What it is
 --- | ----------------------
-n   | Number of copy of the children.
-r   | Radius of the circle.
-rot | Rotate orientation of each copy if true.
+n   | Number of copies of children to distribute around the circle. (Default: 2)
+r   | Radius of ring to distribute children around. (Default: 0)
+sa  | Start angle for first (unrotated) copy.  (Default: 0)
+rot | If true, rotate each copy of children with respect to the center of the ring. (Default: true)
 
 Example:
 
     yring(n=3, r=20) cube(size=5, center=true);
     yring(n=5, r=50, rot=false) cube(size=5, center=true);
+    yring(n=3, r=10, sa=270) xspread(10) xrot(-120) cylinder(h=10, d=1, center=false);
 
 
 
 ## zring() { ... }
-Evenly distributes n duplicate children around a circle on the XY plane. Translates the children right by r, then copies them around the ring n times.
+Evenly distributes `n` duplicate children around a circle on the XY plane, around the Z axis.  First moves children away from the Z axis by `r` distance, in direction `sa`. Then copies them around the axis of rotation, for a total of `n` copies.  If `rot` is true, each copy is rotated in place to orient to the center of rotation.
 
 Arg | What it is
 --- | ----------------------
-n   | Number of copy of the children.
-r   | Radius of the circle.
-rot | Rotate orientation of each copy if true.
+n   | Number of copies of children to distribute around the circle. (Default: 2)
+r   | Radius of ring to distribute children around. (Default: 0)
+sa  | Start angle for first (unrotated) copy.  (Default: 0)
+rot | If true, rotate each copy of children with respect to the center of the ring. (Default: true)
 
 Example:
 
@@ -708,5 +713,4 @@ Examples:
         translate([100, 50, 0]) cylinder(d=5, h=20);
         translate([100, 100, 0]) cylinder(d=5, h=20);
     }
-
 
