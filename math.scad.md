@@ -5,7 +5,7 @@ Math helper functions.
 
 
 ## Cpi()
-Returns the value of pi, 3.141592653589793236.
+Returns the value of pi, 3.1415926535897932.  **Deprecated.  Use the variable `PI` instead.**
 
 
 
