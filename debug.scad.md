@@ -43,6 +43,7 @@ txtsize     | The size of the text used to label the faces and vertexes.
 disabled    | If true, act exactly like `polyhedron()`.  Default = false.
 
 Example:
+
     pts = [[-5,0,-5], [5,0,-5], [0,-5,5], [0,5,5]];
     fcs = [[0,2,1], [1,2,3], [1,3,0], [0,2,3]];  // Last face reversed
     debug_polyhedron(points=pts, faces=fcs, txtsize=1);
