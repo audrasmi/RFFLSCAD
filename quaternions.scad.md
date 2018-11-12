@@ -9,7 +9,7 @@ Quaternions are stored internally as a 4-value vector:
 
 
 ## Quat(ax, ang)
-Returns a Quaternion created from a given axis `ax` and angle `ang` (in degrees).
+Returns a Quaternion created from a given axis vector `ax` and angle `ang` (in degrees).
 
 
 
