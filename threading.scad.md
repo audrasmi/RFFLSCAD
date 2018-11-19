@@ -18,10 +18,11 @@ Arg           | What it does
 d             | Outer diameter of threaded rod.
 l             | Length of threaded rod.
 pitch         | Thread pitch.
-thread\_depth | Depth of threads.  Default = pitch/2
-thread\_angle | Trapezoidal angle of threads.  Default = 15 degrees.
-starts        | The number of lead starts.  Default = 1
-left\_handed  | If true, create left-handed threads.  Default = false
+thread\_depth | Depth of threads.  Default: pitch/2
+thread\_angle | Trapezoidal angle of threads.  Default: 15 degrees.
+starts        | The number of lead starts.  Default: 1
+left\_handed  | If true, create left-handed threads.  Default: false
+center        | If true (default), centers rod at origin.  If false, sits it on top of the XY plane.
 
 Example:
 
