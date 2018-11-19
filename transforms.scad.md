@@ -223,6 +223,57 @@ Examples:
 
 
 
+## xdistribute() { ... }
+Evenly spreads out each child along the X axis.
+
+Arg     | What it is
+------- | ----------------------
+spacing | spacing between children. Default: 10
+
+Examples:
+
+    xdistribute(25) {
+        sphere(1);
+        cube([1,2,3], center=true);
+        cylinder(d=2, h=5);
+    }
+
+
+
+## ydistribute() { ... }
+Evenly spreads out each child along the Y axis.
+
+Arg     | What it is
+------- | ----------------------
+spacing | spacing between children. Default: 10
+
+Examples:
+
+    ydistribute(25) {
+        sphere(1);
+        cube([1,2,3], center=true);
+        cylinder(d=2, h=5);
+    }
+
+
+
+## zdistribute() { ... }
+Evenly spreads out each child along the Z axis.
+
+Arg     | What it is
+------- | ----------------------
+spacing | spacing between children. Default: 10
+
+Examples:
+
+    zdistribute(25) {
+        sphere(1);
+        cube([1,2,3], center=true);
+        cylinder(d=2, h=5);
+    }
+
+
+
 ## grid\_of() { ... }
 Makes a potentially 3D grid of duplicate children.
 
