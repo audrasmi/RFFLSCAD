@@ -11,7 +11,7 @@ The library files are as follows:
   - [`metric_screws.scad`](metric_screws.scad): Functions and modules to make holes for metric screws and nuts.
   - [`joiners.scad`](joiners.scad): Modules to make joiner shapes for connecting separately printed objects.
   - [`sliders.scad`](sliders.scad): Modules for creating simple sliders and rails.
-  - [`threading.scad`](acme_screws.scad): Modules to make trapezoidal (ACME) threaded rods and nuts.
+  - [`threading.scad`](acme_screws.scad): Modules to make triangular and trapezoidal threaded rods and nuts.
   - [`nema_steppers.scad`](nema_steppers.scad): Modules to make mounting holes for NEMA motors.
   - [`linear_bearings.scad`](linear_bearings.scad): Modules to make mounts for LMxUU style linear bearings.
   - [`wiring.scad`](wiring.scad): Modules to render routed bundles of wires.
