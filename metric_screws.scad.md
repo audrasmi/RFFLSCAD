@@ -134,8 +134,8 @@ center    | If true, nut is centered, otherwise, sits on top of XY plane.  Defau
 
 Example:
 
-    metric_nut(size=5, hole=true);
-    metric_nut(size=8, hole=false);
+    metric_nut(size=5, hole=false);
+    metric_nut(size=8, hole=true);
     metric_nut(size=8, hole=true, pitch=1, details=true, center=true);
     metric_nut(size=8, hole=true, pitch=1, details=true, flange=3, center=true);
 
