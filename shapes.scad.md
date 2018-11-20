@@ -316,7 +316,7 @@ d1     | bottom diameter of slot cone. (use instead of d)
 d2     | top diameter of slot cone. (use instead of d)
 center | if true (default) centers vertically.  Else, drops flush with XY plane.
 
-Example:
+Examples:
 
     slot(l=50, h=5, d1=8, d2=10, center=false);
     slot([0,0,0], [50,50,0], h=5, d=10);
