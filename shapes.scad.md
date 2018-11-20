@@ -210,6 +210,9 @@ cap\_h | if given, height above center where the shape will be truncated.
 Example:
 
     teardrop2d(r=30, ang=30);
+    teardrop2d(r=35, ang=45, cap_h=40);
+
+![teardrop2d](teardrop2d.png)
 
 
 
