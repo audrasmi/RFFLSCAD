@@ -306,6 +306,7 @@ Arg    | What it does
 ------ | -----------------------------------
 p1     | center of starting circle of slot.  (Default: [0,0,0])
 p2     | center of ending circle of slot.  (Default: [1,0,0])
+l      | length of slot along the X axis.  Use instead of p1 and p2.
 h      | height of slot shape. (default: 1.0)
 r      | radius of slot circle. (default: 0.5)
 r1     | bottom radius of slot cone. (use instead of r)
@@ -313,9 +314,11 @@ r2     | top radius of slot cone. (use instead of r)
 d      | diameter of slot circle. (default: 1.0)
 d1     | bottom diameter of slot cone. (use instead of d)
 d2     | top diameter of slot cone. (use instead of d)
+center | if true (default) centers vertically.  Else, drops flush with XY plane.
 
 Example:
 
+    slot(l=50, h=5, d1=8, d2=10, center=false);
     slot([0,0,0], [50,50,0], h=5, d=10);
 
 ![slot](slot.png)
