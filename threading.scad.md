@@ -28,6 +28,8 @@ Example:
 
 	trapezoidal_threaded_rod(d=10, l=100, pitch=5, thread_depth=2, thread_angle=30);
 
+![trapezoidal\_threaded\_rod](trapezoidal_threaded_rod.png)
+
 
 
 ## trapezoidal\_threaded\_nut()
@@ -53,7 +55,9 @@ slop          | Slop to make the printed parts fit tightly.  Default = 0.2
 
 Examples:
 
-	acme_threaded_nut(od=17.4, id=10.5, h=10, pitch=3.175, thread_depth=1, slop=0.15);
+	trapezoidal_threaded_nut(od=17.4, id=10.5, h=10, pitch=3.175, thread_depth=1, slop=0.15);
+
+![trapezoidal\_threaded\_nut](trapezoidal_threaded_nut.png)
 
 
 
@@ -75,6 +79,8 @@ Example:
 
 	threaded_rod(d=10, l=100, pitch=5, left_handed=true);
 
+![threaded\_rod](threaded_rod.png)
+
 
 
 ## threaded\_nut()
@@ -92,7 +98,9 @@ slop          | Slop to make the printed parts fit tightly.  Default = 0.2
 
 Examples:
 
-	acme_threaded_nut(od=17.4, id=10.5, h=10, pitch=3.175, thread_depth=1, slop=0.15);
+	threaded_nut(od=17.4, id=10.5, h=10, pitch=3.175, slop=0.15);
+
+![threaded\_nut](threaded_nut.png)
 
 
 
@@ -117,6 +125,8 @@ Example:
 
 	acme_threaded_rod(d=10, l=100, pitch=5, thread_depth=2, thread_angle=30);
 
+![acme\_threaded\_rod](acme_threaded_rod.png)
+
 
 
 ## acme\_threaded\_nut()
@@ -139,6 +149,8 @@ Examples:
 
 	acme_threaded_nut(od=17.4, id=10.5, h=10, pitch=3.175, thread_depth=1, slop=0.15);
 
+![acme\_threaded\_nut](acme_threaded_nut.png)
+
 
 
 # Standard Metric Trapezoidal Threaded Rods And Nuts
@@ -158,7 +170,9 @@ starts        | The number of lead starts.  Default = 1
 
 Example:
 
-	metric\_trapezoidal\_threaded_rod(d=10, l=100, pitch=5, left_handed=true);
+	metric_trapezoidal_threaded_rod(d=10, l=100, pitch=5, left_handed=true);
+
+![metric\_trapezoidal\_threaded\_rod](metric_trapezoidal_threaded_rod.png)
 
 
 
@@ -179,6 +193,8 @@ slop          | Slop to make the printed parts fit tightly.  Default = 0.2
 Examples:
 
 	metric_trapezoidal_threaded_nut(od=17.4, id=12, h=16, pitch=2, left_handed=true, starts=2, slop=0.15);
+
+![metric\_trapezoidal\_threaded\_nut](metric_trapezoidal_threaded_nut.png)
 
 
 
@@ -201,6 +217,8 @@ Example:
 
 	square\_threaded_rod(d=10, l=100, pitch=5, left_handed=true, starts=3);
 
+![square\_threaded\_rod](square_threaded_rod.png)
+
 
 
 ## square\_threaded\_nut()
@@ -220,6 +238,8 @@ slop          | Slop to make the printed parts fit tightly.  Default = 0.2
 Examples:
 
 	square_threaded_nut(od=17.4, id=12, h=16, pitch=2, left_handed=true, starts=2, slop=0.15);
+
+![square\_threaded\_nut](square_threaded_nut.png)
 
 
 
