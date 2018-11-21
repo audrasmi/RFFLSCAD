@@ -407,6 +407,7 @@ ang      | maximum overhang angle of diagonal brace.
 strut    | the width of the diagonal brace.
 wall     | the thickness of the thinned portion of the wall.
 diagonly | boolean, which denotes only the diagonal brace should be thick.
+center   | If true, center at origin.  Else, align edges to Y and Z axes.
 
 Examples:
 
@@ -430,6 +431,7 @@ thick  | thickness of wall.
 ang    | maximum overhang angle of diagonal brace.
 strut  | the width of the diagonal brace.
 wall   | the thickness of the thinned portion of the wall.
+center | If true, center at origin.  Else, align edges to Y and Z axes.
 
 Example:
 
@@ -440,7 +442,7 @@ Example:
 
 
 ## sparse\_strut3d()
-Makes an open rectangular strut with X-shaped cross-bracing, designed with 3D printing in mind.
+Makes an open rigid strut with X-shaped cross-bracing, designed with 3D printing in mind.
 
 Arg         | What it does
 ----------- | -----------------------------------
