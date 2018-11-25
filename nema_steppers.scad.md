@@ -111,6 +111,6 @@ depth      | Depth of hole to make.
 l          | Length of adjustable screw slots.
 slop       | Slight adjustment value to make motors fit in holes.
 
-![nema11\_mount\_holes](nema11_mount_holes.png)
+![nema17\_mount\_holes](nema17_mount_holes.png)
 
 
