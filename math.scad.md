@@ -139,6 +139,11 @@ sines | array of [amplitude, frequency] pairs, where the frequency is the number
 
 
 
+## constrain(v, minval, maxval)
+Returns the value of v, constrained to the range [minval, maxval], so that minval <= v <= maxval
+
+
+
 ## normalize(v)
 Returns unit length normalized version of vector v.
 
