@@ -95,6 +95,37 @@ N           | The number of points in each bezier segment.  Default=3 (cubic bez
 
 
 
+## linear\_extrude\_bezier(bezier, splinesteps, N, center, convexity, twist, scale, slices)
+
+Takes a closed 2D bezier path, centered on the XY plane, and
+extrudes it linearly upwards, forming a solid.
+
+Arg         | What it is
+----------- | --------------------------------
+bezier      | Array of 2D points of a bezier path, to be extruded.
+splinesteps | Number of steps to divide each bezier segment into. Default: 16
+N           | Number of points in each extruded bezier segment.  Default: 3 (cubic)
+center      | If true, the extruded solid is centered vertically at z=0.
+convexity   | Max number of walls a line could pass through, for preview.  Default: 10
+twist       | Degrees to twist over length of extrusion.  Default: 0
+scale       | Relative size of top of extrusion to the bottom.  Default: 1.0
+slices      | Number of vertical slices to use for twisted extrusion.  Default: 20
+
+Example:
+
+    bez = [
+        [-10,   0],  [-15,  -5],
+        [ -5, -10],  [  0, -10],  [ 5, -10],
+        [ 10,  -5],  [ 15,   0],  [10,   5],
+        [  5,  10],  [  0,  10],  [-5,  10],
+        [ 25, -15],  [-10,   0]
+    ];
+    linear_extrude_bezier(bez, height=20, splinesteps=32);
+
+![linear\_extrude\_bezier](linear_extrude_bezier.png)
+
+
+
 ## rotate\_extrude\_bezier(bezier, slinesteps, N, convexity, angle)
 
 Takes a closed 2D bezier and rotates it around the Z axis, forming a solid.
@@ -230,37 +261,6 @@ Example:
     extrude_bezier_along_bezier(bez, path, pathsteps=32, bezsteps=16);
 
 ![extrude\_bezier\_along\_bezier](extrude_bezier_along_bezier.png)
-
-
-
-## linear\_extrude\_bezier(bezier, splinesteps, N, center, convexity, twist, scale, slices)
-
-Takes a closed 2D bezier path, centered on the XY plane, and
-extrudes it linearly upwards, forming a solid.
-
-Arg         | What it is
------------ | --------------------------------
-bezier      | Array of 2D points of a bezier path, to be extruded.
-splinesteps | Number of steps to divide each bezier segment into. Default: 16
-N           | Number of points in each extruded bezier segment.  Default: 3 (cubic)
-center      | If true, the extruded solid is centered vertically at z=0.
-convexity   | Max number of walls a line could pass through, for preview.  Default: 10
-twist       | Degrees to twist over length of extrusion.  Default: 0
-scale       | Relative size of top of extrusion to the bottom.  Default: 1.0
-slices      | Number of vertical slices to use for twisted extrusion.  Default: 20
-
-Example:
-
-    bez = [
-        [-10,   0],  [-15,  -5],
-        [ -5, -10],  [  0, -10],  [ 5, -10],
-        [ 10,  -5],  [ 15,   0],  [10,   5],
-        [  5,  10],  [  0,  10],  [-5,  10],
-        [ 25, -15],  [-10,   0]
-    ];
-    linear_extrude_bezier(bez, height=20, splinesteps=32);
-
-![linear\_extrude\_bezier](linear_extrude_bezier.png)
 
 
 
