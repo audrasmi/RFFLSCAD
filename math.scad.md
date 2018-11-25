@@ -10,27 +10,29 @@ Returns the value of pi, 3.1415926535897932.  **Deprecated.  Use the variable `P
 
 
 ## quant(x,y)
-Quantize a value x to an integer multiple of y, rounding to the nearest multiple.
+Quantize a value `x` to an integer multiple of `y`, rounding to the nearest multiple.
 
 
 
 ## quantdn(x,y)
-Quantize a value x to an integer multiple of y, rounding down to the previous multiple.
+Quantize the value `x` to an integer multiple of `y`, rounding down to the previous multiple.
 
 
 
 ## quantup(x,y)
-Quantize a value x to an integer multiple of y, rounding up to the next multiple.
+Quantize the value `x` to an integer multiple of `y`, rounding up to the next multiple.
 
 
 
 ## segs(r)
-Calculate OpenSCAD standard number of segments for a circle of radius r, based on $fn, $fa, and $fs.
+Calculate OpenSCAD standard number of segments for a circle of radius `r`, based on `$fn`, `$fa`, and `$fs`.
 
 
 
 ## lerp(a,b,u)
-Interpolate between two values or vectors.  0.0 <= u <= 1.0
+Interpolate between two values or vectors, `a` and `b`.  The alpha value `u` is between 0 and 1.
+When `u` == 0, returns the value of `a`.  When `u` == 1, returns the value of `b`.
+When `u` is between 0 and 1, returns the interpolated value between `a` and `b`.
 
 
 
@@ -171,7 +173,7 @@ factors in vector `v`, around the centerpoint `cp`.
 
 
 ## rotate\_points2d(pts, ang, cp)
-Rotates each 2D point in the array `pts` by the given angle `ang`,
+Rotates each 2D point in the array `pts` by the angle `ang`,
 around the centerpoint `cp`.
 
 
@@ -183,13 +185,13 @@ Rotates each 3D point in the array `pts` by the Euller angles
 
 
 ## rotate\_points3d\_around\_axis(pts, ang, u, cp)
-Rotates each 3D point in the array `pts` by a given angle `ang`,
+Rotates each 3D point in the array `pts` by the angle `ang`,
 around the centerpoint `cp` and the axis `u`.
 
 
 
 ## sum\_of\_sines(a,sines)
-Gives the sum of a series of sines, at a given angle.
+Gives the sum of a series of sines, at the angle `a`.
 
 Arg   | What it is
 ----- | ---------------------
@@ -199,12 +201,12 @@ sines | array of [amplitude, frequency] pairs, where the frequency is the number
 
 
 ## constrain(v, minval, maxval)
-Returns the value of v, constrained to the range [minval, maxval], so that minval <= v <= maxval
+Returns the value of `v`, constrained to the range [`minval`, `maxval`], so that `minval` <= `v` <= `maxval`.
 
 
 
 ## normalize(v)
-Returns unit length normalized version of vector v.
+Returns unit length normalized version of vector `v`.
 
 
 
@@ -219,7 +221,8 @@ Returns angle in degrees between two 3D vectors.
 
 
 ## slice(arr,st,end)
-Returns a slice of an array.  An index of 0 is the array start, -1 is array end
+Returns a slice of the array `arr` from index `st` to `end`.
+An index of 0 is the array start, -1 is array end.
 
 
 
