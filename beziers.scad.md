@@ -119,6 +119,8 @@ Example:
     ];
     rotate_extrude_bezier(path, splinesteps=32, $fn=180);
 
+![rotate\_extrude\_bezier](rotate_extrude_bezier.png)
+
 
 
 ## revolve\_bezier(bezier, splinesteps, N)
