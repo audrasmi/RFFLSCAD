@@ -76,6 +76,7 @@ Returns the sum of all entries in the given array.
 If passed an array of vectors, returns a vector of sums of each part.
 
 Examples:
+
     sum([1,2,3]);  // returns 6.
     sum([[1,2,3], [3,4,5], [5,6,7]]);  //returns [9, 12, 15]
 
