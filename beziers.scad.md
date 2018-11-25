@@ -15,11 +15,12 @@ u           | Part of curve to get point of.  0 <= u <= 1
 
 
 
-## bezier\_polyline(bezier, splinesteps=16, N=3)
+## bezier\_polyline(bezier, splinesteps, N)
 Takes an array of bezier points and converts it into a 3D polyline.
 
 Arg         | What it is
 ----------- | --------------------------------
+bezier      | The array of bezier points.
 splinesteps | The number of line segments to divide each bezier segment into.
 N           | The number of points in each bezier segment.  Default=3 (cubic bezier)
 
@@ -27,49 +28,52 @@ N           | The number of points in each bezier segment.  Default=3 (cubic bez
 
 
 
-## bezier\_polygon(bezier, splinesteps=16)
-Takes a closed 2D bezier path, and creates a 2D polygon from it.
-
-Arg         | What it is
------------ | --------------------------------
-splinesteps | The number of line segments to divide each bezier segment into.
-N           | The number of points in each bezier segment.  Default=3 (cubic bezier)
-
-![bezier\_polygon](bezier_polygon.png)
-
-
-
 ## fillet3pts(p0, p1, p2, r)
 Generate a cubic (N=3) bezier curve to fillet 2 line segments between 3 points.
 Returns two path points with surrounding cubic (N=3) bezier control points.
+
+Arg  | What it is
+---- | --------------------------------
+p0   | The first point.
+p1   | The second point.
+p2   | The third point.
+r    | The radius of the fillet.
 
 ![fillet3pts](fillet3pts.png)
 
 
 
 ## fillet\_path(pts, fillet)
-Takes a 3D polyline path and fillets it into a 3d cubic (N=3) bezier path.
+Takes a 3D polyline path and fillets the corners, returning a 3d cubic (N=3) bezier path.
+
+Arg     | What it is
+------- | --------------------------------
+pts     | The array of path points.
+fillet  | Radius of fillets to make.
 
 ![fillet\_path](fillet_path.png)
 
 
 
-## bezier\_close\_to\_axis(bezier, N=3)
+## bezier\_close\_to\_axis(bezier, N)
 Takes a 2D bezier path and closes it to the X axis.
 
 Arg         | What it is
 ----------- | --------------------------------
+bezier      | The array of bezier points.
 N           | The number of points in each bezier segment.  Default=3 (cubic bezier)
 
 ![bezier\_close\_to\_axis](bezier_close_to_axis.png)
 
 
 
-## bezier\_offset(inset, bezier, N=3)
+## bezier\_offset(inset, bezier, N)
 Takes a bezier curve and closes it with a matching path that is lowered by a given amount towards the X axis.
 
 Arg         | What it is
 ----------- | --------------------------------
+inset       | Amount to inset return path towards the X axis.
+bezier      | The array of bezier points.
 N           | The number of points in each bezier segment.  Default=3 (cubic bezier)
 
 ![bezier\_offset](bezier_offset.png)
@@ -78,7 +82,20 @@ N           | The number of points in each bezier segment.  Default=3 (cubic bez
 
 # Modules
 
-## rotate\_extrude\_bezier()
+## bezier\_polygon(bezier, splinesteps, N)
+Takes a closed 2D bezier path, and creates a 2D polygon from it.
+
+Arg         | What it is
+----------- | --------------------------------
+bezier      | The closed array of 2D bezier points.
+splinesteps | The number of line segments to divide each bezier segment into.
+N           | The number of points in each bezier segment.  Default=3 (cubic bezier)
+
+![bezier\_polygon](bezier_polygon.png)
+
+
+
+## rotate\_extrude\_bezier(bezier, slinesteps, N, convexity, angle)
 
 Takes a closed 2D bezier and rotates it around the Z axis, forming a solid.
 Behaves like `rotate_extrude()`, except for beziers instead of shapes.
@@ -104,7 +121,7 @@ Example:
 
 
 
-## revolve\_bezier()
+## revolve\_bezier(bezier, splinesteps, N)
 Takes a closed 2D bezier and rotates it around the X axis, forming a solid.
 
 Arg         | What it is
@@ -128,7 +145,7 @@ Example:
 
 
 
-## revolve\_bezier\_solid\_to\_axis()
+## revolve\_bezier\_solid\_to\_axis(bezier, splinesteps, N)
 Takes a 2D bezier and rotates it around the X axis, forming a solid.
 
 Arg         | What it is
@@ -146,7 +163,7 @@ Example:
 
 
 
-## revolve\_bezier\_offset\_shell()
+## revolve\_bezier\_offset\_shell(bezier, offset, splinesteps, N)
 Takes a 2D bezier and rotates it around the X axis, into a hollow shell.
 
 Arg         | What it is
@@ -165,7 +182,7 @@ Example:
 
 
 
-## extrude\_2d\_shapes\_along\_bezier()
+## extrude\_2d\_shapes\_along\_bezier(bezier, splinesteps, N)
 Extrudes 2D children along a bezier path.
 
 Arg         | What it is
@@ -185,7 +202,7 @@ Example:
 
 
 
-## extrude\_bezier\_along\_bezier()
+## extrude\_bezier\_along\_bezier(bezier, path, pathsteps, bezsteps, bezN, pathN)
 Takes a closed 2D bezier path, centered on the XY plane, and
 extrudes it perpendicularly along a 3D bezier path, forming a solid.
 
@@ -214,7 +231,7 @@ Example:
 
 
 
-## linear\_extrude\_bezier()
+## linear\_extrude\_bezier(bezier, splinesteps, N, center, convexity, twist, scale, slices)
 
 Takes a closed 2D bezier path, centered on the XY plane, and
 extrudes it linearly upwards, forming a solid.
