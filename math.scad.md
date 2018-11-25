@@ -29,6 +29,11 @@ Calculate OpenSCAD standard number of segments for a circle of radius r, based o
 
 
 
+## lerp(a,b,u)
+Interpolate between two values or vectors.  0.0 <= u <= 1.0
+
+
+
 ## hypot(x,y)
 Calculate hypotenuse length of 2D triangle.
 
@@ -46,6 +51,31 @@ Returns all but the first item of a given array.
 
 ## reverse(list)
 Reverses a list/array.
+
+
+
+## wrap\_range(list, start, end)
+Returns a slice of the given array, wrapping around to the beginning, if end < start
+
+
+
+## flatten(l)
+Takes an array of arrays and flattens it by one level.
+
+Example:
+
+    flatten([[1,2,3], [4,5,[6,7,8]]]);
+    // returns [1,2,3,4,5,[6,7,8]]
+
+
+
+## sum(v)
+Returns the sum of all entries in the given array.
+If passed an array of vectors, returns a vector of sums of each part.
+
+Examples:
+    sum([1,2,3]);  // returns 6.
+    sum([[1,2,3], [3,4,5], [5,6,7]]);  //returns [9, 12, 15]
 
 
 
@@ -126,6 +156,35 @@ Arg   | What it is
 ----- | ---------------------
 u     | axis vector to rotate around.
 ang   | number of degrees to rotate.
+
+
+
+## translate\_points(pts, v)
+Translates each point in the array `pts` by the vector `v`.
+
+
+
+## scale\_points(pts, v, cp)
+Scales each point in the array `pts` by the [X,Y,Z] scale
+factors in vector `v`, around the centerpoint `cp`.
+
+
+
+## rotate\_points2d(pts, ang, cp)
+Rotates each 2D point in the array `pts` by the given angle `ang`,
+around the centerpoint `cp`.
+
+
+
+## rotate\_points3d(pts, v, cp)
+Rotates each 3D point in the array `pts` by the Euller angles
+[X,Y,Z], around the centerpoint `cp`.
+
+
+
+## rotate\_points3d\_around\_axis(pts, ang, u, cp)
+Rotates each 3D point in the array `pts` by a given angle `ang`,
+around the centerpoint `cp` and the axis `u`.
 
 
 
