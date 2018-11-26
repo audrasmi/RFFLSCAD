@@ -144,7 +144,7 @@ Makes copies of the children at each of the given translation offsets.
 
 Arg | What it is
 --- | ----------------------
-a   | array of XYZ offset vectors. (Default \[\[0,0,0\]\])
+a   | array of XYZ offset vectors. (Default `[[0,0,0]]`)
 
 Example:
 
@@ -161,8 +161,8 @@ Evenly distributes n duplicate children along an XYZ line.
 
 Arg | What it is
 --- | ----------------------
-p1  | starting point of line.  (Default: [0,0,0])
-p2  | ending point of line.  (Default: [10,0,0])
+p1  | starting point of line.  (Default: `[0,0,0]`)
+p2  | ending point of line.  (Default: `[10,0,0]`)
 n   | number of copies to distribute along the line. (Default: 2)
 
 Examples:
@@ -358,7 +358,7 @@ Arg    | What it is
 ------ | ----------------------
 rots   | Array of angles, in degrees, to make copies at. (optional)
 count  | number of evenly distributed copies, rotated around a circle. (optional)
-offset | Angle offset in degrees, for use with count.
+offset | Angle offset in degrees, for use with `count`.
 
 Example:
 
@@ -377,7 +377,7 @@ Arg    | What it is
 ------ | ----------------------
 rots   | Optional array of angles, in degrees, to make copies at.
 count  | Optional number of evenly distributed copies, rotated around a circle.
-offset | Angle offset in degrees, for use with count.
+offset | Angle offset in degrees, for use with `count`.
 
 Example:
 
