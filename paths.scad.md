@@ -60,7 +60,7 @@ Example:
     extrude_2d_hollow(wall=2, height=100, twist=90, slices=50)
         circle(r=40, center=true, $fn=6);
 
-![extrude\_2d\_hollow](extrude_2d_hollow)
+![extrude\_2d\_hollow](extrude_2d_hollow.png)
 
 
 
