@@ -16,6 +16,11 @@ wall  | Thickness of the walls around the slider.
 ang   | Overhang angle of the V groove slider.
 slop  | Slight adjustment for vagarities of individual printers.
 
+Example:
+    slider(l=30, base=10, wall=4, slop=0.2);
+
+![slider](slider.png)
+
 
 
 ## rail()
@@ -29,6 +34,10 @@ h       | Height of the V groove of the rail.
 chamfer | Amount to chamfer edges of the rail.
 ang     | Overhang angle of the V groove.
 
+Example:
 
+    rail(l=100, w=10, h=10);
+
+![rail](rail.png)
 
 
