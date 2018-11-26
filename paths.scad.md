@@ -41,6 +41,8 @@ Example:
 
     modulated_circle(r=40, sines=[[3, 11], [1, 31]], $fn=6);
 
+![modulated\_circle](modulated_circle.png)
+
 
 
 ## extrude\_2d\_hollow()
@@ -57,6 +59,8 @@ Example:
 
     extrude_2d_hollow(wall=2, height=100, twist=90, slices=50)
         circle(r=40, center=true, $fn=6);
+
+![extrude\_2d\_hollow](extrude_2d_hollow)
 
 
 
@@ -76,6 +80,8 @@ Example:
     poly = [[-10,0], [-3,-5], [3,-5], [10,0], [0,-30]];
     extrude_2dpath_along_spiral(poly, h=200, r=50, twist=1000, $fn=36);
 
+![extrude\_2dpath\_along\_spiral](extrude_2dpath_along_spiral.png)
+
 
 
 ## extrude\_2dpath\_along\_3dpath()
@@ -90,9 +96,11 @@ convexity | Max number of surfaces any single ray can pass through.
 
 Example:
 
-    shape = [ [-15, 0], [0, 0], [-5, 10], [0, 10], [5, 10], [10, 5], [15, 0], [10, -5], [5, -10], [0, -10], [-5, -10], [-10, -5], [-15, 0] ];
+    shape = [[-10,0], [-3,-5], [3,-5], [10,0], [0,-30]];
     path = [ [0, 0, 0], [100, 33, 33], [200, -33, -33], [300, 0, 0] ];
     extrude_2dpath_along_3dpath(shape, path);
+
+![extrude\_2dpath\_along\_3dpath](extrude_2dpath_along_3dpath.png)
 
 
 
