@@ -65,12 +65,11 @@ pressure\_angle   | Controls how straight or bulged the tooth sides are. In degr
 clearance         | Gap between top of a tooth on one gear and bottom of valley on a meshing gear (in millimeters)
 backlash          | Gap between two meshing teeth, in the direction along the circumference of the pitch circle
 
-Examples:
+Example:
 
-	gear(5,11,5,5);
-	gear(mm_per_tooth=5, number_of_teeth=20, thickness=5, hole_diameter=5, twist=10);
-	gear(mm_per_tooth=5, number_of_teeth=20, thickness=5, hole_diameter=5, pressure_angle=20);
-	gear(mm_per_tooth=5, number_of_teeth=20, thickness=5, hole_diameter=5, teeth_to_hide=5);
+    gear(mm_per_tooth=5, number_of_teeth=20, thickness=5, hole_diameter=5);
+
+![gear](gear.png)
 
 
 
@@ -88,9 +87,9 @@ backlash          | Gap between two meshing teeth, in the direction along the ra
 
 Examples:
 
-	rack(5,8,5,5);
-	rack(mm_per_tooth=5, number_of_teeth=30, thickness=5, height=5);
-	rack(mm_per_tooth=5, number_of_teeth=30, thickness=5, height=5, pressure_angle=20);
+    rack(mm_per_tooth=5, number_of_teeth=30, thickness=5, height=5, pressure_angle=20);
+
+![rack](rack.png)
 
 
 
