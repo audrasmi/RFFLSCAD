@@ -143,8 +143,8 @@ r       | Radius of the fillet.
 Example:
 
     difference() {
-        cube(size=100, center=false);
-        right(50) fillet_mask_x(l=100.1, r=10.0);
+        cube(size=100, center=true);
+        translate([0,50,50]) fillet_mask_x(l=100.1, r=10.0);
     }
 
 ![fillet\_mask\_x](fillet_mask_x.png)
@@ -164,8 +164,8 @@ r       | Radius of the fillet.
 Example:
 
     difference() {
-        cube(size=100, center=false);
-        back(50) fillet_mask_y(l=100.1, r=10.0);
+        cube(size=100, center=true);
+        translate([50,0,50]) fillet_mask_y(l=100.1, r=10.0);
     }
 
 ![fillet\_mask\_y](fillet_mask_y.png)
@@ -185,8 +185,8 @@ r       | Radius of the fillet.
 Example:
 
     difference() {
-        cube(size=100, center=false);
-        up(50) fillet_mask_z(l=100.1, r=10.0);
+        cube(size=100, center=true);
+        translate([50,50,0]) fillet_mask_z(l=100.1, r=10.0);
     }
 
 ![fillet\_mask\_z](fillet_mask_z.png)
