@@ -23,6 +23,8 @@ Examples:
     angle_pie_mask(ang=45, h=25, r=50);
     angle_pie_mask(ang=60, h=30, r1=50, r2=30);
 
+![angle\_pie\_mask](angle_pie_mask.png)
+
 
 
 ## chamfer\_mask\_x()
@@ -38,6 +40,8 @@ chamfer | Size of chamfer
 Example:
 
     chamfer_mask_x(l=10.0, chamfer=2.0);
+
+![chamfer\_mask\_x](chamfer_mask_x.png)
 
 
 
@@ -55,6 +59,8 @@ Example:
 
     chamfer_mask_y(l=10.0, chamfer=2.0);
 
+![chamfer\_mask\_y](chamfer_mask_y.png)
+
 
 
 ## chamfer\_mask\_z()
@@ -70,6 +76,8 @@ chamfer | Size of chamfer
 Example:
 
     chamfer_mask_z(l=10.0, chamfer=2.0);
+
+![chamfer\_mask\_z](chamfer_mask_z.png)
 
 
 
@@ -92,13 +100,11 @@ Array format of `edges` argument:
 
 Examples:
 
-    chamfer(size=[19,23,60], chamfer=3) {
-        cube(size=[10,40,90], center=true);
+    chamfer(chamfer=2, size=[10,40,30], edges=[[0,0,0,1], [1,1,0,0], [0,0,0,0]]) {
+        cube(size=[10,40,30], center=true);
     }
 
-    chamfer(size=[10,40,90], chamfer=2, edges=[[0,0,0,0], [1,1,0,0], [0,0,0,0]]) {
-        cube(size=[10,40,90], center=true);
-    }
+![chamfer](chamfer.png)
 
 
 
@@ -120,6 +126,9 @@ Example:
         fillet_mask(h=100.1, r=10.0, center=false);
     }
 
+![fillet\_mask](fillet_mask.png)
+
+
 
 ## fillet\_mask\_x()
 Creates a shape that can be used to fillet a 90 degree edge along the X axis.
@@ -137,6 +146,8 @@ Example:
         cube(size=100, center=false);
         right(50) fillet_mask_x(l=100.1, r=10.0);
     }
+
+![fillet\_mask\_x](fillet_mask_x.png)
 
 
 
@@ -157,6 +168,8 @@ Example:
         back(50) fillet_mask_y(l=100.1, r=10.0);
     }
 
+![fillet\_mask\_y](fillet_mask_y.png)
+
 
 
 ## fillet\_mask\_z()
@@ -175,6 +188,9 @@ Example:
         cube(size=100, center=false);
         up(50) fillet_mask_z(l=100.1, r=10.0);
     }
+
+![fillet\_mask\_z](fillet_mask_z.png)
+
 
 
 ## fillet\_angled\_edge\_mask()
@@ -198,9 +214,11 @@ Examples:
     }
     
     difference() {
-        angle_pie_mask(ang=120, h=50, d=100);
-        fillet_angled_edge_mask(h=51, r=30.0, ang=120, $fn=32);
+        angle_pie_mask(ang=70, h=50, d=100);
+        fillet_angled_edge_mask(h=51, r=20.0, ang=70, $fn=32);
     }
+
+![fillet\_angled\_edge\_mask](fillet_angled_edge_mask.png)
 
 
 ## fillet\_angled\_corner\_mask()
@@ -216,7 +234,17 @@ ang      | Angle between planes that you need to fillet the corner of.
 
 Example:
 
-    fillet_angled_corner_mask(fillet=100, ang=90);
+    ang=60;
+    difference() {
+        angle_pie_mask(ang=ang, h=50, r=200);
+        up(50/2) {
+            fillet_angled_corner_mask(fillet=20, ang=ang);
+            zrot_copies([0, ang]) right(200/2) fillet_mask_x(l=200, r=20);
+        }
+        fillet_angled_edge_mask(h=51, r=20, ang=ang);
+    }
+
+![fillet\_angled\_corner\_mask](fillet_angled_corner_mask.png)
 
 
 
@@ -240,6 +268,8 @@ Example:
         translate([3, 5, 8]) fillet_corner_mask(r=3);
     }
 
+![fillet\_corner\_mask](fillet_corner_mask.png)
+
 
 
 ## fillet\_cylinder\_mask()
@@ -260,9 +290,10 @@ Example:
     $fa=2; $fs=2;
     difference() {
         cylinder(r=50, h=100, center=true);
-        translate([0, 0, 50])
-            fillet_cylinder_mask(r=50, fillet=10, xtilt=30, ytilt=30);
+        up(50) fillet_cylinder_mask(r=50, fillet=10, xtilt=30);
     }
+
+![fillet\_cylinder\_mask](fillet_cylinder_mask.png)
 
 
 
@@ -287,4 +318,7 @@ Example:
         cylinder(r=50, h=100.1, center=true);
         up(50) fillet_hole_mask(r=50, fillet=10, xtilt=0, ytilt=0);
     }
+
+![fillet\_hole\_mask](fillet_hole_mask.png)
+
 
