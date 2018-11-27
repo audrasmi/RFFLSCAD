@@ -17,7 +17,7 @@ Example:
 
     move([10,20,30]) sphere(r=1);
     move(y=10) sphere(r=1);
-    move(x=10, z=20) sphere(r=1);
+    move(x=5, z=10) sphere(r=1);
 
 
 
