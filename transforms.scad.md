@@ -110,7 +110,7 @@ Example:
     fwd(10) sphere(r=1);
     forward(10) sphere(r=1);
 
-![fwd](fwd.png)
+![forward](forward.png)
 
 
 
