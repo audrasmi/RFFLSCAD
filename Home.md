@@ -8,7 +8,8 @@ The library files are as follows:
   - [`paths.scad`](paths.scad): Functions and modules to work with arbitrary 3D paths.
   - [`beziers.scad`](beziers.scad): Functions and modules to work with bezier curves.
   - [`involute_gears.scad`](involute_gears.scad): Modules and functions to make involute gears and racks.
-  - [`metric_screws.scad`](metric_screws.scad): Functions and modules to make holes for metric screws and nuts.
+  - [`metric_screws.scad`](metric_screws.scad): Functions and modules to make metric screws, nuts, and screwholes.
+  - [`phillips_drive.scad`](phillips_drive.scad): Modules to create Phillips screwdriver tips.
   - [`joiners.scad`](joiners.scad): Modules to make joiner shapes for connecting separately printed objects.
   - [`sliders.scad`](sliders.scad): Modules for creating simple sliders and rails.
   - [`threading.scad`](threading.scad): Modules to make triangular and trapezoidal threaded rods and nuts.
