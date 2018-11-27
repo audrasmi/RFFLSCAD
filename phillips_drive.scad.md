@@ -7,7 +7,7 @@ the tip diameters of various phillips screwdriver sizes.
 
 Args  | What it does
 ----- | --------------
-size  | The size of the bit.  "#00", "#0", "#1", "#2", or "#3"
+size  | The size of the bit.  "#1", "#2", or "#3"
 shaft | The diameter of the drive bit's shaft.
 l     | The length of the drive bit.
 
