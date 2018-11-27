@@ -16,4 +16,4 @@ The library files are as follows:
   - [`linear_bearings.scad`](linear_bearings.scad): Modules to make mounts for LMxUU style linear bearings.
   - [`wiring.scad`](wiring.scad): Modules to render routed bundles of wires.
   - [`quaternions.scad`](quaternions.scad): Functions to work with quaternion rotations.
-  - [`debug.scad`](debug.scad): Modules to help debug creation of `polyhedron()`s
+  - [`debug.scad`](debug.scad): Modules to help debug creation of beziers, `polygons()`s and `polyhedron()`s
