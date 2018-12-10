@@ -103,7 +103,7 @@ size        | diameter of threaded part of screw.
 headtype    | One of "hex", "pan", "button", "round", "countersunk", "oval", "socket".  Default: "socket"
 l           | length of screw, except for the head.
 shank       | Length of unthreaded portion of the shaft.
-pitch       | If given, render threads of the given pitch.  Overrides coarse argument.
+pitch       | If given, render threads of the given pitch.  If 0, then no threads.  Overrides coarse argument.
 details     | If true model should be rendered with extra details.  Default: false
 coarse      | If true, make coarse threads instead of fine threads.  Default: true
 flange      | radius of flange beyond the head.  Default: 0 (no flange)
