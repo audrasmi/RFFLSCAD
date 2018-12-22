@@ -299,6 +299,29 @@ Example:
 
 
 
+## pie\_slice()
+Creates a pie slice shape.
+
+Arg    | What it does
+------ | -----------------------------------
+ang    | pie slice angle in degrees.
+h      | height of pie slice.
+r      | radius of pie slice.
+r1     | bottom radius of pie slice.
+r2     | top radius of pie slice.
+d      | diameter of pie slice.
+d1     | bottom diameter of pie slice.
+d2     | top diameter of pie slice.
+center | if true, centers pie slice vertically. Default: false
+
+Example:
+
+    pie_slice(ang=45, h=30, r1=100, r2=80);
+
+![pie\_slice](pie_slice.png)
+
+
+
 ## slot()
 Makes a linear slot with rounded ends, appropriate for bolts to slide along.
 
