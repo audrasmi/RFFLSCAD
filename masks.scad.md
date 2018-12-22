@@ -108,6 +108,50 @@ Examples:
 
 
 
+## chamfer\_hole\_mask()
+
+Creates a mask that can be used to bevel/chamfer the edge of a circular hole.
+Difference it from the hole to be chamferred.  The center of the mask object
+should align exactly with the center of the end of the hole to be chamferred.
+
+Arg     | What it is
+------- | -----------------
+r       | radius of hole to chamfer.
+d       | Diameter of hole to chamfer. Use instead of r.
+chamfer | size of the chamfer. (Default: 0.25)
+
+Example:
+
+    difference() {
+        cube([150,150,100], center=true);
+        cylinder(r=50, h=100.1, center=true);
+        up(50) chamfer_hole_mask(r=50, chamfer=10);
+    }
+
+![chamfer\_hole\_mask](chamfer_hole_mask.png)
+
+
+## chamfer\_cylinder\_mask()
+Creates a mask that can be used to bevel/chamfer the end of a cylinder.
+Difference it from the cylinder to be chamferred.  The center of the mask object
+should align exactly with the center of the end of the cylinder to be chamferred.
+
+Arg     | What it is
+------- | -----------------
+r       | radius of hole to chamfer.
+d       | Diameter of hole to chamfer. Use instead of r.
+chamfer | size of the chamfer. (Default: 0.25)
+
+Example:
+
+    difference() {
+        cylinder(r=50, h=100, center=true);
+        up(50) chamfer_cylinder_mask(r=50, chamfer=10);
+    }
+
+![chamfer\_cylinder\_mask](chamfer_cylinder_mask.png)
+
+
 ## fillet\_mask()
 Creates a shape that can be used to fillet a vertical 90 degree edge.
 Difference it from the object to be filleted.  The center of the mask
