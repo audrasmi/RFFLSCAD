@@ -336,12 +336,32 @@ Examples:
 
 # Rotations Commands
 
+## rot() { ... }
+Rotates children around an arbitrary centerpoint and axis by the given number of degrees.
+Can be used as a drop-in replacement for `rotate()`, with extra features.
+
+Arg | What it is
+--- | ---------------
+a   | Scalar angle or vector of Euller angles to rotate by, in degrees.
+v   | Vector for the axis of rotation.  Default: [0,0,1]
+cp  | Centerpoint to rotate around. Default: [0,0,0]
+
+Examples:
+
+    rot([30,60,0], cp=[0,0,9]) cube([2,4,9]);
+    rot(30, v=[1,1,0], cp=[0,0,9]) cube([2,4,9]);
+
+![rot](rot.png)
+
+
+
 ## xrot() { ... }
 Rotates children around the X axis by the given number of degrees.
 
 Arg | What it is
 --- | ---------------
 a   | Angle to rotate in degrees.
+cp  | centerpoint to rotate around. Default: [0,0,0]
 
 Example:
 
@@ -357,6 +377,7 @@ Rotates children around the Y axis by the given number of degrees.
 Arg | What it is
 --- | ---------------
 a   | Angle to rotate in degrees.
+cp  | centerpoint to rotate around. Default: [0,0,0]
 
 Example:
 
@@ -372,6 +393,7 @@ Rotates children around the Z axis by the given number of degrees.
 Arg | What it is
 --- | ---------------
 a   | Angle to rotate in degrees.
+cp  | centerpoint to rotate around. Default: [0,0,0]
 
 Example:
 
