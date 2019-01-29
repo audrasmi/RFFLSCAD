@@ -1,6 +1,27 @@
 Bezier functions and modules.
 
 
+# Table of Contents
+
+- [Functions](#functions)
+    - [`bez_point(curve, u)`](#bez_pointcurve-u)
+    - [`bezier_polyline(bezier, splinesteps, N)`](#bezier_polylinebezier-splinesteps-n)
+    - [`fillet3pts(p0, p1, p2, r)`](#fillet3ptsp0-p1-p2-r)
+    - [`fillet_path(pts, fillet)`](#fillet_pathpts-fillet)
+    - [`bezier_close_to_axis(bezier, N)`](#bezier_close_to_axisbezier-n)
+    - [`bezier_offset(inset, bezier, N)`](#bezier_offsetinset-bezier-n)
+- [Modules](#modules)
+    - [`bezier_polygon(bezier, splinesteps, N)`](#bezier_polygonbezier-splinesteps-n)
+    - [`linear_extrude_bezier(bezier, splinesteps, N, center, convexity, twist, scale, slices)`](#linear_extrude_bezierbezier-splinesteps-n-center-convexity-twist-scale-slices)
+    - [`rotate_extrude_bezier(bezier, slinesteps, N, convexity, angle)`](#rotate_extrude_bezierbezier-slinesteps-n-convexity-angle)
+    - [`revolve_bezier(bezier, splinesteps, N)`](#revolve_bezierbezier-splinesteps-n)
+    - [`revolve_bezier_solid_to_axis(bezier, splinesteps, N)`](#revolve_bezier_solid_to_axisbezier-splinesteps-n)
+    - [`revolve_bezier_offset_shell(bezier, offset, splinesteps, N)`](#revolve_bezier_offset_shellbezier-offset-splinesteps-n)
+    - [`extrude_2d_shapes_along_bezier(bezier, splinesteps, N)`](#extrude_2d_shapes_along_bezierbezier-splinesteps-n)
+    - [`extrude_bezier_along_bezier(bezier, path, pathsteps, bezsteps, bezN, pathN)`](#extrude_bezier_along_bezierbezier-path-pathsteps-bezsteps-bezn-pathn)
+
+
+
 # Functions
 
 ## bez\_point(curve, u)

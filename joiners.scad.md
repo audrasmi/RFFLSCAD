@@ -1,3 +1,18 @@
+# Table of Contents
+
+- [Snap-together joiners](#snap-together-joiners)
+    - [`half_joiner_clear()`](#half_joiner_clear)
+    - [`half_joiner()`](#half_joiner)
+    - [`half_joiner2()`](#half_joiner2)
+    - [`joiner_clear()`](#joiner_clear)
+    - [`joiner()`](#joiner)
+    - [`joiner_pair_clear()`](#joiner_pair_clear)
+    - [`joiner_pair()`](#joiner_pair)
+    - [`joiner_quad_clear()`](#joiner_quad_clear)
+    - [`joiner_quad()`](#joiner_quad)
+
+
+
 # Snap-together joiners
 These joiners are useful for making snap-together parts.
 

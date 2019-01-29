@@ -1,6 +1,50 @@
 Math helper functions.
 
 
+# Table of Contents
+
+- [Functions](#functions)
+    - [`Cpi()`](#cpi)
+    - [`quant(x,y)`](#quantxy)
+    - [`quantdn(x,y)`](#quantdnxy)
+    - [`quantup(x,y)`](#quantupxy)
+    - [`segs(r)`](#segsr)
+    - [`lerp(a,b,u)`](#lerpabu)
+    - [`hypot(x,y)`](#hypotxy)
+    - [`hypot3(x,y,z)`](#hypot3xyz)
+    - [`cdr(list)`](#cdrlist)
+    - [`reverse(list)`](#reverselist)
+    - [`wrap_range(list, start, end)`](#wrap_rangelist-start-end)
+    - [`flatten(l)`](#flattenl)
+    - [`sum(v)`](#sumv)
+    - [`sum_of_squares(v)`](#sum_of_squaresv)
+    - [`point3d(p)`](#point3dp)
+    - [`path3d(points)`](#path3dpoints)
+    - [`distance(p1, p2)`](#distancep1-p2)
+    - [`ident(n)`](#identn)
+    - [`mat3_to_mat4(m)`](#mat3_to_mat4m)
+    - [`matrix3_xrot(ang)`](#matrix3_xrotang)
+    - [`matrix4_xrot(ang)`](#matrix4_xrotang)
+    - [`matrix3_yrot(ang)`](#matrix3_yrotang)
+    - [`matrix4_yrot(ang)`](#matrix4_yrotang)
+    - [`matrix3_zrot(ang)`](#matrix3_zrotang)
+    - [`matrix4_zrot(ang)`](#matrix4_zrotang)
+    - [`matrix3_rot_by_axis(u, ang)`](#matrix3_rot_by_axisu-ang)
+    - [`matrix4_rot_by_axis(u, ang)`](#matrix4_rot_by_axisu-ang)
+    - [`translate_points(pts, v)`](#translate_pointspts-v)
+    - [`scale_points(pts, v, cp)`](#scale_pointspts-v-cp)
+    - [`rotate_points2d(pts, ang, cp)`](#rotate_points2dpts-ang-cp)
+    - [`rotate_points3d(pts, v, cp)`](#rotate_points3dpts-v-cp)
+    - [`rotate_points3d_around_axis(pts, ang, u, cp)`](#rotate_points3d_around_axispts-ang-u-cp)
+    - [`sum_of_sines(a,sines)`](#sum_of_sinesasines)
+    - [`constrain(v, minval, maxval)`](#constrainv-minval-maxval)
+    - [`normalize(v)`](#normalizev)
+    - [`vector2d_angle(v1,v2)`](#vector2d_anglev1v2)
+    - [`vector3d_angle(v1,v2)`](#vector3d_anglev1v2)
+    - [`slice(arr,st,end)`](#slicearrstend)
+
+
+
 # Functions
 
 

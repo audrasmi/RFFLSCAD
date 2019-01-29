@@ -2,6 +2,16 @@ Rendering for wiring bundles
 
 
 
+# Table of Contents
+
+- [Functions](#functions)
+    - [`hex_offset_ring(wirediam, lev=0)`](#hex_offset_ringwirediam-lev0)
+    - [`hex_offsets(wires, wirediam)`](#hex_offsetswires-wirediam)
+- [Modules](#modules)
+    - [`wiring()`](#wiring)
+
+
+
 # Functions
 
 ## hex\_offset\_ring(wirediam, lev=0)

@@ -1,5 +1,27 @@
 Screws, Bolts, and Nuts.
 
+# Table of Contents
+
+- [Functions](#functions)
+    - [`get_metric_bolt_head_size(size)`](#get_metric_bolt_head_sizesize)
+    - [`get_metric_bolt_head_height(size)`](#get_metric_bolt_head_heightsize)
+    - [`get_metric_socket_cap_diam(size)`](#get_metric_socket_cap_diamsize)
+    - [`get_metric_socket_cap_height(size)`](#get_metric_socket_cap_heightsize)
+    - [`get_metric_socket_cap_socket_size(size)`](#get_metric_socket_cap_socket_sizesize)
+    - [`get_metric_socket_cap_socket_depth(size)`](#get_metric_socket_cap_socket_depthsize)
+    - [`get_metric_iso_coarse_thread_pitch(size)`](#get_metric_iso_coarse_thread_pitchsize)
+    - [`get_metric_iso_fine_thread_pitch(size)`](#get_metric_iso_fine_thread_pitchsize)
+    - [`get_metric_iso_superfine_thread_pitch(size)`](#get_metric_iso_superfine_thread_pitchsize)
+    - [`get_metric_jis_thread_pitch(size)`](#get_metric_jis_thread_pitchsize)
+    - [`get_metric_nut_size(size)`](#get_metric_nut_sizesize)
+    - [`get_metric_nut_thickness(size)`](#get_metric_nut_thicknesssize)
+- [Modules](#modules)
+    - [`screw()`](#screw)
+    - [`metric_bolt()`](#metric_bolt)
+    - [`metric_nut()`](#metric_nut)
+
+
+
 # Functions
 
 ## get\_metric\_bolt\_head\_size(size)

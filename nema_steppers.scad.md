@@ -1,6 +1,25 @@
 Masks and models for NEMA stepper motors and mounts.
 
 
+# Table of Contents
+
+- [Functions](#functions)
+    - [`nema_motor_width(size)`](#nema_motor_widthsize)
+    - [`nema_motor_plinth_height(size)`](#nema_motor_plinth_heightsize)
+    - [`nema_motor_plinth_diam(size)`](#nema_motor_plinth_diamsize)
+    - [`nema_motor_screw_spacing(size)`](#nema_motor_screw_spacingsize)
+    - [`nema_motor_screw_size(size)`](#nema_motor_screw_sizesize)
+    - [`nema_motor_screw_depth(size)`](#nema_motor_screw_depthsize)
+- [Modules](#modules)
+    - [`nema11_stepper()`](#nema11_stepper)
+    - [`nema14_stepper()`](#nema14_stepper)
+    - [`nema17_stepper()`](#nema17_stepper)
+    - [`nema23_stepper()`](#nema23_stepper)
+    - [`nema34_stepper()`](#nema34_stepper)
+    - [`nema17_mount_holes()`](#nema17_mount_holes)
+
+
+
 # Functions
 
 ## nema\_motor\_width(size)

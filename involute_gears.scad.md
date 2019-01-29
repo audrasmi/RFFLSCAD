@@ -1,3 +1,21 @@
+# Table of Contents
+
+- [Public Domain Parametric Involute Spur Gear and Rack](#public-domain-parametric-involute-spur-gear-and-rack)
+    - [Some Terminology:](#some-terminology)
+- [Modules](#modules)
+    - [`gear()`](#gear)
+    - [`rack()`](#rack)
+- [Functions](#functions)
+    - [`circular_pitch(mm_per_tooth)`](#circular_pitchmm_per_tooth)
+    - [`diametral_pitch(mm_per_tooth)`](#diametral_pitchmm_per_tooth)
+    - [`adendum(mm_per_tooth)`](#adendummm_per_tooth)
+    - [`dedendum(mm_per_tooth)`](#dedendummm_per_tooth)
+    - [`module_value(mm_per_tooth)`](#module_valuemm_per_tooth)
+    - [`pitch_radius(mm_per_tooth, number_of_teeth)`](#pitch_radiusmm_per_tooth-number_of_teeth)
+    - [`outer_radius(mm_per_tooth, number_of_teeth, clearance)`](#outer_radiusmm_per_tooth-number_of_teeth-clearance)
+
+
+
 # Public Domain Parametric Involute Spur Gear and Rack
 by Leemon Baird, 2011, Leemon@Leemon.com
 With fixes by Revar Desmera, 2017, revarbat@gmail.com

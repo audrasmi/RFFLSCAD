@@ -1,5 +1,16 @@
 Linear Bearings.
 
+# Table of Contents
+
+- [Functions](#functions)
+    - [`get_lmXuu_bearing_diam(size)`](#get_lmxuu_bearing_diamsize)
+    - [`get_lmXuu_bearing_length(size)`](#get_lmxuu_bearing_lengthsize)
+- [Modules](#modules)
+    - [`linear_bearing_housing()`](#linear_bearing_housing)
+    - [`lmXuu_housing()`](#lmxuu_housing)
+
+
+
 # Functions
 
 ## get\_lmXuu\_bearing\_diam(size)

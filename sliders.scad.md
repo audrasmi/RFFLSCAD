@@ -1,6 +1,14 @@
 Sliders and Rails.
 
 
+# Table of Contents
+
+- [Modules](#modules)
+    - [`slider()`](#slider)
+    - [`rail()`](#rail)
+
+
+
 # Modules
 
 ## slider()

@@ -5,6 +5,32 @@ Quaternions are stored internally as a 4-value vector:
 	[X, Y, Z, W]  =  W + Xi + Yj + Zk
 
 
+# Table of Contents
+
+- [Functions and math](#functions-and-math)
+    - [`Quat(ax, ang)`](#quatax-ang)
+    - [`Q_Ident()`](#q_ident)
+    - [`Q_Add_S(q, s)`](#q_add_sq-s)
+    - [`Q_Sub_S(q, s)`](#q_sub_sq-s)
+    - [`Q_Mul_S(q, s)`](#q_mul_sq-s)
+    - [`Q_Div_S(q, s)`](#q_div_sq-s)
+    - [`Q_Add(a, b)`](#q_adda-b)
+    - [`Q_Sub(a, b)`](#q_suba-b)
+    - [`Q_Mul(a, b)`](#q_mula-b)
+    - [`Q_Dot(a, b)`](#q_dota-b)
+    - [`Q_Neg(q)`](#q_negq)
+    - [`Q_Conj(q)`](#q_conjq)
+    - [`Q_Norm(q)`](#q_normq)
+    - [`Q_Normalize(q)`](#q_normalizeq)
+    - [`Q_Dist(q1, q2)`](#q_distq1-q2)
+    - [`Q_Matrix3(q)`](#q_matrix3q)
+    - [`Q_Matrix4(q)`](#q_matrix4q)
+    - [`Q_Rot_Vector(v,q)`](#q_rot_vectorvq)
+- [Modules](#modules)
+    - [`Qrot(q) { ... }`](#qrotq---)
+
+
+
 # Functions and math
 
 
@@ -88,8 +114,8 @@ Returns the 3x3 rotation matrix for the given normalized quaternion q.
 
 
 
-## Q\_Matrix4(q) = [
-// Returns the 4x4 rotation matrix for the given normalized quaternion q.
+## Q\_Matrix4(q)
+Returns the 4x4 rotation matrix for the given normalized quaternion q.
 
 
 
@@ -106,9 +132,9 @@ Rotates all children by the given quaternion q.
 
 Example:
 
-	q1 = Quat([1,0,0], 30);
-	q2 = Quat([0,0,1], 15);
-	q = Q_Mul(q1, q2);
+    q1 = Quat([1,0,0], 30);
+    q2 = Quat([0,0,1], 15);
+    q = Q_Mul(q1, q2);
     Qrot(q) cylinder(d=10, h=100, center=false);
 
 

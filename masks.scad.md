@@ -2,6 +2,27 @@ Shapes that are useful for masking with ```difference()``` and ```intersect()```
 
 
 
+## Table of Contents
+
+- [`angle_pie_mask()`](#angle_pie_mask)
+- [`chamfer_mask_x()`](#chamfer_mask_x)
+- [`chamfer_mask_y()`](#chamfer_mask_y)
+- [`chamfer_mask_z()`](#chamfer_mask_z)
+- [`chamfer() { ... }`](#chamfer---)
+- [`chamfer_hole_mask()`](#chamfer_hole_mask)
+- [`chamfer_cylinder_mask()`](#chamfer_cylinder_mask)
+- [`fillet_mask()`](#fillet_mask)
+- [`fillet_mask_x()`](#fillet_mask_x)
+- [`fillet_mask_y()`](#fillet_mask_y)
+- [`fillet_mask_z()`](#fillet_mask_z)
+- [`fillet_angled_edge_mask()`](#fillet_angled_edge_mask)
+- [`fillet_angled_corner_mask()`](#fillet_angled_corner_mask)
+- [`fillet_corner_mask()`](#fillet_corner_mask)
+- [`fillet_cylinder_mask()`](#fillet_cylinder_mask)
+- [`fillet_hole_mask()`](#fillet_hole_mask)
+
+
+
 ## angle\_pie\_mask()
 Creates a pie wedge shape that can be used to mask other shapes. You must specify either `r` or `d`, or their `r1`/`r2`, `d1`/`d2` variants.
 

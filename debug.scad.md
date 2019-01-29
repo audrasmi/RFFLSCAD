@@ -1,3 +1,14 @@
+# Table of Contents
+
+- [Debugging modules](#debugging-modules)
+    - [`trace_polyline(pline, N, showpts, size, color)`](#trace_polylinepline-n-showpts-size-color)
+    - [`trace_bezier(bez, N, size)`](#trace_bezierbez-n-size)
+    - [`debug_vertices(vertices, size, disabled)`](#debug_verticesvertices-size-disabled)
+    - [`debug_faces(vertices, faces, size, disabled)`](#debug_facesvertices-faces-size-disabled)
+    - [`debug_polyhedron(points, faces, txtsize, disabled)`](#debug_polyhedronpoints-faces-txtsize-disabled)
+
+
+
 # Debugging modules
 
 Routines to help debug creation of beziers, polygons, and
