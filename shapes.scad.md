@@ -9,7 +9,7 @@ Common useful shapes and structured objects.
     [`rightcube()`](#rightcube)
     [`fwdcube()`](#fwdcube)
     [`backcube()`](#backcube)
-    [`dncube()`](#dncube)
+    [`downcube()`](#downcube)
     [`upcube()`](#upcube)
     [`chamfcube()`](#chamfcube)
     [`rrect()`](#rrect)
@@ -133,7 +133,7 @@ Example:
 
 
 
-### dncube()
+### downcube()
 Makes a cube that has its top face centered at the origin.
 
 Arg      | What it does
@@ -142,9 +142,9 @@ size     | size of cube [X,Y,Z].  (Default: [1,1,1])
 
 Example:
 
-    dncube([10, 10, 10]);
+    downcube([10, 10, 10]);
 
-![dncube](dncube.png)
+![downcube](downcube.png)
 
 
 
