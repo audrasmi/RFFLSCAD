@@ -15,7 +15,7 @@ size     | size of cube [X,Y,Z].  (Default: [1,1,1])
 
 Example:
 
-    leftcube([4, 5, 3]);
+    leftcube([10, 10, 10]);
 
 ![leftcube](leftcube.png)
 
@@ -30,7 +30,7 @@ size     | size of cube [X,Y,Z].  (Default: [1,1,1])
 
 Example:
 
-    rightcube([4, 5, 3]);
+    rightcube([10, 10, 10]);
 
 ![rightcube](rightcube.png)
 
@@ -45,7 +45,7 @@ size     | size of cube [X,Y,Z].  (Default: [1,1,1])
 
 Example:
 
-    fwdcube([4, 5, 3]);
+    fwdcube([10, 10, 10]);
 
 ![fwdcube](fwdcube.png)
 
@@ -60,7 +60,7 @@ size     | size of cube [X,Y,Z].  (Default: [1,1,1])
 
 Example:
 
-    backcube([4, 5, 3]);
+    backcube([10, 10, 10]);
 
 ![backcube](backcube.png)
 
@@ -90,7 +90,7 @@ size     | size of cube [X,Y,Z].  (Default: [1,1,1])
 
 Example:
 
-    dncube([4, 5, 3]);
+    dncube([10, 10, 10]);
 
 ![dncube](dncube.png)
 
