@@ -2,7 +2,7 @@ Common useful shapes and structured objects.
 
 ## Table of Contents
 
-- [Cube Variants](#Cube Variants)
+- [Cube Variants](#cube-variants)
 
     [`offsetcube()`](#offsetcube)
     [`leftcube()`](#leftcube)
@@ -15,14 +15,14 @@ Common useful shapes and structured objects.
     [`rrect()`](#rrect)
     [`rcube()`](#rcube)
     
-- [Prisms and Such](#Prisms and Such)
+- [Prisms and Such](#prisms-and-such)
 
     [`prism()`](#prism)
     [`trapezoid()`](#trapezoid)
     [`pyramid()`](#pyramid)
     [`right_triangle()`](#right_triangle)
 
-- [Cylinder Variants](#Cylinder Variants)
+- [Cylinder Variants](#cylinder-variants)
 
     [`chamf_cyl()`](#chamf_cyl)
     [`chamferred_cylinder()`](#chamferred_cylinder)
@@ -32,7 +32,7 @@ Common useful shapes and structured objects.
     [`torus()`](#torus)
     [`pie_slice()`](#pie_slice)
 
-- [3D Printing Constructs](#3D Printing Constructs)
+- [3D Printing Constructs](#3d-printing-constructs)
 
     [`teardrop2d()`](#teardrop2d)
     [`teardrop()`](#teardrop)
@@ -45,7 +45,7 @@ Common useful shapes and structured objects.
     [`sparse_strut()`](#sparse_strut)
     [`sparse_strut3d()`](#sparse_strut3d)
 
-- [Miscellaneous](#Miscellaneous)
+- [Miscellaneous](#miscellaneous)
 
     [`nil()`](#nil)
     [`slot()`](#slot)
