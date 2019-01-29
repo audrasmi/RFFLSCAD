@@ -6,6 +6,24 @@ For when you MUST pass a child to a module, but you want it to be nothing.
 
 
 
+## offsetcube()
+Makes a cube that is offset along the given vector by half
+the cube's size.  For example, if v=[-1,1,0], the cube's
+front right edge will be centered at the origin.
+
+Arg      | What it does
+-------- | --------------------------
+size     | size of cube [X,Y,Z].  (Default: [1,1,1])
+v        | vector to offset along.
+
+Example:
+
+    offsetcube([3,4,5], [-1,1,0]);
+
+![offsetcube](offsetcube.png)
+
+
+
 ## leftcube()
 Makes a cube that has its right face centered at the origin.
 
