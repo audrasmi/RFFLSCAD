@@ -1,12 +1,61 @@
 Common useful shapes and structured objects.
 
+## Table of Contents
 
-## nil()
-For when you MUST pass a child to a module, but you want it to be nothing.
+- [Cube Variants](#Cube Variants)
+
+    [`offsetcube()`](#offsetcube)
+    [`leftcube()`](#leftcube)
+    [`rightcube()`](#rightcube)
+    [`fwdcube()`](#fwdcube)
+    [`backcube()`](#backcube)
+    [`dncube()`](#dncube)
+    [`upcube()`](#upcube)
+    [`chamfcube()`](#chamfcube)
+    [`rrect()`](#rrect)
+    [`rcube()`](#rcube)
+    
+- [Prisms and Such](#Prisms and Such)
+
+    [`prism()`](#prism)
+    [`trapezoid()`](#trapezoid)
+    [`pyramid()`](#pyramid)
+    [`right_triangle()`](#right_triangle)
+
+- [Cylinder Variants](#Cylinder Variants)
+
+    [`chamf_cyl()`](#chamf_cyl)
+    [`chamferred_cylinder()`](#chamferred_cylinder)
+    [`rcylinder()`](#rcylinder)
+    [`filleted_cylinder()`](#filleted_cylinder)
+    [`tube()`](#tube)
+    [`torus()`](#torus)
+    [`pie_slice()`](#pie_slice)
+
+- [3D Printing Constructs](#3D Printing Constructs)
+
+    [`teardrop2d()`](#teardrop2d)
+    [`teardrop()`](#teardrop)
+    [`onion()`](#onion)
+    [`narrowing_strut()`](#narrowing_strut)
+    [`thinning_triangle()`](#thinning_triangle)
+    [`thinning_brace()`](#thinning_brace)
+    [`thinning_wall()`](#thinning_wall)
+    [`corrugated_wall()`](#corrugated_wall)
+    [`sparse_strut()`](#sparse_strut)
+    [`sparse_strut3d()`](#sparse_strut3d)
+
+- [Miscellaneous](#Miscellaneous)
+
+    [`nil()`](#nil)
+    [`slot()`](#slot)
+    [`arced_slot()`](#arced_slot)
 
 
 
-## offsetcube()
+## Cube Variants
+
+### offsetcube()
 Makes a cube that is offset along the given vector by half
 the cube's size.  For example, if v=[-1,1,0], the cube's
 front right edge will be centered at the origin.
@@ -24,7 +73,7 @@ Example:
 
 
 
-## leftcube()
+### leftcube()
 Makes a cube that has its right face centered at the origin.
 
 Arg      | What it does
@@ -39,7 +88,7 @@ Example:
 
 
 
-## rightcube()
+### rightcube()
 Makes a cube that has its left face centered at the origin.
 
 Arg      | What it does
@@ -54,7 +103,7 @@ Example:
 
 
 
-## fwdcube()
+### fwdcube()
 Makes a cube that has its back face centered at the origin.
 
 Arg      | What it does
@@ -69,7 +118,7 @@ Example:
 
 
 
-## backcube()
+### backcube()
 Makes a cube that has its front face centered at the origin.
 
 Arg      | What it does
@@ -84,22 +133,7 @@ Example:
 
 
 
-## upcube()
-Makes a cube that has its bottom face centered at the origin.
-
-Arg      | What it does
--------- | --------------------------
-size     | size of cube [X,Y,Z].  (Default: [1,1,1])
-
-Example:
-
-    upcube([4, 5, 3]);
-
-![upcube](upcube.png)
-
-
-
-## dncube()
+### dncube()
 Makes a cube that has its top face centered at the origin.
 
 Arg      | What it does
@@ -114,7 +148,22 @@ Example:
 
 
 
-## chamfcube()
+### upcube()
+Makes a cube that has its bottom face centered at the origin.
+
+Arg      | What it does
+-------- | --------------------------
+size     | size of cube [X,Y,Z].  (Default: [1,1,1])
+
+Example:
+
+    upcube([4, 5, 3]);
+
+![upcube](upcube.png)
+
+
+
+### chamfcube()
 Makes a cube with chamfered edges.
 
 Arg          | What it does
@@ -132,7 +181,7 @@ Example:
 
 
 
-## rrect()
+### rrect()
 Makes a cube with rounded (filletted) vertical edges.
 
 Arg      | What it does
@@ -150,7 +199,7 @@ Examples:
 
 
 
-## rcube()
+### rcube()
 Makes a cube with rounded (filletted) edges and corners.
 
 Arg      | What it does
@@ -168,7 +217,91 @@ Examples:
 
 
 
-## chamf\_cyl(), chamferred\_cylinder()
+## Prisms and Such
+
+### prism()
+Creates a vertical prism with a given number of sides.
+
+Arg     | What it does
+------- | -----------------------------------
+n       | number of sides.
+h       | height of the prism.
+l       | length of one side of the prism. (optional)
+r       | radius of the prism. (optional)
+d       | diameter of the prism. (optional)
+circum  | prism circumscribes the circle of the given radius or diam.
+
+Example:
+
+    prism(n=6, h=3, d=4, circum=true);
+
+![prism](prism.png)
+
+
+
+### trapezoid()
+Creates a trapezoidal prism.
+
+Arg     | What it does
+------- | -----------------------------------
+size1   | [width, length] of the bottom of the prism.
+size2   | [width, length] of the top of the prism.
+h       | Height of the prism.
+center  | vertically center the prism if true.  Sits on top of XY plane if false.
+
+Example:
+
+    trapezoid(size1=[2,6], size2=[4,0], h=4, center=false);
+
+    trapezoid(size1=[1,4], size2=[4,1], h=4, center=false);
+
+![trapezoid](trapezoid.png)
+
+
+
+### pyramid()
+Creates a pyramidal prism with a given number of sides.
+
+Arg     | What it does
+------- | -----------------------------------
+n       | number of pyramid sides.
+h       | height of the pyramid.
+l       | length of one side of the pyramid. (optional)
+r       | radius of the base of the pyramid. (optional)
+d       | diameter of the base of the pyramid. (optional)
+circum  | base circumscribes the circle of the given radius or diam.
+
+Example:
+
+    pyramid(h=10, l=5, n=4);
+    pyramid(h=10, r=5, n=5);
+    pyramid(h=3, d=4, n=6, circum=true);
+
+![pyramid](pyramid.png)
+
+
+
+### right\_triangle()
+Creates a right triangle, with the hypotenuse on the right (X+) side.
+
+Arg     | What it does
+------- | -----------------------------------
+size    | [width, thickness, height]
+center  | true if triangle will be centered.
+
+Examples:
+
+    right_triangle([4, 1, 6], center=true);
+    right_triangle([4, 1, 9]);
+
+![right\_triangle](right_triangle.png)
+
+
+
+## Cylinder Variants
+
+### chamf\_cyl()
+### chamferred\_cylinder()
 Creates a cylinder with chamferred edges.
 
 Arg       | What it does
@@ -191,7 +324,8 @@ Example:
 
 
 
-## rcylinder(), filleted\_cylinder()
+### rcylinder()
+### filleted\_cylinder()
 Creates a cylinder with filletted (rounded) ends.
 
 Arg     | What it does
@@ -210,141 +344,7 @@ Example:
 
 
 
-## pyramid()
-Creates a pyramidal prism with a given number of sides.
-
-Arg     | What it does
-------- | -----------------------------------
-n       | number of pyramid sides.
-h       | height of the pyramid.
-l       | length of one side of the pyramid. (optional)
-r       | radius of the base of the pyramid. (optional)
-d       | diameter of the base of the pyramid. (optional)
-circum  | base circumscribes the circle of the given radius or diam.
-
-Example:
-
-    pyramid(h=10, l=5, n=4);
-    pyramid(h=10, r=5, n=5);
-    pyramid(h=3, d=4, n=6, circum=true);
-
-![pyramid](pyramid.png)
-
-
-
-## prism()
-Creates a vertical prism with a given number of sides.
-
-Arg     | What it does
-------- | -----------------------------------
-n       | number of sides.
-h       | height of the prism.
-l       | length of one side of the prism. (optional)
-r       | radius of the prism. (optional)
-d       | diameter of the prism. (optional)
-circum  | prism circumscribes the circle of the given radius or diam.
-
-Example:
-
-    prism(n=6, h=3, d=4, circum=true);
-
-![prism](prism.png)
-
-
-
-## right\_triangle()
-Creates a right triangle, with the hypotenuse on the right (X+) side.
-
-Arg     | What it does
-------- | -----------------------------------
-size    | [width, thickness, height]
-center  | true if triangle will be centered.
-
-Examples:
-
-    right_triangle([4, 1, 6], center=true);
-    right_triangle([4, 1, 9]);
-
-![right\_triangle](right_triangle.png)
-
-
-
-## trapezoid()
-Creates a trapezoidal prism.
-
-Arg     | What it does
-------- | -----------------------------------
-size1   | [width, length] of the bottom of the prism.
-size2   | [width, length] of the top of the prism.
-h       | Height of the prism.
-center  | vertically center the prism if true.  Sits on top of XY plane if false.
-
-Example:
-
-    trapezoid(size1=[2,6], size2=[4,0], h=4, center=false);
-
-    trapezoid(size1=[1,4], size2=[4,1], h=4, center=false);
-
-![trapezoid](trapezoid.png)
-
-
-
-## teardrop2d()
-Makes a 2D teardrop shape. Useful for extruding into 3D printable holes.
-
-Arg    | What it does
------- | -----------------------------------
-r      | radius of circular part of teardrop.  (Default: 1)
-d      | diameter of spherical portion of bottom. (Use instead of r)
-ang    | angle of hat walls from the Y axis.  (Default: 45 degrees)
-cap\_h | if given, height above center where the shape will be truncated.
-
-Example:
-
-    teardrop2d(r=30, ang=30);
-    teardrop2d(r=35, ang=45, cap_h=40);
-
-![teardrop2d](teardrop2d.png)
-
-
-
-## teardrop()
-Makes a teardrop shape in the XZ plane. Useful for 3D printable holes.
-
-Arg    | What it does
------- | -----------------------------------
-r      | radius of circular part of teardrop.  (Default: 1)
-d      | diameter of spherical portion of bottom. (Use instead of r)
-h      | thickness of teardrop. (Default: 1)
-cap\_h | if given, height above center where the shape will be truncated.
-
-Example:
-
-    teardrop(r=3, h=2, ang=30);
-
-![teardrop](teardrop.png)
-
-
-
-## onion()
-Created a sphere with a conical hat, to make a 3D teardrop.
-
-Arg    | What it does
------- | -----------------------------------
-r      | radius of spherical portion of the bottom. (Default: 1)
-d      | diameter of spherical portion of bottom. (Use instead of r)
-h      | height above sphere center to truncate teardrop shape. (Default: 1)
-maxang | angle of cone on top from vertical.
-
-Example:
-
-    onion(h=15, r=10, maxang=30);
-
-![onion](onion.png)
-
-
-
-## tube()
+### tube()
 Makes a hollow tube with the given outer size and wall thickness.
 
 Arg    | What it does
@@ -365,7 +365,7 @@ Example:
 
 
 
-## torus()
+### torus()
 Creates a torus shape.
 
 Arg    | What it does
@@ -391,7 +391,7 @@ Example:
 
 
 
-## pie\_slice()
+### pie\_slice()
 Creates a pie slice shape.
 
 Arg    | What it does
@@ -414,7 +414,221 @@ Example:
 
 
 
-## slot()
+## 3D Printing Constructs
+
+### teardrop2d()
+Makes a 2D teardrop shape. Useful for extruding into 3D printable holes.
+
+Arg    | What it does
+------ | -----------------------------------
+r      | radius of circular part of teardrop.  (Default: 1)
+d      | diameter of spherical portion of bottom. (Use instead of r)
+ang    | angle of hat walls from the Y axis.  (Default: 45 degrees)
+cap\_h | if given, height above center where the shape will be truncated.
+
+Example:
+
+    teardrop2d(r=30, ang=30);
+    teardrop2d(r=35, ang=45, cap_h=40);
+
+![teardrop2d](teardrop2d.png)
+
+
+
+### teardrop()
+Makes a teardrop shape in the XZ plane. Useful for 3D printable holes.
+
+Arg    | What it does
+------ | -----------------------------------
+r      | radius of circular part of teardrop.  (Default: 1)
+d      | diameter of spherical portion of bottom. (Use instead of r)
+h      | thickness of teardrop. (Default: 1)
+cap\_h | if given, height above center where the shape will be truncated.
+
+Example:
+
+    teardrop(r=3, h=2, ang=30);
+
+![teardrop](teardrop.png)
+
+
+
+### onion()
+Created a sphere with a conical hat, to make a 3D teardrop.
+
+Arg    | What it does
+------ | -----------------------------------
+r      | radius of spherical portion of the bottom. (Default: 1)
+d      | diameter of spherical portion of bottom. (Use instead of r)
+h      | height above sphere center to truncate teardrop shape. (Default: 1)
+maxang | angle of cone on top from vertical.
+
+Example:
+
+    onion(h=15, r=10, maxang=30);
+
+![onion](onion.png)
+
+
+
+### narrowing\_strut()
+Makes a rectangular strut with the top side narrowing in a triangle.
+The shape created may be likened to an extruded home plate from baseball.
+This is useful for constructing parts that minimize the need to support
+overhangs.
+
+Arg    | What it does
+------ | -----------------------------------
+w      | Width (thickness) of the strut.
+l      | Length of the strut.
+wall   | height of rectangular portion of the strut.
+ang    | angle that the trianglar side will converge at.
+
+Example:
+
+    narrowing_strut(w=10, l=100, wall=5, ang=30);
+
+![narrowing\_strut](narrowing_strut.png)
+
+
+
+### thinning\_triangle()
+Makes a triangular wall with thick edges, which thins to a smaller width in
+the center, with angled supports to prevent critical overhangs.
+
+Arg      | What it does
+-------- | -----------------------------------
+h        | height of wall.
+l        | length of wall.
+thick    | thickness of wall.
+ang      | maximum overhang angle of diagonal brace.
+strut    | the width of the diagonal brace.
+wall     | the thickness of the thinned portion of the wall.
+diagonly | boolean, which denotes only the diagonal brace should be thick.
+center   | If true, center at origin.  Else, align edges to Y and Z axes.
+
+Examples:
+
+    thinning_triangle(h=50, l=100, thick=4, ang=30, strut=5, wall=2, diagonly=true);
+    thinning_triangle(h=60, l=75, thick=4, ang=30, strut=5, wall=2);
+
+![thinning\_triangle](thinning_triangle.png)
+
+
+
+### thinning\_brace()
+Makes a triangular wall which thins to a smaller width in the center,
+with angled supports to prevent critical overhangs.  Basically an alias
+of `thinning_triangle()`, with `diagonly` set to true.
+
+Arg    | What it does
+------ | -----------------------------------
+h      | height of wall.
+l      | length of wall.
+thick  | thickness of wall.
+ang    | maximum overhang angle of diagonal brace.
+strut  | the width of the diagonal brace.
+wall   | the thickness of the thinned portion of the wall.
+center | If true, center at origin.  Else, align edges to Y and Z axes.
+
+Example:
+
+    thinning_brace(h=50, l=100, thick=4, ang=30, strut=5, wall=2);
+
+![thinning\_brace](thinning_brace.png)
+
+
+
+### thinning\_wall()
+Makes a rectangular wall which thins to a smaller width in the center,
+with angled supports to prevent critical overhangs.
+
+Arg    | What it does
+------ | -----------------------------------
+h      | height of wall.
+l      | length of wall.
+thick  | thickness of wall.
+ang    | maximum overhang angle of diagonal brace.
+strut  | the width of the diagonal brace.
+wall   | the thickness of the thinned portion of the wall.
+
+Example:
+
+    thinning_wall(h=50, l=100, thick=4, ang=30, strut=5, wall=2);
+
+![thinning\_wall](thinning_wall.png)
+
+
+
+### corrugated\_wall()
+Makes a corrugated wall which relieves contraction stress while still
+providing support strength.  Designed with 3D printing in mind.
+
+Arg    | What it does
+------ | -----------------------------------
+h      | height of strut wall.
+l      | length of strut wall.
+thick  | thickness of strut wall.
+strut  | the width of the cross-braces.
+wall   | thickness of corrugations.
+
+Example:
+
+    corrugated_wall(h=50, l=100, thick=4, strut=5, wall=2);
+
+![corrugated\_wall](corrugated_wall.png)
+
+
+
+### sparse\_strut()
+Makes an open rectangular strut with X-shaped cross-bracing, designed with 3D printing in mind.
+
+Arg         | What it does
+----------- | -----------------------------------
+h           | height of strut wall.
+l           | length of strut wall.
+thick       | thickness of strut wall.
+maxang      | maximum overhang angle of cross-braces.
+max\_bridge | maximum bridging distance between cross-braces.
+strut       | the width of the cross-braces.
+
+Example:
+
+    sparse_strut(h=40, l=120, thick=4, maxang=30, strut=5, max_bridge=20);
+
+![sparse\_strut](sparse_strut.png)
+
+
+
+### sparse\_strut3d()
+Makes an open rigid strut with X-shaped cross-bracing, designed with 3D printing in mind.
+
+Arg         | What it does
+----------- | -----------------------------------
+h           | Z size of strut.
+w           | X size of strut.
+l           | Y size of strut.
+thick       | thickness of strut walls.
+maxang      | maximum overhang angle of cross-braces.
+max\_bridge | maximum bridging distance between cross-braces.
+strut       | the width of the cross-braces.
+
+Example:
+
+    sparse_strut3d(h=40, w=40, l=120, thick=4, maxang=30, strut=5, max_bridge=20);
+
+![sparse\_strut3d](sparse_strut3d.png)
+
+
+
+## Miscellaneous
+
+### nil()
+For when you MUST pass a child to a module, but you want it to be nothing.
+
+
+
+### slot()
 Makes a linear slot with rounded ends, appropriate for bolts to slide along.
 
 Arg    | What it does
@@ -440,7 +654,7 @@ Examples:
 
 
 
-## arced\_slot()
+### arced\_slot()
 Makes an arced slot, appropriate for bolts to slide along.
 
 Arg    | What it does
@@ -464,156 +678,6 @@ Examples:
     arced_slot(d=100, h=15, sd=10, sa=60, ea=280);
 
 ![arced\_slot](arced_slot.png)
-
-
-
-## narrowing\_strut()
-Makes a rectangular strut with the top side narrowing in a triangle.
-The shape created may be likened to an extruded home plate from baseball.
-This is useful for constructing parts that minimize the need to support
-overhangs.
-
-Arg    | What it does
------- | -----------------------------------
-w      | Width (thickness) of the strut.
-l      | Length of the strut.
-wall   | height of rectangular portion of the strut.
-ang    | angle that the trianglar side will converge at.
-
-Example:
-
-    narrowing_strut(w=10, l=100, wall=5, ang=30);
-
-![narrowing\_strut](narrowing_strut.png)
-
-
-
-## thinning\_wall()
-Makes a rectangular wall which thins to a smaller width in the center,
-with angled supports to prevent critical overhangs.
-
-Arg    | What it does
------- | -----------------------------------
-h      | height of wall.
-l      | length of wall.
-thick  | thickness of wall.
-ang    | maximum overhang angle of diagonal brace.
-strut  | the width of the diagonal brace.
-wall   | the thickness of the thinned portion of the wall.
-
-Example:
-
-    thinning_wall(h=50, l=100, thick=4, ang=30, strut=5, wall=2);
-
-![thinning\_wall](thinning_wall.png)
-
-
-
-## thinning\_triangle()
-Makes a triangular wall with thick edges, which thins to a smaller width in
-the center, with angled supports to prevent critical overhangs.
-
-Arg      | What it does
--------- | -----------------------------------
-h        | height of wall.
-l        | length of wall.
-thick    | thickness of wall.
-ang      | maximum overhang angle of diagonal brace.
-strut    | the width of the diagonal brace.
-wall     | the thickness of the thinned portion of the wall.
-diagonly | boolean, which denotes only the diagonal brace should be thick.
-center   | If true, center at origin.  Else, align edges to Y and Z axes.
-
-Examples:
-
-    thinning_triangle(h=50, l=100, thick=4, ang=30, strut=5, wall=2, diagonly=true);
-    thinning_triangle(h=60, l=75, thick=4, ang=30, strut=5, wall=2);
-
-![thinning\_triangle](thinning_triangle.png)
-
-
-
-## thinning\_brace()
-Makes a triangular wall which thins to a smaller width in the center,
-with angled supports to prevent critical overhangs.  Basically an alias
-of `thinning_triangle()`, with `diagonly` set to true.
-
-Arg    | What it does
------- | -----------------------------------
-h      | height of wall.
-l      | length of wall.
-thick  | thickness of wall.
-ang    | maximum overhang angle of diagonal brace.
-strut  | the width of the diagonal brace.
-wall   | the thickness of the thinned portion of the wall.
-center | If true, center at origin.  Else, align edges to Y and Z axes.
-
-Example:
-
-    thinning_brace(h=50, l=100, thick=4, ang=30, strut=5, wall=2);
-
-![thinning\_brace](thinning_brace.png)
-
-
-
-## sparse\_strut3d()
-Makes an open rigid strut with X-shaped cross-bracing, designed with 3D printing in mind.
-
-Arg         | What it does
------------ | -----------------------------------
-h           | Z size of strut.
-w           | X size of strut.
-l           | Y size of strut.
-thick       | thickness of strut walls.
-maxang      | maximum overhang angle of cross-braces.
-max\_bridge | maximum bridging distance between cross-braces.
-strut       | the width of the cross-braces.
-
-Example:
-
-    sparse_strut3d(h=40, w=40, l=120, thick=4, maxang=30, strut=5, max_bridge=20);
-
-![sparse\_strut3d](sparse_strut3d.png)
-
-
-
-## sparse\_strut()
-Makes an open rectangular strut with X-shaped cross-bracing, designed with 3D printing in mind.
-
-Arg         | What it does
------------ | -----------------------------------
-h           | height of strut wall.
-l           | length of strut wall.
-thick       | thickness of strut wall.
-maxang      | maximum overhang angle of cross-braces.
-max\_bridge | maximum bridging distance between cross-braces.
-strut       | the width of the cross-braces.
-
-Example:
-
-    sparse_strut(h=40, l=120, thick=4, maxang=30, strut=5, max_bridge=20);
-
-![sparse\_strut](sparse_strut.png)
-
-
-
-## corrugated\_wall()
-Makes a corrugated wall which relieves contraction stress while still
-providing support strength.  Designed with 3D printing in mind.
-
-Arg    | What it does
------- | -----------------------------------
-h      | height of strut wall.
-l      | length of strut wall.
-thick  | thickness of strut wall.
-strut  | the width of the cross-braces.
-wall   | thickness of corrugations.
-
-Example:
-
-    corrugated_wall(h=50, l=100, thick=4, strut=5, wall=2);
-
-![corrugated\_wall](corrugated_wall.png)
 
 
 
