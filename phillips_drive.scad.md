@@ -19,6 +19,7 @@ shaft | The diameter of the drive bit's shaft.
 l     | The length of the drive bit.
 
 Example:
+
     xdistribute(10) {
        phillips_drive(size="#1", shaft=4, l=30);
        phillips_drive(size="#2", shaft=6, l=30);
