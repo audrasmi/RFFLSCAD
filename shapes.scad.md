@@ -6,9 +6,68 @@ For when you MUST pass a child to a module, but you want it to be nothing.
 
 
 
+## leftcube()
+Makes a cube that has its right face centered at the origin.
+
+Arg      | What it does
+-------- | --------------------------
+size     | size of cube [X,Y,Z].  (Default: [1,1,1])
+
+Example:
+
+    leftcube([4, 5, 3]);
+
+![leftcube](leftcube.png)
+
+
+
+## rightcube()
+Makes a cube that has its left face centered at the origin.
+
+Arg      | What it does
+-------- | --------------------------
+size     | size of cube [X,Y,Z].  (Default: [1,1,1])
+
+Example:
+
+    rightcube([4, 5, 3]);
+
+![rightcube](rightcube.png)
+
+
+
+## fwdcube()
+Makes a cube that has its back face centered at the origin.
+
+Arg      | What it does
+-------- | --------------------------
+size     | size of cube [X,Y,Z].  (Default: [1,1,1])
+
+Example:
+
+    fwdcube([4, 5, 3]);
+
+![fwdcube](fwdcube.png)
+
+
+
+## backcube()
+Makes a cube that has its front face centered at the origin.
+
+Arg      | What it does
+-------- | --------------------------
+size     | size of cube [X,Y,Z].  (Default: [1,1,1])
+
+Example:
+
+    backcube([4, 5, 3]);
+
+![backcube](backcube.png)
+
+
+
 ## upcube()
-Makes a cube that is centered in X and Y axes, and has its bottom
-aligned with Z=0.
+Makes a cube that has its bottom face centered at the origin.
 
 Arg      | What it does
 -------- | --------------------------
@@ -19,6 +78,21 @@ Example:
     upcube([4, 5, 3]);
 
 ![upcube](upcube.png)
+
+
+
+## dncube()
+Makes a cube that has its top face centered at the origin.
+
+Arg      | What it does
+-------- | --------------------------
+size     | size of cube [X,Y,Z].  (Default: [1,1,1])
+
+Example:
+
+    dncube([4, 5, 3]);
+
+![dncube](dncube.png)
 
 
 
