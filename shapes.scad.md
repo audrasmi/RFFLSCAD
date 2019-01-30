@@ -21,6 +21,7 @@ Common useful shapes and structured objects.
 - [Cylinder Variants](#cylinder-variants)
     - [`chamf_cyl()`](#chamf_cyl)
     - [`chamferred_cylinder()`](#chamferred_cylinder)
+    - [`downcyl()`](#downcyl)
     - [`rcylinder()`](#rcylinder)
     - [`filleted_cylinder()`](#filleted_cylinder)
     - [`tube()`](#tube)
