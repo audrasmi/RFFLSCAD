@@ -315,15 +315,43 @@ Example:
 
 
 
+### downcyl()
+Creates a cylinder with its top face centered at the origin.
+
+Arg  | What it does
+---- | -----------------------------------
+h    | height of cylinder. (Default: 1.0)
+r    | radius of cylinder. (Default: 1.0)
+r1   | bottom radius of cone. (use with `r2` instead of `r`)
+r2   | top radius of cone. (use with `r1` instead of `r`)
+d    | diameter of cylinder. (use instead of `r`)
+d1   | bottom diameter of cone. (use with `d2` instead of `d` or `r`)
+d2   | top diameter of cone. (use with `d1` instead of `d` or `r`)
+
+Example:
+
+    downcyl(r=10, h=50);
+    downcyl(r1=15, r2=5, h=45);
+    downcyl(d=15, h=40);
+
+![downcyl](downcyl.png)
+
+
+
 ### rcylinder()
 ### filleted\_cylinder()
-Creates a cylinder with filletted (rounded) ends.
+Creates a cylinder with filleted (rounded) ends.  If `r1`/`r2`
+or `d1`/`d2` are used, creates a cone with filleted ends.
 
 Arg     | What it does
 ------- | -----------------------------------
 h       | height of cylinder. (Default: 1.0)
 r       | radius of cylinder. (Default: 1.0)
-d       | diameter of cylinder. (Use instead of r)
+d       | diameter of cylinder. (Use instead of `r`)
+r1      | radius of cylinder bottom. (Use with `r2` instead of `r`)
+r2      | radius of cylinder top. (Use with `r1` instead of `r`)
+d1      | diameter of cylinder bottom. (Use with `d2` instead of `d` or `r`)
+d2      | diameter of cylinder top. (Use with `d1` instead of `d` or `r`)
 fillet  | radius of the edge filleting. (Default: 0.25)
 center  | boolean.  If true, cylinder is centered. (Default: false)
 
