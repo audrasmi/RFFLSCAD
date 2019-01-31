@@ -42,11 +42,12 @@ thread\_depth | Depth of threads.  Default: pitch/2
 thread\_angle | Trapezoidal angle of threads.  Default: 15 degrees.
 starts        | The number of lead starts.  Default: 1
 left\_handed  | If true, create left-handed threads.  Default: false
+bevel         | If true, bevel the thread ends.  Default: false
 center        | If true (default), centers rod at origin.  If false, sits it on top of the XY plane.
 
 Example:
 
-	trapezoidal_threaded_rod(d=10, l=100, pitch=5, thread_depth=2, thread_angle=30);
+    trapezoidal_threaded_rod(l=25, d=10, pitch=2, thread_angle=15, starts=3, $fa=1, $fs=1);
 
 ![trapezoidal\_threaded\_rod](trapezoidal_threaded_rod.png)
 
@@ -68,14 +69,15 @@ h             | Height/Thickness of the nut.
 pitch         | Thread pitch.
 thread\_depth | Depth of threads.  Default = pitch/2
 thread\_angle | Trapezoidal angle of threads.  Default = 15 degrees.
-starts        | The number of lead starts.  Default = 1
 left\_handed  | If true, create left-handed threads.  Default = false
+starts        | The number of lead starts.  Default = 1
+bevel         | If true, bevel the threaded holes.  Default: true
 slop          | Slop to make the printed parts fit tightly.  Default = 0.2
 
 
 Examples:
 
-	trapezoidal_threaded_nut(od=17.4, id=10.5, h=10, pitch=3.175, thread_depth=1, slop=0.15);
+    trapezoidal_threaded_nut(od=17.4, id=10, h=10, pitch=2, thread_angle=15, starts=3, $fa=1, $fs=1);
 
 ![trapezoidal\_threaded\_nut](trapezoidal_threaded_nut.png)
 
@@ -94,10 +96,11 @@ d             | Outer diameter of threaded rod.
 l             | Length of threaded rod.
 pitch         | Thread pitch.
 left\_handed  | If true, create left-handed threads.  Default = false
+bevel         | If true, bevel the thread ends.  Default: false
 
 Example:
 
-	threaded_rod(d=10, l=100, pitch=5, left_handed=true);
+    threaded_rod(d=10, l=30, pitch=1.25, left_handed=true);
 
 ![threaded\_rod](threaded_rod.png)
 
@@ -113,12 +116,13 @@ id            | Diameter of threaded rod to make a nut for.
 h             | Height/Thickness of the nut.
 pitch         | Thread pitch.
 left\_handed  | If true, create left-handed threads.  Default = false
+bevel         | If true, bevel the threaded holes.  Default: false
 slop          | Slop to make the printed parts fit tightly.  Default = 0.2
 
 
 Examples:
 
-	threaded_nut(od=17.4, id=10.5, h=10, pitch=3.175, slop=0.15);
+    threaded_nut(od=16, id=8, l=8, pitch=1.25, left_handed=true, slop=0.2, $fa=1, $fs=1);
 
 ![threaded\_nut](threaded_nut.png)
 
@@ -140,10 +144,11 @@ thread\_depth | Depth of threads.  Default = pitch/2
 thread\_angle | Trapezoidal angle of threads.  Default = 14.5 degrees.
 starts        | The number of lead starts.  Default = 1
 left\_handed  | If true, create left-handed threads.  Default = false
+bevel         | If true, bevel the thread ends.  Default: false
 
 Example:
 
-	acme_threaded_rod(d=10, l=100, pitch=5, thread_depth=2, thread_angle=30);
+    acme_threaded_rod(d=10, l=40, pitch=2, starts=3, $fa=1, $fs=1);
 
 ![acme\_threaded\_rod](acme_threaded_rod.png)
 
@@ -162,12 +167,13 @@ thread\_depth | Depth of threads.  Default = pitch/2
 thread\_angle | Trapezoidal angle of threads.  Default = 14.5 degrees.
 starts        | The number of lead starts.  Default = 1
 left\_handed  | If true, create left-handed threads.  Default = false
+bevel         | If true, bevel the threaded holes.  Default: false
 slop          | Slop to make the printed parts fit tightly.  Default = 0.2
 
 
 Examples:
 
-	acme_threaded_nut(od=17.4, id=10.5, h=10, pitch=3.175, thread_depth=1, slop=0.15);
+    acme_threaded_nut(od=16, id=10, h=10, pitch=2, starts=3, slop=0.2, $fa=1, $fs=1);
 
 ![acme\_threaded\_nut](acme_threaded_nut.png)
 
@@ -186,11 +192,12 @@ d             | Outer diameter of threaded rod.
 l             | Length of threaded rod.
 pitch         | Thread pitch.
 left\_handed  | If true, create left-handed threads.  Default = false
+bevel         | If true, bevel the thread ends.  Default: false
 starts        | The number of lead starts.  Default = 1
 
 Example:
 
-	metric_trapezoidal_threaded_rod(d=10, l=100, pitch=5, left_handed=true);
+    metric_trapezoidal_threaded_rod(d=10, l=30, pitch=2, left_handed=true, $fa=1, $fs=1);
 
 ![metric\_trapezoidal\_threaded\_rod](metric_trapezoidal_threaded_rod.png)
 
@@ -206,13 +213,14 @@ id            | Diameter of threaded rod to make a nut for.
 h             | Height/Thickness of the nut.
 pitch         | Thread pitch.
 left\_handed  | If true, create left-handed threads.  Default = false
+bevel         | If true, bevel the threaded holes.  Default: false
 starts        | The number of lead starts.  Default = 1
 slop          | Slop to make the printed parts fit tightly.  Default = 0.2
 
 
 Examples:
 
-	metric_trapezoidal_threaded_nut(od=17.4, id=12, h=16, pitch=2, left_handed=true, starts=2, slop=0.15);
+    metric_trapezoidal_threaded_nut(od=16, d=10, h=10, pitch=2, left_handed=true, bevel=true, $fa=1, $fs=1);
 
 ![metric\_trapezoidal\_threaded\_nut](metric_trapezoidal_threaded_nut.png)
 
@@ -231,11 +239,12 @@ d             | Outer diameter of threaded rod.
 l             | Length of threaded rod.
 pitch         | Thread pitch.
 left\_handed  | If true, create left-handed threads.  Default = false
+bevel         | If true, bevel the thread ends.  Default: false
 starts        | The number of lead starts.  Default = 1
 
 Example:
 
-	square\_threaded_rod(d=10, l=100, pitch=5, left_handed=true, starts=3);
+    square_threaded_rod(d=10, l=30, pitch=2, starts=2, $fn=32);
 
 ![square\_threaded\_rod](square_threaded_rod.png)
 
@@ -251,13 +260,14 @@ id            | Diameter of threaded rod to make a nut for.
 h             | Height/Thickness of the nut.
 pitch         | Thread pitch.
 left\_handed  | If true, create left-handed threads.  Default = false
+bevel         | If true, bevel the threaded holes.  Default: false
 starts        | The number of lead starts.  Default = 1
 slop          | Slop to make the printed parts fit tightly.  Default = 0.2
 
 
 Examples:
 
-	square_threaded_nut(od=17.4, id=12, h=16, pitch=2, left_handed=true, starts=2, slop=0.15);
+    square_threaded_nut(od=16, id=10, h=10, pitch=2, starts=2, slop=0.15, $fn=32);
 
 ![square\_threaded\_nut](square_threaded_nut.png)
 
