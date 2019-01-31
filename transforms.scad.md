@@ -586,6 +586,7 @@ Example:
     xring(n=3, r=20) cube(size=5, center=true);
     xring(n=5, r=50, rot=false) cube(size=5, center=true);
     xring(n=3, r=10, sa=270) yspread(10) yrot(120) cylinder(h=10, d=1, center=false);
+    xring(n=6, r=20) cube([2,4,8], center=true);
 
 ![xring](xring.png)
 
@@ -606,6 +607,7 @@ Example:
     yring(n=3, r=20) cube(size=5, center=true);
     yring(n=5, r=50, rot=false) cube(size=5, center=true);
     yring(n=3, r=10, sa=270) xspread(10) xrot(-120) cylinder(h=10, d=1, center=false);
+    yring(n=6, r=20) cube([2,4,8], center=true);
 
 ![yring](yring.png)
 
@@ -626,6 +628,7 @@ Example:
     zring(n=3, r=20) cube(size=5, center=true);
     zring(n=5, r=50, rot=false) cube(size=5, center=true);
     zring(n=3, r=10, sa=90) xspread(10) xrot(30) cylinder(h=10, d=1, center=false);
+    zring(n=6, r=20) cube([2,4,8], center=true);
 
 ![zring](zring.png)
 
