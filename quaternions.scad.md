@@ -23,6 +23,7 @@ Quaternions are stored internally as a 4-value vector:
     - [`Q_Norm(q)`](#q_normq)
     - [`Q_Normalize(q)`](#q_normalizeq)
     - [`Q_Dist(q1, q2)`](#q_distq1-q2)
+    - [`Q_Slerp(q1, q2, t)`](#q_slerpq1-q2-t)
     - [`Q_Matrix3(q)`](#q_matrix3q)
     - [`Q_Matrix4(q)`](#q_matrix4q)
     - [`Q_Rot_Vector(v,q)`](#q_rot_vectorvq)
@@ -106,6 +107,11 @@ Returns the unit length equivalent of the given quaternion.
 
 ## Q\_Dist(q1, q2)
 Returns the distance between two quaternions.
+
+
+
+## Q\_Slerp(q1, q2, t)
+Returns the spherical interpolation between two quaternions.
 
 
 
