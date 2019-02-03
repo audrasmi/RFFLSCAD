@@ -249,7 +249,10 @@ Example:
 
     path = [ [0, 0, 0], [33, 33, 33], [66, -33, -33], [100, 0, 0] ];
     extrude_2d_shapes_along_bezier(path) {
-    	circle(r=10, center=true);
+        difference() {
+            circle(r=10);
+            left(10/2) circle(r=8);
+        }
     }
 
 ![extrude\_2d\_shapes\_along\_bezier](extrude_2d_shapes_along_bezier.png)
