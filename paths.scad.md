@@ -59,6 +59,29 @@ Example:
 
 
 
+## extrude\_from\_to() { ... }
+Extrudes a 2D shape between the points pt1 and pt2.
+Takes as children a set of 2D shapes to extrude.
+
+Args       | What it is
+---------- | --------------------------
+pt1        | Starting point of extrusion.
+pt2        | Ending point of extrusion.
+convexity  | Max number of times a line could intersect a wall of the 2D shape being extruded.
+twist      | Number of degrees to twist the 2D shape over the entire extrusion length.
+scale      | Scale multiplier for end of extrusion compared the start.
+slices     | Number of slices along the extrusion to break the extrusion into.  Useful for refining `twist` extrusions.
+
+Example:
+
+    extrude_from_to([0,0,0], [10,20,30], convexity=4, twist=180, scale=3.0, slices=40) {
+        xspread(3) circle(3, $fn=32);
+    }
+
+![extrude\_from\_to](extrude_from_to.png)
+
+
+
 ## extrude\_2d\_hollow()
 Similar to `linear_extrude()`, except the result is a hollow shell.
 
