@@ -8,6 +8,7 @@
     - [`points_along_path3d(polyline, path)`](#points_along_path3dpolyline-path)
 - [Modules](#modules)
     - [`modulated_circle()`](#modulated_circle)
+    - [`extrude_from_to() { ... }`](#extrude_from_to---)
     - [`extrude_2d_hollow()`](#extrude_2d_hollow)
     - [`extrude_2dpath_along_spiral()`](#extrude_2dpath_along_spiral)
     - [`extrude_2dpath_along_3dpath()`](#extrude_2dpath_along_3dpath)
