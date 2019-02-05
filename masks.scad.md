@@ -1,4 +1,4 @@
-Shapes that are useful for masking with ```difference()``` and ```intersect()```.
+Shapes that are useful for masking with `difference()` and `intersect()`.
 
 
 

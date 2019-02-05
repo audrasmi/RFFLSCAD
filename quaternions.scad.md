@@ -26,7 +26,7 @@ Quaternions are stored internally as a 4-value vector:
     - [`Q_Slerp(q1, q2, t)`](#q_slerpq1-q2-t)
     - [`Q_Matrix3(q)`](#q_matrix3q)
     - [`Q_Matrix4(q)`](#q_matrix4q)
-    - [`Q_Rot_Vector(v,q)`](#q_rot_vectorvq)
+    - [`Q_Rot_Vector(v, q)`](#q_rot_vectorv-q)
 - [Modules](#modules)
     - [`Qrot(q) { ... }`](#qrotq---)
 
@@ -125,7 +125,7 @@ Returns the 4x4 rotation matrix for the given normalized quaternion q.
 
 
 
-## Q\_Rot\_Vector(v,q)
+## Q\_Rot\_Vector(v, q)
 Returns the vector v after rotating it by the quaternion q.
 
 

@@ -1,7 +1,6 @@
 Rendering for wiring bundles
 
 
-
 # Table of Contents
 
 - [Functions](#functions)

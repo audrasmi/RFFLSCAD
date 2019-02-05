@@ -18,7 +18,7 @@
 
 # Public Domain Parametric Involute Spur Gear and Rack
 by Leemon Baird, 2011, Leemon@Leemon.com
-With fixes by Revar Desmera, 2017, revarbat@gmail.com
+With fixes and improvements by Revar Desmera, 2017-2019, revarbat@gmail.com
 
 The module `gear()` gives an involute spur gear, with reasonable
 defaults for all the parameters.  Normally, you should just choose
