@@ -265,6 +265,154 @@ Returns angle in degrees between two 3D vectors.
 
 
 
+## polar\_to\_xy(r, theta)
+
+Convert polar coordinates to cartesian coordinates.
+Returns [X,Y] cartesian coordinates.
+
+Args  | What it does
+----- | --------------------------------------
+r     | Radius of polar coordinate.
+theta | Angle in degrees, counter-clockwise of X+.
+
+Examples:
+
+    xy = polar_to_xy(20,30);
+    xy = polar_to_xy([40,60]);
+
+
+
+## xy\_to\_polar(x, y)
+
+Convert cartesian coordinates to polar coordinates.
+Returns [radius, theta] where theta is the angle
+counter-clockwise of X+, and radius is the distance
+from the origin.
+
+Args  | What it does
+----- | --------------------------------------
+x     | X coordinate.
+y     | Y coordinate.
+
+Examples:
+
+    plr = xy_to_polar(20,30);
+    plr = xy_to_polar([40,60]);
+
+
+
+## cylindrical\_to\_xyz(r, theta, z)
+
+Convert cylindrical coordinates to cartesian coordinates.
+Returns [X,Y,Z] cartesian coordinates.
+
+Args  | What it does
+----- | --------------------------------------
+r     | Distance from the Z axis.
+theta | Angle in degrees, counter-clockwise of X+ on the XY plane.
+z     | Height above XY plane.
+
+Examples:
+
+    xyz = cylindrical_to_xyz(20,30,40);
+    xyz = cylindrical_to_xyz([40,60,50]);
+
+
+
+## xyz\_to\_cylindrical(x, y, z)
+
+Convert cartesian coordinates to cylindrical coordinates.
+Returns [radius,theta,Z]. Theta is the angle counter-clockwise
+of X+ on the XY plane.  Z is height above the XY plane.
+
+Args  | What it does
+----- | --------------------------------------
+x     | X coordinate.
+y     | Y coordinate.
+z     | Z coordinate.
+
+Examples:
+
+    cyl = xyz_to_cylindrical(20,30,40);
+    cyl = xyz_to_cylindrical([40,50,70]);
+
+
+
+## spherical\_to\_xyz(r, theta, phi)
+
+Convert spherical coordinates to cartesian coordinates.
+Returns [X,Y,Z] cartesian coordinates.
+
+Args  | What it does
+----- | --------------------------------------
+r     | Distance from origin.
+theta | Angle in degrees, counter-clockwise of X+ on the XY plane.
+phi   | Angle in degrees from the vertical Z+ axis.
+
+Examples:
+
+    xyz = spherical_to_xyz(20,30,40);
+    xyz = spherical_to_xyz([40,60,50]);
+
+
+
+## xyz\_to\_spherical(x, y, z)
+
+Convert cartesian coordinates to spherical coordinates.
+Returns [r,theta,phi], where phi is the angle from the Z+ pole,
+and theta is degrees counter-clockwise of X+ on the XY plane.
+
+Args  | What it does
+----- | --------------------------------------
+x     | X coordinate.
+y     | Y coordinate.
+z     | Z coordinate.
+
+Examples:
+
+    sph = xyz_to_spherical(20,30,40);
+    sph = xyz_to_spherical([40,50,70]);
+
+
+
+## altaz\_to\_xyz(alt, az, r)
+
+Convert altitude/azimuth/range coordinates to cartesian coordinates.
+Returns [X,Y,Z] cartesian coordinates.
+
+Args  | What it does
+----- | --------------------------------------
+alt   | Altitude angle in degrees above the XY plane.
+az    | Azimuth angle in degrees clockwise of Y+ on the XY plane.
+r     | Distance from origin.
+
+Examples:
+
+    xyz = altaz_to_xyz(20,30,40);
+    xyz = altaz_to_xyz([40,60,50]);
+
+
+
+## xyz\_to\_altaz(x, y, z)
+
+Convert cartesian coordinates to altitude/azimuth/range coordinates.
+Returns [altitude,azimuth,range], where altitude is angle above the
+XY plane, azimuth is degrees clockwise of Y+ on the XY plane, and
+range is the distance from the origin.
+
+Args  | What it does
+----- | --------------------------------------
+x     | X coordinate.
+y     | Y coordinate.
+z     | Z coordinate.
+
+Examples:
+
+    aa = xyz_to_altaz(20,30,40);
+    aa = xyz_to_altaz([40,50,70]);
+
+
+
 ## slice(arr,st,end)
 Returns a slice of the array `arr` from index `st` to `end`.
 An index of 0 is the array start, -1 is array end.
