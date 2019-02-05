@@ -41,6 +41,14 @@ Math helper functions.
     - [`normalize(v)`](#normalizev)
     - [`vector2d_angle(v1,v2)`](#vector2d_anglev1v2)
     - [`vector3d_angle(v1,v2)`](#vector3d_anglev1v2)
+    - [`polar_to_xy(r, theta)`](#polar_to_xyr-theta)
+    - [`xy_to_polar(x, y)`](#xy_to_polarx-y)
+    - [`cylindrical_to_xyz(r, theta, z)`](#cylindrical_to_xyzr-theta-z)
+    - [`xyz_to_cylindrical(x, y, z)`](#xyz_to_cylindricalx-y-z)
+    - [`spherical_to_xyz(r, theta, phi)`](#spherical_to_xyzr-theta-phi)
+    - [`xyz_to_spherical(x, y, z)`](#xyz_to_sphericalx-y-z)
+    - [`altaz_to_xyz(alt, az, r)`](#altaz_to_xyzalt-az-r)
+    - [`xyz_to_altaz(x, y, z)`](#xyz_to_altazx-y-z)
     - [`slice(arr,st,end)`](#slicearrstend)
 
 
