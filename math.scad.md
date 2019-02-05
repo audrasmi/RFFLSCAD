@@ -5,19 +5,19 @@ Math helper functions.
 
 - [Miscellaneous](#miscellaneous)
     - [`constrain(v, minval, maxval)`](#constrainv-minval-maxval)
-    - [`hypot(x,y)`](#hypotxy)
-    - [`hypot3(x,y,z)`](#hypot3xyz)
-    - [`lerp(a,b,u)`](#lerpabu)
+    - [`hypot(x, y)`](#hypotx-y)
+    - [`hypot3(x, y, z)`](#hypot3x-y-z)
+    - [`lerp(a, b, u)`](#lerpa-b-u)
     - [`sum(v)`](#sumv)
     - [`sum_of_squares(v)`](#sum_of_squaresv)
-    - [`sum_of_sines(a,sines)`](#sum_of_sinesasines)
-    - [`quant(x,y)`](#quantxy)
-    - [`quantdn(x,y)`](#quantdnxy)
-    - [`quantup(x,y)`](#quantupxy)
+    - [`sum_of_sines(a, sines)`](#sum_of_sinesa-sines)
+    - [`quant(x, y)`](#quantx-y)
+    - [`quantdn(x, y)`](#quantdnx-y)
+    - [`quantup(x, y)`](#quantupx-y)
     - [`segs(r)`](#segsr)
 - [List Manipulation](#list-manipulation)
     - [`cdr(list)`](#cdrlist)
-    - [`slice(arr,st,end)`](#slicearrstend)
+    - [`slice(arr, st, end)`](#slicearr-st-end)
     - [`wrap_range(list, start, end)`](#wrap_rangelist-start-end)
     - [`reverse(list)`](#reverselist)
     - [`flatten(l)`](#flattenl)
@@ -26,8 +26,8 @@ Math helper functions.
     - [`path3d(points)`](#path3dpoints)
     - [`distance(p1, p2)`](#distancep1-p2)
     - [`normalize(v)`](#normalizev)
-    - [`vector2d_angle(v1,v2)`](#vector2d_anglev1v2)
-    - [`vector3d_angle(v1,v2)`](#vector3d_anglev1v2)
+    - [`vector2d_angle(v1, v2)`](#vector2d_anglev1-v2)
+    - [`vector3d_angle(v1, v2)`](#vector3d_anglev1-v2)
 - [Matrix Math](#matrix-math)
     - [`ident(n)`](#identn)
     - [`mat3_to_mat4(m)`](#mat3_to_mat4m)
@@ -64,17 +64,17 @@ Returns the value of `v`, constrained to the range [`minval`, `maxval`], so that
 
 
 
-### hypot(x,y)
+### hypot(x, y)
 Calculate hypotenuse length of 2D triangle.
 
 
 
-### hypot3(x,y,z)
+### hypot3(x, y, z)
 Calculate hypotenuse length of 3D triangle.
 
 
 
-### lerp(a,b,u)
+### lerp(a, b, u)
 Interpolate between two values or vectors, `a` and `b`.  The alpha value `u` is between 0 and 1.
 When `u` == 0, returns the value of `a`.  When `u` == 1, returns the value of `b`.
 When `u` is between 0 and 1, returns the interpolated value between `a` and `b`.
@@ -97,7 +97,7 @@ Returns the sum of the square of each element of a vector.
 
 
 
-### sum\_of\_sines(a,sines)
+### sum\_of\_sines(a, sines)
 Gives the sum of a series of sines, at the angle `a`.
 
 Arg   | What it is
@@ -107,17 +107,17 @@ sines | array of [amplitude, frequency] pairs, where the frequency is the number
 
 
 
-### quant(x,y)
+### quant(x, y)
 Quantize a value `x` to an integer multiple of `y`, rounding to the nearest multiple.
 
 
 
-### quantdn(x,y)
+### quantdn(x, y)
 Quantize the value `x` to an integer multiple of `y`, rounding down to the previous multiple.
 
 
 
-### quantup(x,y)
+### quantup(x, y)
 Quantize the value `x` to an integer multiple of `y`, rounding up to the next multiple.
 
 
@@ -134,7 +134,7 @@ Returns all but the first item of a given array.
 
 
 
-### slice(arr,st,end)
+### slice(arr, st, end)
 Returns a slice of the array `arr` from index `st` to `end`.
 An index of 0 is the array start, -1 is array end.
 
@@ -182,12 +182,12 @@ Returns unit length normalized version of vector `v`.
 
 
 
-### vector2d\_angle(v1,v2)
+### vector2d\_angle(v1, v2)
 Returns angle in degrees between two 2D vectors.
 
 
 
-### vector3d\_angle(v1,v2)
+### vector3d\_angle(v1, v2)
 Returns angle in degrees between two 3D vectors.
 
 
