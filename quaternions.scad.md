@@ -77,6 +77,7 @@ Returns the quaternion resulting from subtracting one quaternion from another.
 
 ## Q\_Mul(a, b)
 Returns the quaternion resulting from multiplying two quaternions together.
+This is geometrically equivalent to applying the rotation in quaternion `a` to the rotation in quaternion `b`.
 
 Example:
 
