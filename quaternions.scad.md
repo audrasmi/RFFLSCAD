@@ -40,28 +40,49 @@ Returns a Quaternion created from a given axis vector `ax` and angle `ang` (in d
 
 
 
+## QuatX(a)
+Returns a quaternion for rotating around the X axis by the given number of degrees.
+
+
+
+## QuatY(a)
+Returns a quaternion for rotating around the Y axis by the given number of degrees.
+
+
+
+## QuatZ(a)
+Returns a quaternion for rotating around the Z axis by the given number of degrees.
+
+
+
+## QuatEuller(a)
+Given a triplet of [X,Y,Z] euller rotation angles in degrees,
+returns a quaternion that is the equavalent rotation.
+
+
+
 ## Q\_Ident()
 Returns an identity quaternion.
 
 
 
 ## Q\_Add\_S(q, s)
-Returns the quaternion resulting from adding a scalar to a quaternion.
+Returns the quaternion resulting from adding a scalar `s` to a quaternion `q`.
 
 
 
 ## Q\_Sub\_S(q, s)
-Returns the quaternion resulting from subtracting a scalar from a quaternion.
+Returns the quaternion resulting from subtracting a scalar `s` from a quaternion `q`.
 
 
 
 ## Q\_Mul\_S(q, s)
-Returns the quaternion resulting from multiplying a quaternion by a scalar.
+Returns the quaternion resulting from multiplying a quaternion `q` by a scalar `s`.
 
 
 
 ## Q\_Div\_S(q, s)
-Returns the quaternion resulting from dividing a quaternion by a scalar.
+Returns the quaternion resulting from dividing a quaternion `q` by a scalar `s`.
 
 
 
@@ -130,6 +151,16 @@ Returns the 3x3 rotation matrix for the given normalized quaternion q.
 
 ## Q\_Matrix4(q)
 Returns the 4x4 rotation matrix for the given normalized quaternion q.
+
+
+
+## Q\_Axis(q)
+Returns the quaternion's axis of rotation as a vector.
+
+
+
+## Q\_Angle(q)
+Returns the quaternion's angle of rotation in degrees.
 
 
 
