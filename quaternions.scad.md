@@ -84,7 +84,7 @@ Example:
     q2 = Quat([1,0,0],-45);
     q3 = Q_Mul(q2, q1);
     // Result is a quaternion equivalent to the rotation
-    // in q1 followed by the rotation in q1.
+    // in q1 followed by the rotation in q2.
 
 
 ## Q\_Dot(a, b)
