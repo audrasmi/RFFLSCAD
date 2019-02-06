@@ -78,6 +78,13 @@ Returns the quaternion resulting from subtracting one quaternion from another.
 ## Q\_Mul(a, b)
 Returns the quaternion resulting from multiplying two quaternions together.
 
+Example:
+
+    q1 = Quat([0,0,1], 30);
+    q2 = Quat([1,0,0],-45);
+    q3 = Q_Mul(q2, q1);
+    // Result is a quaternion equivalent to the rotation
+    // in q1 followed by the rotation in q1.
 
 
 ## Q\_Dot(a, b)
