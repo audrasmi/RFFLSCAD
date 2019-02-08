@@ -242,7 +242,7 @@ clearance         | Gap between top of a tooth on one gear and bottom of valley 
 
 
 
-## base\_radius(mm\_per\_tooth, number\_of\_teeth, clearance)
+## base\_radius(mm\_per\_tooth, number\_of\_teeth, pressure\_angle)
 The radius of the circle at the base of the involute teeth.
 Calculated from the `mm_per_tooth`, `number_of_teeth`, and `pressure_angle`.
 
