@@ -67,8 +67,8 @@ the first 4 parameters, and let the rest be default values.  The
 module `gear()` gives a gear in the XY plane, centered on the origin,
 with one tooth centered on the positive Y axis.  The various functions
 below it take the same parameters, and return various measurements
-for the gear.  The most important is `pitch_radius`, which tells
-how far apart to space gears that are meshing, and `adendum_radius`,
+for the gear.  The most important is `pitch_radius()`, which tells
+how far apart to space gears that are meshing, and `outer_radius()`,
 which gives the size of the region filled by the gear.  A gear has
 a "pitch circle", which is an invisible circle that cuts through
 the middle of each tooth (though not the exact center). In order
@@ -80,7 +80,7 @@ their pitch circles.
 In order for two gears to mesh, they must have the same `mm_per_tooth`
 and `pressure_angle` parameters.  `mm_per_tooth` gives the number
 of millimeters of arc around the pitch circle covered by one tooth
-and one space between teeth.  The pitch angle controls how flat or
+and one space between teeth.  The `pressure_angle` controls how flat or
 bulged the sides of the teeth are.  Common values include 14.5
 degrees and 20 degrees, and occasionally 25.  Though I've seen 28
 recommended for plastic gears. Larger numbers bulge out more, giving
