@@ -118,7 +118,7 @@ Example:
 ## gear2d()
 Creates a 2D involute spur gear, with reasonable defaults for all the parameters.
 Normally, you should just specify the first 2 parameters, and let the rest be default values.
-Meshing gears must match in `mm_per_tooth`, `pressure_angle`, and twist,
+Meshing gears must match in `mm_per_tooth`, `pressure_angle`, and `twist`,
 and be separated by the sum of their pitch radii, which can be found with `pitch_radius()`.
 
 Arg               | What it is
