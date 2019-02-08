@@ -1,4 +1,4 @@
-**Involute Spur Gears and Racks**
+## Involute Spur Gears and Racks
 
 by Leemon Baird, 2011, Leemon@Leemon.com
 http://www.thingiverse.com/thing:5505
