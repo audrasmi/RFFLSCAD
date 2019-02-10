@@ -44,7 +44,7 @@ Examples:
     angle_pie_mask(ang=45, h=25, r=50);
     angle_pie_mask(ang=60, h=30, r1=50, r2=30);
 
-![angle\_pie\_mask](angle_pie_mask.png)
+![angle\_pie\_mask](images/masks/angle_pie_mask.png)
 
 
 
@@ -62,7 +62,7 @@ Example:
 
     chamfer_mask_x(l=10.0, chamfer=2.0);
 
-![chamfer\_mask\_x](chamfer_mask_x.png)
+![chamfer\_mask\_x](images/masks/chamfer_mask_x.png)
 
 
 
@@ -80,7 +80,7 @@ Example:
 
     chamfer_mask_y(l=10.0, chamfer=2.0);
 
-![chamfer\_mask\_y](chamfer_mask_y.png)
+![chamfer\_mask\_y](images/masks/chamfer_mask_y.png)
 
 
 
@@ -98,7 +98,7 @@ Example:
 
     chamfer_mask_z(l=10.0, chamfer=2.0);
 
-![chamfer\_mask\_z](chamfer_mask_z.png)
+![chamfer\_mask\_z](images/masks/chamfer_mask_z.png)
 
 
 
@@ -125,7 +125,7 @@ Examples:
         cube(size=[10,40,30], center=true);
     }
 
-![chamfer](chamfer.png)
+![chamfer](images/masks/chamfer.png)
 
 
 
@@ -149,7 +149,7 @@ Example:
         up(50) chamfer_hole_mask(r=50, chamfer=10);
     }
 
-![chamfer\_hole\_mask](chamfer_hole_mask.png)
+![chamfer\_hole\_mask](images/masks/chamfer_hole_mask.png)
 
 
 ## chamfer\_cylinder\_mask()
@@ -170,7 +170,7 @@ Example:
         up(50) chamfer_cylinder_mask(r=50, chamfer=10);
     }
 
-![chamfer\_cylinder\_mask](chamfer_cylinder_mask.png)
+![chamfer\_cylinder\_mask](images/masks/chamfer_cylinder_mask.png)
 
 
 ## fillet\_mask()
@@ -191,7 +191,7 @@ Example:
         fillet_mask(h=100.1, r=10.0, center=false);
     }
 
-![fillet\_mask](fillet_mask.png)
+![fillet\_mask](images/masks/fillet_mask.png)
 
 
 
@@ -212,7 +212,7 @@ Example:
         translate([0,50,50]) fillet_mask_x(l=100.1, r=10.0);
     }
 
-![fillet\_mask\_x](fillet_mask_x.png)
+![fillet\_mask\_x](images/masks/fillet_mask_x.png)
 
 
 
@@ -233,7 +233,7 @@ Example:
         translate([50,0,50]) fillet_mask_y(l=100.1, r=10.0);
     }
 
-![fillet\_mask\_y](fillet_mask_y.png)
+![fillet\_mask\_y](images/masks/fillet_mask_y.png)
 
 
 
@@ -254,7 +254,7 @@ Example:
         translate([50,50,0]) fillet_mask_z(l=100.1, r=10.0);
     }
 
-![fillet\_mask\_z](fillet_mask_z.png)
+![fillet\_mask\_z](images/masks/fillet_mask_z.png)
 
 
 
@@ -283,7 +283,7 @@ Examples:
         fillet_angled_edge_mask(h=51, r=20.0, ang=70, $fn=32);
     }
 
-![fillet\_angled\_edge\_mask](fillet_angled_edge_mask.png)
+![fillet\_angled\_edge\_mask](images/masks/fillet_angled_edge_mask.png)
 
 
 ## fillet\_angled\_corner\_mask()
@@ -309,7 +309,7 @@ Example:
         fillet_angled_edge_mask(h=51, r=20, ang=ang);
     }
 
-![fillet\_angled\_corner\_mask](fillet_angled_corner_mask.png)
+![fillet\_angled\_corner\_mask](images/masks/fillet_angled_corner_mask.png)
 
 
 
@@ -333,7 +333,7 @@ Example:
         translate([3, 5, 8]) fillet_corner_mask(r=3);
     }
 
-![fillet\_corner\_mask](fillet_corner_mask.png)
+![fillet\_corner\_mask](images/masks/fillet_corner_mask.png)
 
 
 
@@ -358,7 +358,7 @@ Example:
         up(50) fillet_cylinder_mask(r=50, fillet=10, xtilt=30);
     }
 
-![fillet\_cylinder\_mask](fillet_cylinder_mask.png)
+![fillet\_cylinder\_mask](images/masks/fillet_cylinder_mask.png)
 
 
 
@@ -384,6 +384,6 @@ Example:
         up(50) fillet_hole_mask(r=50, fillet=10, xtilt=0, ytilt=0);
     }
 
-![fillet\_hole\_mask](fillet_hole_mask.png)
+![fillet\_hole\_mask](images/masks/fillet_hole_mask.png)
 
 
