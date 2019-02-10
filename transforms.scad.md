@@ -81,7 +81,7 @@ Example:
     move(y=10) sphere(r=1);
     move(x=5, z=10) sphere(r=1);
 
-![move](move.png)
+![move](images/transforms/move.png)
 
 
 
@@ -96,7 +96,7 @@ Example:
 
     xmove(10) sphere(r=1);
 
-![xmove](xmove.png)
+![xmove](images/transforms/xmove.png)
 
 
 
@@ -111,7 +111,7 @@ Example:
 
     ymove(10) sphere(r=1);
 
-![ymove](ymove.png)
+![ymove](images/transforms/ymove.png)
 
 
 
@@ -126,7 +126,7 @@ Example:
 
     zmove(10) sphere(r=1);
 
-![zmove](zmove.png)
+![zmove](images/transforms/zmove.png)
 
 
 
@@ -141,7 +141,7 @@ Example:
 
     left(10) sphere(r=1);
 
-![left](left.png)
+![left](images/transforms/left.png)
 
 
 
@@ -156,7 +156,7 @@ Example:
 
     right(10) sphere(r=1);
 
-![right](right.png)
+![right](images/transforms/right.png)
 
 
 
@@ -172,7 +172,7 @@ Example:
     fwd(10) sphere(r=1);
     forward(10) sphere(r=1);
 
-![forward](forward.png)
+![forward](images/transforms/forward.png)
 
 
 
@@ -187,7 +187,7 @@ Example:
 
     back(10) sphere(r=1);
 
-![back](back.png)
+![back](images/transforms/back.png)
 
 
 
@@ -202,7 +202,7 @@ Example:
 
     down(10) sphere(r=1);
 
-![down](down.png)
+![down](images/transforms/down.png)
 
 
 
@@ -217,7 +217,7 @@ Example:
 
     up(10) sphere(r=1);
 
-![up](up.png)
+![up](images/transforms/up.png)
 
 
 
@@ -232,11 +232,11 @@ Example:
 
     place_copies([[-5,-5,0], [5,-5,0], [0,-5,7], [0,5,0]])
         sphere(r=3,center=true);
-
+    
     translate_copies([[-5,-5,0], [5,-5,0], [0,-5,7], [0,5,0]])
         sphere(r=3,center=true);
 
-![translate\_copies](translate_copies.png)
+![translate\_copies](images/transforms/translate_copies.png)
 
 
 
@@ -254,7 +254,7 @@ Examples:
     spread(p1=[0,0,0], p2=[-10,15,20], n=5) cube(size=[3,1,1], center=true);
     line_of(p1=[0,0,0], p2=[-10,15,20], n=5) cube(size=[3,1,1], center=true);
 
-![spread](spread.png)
+![spread](images/transforms/spread.png)
 
 
 
@@ -273,7 +273,7 @@ Examples:
     xspread(25, n=3) sphere(1)
     xspread(spacing=20, n=4) sphere(1)
 
-![xspread](xspread.png)
+![xspread](images/transforms/xspread.png)
 
 
 
@@ -292,7 +292,7 @@ Examples:
     yspread(25, n=3) sphere(1)
     yspread(spacing=20, n=4) sphere(1)
 
-![yspread](yspread.png)
+![yspread](images/transforms/yspread.png)
 
 
 
@@ -311,7 +311,7 @@ Examples:
     zspread(25, n=3) sphere(1)
     zspread(spacing=20, n=4) sphere(1)
 
-![zspread](zspread.png)
+![zspread](images/transforms/zspread.png)
 
 
 
@@ -330,7 +330,7 @@ Examples:
         cylinder(d=2, h=5);
     }
 
-![xdistribute](xdistribute.png)
+![xdistribute](images/transforms/xdistribute.png)
 
 
 
@@ -349,7 +349,7 @@ Examples:
         cylinder(d=2, h=5);
     }
 
-![ydistribute](ydistribute.png)
+![ydistribute](images/transforms/ydistribute.png)
 
 
 
@@ -368,7 +368,7 @@ Examples:
         cylinder(d=2, h=5);
     }
 
-![zdistribute](zdistribute.png)
+![zdistribute](images/transforms/zdistribute.png)
 
 
 
@@ -392,7 +392,7 @@ Examples:
     grid_of(count=[3, 4], spacing=[10, 8]) sphere(r=1,center=true);
     grid_of(count=[3, 4, 2], spacing=[10, 8, 5]) sphere(r=1,center=true, $fn=24);
 
-![grid\_of](grid_of.png)
+![grid\_of](images/transforms/grid_of.png)
 
 
 
@@ -413,7 +413,7 @@ Examples:
     rot([30,60,0], cp=[0,0,9]) cube([2,4,9]);
     rot(30, v=[1,1,0], cp=[0,0,9]) cube([2,4,9]);
 
-![rot](rot.png)
+![rot](images/transforms/rot.png)
 
 
 
@@ -429,7 +429,7 @@ Example:
 
     xrot(90) cylinder(h=10, r=2, center=true);
 
-![xrot](xrot.png)
+![xrot](images/transforms/xrot.png)
 
 
 
@@ -445,7 +445,7 @@ Example:
 
     yrot(90) cylinder(h=10, r=2, center=true);
 
-![yrot](yrot.png)
+![yrot](images/transforms/yrot.png)
 
 
 
@@ -461,7 +461,7 @@ Example:
 
     zrot(90) cube(size=[9,1,4], center=true);
 
-![zrot](zrot.png)
+![zrot](images/transforms/zrot.png)
 
 
 
@@ -477,7 +477,7 @@ Example:
     rot_copies(rots=[[45,0,0],[0,45,120],[90,-45,270]])
         right(6) cube(size=[9,1,4], center=true);
 
-![rot\_copies](rot_copies.png)
+![rot\_copies](images/transforms/rot_copies.png)
 
 
 
@@ -494,11 +494,11 @@ Example:
 
     xrot_copies(rots=[15,30,60,120,240])
         translate([0,6,0]) cube(size=[4,9,1], center=true);
-
+    
     xrot_copies(count=6, offset=15)
         translate([0,6,0]) cube(size=[4,9,1], center=true);
 
-![xrot\_copies](xrot_copies.png)
+![xrot\_copies](images/transforms/xrot_copies.png)
 
 
 
@@ -515,11 +515,11 @@ Example:
 
     yrot_copies(rots=[15,30,60,120,240])
         translate([6,0,0]) cube(size=[9,4,1], center=true);
-
+    
     yrot_copies(count=6, offset=15)
         translate([6,0,0]) cube(size=[9,4,1], center=true);
 
-![yrot\_copies](yrot_copies.png)
+![yrot\_copies](images/transforms/yrot_copies.png)
 
 
 
@@ -536,11 +536,11 @@ Example:
 
     zrot_copies(rots=[15,30,60,120,240])
         translate([6,0,0]) cube(size=[9,1,4], center=true);
-
+    
     zrot_copies(count=6, offset=15)
         translate([6,0,0]) cube(size=[9,1,4], center=true);
 
-![zrot\_copies](zrot_copies.png)
+![zrot\_copies](images/transforms/zrot_copies.png)
 
 
 
@@ -567,7 +567,7 @@ Examples:
     arc_of(rx=15,ry=10,n=12,rot=true) cube(size=[3,1,1],center=true);
     arc_of(r=10,n=5,rot=true,sa=30.0,ea=150.0) cube(size=[3,1,1],center=true);
 
-![arc\_of](arc_of.png)
+![arc\_of](images/transforms/arc_of.png)
 
 
 
@@ -588,7 +588,7 @@ Example:
     xring(n=3, r=10, sa=270) yspread(10) yrot(120) cylinder(h=10, d=1, center=false);
     xring(n=6, r=20) cube([2,4,8], center=true);
 
-![xring](xring.png)
+![xring](images/transforms/xring.png)
 
 
 
@@ -609,7 +609,7 @@ Example:
     yring(n=3, r=10, sa=270) xspread(10) xrot(-120) cylinder(h=10, d=1, center=false);
     yring(n=6, r=20) cube([2,4,8], center=true);
 
-![yring](yring.png)
+![yring](images/transforms/yring.png)
 
 
 
@@ -630,7 +630,7 @@ Example:
     zring(n=3, r=10, sa=90) xspread(10) xrot(30) cylinder(h=10, d=1, center=false);
     zring(n=6, r=20) cube([2,4,8], center=true);
 
-![zring](zring.png)
+![zring](images/transforms/zring.png)
 
 
 
@@ -647,7 +647,7 @@ Example:
 
     xscale(3) sphere(r=100, center=true);
 
-![xscale](xscale.png)
+![xscale](images/transforms/xscale.png)
 
 
 
@@ -662,7 +662,7 @@ Example:
 
     yscale(3) sphere(r=100, center=true);
 
-![yscale](yscale.png)
+![yscale](images/transforms/yscale.png)
 
 
 
@@ -677,7 +677,7 @@ Example:
 
     zscale(3) sphere(r=100, center=true);
 
-![zscale](zscale.png)
+![zscale](images/transforms/zscale.png)
 
 
 
@@ -690,7 +690,7 @@ Example:
 
     xflip() rotate([-30,30]) cylinder(d=10, h=40, center=false);
 
-![xflip](xflip.png)
+![xflip](images/transforms/xflip.png)
 
 
 
@@ -701,7 +701,7 @@ Example:
 
     yflip() rotate([-30,30]) cylinder(d=10, h=40, center=false);
 
-![yflip](yflip.png)
+![yflip](images/transforms/yflip.png)
 
 
 
@@ -712,7 +712,7 @@ Example:
 
     zflip() rotate([-30,30]) cylinder(d=10, h=40, center=false);
 
-![zflip](zflip.png)
+![zflip](images/transforms/zflip.png)
 
 
 
@@ -729,7 +729,7 @@ Example:
     mirror_copy([1,-1,0]) yrot(30) cylinder(h=10, r=1, center=true);
     mirror_copy([1,1,1], offset=17.32) cylinder(h=10, r=1, center=false);
 
-![mirror\_copy](mirror_copy.png)
+![mirror\_copy](images/transforms/mirror_copy.png)
 
 
 
@@ -746,7 +746,7 @@ Example:
     xflip_copy() yrot(30) cylinder(h=10, r=1, center=false);
     xflip_copy(offset=10) yrot(30) cylinder(h=10, r=1, center=false);
 
-![xflip\_copy](xflip_copy.png)
+![xflip\_copy](images/transforms/xflip_copy.png)
 
 
 
@@ -763,7 +763,7 @@ Example:
     yflip_copy() xrot(30) cylinder(h=10, r=1, center=false);
     yflip_copy(offset=10) xrot(30) cylinder(h=10, r=1, center=false);
 
-![yflip\_copy](yflip_copy.png)
+![yflip\_copy](images/transforms/yflip_copy.png)
 
 
 
@@ -780,7 +780,7 @@ Example:
     zflip_copy() yrot(30) cylinder(h=10, r=1, center=false);
     zflip_copy(offset=10) yrot(30) cylinder(h=10, r=1, center=false);
 
-![zflip\_copy](zflip_copy.png)
+![zflip\_copy](images/transforms/zflip_copy.png)
 
 
 
@@ -800,7 +800,7 @@ Examples:
     skew_yz(ya=15) cube(size=10);
     skew_yz(ya=30, za=15) cube(size=10);
 
-![skew\_yz](skew_yz.png)
+![skew\_yz](images/transforms/skew_yz.png)
 
 
 
@@ -818,7 +818,7 @@ Examples:
     skew_xz(xa=15) cube(size=10);
     skew_xz(xa=-15, za=15) cube(size=10);
 
-![skew\_xz](skew_xz.png)
+![skew\_xz](images/transforms/skew_xz.png)
 
 
 
@@ -836,7 +836,7 @@ Examples:
     skew_xy(xa=15) cube(size=10);
     skew_xy(xa=30, ya=15) cube(size=10);
 
-![skew\_xy](skew_xy.png)
+![skew\_xy](images/transforms/skew_xy.png)
 
 
 
@@ -854,7 +854,7 @@ Examples:
     top_half() sphere(30);
     top_half(200) sphere(150);
 
-![top\_half](top_half.png)
+![top\_half](images/transforms/top_half.png)
 
 
 
@@ -870,7 +870,7 @@ Examples:
     bottom_half() sphere(30);
     bottom_half(200) sphere(150);
 
-![bottom\_half](bottom_half.png)
+![bottom\_half](images/transforms/bottom_half.png)
 
 
 
@@ -886,7 +886,7 @@ Examples:
     left_half() sphere(30);
     left_half(200) sphere(150);
 
-![left\_half](left_half.png)
+![left\_half](images/transforms/left_half.png)
 
 
 
@@ -902,7 +902,7 @@ Examples:
     right_half() sphere(30);
     right_half(200) sphere(150);
 
-![right\_half](right_half.png)
+![right\_half](images/transforms/right_half.png)
 
 
 
@@ -918,7 +918,7 @@ Examples:
     front_half() sphere(30);
     front_half(200) sphere(150);
 
-![front\_half](front_half.png)
+![front\_half](images/transforms/front_half.png)
 
 
 
@@ -934,7 +934,7 @@ Examples:
     back_half() sphere(30);
     back_half(200) sphere(150);
 
-![back\_half](back_half.png)
+![back\_half](images/transforms/back_half.png)
 
 
 
@@ -951,7 +951,7 @@ Examples:
         translate([100, 100, 0]) cube([10,20,20], center=false);
     }
 
-![chain\_hull](chain_hull.png)
+![chain\_hull](images/transforms/chain_hull.png)
 
 
 
