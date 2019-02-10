@@ -36,7 +36,7 @@ Example:
     ];
     trace_polyline(bez, N=1, showpts=true, size=0.5, color="lightgreen");
 
-![trace\_polyline](trace_polyline.png)
+![trace\_polyline](images/debug/trace_polyline.png)
 
 
 
@@ -61,7 +61,7 @@ Example:
     ];
     trace_bezier(bez, N=3, size=0.5);
 
-![trace\_bezier](trace_bezier.png)
+![trace\_bezier](images/debug/trace_bezier.png)
 
 
 
@@ -89,7 +89,7 @@ Example:
         polyhedron(points=verts, faces=faces);
     }
 
-![debug\_vertices](debug_vertices.png)
+![debug\_vertices](images/debug/debug_vertices.png)
 
 
 
@@ -120,7 +120,7 @@ Example:
         polyhedron(points=verts, faces=faces);
     }
 
-![debug\_faces](debug_faces.png)
+![debug\_faces](images/debug/debug_faces.png)
 
 
 
@@ -145,6 +145,6 @@ Example:
     fcs = [[0,2,1], [1,2,3], [1,3,0], [0,2,3]];  // Last face reversed
     debug_polyhedron(points=pts, faces=fcs, txtsize=1);
 
-![debug\_polyhedron](debug_polyhedron.png)
+![debug\_polyhedron](images/debug/debug_polyhedron.png)
 
 
