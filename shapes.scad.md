@@ -217,6 +217,11 @@ Examples:
 ## Prisms and Such
 
 ### prism()
+
+- prism(n, h, l, [circum])
+- prism(n, h, r, [circum])
+- prism(n, h, d, [circum])
+
 Creates a vertical prism with a given number of sides.
 
 Arg     | What it does
@@ -256,6 +261,11 @@ Example:
 
 
 ### pyramid()
+
+- pyramid(n, h, l, [circum])
+- pyramid(n, h, r, [circum])
+- pyramid(n, h, d, [circum])
+
 Creates a pyramidal prism with a given number of sides.
 
 Arg     | What it does
@@ -297,8 +307,10 @@ Examples:
 ## Cylinder Variants
 
 ### chamf\_cyl()
-
 ### chamferred\_cylinder()
+
+- chamf\_cyl(h, r|d, chamfer|chamfedge, [center], [top], [bottom])
+- chamferred\_cylinder(h, r|d, chamfer|chamfedge, [center], [top], [bottom])
 
 Creates a cylinder with chamferred edges.
 
@@ -444,6 +456,12 @@ Examples:
 
 ### rcylinder()
 ### filleted\_cylinder()
+
+- rcylinder(h, r|d, fillet, [center])
+- rcylinder(h, r1|d1, r2|d2, fillet, [center])
+- filleted\_cylinder(h, r|d, fillet, [center])
+- filleted\_cylinder(h, r1|d1, r2|d2, fillet, [center])
+
 Creates a cylinder with filleted (rounded) ends.  If `r1`/`r2`
 or `d1`/`d2` are used, creates a cone with filleted ends.
 
@@ -468,6 +486,10 @@ Example:
 
 
 ### tube()
+
+- tube(h, r, wall)
+- tube(h, r1, r2, wall)
+
 Makes a hollow tube with the given outer size and wall thickness.
 
 Arg    | What it does
@@ -489,6 +511,10 @@ Example:
 
 
 ### torus()
+
+- torus(r|d, r2|d2)
+- torus(ir|id, or|od)
+
 Creates a torus shape.
 
 Arg    | What it does
@@ -515,6 +541,10 @@ Example:
 
 
 ### pie\_slice()
+
+- pie\_slice(ang, h, r|d, [center])
+- pie\_slice(ang, h, r1|d1, r2|d2, [center])
+
 Creates a pie slice shape.
 
 Arg    | What it does
@@ -559,14 +589,18 @@ Example:
 
 
 ### teardrop()
+
+- teardrop(r|d, h, [ang], [cap_h])
+
 Makes a teardrop shape in the XZ plane. Useful for 3D printable holes.
 
 Arg    | What it does
 ------ | -----------------------------------
-r      | radius of circular part of teardrop.  (Default: 1)
-d      | diameter of spherical portion of bottom. (Use instead of r)
-h      | thickness of teardrop. (Default: 1)
-cap\_h | if given, height above center where the shape will be truncated.
+r      | Radius of circular part of teardrop.  (Default: 1)
+d      | Diameter of spherical portion of bottom. (Use instead of r)
+h      | Thickness of teardrop. (Default: 1)
+ang    | Angle of hat walls from the Y axis.  (Default: 45 degrees)
+cap\_h | If given, height above center where the shape will be truncated.
 
 Example:
 
@@ -577,6 +611,8 @@ Example:
 
 
 ### onion()
+
+- onion(r|d, [maxang], [h])
 Created a sphere with a conical hat, to make a 3D teardrop.
 
 Arg    | What it does
@@ -616,19 +652,22 @@ Example:
 
 
 ### thinning\_triangle()
+
+- thinning\_triangle(h, l, thick, wall, strut, [ang], [diagonly], [center])
+
 Makes a triangular wall with thick edges, which thins to a smaller width in
 the center, with angled supports to prevent critical overhangs.
 
 Arg      | What it does
 -------- | -----------------------------------
-h        | height of wall.
-l        | length of wall.
-thick    | thickness of wall.
-ang      | maximum overhang angle of diagonal brace.
-strut    | the width of the diagonal brace.
-wall     | the thickness of the thinned portion of the wall.
-diagonly | boolean, which denotes only the diagonal brace should be thick.
-center   | If true, center at origin.  Else, align edges to Y and Z axes.
+h        | Height of wall.
+l        | Length of wall.
+thick    | Thickness of wall.
+ang      | Maximum overhang angle of diagonal brace in degrees.  Default: 30
+strut    | The width of the diagonal brace.
+wall     | The thickness of the thinned portion of the wall.
+diagonly | Boolean, which denotes only the diagonal brace should be thick.  Default: false
+center   | If true, center at origin.  Else, align edges to Y and Z axes.  Default: true
 
 Examples:
 
@@ -640,6 +679,9 @@ Examples:
 
 
 ### thinning\_brace()
+
+- thinning\_brace(h, l, thick, wall, strut, [ang], [center])
+
 Makes a triangular wall which thins to a smaller width in the center,
 with angled supports to prevent critical overhangs.  Basically an alias
 of `thinning_triangle()`, with `diagonly` set to true.
@@ -649,9 +691,9 @@ Arg    | What it does
 h      | height of wall.
 l      | length of wall.
 thick  | thickness of wall.
-ang    | maximum overhang angle of diagonal brace.
-strut  | the width of the diagonal brace.
 wall   | the thickness of the thinned portion of the wall.
+strut  | the width of the diagonal brace.
+ang    | maximum overhang angle of diagonal brace.
 center | If true, center at origin.  Else, align edges to Y and Z axes.
 
 Example:
@@ -663,6 +705,9 @@ Example:
 
 
 ### thinning\_wall()
+
+- thinning\_wall(h, l, thick, wall, strut, [ang])
+
 Makes a rectangular wall which thins to a smaller width in the center,
 with angled supports to prevent critical overhangs.
 
@@ -671,9 +716,9 @@ Arg    | What it does
 h      | height of wall.
 l      | length of wall.
 thick  | thickness of wall.
-ang    | maximum overhang angle of diagonal brace.
-strut  | the width of the diagonal brace.
 wall   | the thickness of the thinned portion of the wall.
+strut  | the width of the diagonal brace.
+ang    | maximum overhang angle of diagonal brace.
 
 Example:
 
@@ -684,6 +729,9 @@ Example:
 
 
 ### corrugated\_wall()
+
+- corrugated\_wall(h, l, thick, wall, strut)
+
 Makes a corrugated wall which relieves contraction stress while still
 providing support strength.  Designed with 3D printing in mind.
 
@@ -692,8 +740,8 @@ Arg    | What it does
 h      | height of strut wall.
 l      | length of strut wall.
 thick  | thickness of strut wall.
-strut  | the width of the cross-braces.
 wall   | thickness of corrugations.
+strut  | the width of the cross-braces.
 
 Example:
 
@@ -704,6 +752,9 @@ Example:
 
 
 ### sparse\_strut()
+
+- sparse\_strut(h, l, thick, strut, [maxang], [max\_bridge])
+
 Makes an open rectangular strut with X-shaped cross-bracing, designed with 3D printing in mind.
 
 Arg         | What it does
@@ -711,9 +762,9 @@ Arg         | What it does
 h           | height of strut wall.
 l           | length of strut wall.
 thick       | thickness of strut wall.
+strut       | the width of the cross-braces.
 maxang      | maximum overhang angle of cross-braces.
 max\_bridge | maximum bridging distance between cross-braces.
-strut       | the width of the cross-braces.
 
 Example:
 
@@ -724,6 +775,9 @@ Example:
 
 
 ### sparse\_strut3d()
+
+- sparse\_strut3d(h, w, l, thick, strut, [maxang], [max\_bridge])
+
 Makes an open rigid strut with X-shaped cross-bracing, designed with 3D printing in mind.
 
 Arg         | What it does
@@ -732,9 +786,9 @@ h           | Z size of strut.
 w           | X size of strut.
 l           | Y size of strut.
 thick       | thickness of strut walls.
+strut       | the width of the cross-braces.
 maxang      | maximum overhang angle of cross-braces.
 max\_bridge | maximum bridging distance between cross-braces.
-strut       | the width of the cross-braces.
 
 Example:
 
@@ -752,6 +806,12 @@ For when you MUST pass a child to a module, but you want it to be nothing.
 
 
 ### slot()
+
+- slot(p1, p2, h, r|d, [center])
+- slot(p1, p2, h, r1|d1, r2|d2, [center])
+- slot(l, h, r|d, [center])
+- slot(l, h, r1|d1, r2|d2, [center])
+
 Makes a linear slot with rounded ends, appropriate for bolts to slide along.
 
 Arg    | What it does
@@ -778,6 +838,12 @@ Examples:
 
 
 ### arced\_slot()
+
+- arced\_slot(h, r|d, sr|sd, [cp], [sa], [ea])
+- arced\_slot(h, r1|d1, r2|d2, sr|sd, [cp], [sa], [ea])
+- arced\_slot(h, r|d, sr1|sd1, sr2|sd2, [cp], [sa], [ea])
+- arced\_slot(h, r1|d1, r2|d2, sr1|sd1, sr2|sd2, [cp], [sa], [ea])
+
 Makes an arced slot, appropriate for bolts to slide along.
 
 Arg    | What it does
@@ -801,5 +867,4 @@ Examples:
     arced_slot(d=100, h=15, sd=10, sa=60, ea=280);
 
 ![arced\_slot](images/shapes/arced_slot.png)
-
 
