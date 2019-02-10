@@ -111,7 +111,7 @@ Example:
 
     gear(mm_per_tooth=5, number_of_teeth=20, thickness=8, hole_diameter=5);
 
-![gear](gear.png)
+![gear](images/involute_gears/gear.png)
 
 
 
@@ -157,7 +157,7 @@ Examples:
 
     rack(mm_per_tooth=5, number_of_teeth=30, thickness=5, height=5, pressure_angle=20);
 
-![rack](rack.png)
+![rack](images/involute_gears/rack.png)
 
 
 
