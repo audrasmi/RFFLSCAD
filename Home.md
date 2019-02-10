@@ -12,10 +12,10 @@ The library files are as follows:
 
 ### Standard Parts
   - [`involute_gears.scad`](involute_gears.scad): Modules and functions to make involute gears and racks.
-  - [`metric_screws.scad`](metric_screws.scad): Functions and modules to make metric screws, nuts, and screwholes.
-  - [`phillips_drive.scad`](phillips_drive.scad): Modules to create Phillips screwdriver tips.
   - [`joiners.scad`](joiners.scad): Modules to make joiner shapes for connecting separately printed objects.
   - [`sliders.scad`](sliders.scad): Modules for creating simple sliders and rails.
+  - [`metric_screws.scad`](metric_screws.scad): Functions and modules to make metric screws, nuts, and screwholes.
+  - [`phillips_drive.scad`](phillips_drive.scad): Modules to create Phillips screwdriver tips.
   - [`nema_steppers.scad`](nema_steppers.scad): Modules to make mounting holes for NEMA motors.
   - [`linear_bearings.scad`](linear_bearings.scad): Modules to make mounts for LMxUU style linear bearings.
   - [`wiring.scad`](wiring.scad): Modules to render routed bundles of wires.
