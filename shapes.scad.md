@@ -370,7 +370,7 @@ r2    | Optional radius of right (X+) end of cylinder.
 d     | Optional diameter of cylinder. (use instead of r)
 d1    | Optional diameter of left (X-) end of cylinder.
 d2    | Optional diameter of right (X+) end of cylinder.
-align | Alignment relative to the origin.  `+1` for right of, `0` for centered, `-1` for left of.
+align | Alignment relative to the origin.  `+1` for right of, `0` for centered, `-1` for left of.  Default: `0` (center)
 
 Examples:
 
@@ -400,7 +400,7 @@ r2    | optional radius of back (Y+) end of cylinder.
 d     | optional diameter of cylinder. (use instead of r)
 d1    | optional diameter of front (Y-) end of cylinder.
 d2    | optional diameter of back (Y+) end of cylinder.
-align | Alignment relative to the origin.  `+1` for behind, `0` for centered, `-1` for before.
+align | Alignment relative to the origin.  `+1` for behind, `0` for centered, `-1` for before.  Default: `0` (center)
 
 Examples:
 
@@ -431,7 +431,7 @@ r2    | optional radius of top (Z+) end of cylinder.
 d     | optional diameter of cylinder. (use instead of r)
 d1    | optional diameter of bottom (Z-) end of cylinder.
 d2    | optional diameter of top (Z+) end of cylinder.
-align | Alignment relative to the origin.  `+1` for above, `0` for centered, `-1` for below.
+align | Alignment relative to the origin.  `+1` for above, `0` for centered, `-1` for below.  Default: `0` (center)
 
 Examples:
 
@@ -801,6 +801,5 @@ Examples:
     arced_slot(d=100, h=15, sd=10, sa=60, ea=280);
 
 ![arced\_slot](images/shapes/arced_slot.png)
-
 
 
