@@ -21,7 +21,7 @@ These joiners are useful for making snap-together parts.
 ## half\_joiner\_clear()
 Creates a shape used to clear a volume to prepare to place a `half_joiner()` or `half_joiner2()`
 
-![half\_joiner\_clear()](half_joiner_clear.png)
+![half\_joiner\_clear()](images/joiners/half_joiner_clear.png)
 
 Arg       | What it is
 --------- | ------------------------
@@ -42,7 +42,7 @@ Example:
 ## half\_joiner()
 Creates a joiner shape that is designed to mate with a `half_joiner2()` shape.
 
-![half\_joiner()](half_joiner.png)
+![half\_joiner()](images/joiners/half_joiner.png)
 
 Arg       | What it is
 --------- | ------------------------
@@ -69,7 +69,7 @@ Example:
 ## half\_joiner2()
 Creates a joiner shape that is designed to mate with a `half_joiner()` shape.
 
-![half\_joiner2()](half_joiner2.png)
+![half\_joiner2()](images/joiners/half_joiner2.png)
 
 Arg       | What it is
 --------- | ------------------------
@@ -96,7 +96,7 @@ Example:
 ## joiner\_clear()
 Creates a shape used to clear a volume to prepare to place a `joiner()`.
 
-![joiner\_clear()](joiner_clear.png)
+![joiner\_clear()](images/joiners/joiner_clear.png)
 
 Arg       | What it is
 --------- | ------------------------
@@ -117,7 +117,7 @@ Example:
 ## joiner()
 Creates a joiner shape that is designed to mate with another rotated `joiner()` shape.
 
-![joiner()](joiner.png)
+![joiner()](images/joiners/joiner.png)
 
 Arg       | What it is
 --------- | ------------------------
@@ -144,7 +144,7 @@ Example:
 ## joiner\_pair\_clear()
 Creates shapes used to clear a volume to prepare to place a `joiner_pair()`.
 
-![joiner\_pair\_clear()](joiner_pair_clear.png)
+![joiner\_pair\_clear()](images/joiners/joiner_pair_clear.png)
 
 Arg       | What it is
 --------- | ------------------------
@@ -166,7 +166,7 @@ Example:
 ## joiner\_pair()
 Creates a pair of joiner shapes that are designed to mate with another `joiner_pair()`.
 
-![joiner\_pair()](joiner_pair.png)
+![joiner\_pair()](images/joiners/joiner_pair.png)
 
 Arg       | What it is
 --------- | ------------------------
@@ -194,7 +194,7 @@ Example:
 ## joiner\_quad\_clear()
 Creates shapes used to clear a volume to prepare to place a `joiner_quad()`.
 
-![joiner\_quad\_clear()](joiner_quad_clear.png)
+![joiner\_quad\_clear()](images/joiners/joiner_quad_clear.png)
 
 Arg       | What it is
 --------- | ------------------------
@@ -217,7 +217,7 @@ Example:
 ## joiner\_quad()
 Creates two pairs of opposing joiner shapes that are designed to mate with other `joiner_pair()`s.
 
-![joiner\_quad()](joiner_quad.png)
+![joiner\_quad()](images/joiners/joiner_quad.png)
 
 Arg       | What it is
 --------- | ------------------------
