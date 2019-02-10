@@ -131,7 +131,7 @@ coarse      | If true, make coarse threads instead of fine threads.  Default: tr
 flange      | radius of flange beyond the head.  Default: 0 (no flange)
 phillips    | If given, the size of the phillips drive hole to add.  (ie: "#1", "#2", or "#3")
 
-![Types of metric\_bolt()](metric_bolts.png)
+![Types of metric\_bolt()](images/metric_screws/metric_bolts.png)
 
 Examples:
 
@@ -161,7 +161,7 @@ Example:
     metric_nut(size=8, hole=true, pitch=1, details=true, center=true);
     metric_nut(size=8, hole=true, pitch=1, details=true, flange=3, center=true);
 
-![metric\_nut() Examples](metric_nuts.png)
+![metric\_nut() Examples](images/metric_screws/metric_nuts.png)
 
 
 
