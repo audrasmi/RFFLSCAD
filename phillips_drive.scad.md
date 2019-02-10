@@ -26,7 +26,7 @@ Example:
        phillips_drive(size="#3", shaft=6, l=30);
     }
 
-![phillips\_drive](phillips_drive.png)
+![phillips\_drive](images/phillips_drive/phillips_drive.png)
 
 
 

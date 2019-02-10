@@ -46,7 +46,7 @@ Examples:
 
     linear_bearing_housing(d=19, l=29, wall=2, tab=6, screwsize=2.5);
 
-![linear\_bearing\_housing](linear_bearing_housing.png)
+![linear\_bearing\_housing](images/linear_bearings/linear_bearing_housing.png)
 
 
 
@@ -68,7 +68,7 @@ Examples:
 
 	lmXuu_housing(size=10, wall=2, tab=6, screwsize=2.5);
 
-![lmXuu\_housing](lmXuu_housing.png)
+![lmXuu\_housing](images/linear_bearings/lmXuu_housing.png)
 
 
 
