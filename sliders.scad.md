@@ -27,7 +27,7 @@ slop  | Slight adjustment for vagarities of individual printers.
 Example:
     slider(l=30, base=10, wall=4, slop=0.2);
 
-![slider](slider.png)
+![slider](images/sliders/slider.png)
 
 
 
@@ -46,6 +46,6 @@ Example:
 
     rail(l=100, w=10, h=10);
 
-![rail](rail.png)
+![rail](images/sliders/rail.png)
 
 
