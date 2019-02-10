@@ -17,6 +17,7 @@
 - [nema_steppers.scad](nema_steppers.scad)
 - [phillips_drive.scad](phillips_drive.scad)
 - [torx.scad](torx.scad)
+- [wiring.scad](wiring.scad)
 
 ### Miscelaneous
 - [math.scad](math.scad)
