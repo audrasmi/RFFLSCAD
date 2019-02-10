@@ -49,7 +49,7 @@ Example:
 
     trapezoidal_threaded_rod(l=25, d=10, pitch=2, thread_angle=15, starts=3, $fa=1, $fs=1);
 
-![trapezoidal\_threaded\_rod](trapezoidal_threaded_rod.png)
+![trapezoidal\_threaded\_rod](images/threading/trapezoidal_threaded_rod.png)
 
 
 
@@ -79,7 +79,7 @@ Examples:
 
     trapezoidal_threaded_nut(od=17.4, id=10, h=10, pitch=2, thread_angle=15, starts=3, $fa=1, $fs=1);
 
-![trapezoidal\_threaded\_nut](trapezoidal_threaded_nut.png)
+![trapezoidal\_threaded\_nut](images/threading/trapezoidal_threaded_nut.png)
 
 
 
@@ -102,7 +102,7 @@ Example:
 
     threaded_rod(d=10, l=30, pitch=1.25, left_handed=true);
 
-![threaded\_rod](threaded_rod.png)
+![threaded\_rod](images/threading/threaded_rod.png)
 
 
 
@@ -124,7 +124,7 @@ Examples:
 
     threaded_nut(od=16, id=8, l=8, pitch=1.25, left_handed=true, slop=0.2, $fa=1, $fs=1);
 
-![threaded\_nut](threaded_nut.png)
+![threaded\_nut](images/threading/threaded_nut.png)
 
 
 
@@ -150,7 +150,7 @@ Example:
 
     acme_threaded_rod(d=10, l=40, pitch=2, starts=3, $fa=1, $fs=1);
 
-![acme\_threaded\_rod](acme_threaded_rod.png)
+![acme\_threaded\_rod](images/threading/acme_threaded_rod.png)
 
 
 
@@ -175,7 +175,7 @@ Examples:
 
     acme_threaded_nut(od=16, id=10, h=10, pitch=2, starts=3, slop=0.2, $fa=1, $fs=1);
 
-![acme\_threaded\_nut](acme_threaded_nut.png)
+![acme\_threaded\_nut](images/threading/acme_threaded_nut.png)
 
 
 
@@ -199,7 +199,7 @@ Example:
 
     metric_trapezoidal_threaded_rod(d=10, l=30, pitch=2, left_handed=true, $fa=1, $fs=1);
 
-![metric\_trapezoidal\_threaded\_rod](metric_trapezoidal_threaded_rod.png)
+![metric\_trapezoidal\_threaded\_rod](images/threading/metric_trapezoidal_threaded_rod.png)
 
 
 
@@ -222,7 +222,7 @@ Examples:
 
     metric_trapezoidal_threaded_nut(od=16, d=10, h=10, pitch=2, left_handed=true, bevel=true, $fa=1, $fs=1);
 
-![metric\_trapezoidal\_threaded\_nut](metric_trapezoidal_threaded_nut.png)
+![metric\_trapezoidal\_threaded\_nut](images/threading/metric_trapezoidal_threaded_nut.png)
 
 
 
@@ -246,7 +246,7 @@ Example:
 
     square_threaded_rod(d=10, l=30, pitch=2, starts=2, $fn=32);
 
-![square\_threaded\_rod](square_threaded_rod.png)
+![square\_threaded\_rod](images/threading/square_threaded_rod.png)
 
 
 
@@ -269,7 +269,7 @@ Examples:
 
     square_threaded_nut(od=16, id=10, h=10, pitch=2, starts=2, slop=0.15, $fn=32);
 
-![square\_threaded\_nut](square_threaded_nut.png)
+![square\_threaded\_nut](images/threading/square_threaded_nut.png)
 
 
 
