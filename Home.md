@@ -1,4 +1,4 @@
-**Welcome to the Belfry OpenScad Library Documentation Wiki!**
+## Belfry OpenScad Library Documentation
 
 The library files are as follows:
 
