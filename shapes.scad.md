@@ -22,6 +22,9 @@ Common useful shapes and structured objects.
     - [`chamf_cyl()`](#chamf_cyl)
     - [`chamferred_cylinder()`](#chamferred_cylinder)
     - [`downcyl()`](#downcyl)
+    - [`xcyl()`](#xcyl)
+    - [`ycyl()`](#ycyl)
+    - [`zcyl()`](#zcyl)
     - [`rcylinder()`](#rcylinder)
     - [`filleted_cylinder()`](#filleted_cylinder)
     - [`tube()`](#tube)
@@ -48,6 +51,7 @@ Common useful shapes and structured objects.
 ## Cube Variants
 
 ### offsetcube()
+
 Makes a cube that is offset along the given vector by half
 the cube's size.  For example, if v=[-1,1,0], the cube's
 front right edge will be centered at the origin.
@@ -96,6 +100,7 @@ Example:
 
 
 ### fwdcube()
+
 Makes a cube that has its back face centered at the origin.
 
 Arg      | What it does
@@ -244,7 +249,6 @@ center  | vertically center the prism if true.  Sits on top of XY plane if false
 Example:
 
     trapezoid(size1=[2,6], size2=[4,0], h=4, center=false);
-
     trapezoid(size1=[1,4], size2=[4,1], h=4, center=false);
 
 ![trapezoid](trapezoid.png)
@@ -293,7 +297,9 @@ Examples:
 ## Cylinder Variants
 
 ### chamf\_cyl()
+
 ### chamferred\_cylinder()
+
 Creates a cylinder with chamferred edges.
 
 Arg       | What it does
@@ -317,6 +323,12 @@ Example:
 
 
 ### downcyl()
+
+- downcyl(h, r)
+- downcyl(h, r1, r2)
+- downcyl(h, d)
+- downcyl(h, d1, d2)
+
 Creates a cylinder with its top face centered at the origin.
 
 Arg  | What it does
@@ -336,6 +348,97 @@ Example:
     downcyl(d=15, h=40);
 
 ![downcyl](downcyl.png)
+
+
+
+### xcyl()
+
+- xcyl(l, r, [align])
+- xcyl(l, r1, r2, [align])
+- xcyl(l, d, [align])
+- xcyl(l, d1, d2, [align])
+
+Creates a cylinder oriented along the X axis.  Use like the
+built-in `cylinder()` module, except use `l` instead of `h`.
+
+Arg   | What it does
+----- | -----------------------------------
+l     | Length of cylinder. (Default: 1.0)
+r     | Radius of cylinder.
+r1    | Optional radius of left (X-) end of cylinder.
+r2    | Optional radius of right (X+) end of cylinder.
+d     | Optional diameter of cylinder. (use instead of r)
+d1    | Optional diameter of left (X-) end of cylinder.
+d2    | Optional diameter of right (X+) end of cylinder.
+align | Alignment relative to the origin.  `+1` for right, `0` for centered, `-1` for left.
+
+Examples:
+
+    xcyl(d1=5, d2=15, l=20, align=-1);
+    xcyl(d=10, l=25);
+
+![xcyl](xcyl.png)
+
+
+
+### ycyl()
+
+- ycyl(l, r, [align])
+- ycyl(l, r1, r2, [align])
+- ycyl(l, d, [align])
+- ycyl(l, d1, d2, [align])
+
+Creates a cylinder oriented along the Y axis.  Use like the
+built-in `cylinder()` module, except use `l` instead of `h`.
+
+Arg   | What it does
+----- | -----------------------------------
+l     | length of cylinder. (Default: 1.0)
+r     | radius of cylinder.
+r1    | optional radius of front (Y-) end of cylinder.
+r2    | optional radius of back (Y+) end of cylinder.
+d     | optional diameter of cylinder. (use instead of r)
+d1    | optional diameter of front (Y-) end of cylinder.
+d2    | optional diameter of back (Y+) end of cylinder.
+align | Alignment relative to the origin.  `+1` for back, `0` for centered, `-1` for forward.
+
+Examples:
+
+    ycyl(d1=5, d2=15, l=20, align=-1);
+    ycyl(d=10, l=25);
+
+![ycyl](ycyl.png)
+
+
+
+### zcyl()
+
+- zcyl(l, r, [align])
+- zcyl(l, r1, r2, [align])
+- zcyl(l, d, [align])
+- zcyl(l, d1, d2, [align])
+
+Creates a cylinder oriented along the Z axis.  Use like the
+built-in `cylinder()` module, except use `l` instead of `h`.
+This module exists for symmetry with `xcyl()` and `ycyl()`
+
+Arg   | What it does
+----- | -----------------------------------
+l     | length of cylinder. (Default: 1.0)
+r     | radius of cylinder.
+r1    | optional radius of bottom (Z-) end of cylinder.
+r2    | optional radius of top (Z+) end of cylinder.
+d     | optional diameter of cylinder. (use instead of r)
+d1    | optional diameter of bottom (Z-) end of cylinder.
+d2    | optional diameter of top (Z+) end of cylinder.
+align | Alignment relative to the origin.  `+1` for top, `0` for centered, `-1` for bottom.
+
+Examples:
+
+    zcyl(d1=5, d2=15, l=20, align=-1);
+    zcyl(d=10, l=25);
+
+![zcyl](zcyl.png)
 
 
 
