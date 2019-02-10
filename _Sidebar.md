@@ -1,6 +1,6 @@
 ## BOSL Library Files
 
-### Commonly Used
+### [Commonly Used](Home#commonly-used)
 - [transforms.scad](transforms.scad)
 - [shapes.scad](shapes.scad)
 - [masks.scad](masks.scad)
@@ -8,7 +8,7 @@
 - [paths.scad](paths.scad)
 - [beziers.scad](beziers.scad)
 
-### Standard Parts
+### [Standard Parts](Home#standard-parts)
 - [involute_gears.scad](involute_gears.scad)
 - [joiners.scad](joiners.scad)
 - [sliders.scad](sliders.scad)
@@ -19,7 +19,7 @@
 - [torx.scad](torx.scad)
 - [wiring.scad](wiring.scad)
 
-### Miscelaneous
+### [Miscellaneous](Home#miscellaneous)
 - [math.scad](math.scad)
 - [quaternions.scad](quaternions.scad)
 - [triangulation.scad](triangulation.scad)
