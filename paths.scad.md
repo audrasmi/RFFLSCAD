@@ -56,7 +56,7 @@ Example:
 
     modulated_circle(r=40, sines=[[3, 11], [1, 31]], $fn=6);
 
-![modulated\_circle](modulated_circle.png)
+![modulated\_circle](images/paths/modulated_circle.png)
 
 
 
@@ -79,7 +79,7 @@ Example:
         xspread(3) circle(3, $fn=32);
     }
 
-![extrude\_from\_to](extrude_from_to.png)
+![extrude\_from\_to](images/paths/extrude_from_to.png)
 
 
 
@@ -98,7 +98,7 @@ Example:
     extrude_2d_hollow(wall=2, height=100, twist=90, slices=50)
         circle(r=40, center=true, $fn=6);
 
-![extrude\_2d\_hollow](extrude_2d_hollow.png)
+![extrude\_2d\_hollow](images/paths/extrude_2d_hollow.png)
 
 
 
@@ -118,7 +118,7 @@ Example:
     poly = [[-10,0], [-3,-5], [3,-5], [10,0], [0,-30]];
     extrude_2dpath_along_spiral(poly, h=200, r=50, twist=1000, $fn=36);
 
-![extrude\_2dpath\_along\_spiral](extrude_2dpath_along_spiral.png)
+![extrude\_2dpath\_along\_spiral](images/paths/extrude_2dpath_along_spiral.png)
 
 
 
@@ -138,7 +138,7 @@ Example:
     path = [ [0, 0, 0], [100, 33, 33], [200, -33, -33], [300, 0, 0] ];
     extrude_2dpath_along_3dpath(shape, path);
 
-![extrude\_2dpath\_along\_3dpath](extrude_2dpath_along_3dpath.png)
+![extrude\_2dpath\_along\_3dpath](images/paths/extrude_2dpath_along_3dpath.png)
 
 
 
