@@ -52,6 +52,8 @@ Common useful shapes and structured objects.
 
 ### offsetcube()
 
+- offsetcube(size, v)
+
 Makes a cube that is offset along the given vector by half
 the cube's size.  For example, if v=[-1,1,0], the cube's
 front right edge will be centered at the origin.
@@ -70,6 +72,9 @@ Example:
 
 
 ### leftcube()
+
+- leftcube(size)
+
 Makes a cube that has its right face centered at the origin.
 
 Arg      | What it does
@@ -85,6 +90,9 @@ Example:
 
 
 ### rightcube()
+
+- rightcube(size)
+
 Makes a cube that has its left face centered at the origin.
 
 Arg      | What it does
@@ -101,6 +109,8 @@ Example:
 
 ### fwdcube()
 
+- fwdcube(size)
+
 Makes a cube that has its back face centered at the origin.
 
 Arg      | What it does
@@ -116,6 +126,9 @@ Example:
 
 
 ### backcube()
+
+- backcube(size)
+
 Makes a cube that has its front face centered at the origin.
 
 Arg      | What it does
@@ -131,6 +144,9 @@ Example:
 
 
 ### downcube()
+
+- downcube(size)
+
 Makes a cube that has its top face centered at the origin.
 
 Arg      | What it does
@@ -146,6 +162,9 @@ Example:
 
 
 ### upcube()
+
+- upcube(size)
+
 Makes a cube that has its bottom face centered at the origin.
 
 Arg      | What it does
@@ -161,6 +180,9 @@ Example:
 
 
 ### chamfcube()
+
+- chamfcube(size, chamfer, [chamfaxes], [chamfcorners])
+
 Makes a cube with chamfered edges.
 
 Arg          | What it does
@@ -179,6 +201,9 @@ Example:
 
 
 ### rrect()
+
+- rrect(size, r, [center])
+
 Makes a cube with rounded (filletted) vertical edges.
 
 Arg      | What it does
@@ -197,6 +222,9 @@ Examples:
 
 
 ### rcube()
+
+- rcube(size, r, [center])
+
 Makes a cube with rounded (filletted) edges and corners.
 
 Arg      | What it does
@@ -242,6 +270,9 @@ Example:
 
 
 ### trapezoid()
+
+- trapezoid(size1, size2, h, [center])
+
 Creates a trapezoidal prism.
 
 Arg     | What it does
@@ -288,6 +319,9 @@ Example:
 
 
 ### right\_triangle()
+
+- right\_triangle(size, [center])
+
 Creates a right triangle, with the hypotenuse on the right (X+) side.
 
 Arg     | What it does
@@ -570,6 +604,9 @@ Example:
 ## 3D Printing Constructs
 
 ### teardrop2d()
+
+- teardrop2d(r|d, [ang], [cap\_h])
+
 Makes a 2D teardrop shape. Useful for extruding into 3D printable holes.
 
 Arg    | What it does
@@ -590,7 +627,7 @@ Example:
 
 ### teardrop()
 
-- teardrop(r|d, h, [ang], [cap_h])
+- teardrop(r|d, h, [ang], [cap\_h])
 
 Makes a teardrop shape in the XZ plane. Useful for 3D printable holes.
 
@@ -631,6 +668,9 @@ Example:
 
 
 ### narrowing\_strut()
+
+- narrowing\_strut(w, l, wall, [ang])
+
 Makes a rectangular strut with the top side narrowing in a triangle.
 The shape created may be likened to an extruded home plate from baseball.
 This is useful for constructing parts that minimize the need to support
@@ -801,6 +841,9 @@ Example:
 ## Miscellaneous
 
 ### nil()
+
+- nil()
+
 For when you MUST pass a child to a module, but you want it to be nothing.
 
 
