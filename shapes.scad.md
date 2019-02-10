@@ -65,7 +65,7 @@ Example:
 
     offsetcube([3,4,5], [-1,1,0]);
 
-![offsetcube](offsetcube.png)
+![offsetcube](images/shapes/offsetcube.png)
 
 
 
@@ -80,7 +80,7 @@ Example:
 
     leftcube([10, 10, 10]);
 
-![leftcube](leftcube.png)
+![leftcube](images/shapes/leftcube.png)
 
 
 
@@ -95,7 +95,7 @@ Example:
 
     rightcube([10, 10, 10]);
 
-![rightcube](rightcube.png)
+![rightcube](images/shapes/rightcube.png)
 
 
 
@@ -111,7 +111,7 @@ Example:
 
     fwdcube([10, 10, 10]);
 
-![fwdcube](fwdcube.png)
+![fwdcube](images/shapes/fwdcube.png)
 
 
 
@@ -126,7 +126,7 @@ Example:
 
     backcube([10, 10, 10]);
 
-![backcube](backcube.png)
+![backcube](images/shapes/backcube.png)
 
 
 
@@ -141,7 +141,7 @@ Example:
 
     downcube([10, 10, 10]);
 
-![downcube](downcube.png)
+![downcube](images/shapes/downcube.png)
 
 
 
@@ -156,7 +156,7 @@ Example:
 
     upcube([4, 5, 3]);
 
-![upcube](upcube.png)
+![upcube](images/shapes/upcube.png)
 
 
 
@@ -174,7 +174,7 @@ Example:
 
     chamfcube(size=[10,20,30], chamfer=1, chamfaxes=[1,1,1], chamfcorners=true);
 
-![chamfcube](chamfcube.png)
+![chamfcube](images/shapes/chamfcube.png)
 
 
 
@@ -192,7 +192,7 @@ Examples:
     rrect(size=[9,4,1], r=1, center=true);
     rrect(size=[5,7,3], r=1, $fn=24);
 
-![rrect](rrect.png)
+![rrect](images/shapes/rrect.png)
 
 
 
@@ -210,7 +210,7 @@ Examples:
     rcube(size=[9,4,1], r=0.333, $fn=24);
     rcube(size=[5,7,3], r=1, center=true);
 
-![rcube](rcube.png)
+![rcube](images/shapes/rcube.png)
 
 
 
@@ -232,7 +232,7 @@ Example:
 
     prism(n=6, h=3, d=4, circum=true);
 
-![prism](prism.png)
+![prism](images/shapes/prism.png)
 
 
 
@@ -251,7 +251,7 @@ Example:
     trapezoid(size1=[2,6], size2=[4,0], h=4, center=false);
     trapezoid(size1=[1,4], size2=[4,1], h=4, center=false);
 
-![trapezoid](trapezoid.png)
+![trapezoid](images/shapes/trapezoid.png)
 
 
 
@@ -273,7 +273,7 @@ Example:
     pyramid(h=10, r=5, n=5);
     pyramid(h=3, d=4, n=6, circum=true);
 
-![pyramid](pyramid.png)
+![pyramid](images/shapes/pyramid.png)
 
 
 
@@ -290,7 +290,7 @@ Examples:
     right_triangle([4, 1, 6], center=true);
     right_triangle([4, 1, 9]);
 
-![right\_triangle](right_triangle.png)
+![right\_triangle](images/shapes/right_triangle.png)
 
 
 
@@ -318,7 +318,7 @@ Example:
     chamf_cyl(h=50, d=40, chamfer=5, angle=45, bottom=false, center=true);
     chamferred_cylinder(h=50, r=20, chamfedge=10, angle=30, center=true);
 
-![chamf\_cyl](chamf_cyl.png)
+![chamf\_cyl](images/shapes/chamf_cyl.png)
 
 
 
@@ -347,7 +347,7 @@ Example:
     downcyl(r1=15, r2=5, h=45);
     downcyl(d=15, h=40);
 
-![downcyl](downcyl.png)
+![downcyl](images/shapes/downcyl.png)
 
 
 
@@ -377,7 +377,7 @@ Examples:
     xcyl(d1=5, d2=15, l=20, align=-1);
     xcyl(d=10, l=25);
 
-![xcyl](xcyl.png)
+![xcyl](images/shapes/xcyl.png)
 
 
 
@@ -407,7 +407,7 @@ Examples:
     ycyl(d1=5, d2=15, l=20, align=-1);
     ycyl(d=10, l=25);
 
-![ycyl](ycyl.png)
+![ycyl](images/shapes/ycyl.png)
 
 
 
@@ -438,7 +438,7 @@ Examples:
     zcyl(d1=5, d2=15, l=20, align=-1);
     zcyl(d=10, l=25);
 
-![zcyl](zcyl.png)
+![zcyl](images/shapes/zcyl.png)
 
 
 
@@ -463,7 +463,7 @@ Example:
 
     rcylinder(h=50, r=20, fillet=5, center=true, $fa=1, $fs=1);
 
-![rcylinder](rcylinder.png)
+![rcylinder](images/shapes/rcylinder.png)
 
 
 
@@ -484,7 +484,7 @@ Example:
     tube(h=3, r1=5, r2=7, wall=2, center=true);
     tube(h=3, r=4, wall=1, center=true);
 
-![tube](tube.png)
+![tube](images/shapes/tube.png)
 
 
 
@@ -510,7 +510,7 @@ Example:
     torus(od=60, ir=15);
     torus(or=30, ir=20, $fa=1, $fs=1);
 
-![torus](torus.png)
+![torus](images/shapes/torus.png)
 
 
 
@@ -533,7 +533,7 @@ Example:
 
     pie_slice(ang=45, h=30, r1=100, r2=80);
 
-![pie\_slice](pie_slice.png)
+![pie\_slice](images/shapes/pie_slice.png)
 
 
 
@@ -554,7 +554,7 @@ Example:
     teardrop2d(r=30, ang=30);
     teardrop2d(r=35, ang=45, cap_h=40);
 
-![teardrop2d](teardrop2d.png)
+![teardrop2d](images/shapes/teardrop2d.png)
 
 
 
@@ -572,7 +572,7 @@ Example:
 
     teardrop(r=3, h=2, ang=30);
 
-![teardrop](teardrop.png)
+![teardrop](images/shapes/teardrop.png)
 
 
 
@@ -590,7 +590,7 @@ Example:
 
     onion(h=15, r=10, maxang=30);
 
-![onion](onion.png)
+![onion](images/shapes/onion.png)
 
 
 
@@ -611,7 +611,7 @@ Example:
 
     narrowing_strut(w=10, l=100, wall=5, ang=30);
 
-![narrowing\_strut](narrowing_strut.png)
+![narrowing\_strut](images/shapes/narrowing_strut.png)
 
 
 
@@ -635,7 +635,7 @@ Examples:
     thinning_triangle(h=50, l=100, thick=4, ang=30, strut=5, wall=2, diagonly=true);
     thinning_triangle(h=60, l=75, thick=4, ang=30, strut=5, wall=2);
 
-![thinning\_triangle](thinning_triangle.png)
+![thinning\_triangle](images/shapes/thinning_triangle.png)
 
 
 
@@ -658,7 +658,7 @@ Example:
 
     thinning_brace(h=50, l=100, thick=4, ang=30, strut=5, wall=2);
 
-![thinning\_brace](thinning_brace.png)
+![thinning\_brace](images/shapes/thinning_brace.png)
 
 
 
@@ -679,7 +679,7 @@ Example:
 
     thinning_wall(h=50, l=100, thick=4, ang=30, strut=5, wall=2);
 
-![thinning\_wall](thinning_wall.png)
+![thinning\_wall](images/shapes/thinning_wall.png)
 
 
 
@@ -699,7 +699,7 @@ Example:
 
     corrugated_wall(h=50, l=100, thick=4, strut=5, wall=2);
 
-![corrugated\_wall](corrugated_wall.png)
+![corrugated\_wall](images/shapes/corrugated_wall.png)
 
 
 
@@ -719,7 +719,7 @@ Example:
 
     sparse_strut(h=40, l=120, thick=4, maxang=30, strut=5, max_bridge=20);
 
-![sparse\_strut](sparse_strut.png)
+![sparse\_strut](images/shapes/sparse_strut.png)
 
 
 
@@ -740,7 +740,7 @@ Example:
 
     sparse_strut3d(h=40, w=40, l=120, thick=4, maxang=30, strut=5, max_bridge=20);
 
-![sparse\_strut3d](sparse_strut3d.png)
+![sparse\_strut3d](images/shapes/sparse_strut3d.png)
 
 
 
@@ -773,7 +773,7 @@ Examples:
     slot(l=50, h=5, d1=8, d2=10, center=false);
     slot([0,0,0], [50,50,0], h=5, d=10);
 
-![slot](slot.png)
+![slot](images/shapes/slot.png)
 
 
 
@@ -800,7 +800,7 @@ Examples:
     arced_slot(r=100, h=10, sd1=30, sd2=10, sa=45, ea=180, $fa=5, $fs=2);
     arced_slot(d=100, h=15, sd=10, sa=60, ea=280);
 
-![arced\_slot](arced_slot.png)
+![arced\_slot](images/shapes/arced_slot.png)
 
 
 
