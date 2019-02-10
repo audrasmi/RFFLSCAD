@@ -32,7 +32,7 @@ Arg         | What it is
 curve       | An array of control point vectors.
 u           | Part of curve to get point of.  0 <= u <= 1
 
-![bez\_point](bez_point.png)
+![bez\_point](images/beziers/bez_point.png)
 
 
 
@@ -45,7 +45,7 @@ bezier      | The array of bezier points.
 splinesteps | The number of line segments to divide each bezier segment into.
 N           | The number of points in each bezier segment.  Default=3 (cubic bezier)
 
-![bezier\_polyline](bezier_polyline.png)
+![bezier\_polyline](images/beziers/bezier_polyline.png)
 
 
 
@@ -60,7 +60,7 @@ p1   | The second point.
 p2   | The third point.
 r    | The radius of the fillet.
 
-![fillet3pts](fillet3pts.png)
+![fillet3pts](images/beziers/fillet3pts.png)
 
 
 
@@ -72,7 +72,7 @@ Arg     | What it is
 pts     | The array of path points.
 fillet  | Radius of fillets to make.
 
-![fillet\_path](fillet_path.png)
+![fillet\_path](images/beziers/fillet_path.png)
 
 
 
@@ -84,7 +84,7 @@ Arg         | What it is
 bezier      | The array of bezier points.
 N           | The number of points in each bezier segment.  Default=3 (cubic bezier)
 
-![bezier\_close\_to\_axis](bezier_close_to_axis.png)
+![bezier\_close\_to\_axis](images/beziers/bezier_close_to_axis.png)
 
 
 
@@ -97,7 +97,7 @@ inset       | Amount to inset return path towards the X axis.
 bezier      | The array of bezier points.
 N           | The number of points in each bezier segment.  Default=3 (cubic bezier)
 
-![bezier\_offset](bezier_offset.png)
+![bezier\_offset](images/beziers/bezier_offset.png)
 
 
 
@@ -112,7 +112,7 @@ bezier      | The closed array of 2D bezier points.
 splinesteps | The number of line segments to divide each bezier segment into.
 N           | The number of points in each bezier segment.  Default=3 (cubic bezier)
 
-![bezier\_polygon](bezier_polygon.png)
+![bezier\_polygon](images/beziers/bezier_polygon.png)
 
 
 
@@ -143,7 +143,7 @@ Example:
     ];
     linear_extrude_bezier(bez, height=20, splinesteps=32);
 
-![linear\_extrude\_bezier](linear_extrude_bezier.png)
+![linear\_extrude\_bezier](images/beziers/linear_extrude_bezier.png)
 
 
 
@@ -171,7 +171,7 @@ Example:
     ];
     rotate_extrude_bezier(path, splinesteps=32, $fn=180);
 
-![rotate\_extrude\_bezier](rotate_extrude_bezier.png)
+![rotate\_extrude\_bezier](images/beziers/rotate_extrude_bezier.png)
 
 
 
@@ -195,7 +195,7 @@ Example:
     ];
     revolve_bezier(path, splinesteps=32, $fn=180);
 
-![revolve\_bezier](revolve_bezier.png)
+![revolve\_bezier](images/beziers/revolve_bezier.png)
 
 
 
@@ -213,7 +213,7 @@ Example:
     path = [ [0, 10], [33, 10], [66, 40], [100, 40] ];
     revolve_bezier_solid_to_axis(path, splinesteps=32, $fn=72);
 
-![revolve\_bezier\_solid\_to\_axis](revolve_bezier_solid_to_axis.png)
+![revolve\_bezier\_solid\_to\_axis](images/beziers/revolve_bezier_solid_to_axis.png)
 
 
 
@@ -232,7 +232,7 @@ Example:
     path = [ [0, 10], [33, 10], [66, 40], [100, 40] ];
     revolve_bezier_offset_shell(path, offset=1, splinesteps=32, $fn=72);
 
-![revolve\_bezier\_offset\_shell](revolve_bezier_offset_shell.png)
+![revolve\_bezier\_offset\_shell](images/beziers/revolve_bezier_offset_shell.png)
 
 
 
@@ -255,7 +255,7 @@ Example:
         }
     }
 
-![extrude\_2d\_shapes\_along\_bezier](extrude_2d_shapes_along_bezier.png)
+![extrude\_2d\_shapes\_along\_bezier](images/beziers/extrude_2d_shapes_along_bezier.png)
 
 
 
@@ -284,7 +284,7 @@ Example:
     path = [ [0, 0, 0], [33, 33, 33], [66, -33, -33], [100, 0, 0] ];
     extrude_bezier_along_bezier(bez, path, pathsteps=32, bezsteps=16);
 
-![extrude\_bezier\_along\_bezier](extrude_bezier_along_bezier.png)
+![extrude\_bezier\_along\_bezier](images/beziers/extrude_bezier_along_bezier.png)
 
 
 
