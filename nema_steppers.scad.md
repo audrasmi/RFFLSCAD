@@ -64,7 +64,7 @@ h          | height (length) of the stepper motor.
 shaft      | Diameter of the shaft.
 shaft\_len | Length of the shaft that protrudes from the motor.
 
-![nema11\_stepper](nema11_stepper.png)
+![nema11\_stepper](images/nema_steppers/nema11_stepper.png)
 
 
 
@@ -77,7 +77,7 @@ h          | height (length) of the stepper motor.
 shaft      | Diameter of the shaft.
 shaft\_len | Length of the shaft that protrudes from the motor.
 
-![nema14\_stepper](nema14_stepper.png)
+![nema14\_stepper](images/nema_steppers/nema14_stepper.png)
 
 
 
@@ -90,7 +90,7 @@ h          | height (length) of the stepper motor.
 shaft      | Diameter of the shaft.
 shaft\_len | Length of the shaft that protrudes from the motor.
 
-![nema17\_stepper](nema17_stepper.png)
+![nema17\_stepper](images/nema_steppers/nema17_stepper.png)
 
 
 
@@ -103,7 +103,7 @@ h          | height (length) of the stepper motor.
 shaft      | Diameter of the shaft.
 shaft\_len | Length of the shaft that protrudes from the motor.
 
-![nema23\_stepper](nema23_stepper.png)
+![nema23\_stepper](images/nema_steppers/nema23_stepper.png)
 
 
 
@@ -116,7 +116,7 @@ h          | height (length) of the stepper motor.
 shaft      | Diameter of the shaft.
 shaft\_len | Length of the shaft that protrudes from the motor.
 
-![nema34\_stepper](nema34_stepper.png)
+![nema34\_stepper](images/nema_steppers/nema34_stepper.png)
 
 
 
@@ -130,6 +130,6 @@ depth      | Depth of hole to make.
 l          | Length of adjustable screw slots.
 slop       | Slight adjustment value to make motors fit in holes.
 
-![nema17\_mount\_holes](nema17_mount_holes.png)
+![nema17\_mount\_holes](images/nema_steppers/nema17_mount_holes.png)
 
 
