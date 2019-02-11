@@ -16,6 +16,7 @@ Common useful shapes and structured objects.
 - [Prisms and Such](#prisms-and-such)
     - [`prism()`](#prism)
     - [`trapezoid()`](#trapezoid)
+    - [`rtrapezoid()`](#rtrapezoid)
     - [`pyramid()`](#pyramid)
     - [`right_triangle()`](#right_triangle)
 - [Cylinder Variants](#cylinder-variants)
@@ -288,6 +289,33 @@ Example:
     trapezoid(size1=[1,4], size2=[4,1], h=4, center=false);
 
 ![trapezoid](images/shapes/trapezoid.png)
+
+
+
+### rtrapezoid()
+
+- rtrapezoid(size1, size2, h, r, [center])
+- rtrapezoid(size1, size2, h, r1, r2, [center])
+
+Creates a trapezoidal prism with rounded vertical edges.
+
+Arg     | What it does
+------- | -----------------------------------
+size1   | Size [width, length] of the bottom of the prism.
+size2   | Size [width, length] of the top of the prism.
+h       | Height of the prism.
+r       | Radius of vertical edge fillets.
+r1      | Radius of vertical edge fillets at bottom.
+r2      | Radius of vertical edge fillets at top.
+center  | Vertically center the prism if true.  Sits on top of XY plane if false.
+
+Example:
+
+    rtrapezoid(size1=[40,40], size2=[0,0], h=40, r=5, center=false);
+    rtrapezoid(size1=[40,60], size2=[40,60], h=40, r1=0, r2=10, center=true);
+    rtrapezoid(size1=[20,60], size2=[40,30], h=40, r1=5, r2=10, center=false);
+
+![rtrapezoid](images/shapes/rtrapezoid.png)
 
 
 
