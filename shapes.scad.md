@@ -312,8 +312,8 @@ center  | Vertically center the prism if true.  Sits on top of XY plane if false
 Example:
 
     rtrapezoid(size1=[40,40], size2=[0,0], h=40, r=5, center=false);
-    rtrapezoid(size1=[40,60], size2=[40,60], h=40, r1=0, r2=10, center=true);
     rtrapezoid(size1=[20,60], size2=[40,30], h=40, r1=5, r2=10, center=false);
+    rtrapezoid(size1=[40,60], size2=[35,55], h=40, r1=0, r2=10, center=true);
 
 ![rtrapezoid](images/shapes/rtrapezoid.png)
 
