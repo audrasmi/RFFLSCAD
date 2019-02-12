@@ -24,6 +24,7 @@ Math helper functions.
 - [Vector Math](#vector-math)
     - [`point3d(p)`](#point3dp)
     - [`path3d(points)`](#path3dpoints)
+    - [`vmul(v1, v2)`](#vmulv1-v2)
     - [`distance(p1, p2)`](#distancep1-p2)
     - [`normalize(v)`](#normalizev)
     - [`vector2d_angle(v1, v2)`](#vector2d_anglev1-v2)
@@ -170,6 +171,10 @@ Returns a 3D vector/point from a 2D or 3D vector.
 ### path3d(points)
 Returns an array of 3D vectors/points from a 2D or 3D vector array.
 
+
+
+### vmul(v1, v2)
+Multiplies corresponding elements in two vectors.
 
 
 ### distance(p1, p2)
