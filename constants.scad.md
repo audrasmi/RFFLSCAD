@@ -13,7 +13,7 @@ Useful for `mirror()`, `offsetcube()`, `rotate()`, etc.
 
 ## Edge Constants
 
-Constants for defining edges for `chamfer()`, etc.
+Constants for defining edges for [`chamfer()`](shapes.scad#chamfer--), etc.
 
 #### Individual edges:
 
