@@ -33,5 +33,5 @@ For purposes of these library files, the following terms apply:
 - **Right**: Towards X+
 - **Front**/**Forward**: Towards Y-
 - **Back**/**Behind**: Towards Y+
-- **Bottom**/**Down**: Towards Z-
-- **Top**/**Up**: Towards Z+
+- **Bottom**/**Down**/**Below**: Towards Z-
+- **Top**/**Up**/**Above**: Towards Z+
