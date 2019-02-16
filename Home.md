@@ -26,3 +26,12 @@ The library files are as follows:
   - [`constants.scad`](constants.scad): Useful constants for vectors, edges, etc.
   - [`quaternions.scad`](quaternions.scad): Functions to work with quaternion rotations.
   - [`debug.scad`](debug.scad): Modules to help debug creation of beziers, `polygons()`s and `polyhedron()`s
+
+## Terminology
+For purposes of these library files, the following terms apply:
+- *Left*: Towards X-
+- *Right*: Towards X+
+- *Front*/*Forward*: Towards Y-
+- *Back*: Towards Y+
+- *Bottom*/*Down*: Towards Z-
+- *Top*/*Up*: Towards Z+
