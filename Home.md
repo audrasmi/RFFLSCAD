@@ -18,9 +18,11 @@ The library files are as follows:
   - [`linear_bearings.scad`](linear_bearings.scad): Modules to make mounts for LMxUU style linear bearings.
   - [`nema_steppers.scad`](nema_steppers.scad): Modules to make mounting holes for NEMA motors.
   - [`phillips_drive.scad`](phillips_drive.scad): Modules to create Phillips screwdriver tips.
+  - [`torx_drive.scad`](torx_drive.scad): Functions and Modules to create Torx bit drive holes.
   - [`wiring.scad`](wiring.scad): Modules to render routed bundles of wires.
 
 ### Miscellaneous
-  - [`math.scad`](math.scad): Useful helper functions and constants.
+  - [`math.scad`](math.scad): Useful helper functions.
+  - [`constants.scad`](constants.scad): Useful constants for vectors, edges, etc.
   - [`quaternions.scad`](quaternions.scad): Functions to work with quaternion rotations.
   - [`debug.scad`](debug.scad): Modules to help debug creation of beziers, `polygons()`s and `polyhedron()`s
