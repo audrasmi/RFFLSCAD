@@ -109,9 +109,25 @@ Arg     | What it is
 ------- | -----------------
 chamfer | inset of the chamfer from the edge. (Default: 1)
 size    | The size of the rectangular cuboid we want to chamfer.
-edges   | which edges do we want to chamfer.
+edges   | which edges do we want to chamfer.  Recommend using EDGE constants from `constants.scad`.
 
-Array format of `edges` argument:
+The easiest way to use the `edges` argument is with the EDGE 
+constants from the file `constants.scad` like this:
+
+    EDGES_LEFT + EDGE_TOP_BK - EDGE_FR_LF
+
+or:
+
+    EDGES_ALL - EDGE_BK_RT
+
+NOTE: Because of OpenSCAD limitations, if you add two constants
+that contain the same edge, `chamfer()` will still chamfer that
+edge the same, but you may need to doubly remove that edge if
+you don't actually want it chamferred.  ie:
+
+    EDGES_TOP + EDGES_LEFT - EDGE_TOP_LF * 2
+
+Otherwise, the array format of `edges` argument is as follows:
 
     [
         [Y+Z+, Y-Z+, Y-Z-, Y+Z-],
@@ -121,7 +137,8 @@ Array format of `edges` argument:
 
 Examples:
 
-    chamfer(chamfer=2, size=[10,40,30], edges=[[0,0,0,1], [1,1,0,0], [0,0,0,0]]) {
+    include <BOSL/constants.scad>
+    chamfer(chamfer=2, size=[10,40,30], edges=EDGE_BOT_BK + EDGE_TOP_RT + EDGE_TOP_LF) {
         cube(size=[10,40,30], center=true);
     }
 
