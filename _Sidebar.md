@@ -16,7 +16,7 @@
 - [linear_bearings.scad](linear_bearings.scad)
 - [nema_steppers.scad](nema_steppers.scad)
 - [phillips_drive.scad](phillips_drive.scad)
-- [torx.scad](torx.scad)
+- [torx\_drive.scad](torx_drive.scad)
 - [wiring.scad](wiring.scad)
 
 ### [Miscellaneous](Home#miscellaneous)
