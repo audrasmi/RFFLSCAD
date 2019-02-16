@@ -2,7 +2,7 @@ Miscellaneous useful constants
 
 ## Vectors Constants
 
-Useful for `mirror()`, `offsetcube()`, `rotate()`, etc.
+Useful for `mirror()`, [`offsetcube()`](shapes.scad#offsetcube), `rotate()`, etc.
 
 - `V_LEFT`: A unit vector pointed to the left.
 - `V_RIGHT`: A unit vector pointed to the right.
