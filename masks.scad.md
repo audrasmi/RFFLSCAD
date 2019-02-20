@@ -275,6 +275,51 @@ Example:
 
 
 
+## fillet()
+Fillets (rounds) the edges of a cuboid region containing children.
+
+Arg     | What it is
+------- | -----------------
+fillet  | Radius of the fillet. (Default: 1)
+size    | The size of the rectangular cuboid we want to fillet.
+edges   | Which edges we want to fillet.  Recommend using EDGE constants from `constants.scad`.
+
+The easiest way to use the `edges` argument is with the EDGE 
+constants from the file `constants.scad` like this:
+
+    EDGES_LEFT + EDGE_TOP_BK - EDGE_FR_LF
+
+or:
+
+    EDGES_ALL - EDGE_BK_RT
+
+NOTE: Because of OpenSCAD limitations, if you add two constants
+that contain the same edge, `chamfer()` will still chamfer that
+edge the same, but you may need to doubly remove that edge if
+you don't actually want it chamferred.  ie:
+
+    EDGES_TOP + EDGES_LEFT - EDGE_TOP_LF * 2
+
+Otherwise, the array format of `edges` argument is as follows:
+
+    [
+        [Y+Z+, Y-Z+, Y-Z-, Y+Z-],
+        [X+Z+, X-Z+, X-Z-, X+Z-],
+        [X+Y+, X-Y+, X-Y-, X+Y-]
+    ]
+
+Examples:
+
+    include <BOSL/constants.scad>
+    fillet(fillet=10, size=[50,100,150], edges=EDGES_TOP + EDGES_RIGHT - EDGE_BOT_RT) {
+        cube(size=[50,100,150], center=true);
+    }
+
+![fillet](images/masks/fillet.png)
+
+
+
+
 ## fillet\_angled\_edge\_mask()
 Creates a vertical mask that can be used to fillet the edge where two
 face meet, at any arbitrary angle.  Difference it from the object to
