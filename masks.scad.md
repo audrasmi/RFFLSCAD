@@ -15,7 +15,7 @@ Shapes that are useful for masking with `difference()` and `intersect()`.
 - [`fillet_mask_x()`](#fillet_mask_x)
 - [`fillet_mask_y()`](#fillet_mask_y)
 - [`fillet_mask_z()`](#fillet_mask_z)
-- [`fillet()`](#fillet)
+- [`fillet() { ... }`](#fillet---)
 - [`fillet_angled_edge_mask()`](#fillet_angled_edge_mask)
 - [`fillet_angled_corner_mask()`](#fillet_angled_corner_mask)
 - [`fillet_corner_mask()`](#fillet_corner_mask)
@@ -276,7 +276,7 @@ Example:
 
 
 
-## fillet()
+## fillet() { ... }
 Fillets (rounds) the edges of a cuboid region containing children.
 
 Arg     | What it is
