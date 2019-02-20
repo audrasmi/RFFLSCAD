@@ -130,6 +130,8 @@ details     | If true model should be rendered with extra details.  Default: fal
 coarse      | If true, make coarse threads instead of fine threads.  Default: true
 flange      | radius of flange beyond the head.  Default: 0 (no flange)
 phillips    | If given, the size of the phillips drive hole to add.  (ie: "#1", "#2", or "#3")
+torx        | If given, the size of the Torx drive hole to add.  (ie: 10, 20, 30)
+
 
 ![Types of metric\_bolt()](images/metric_screws/metric_bolts.png)
 
