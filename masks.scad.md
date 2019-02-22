@@ -61,7 +61,10 @@ chamfer | Size of chamfer
 
 Example:
 
-    chamfer_mask_x(l=10.0, chamfer=2.0);
+    difference() {
+        left(5) cube(10);
+        chamfer_mask_x(l=10.1, chamfer=2.0);
+    }
 
 ![chamfer\_mask\_x](images/masks/chamfer_mask_x.png)
 
@@ -79,7 +82,10 @@ chamfer | Size of chamfer
 
 Example:
 
-    chamfer_mask_y(l=10.0, chamfer=2.0);
+    difference() {
+        fwd(5) cube(10);
+        chamfer_mask_y(l=10.1, chamfer=2.0);
+    }
 
 ![chamfer\_mask\_y](images/masks/chamfer_mask_y.png)
 
@@ -97,7 +103,10 @@ chamfer | Size of chamfer
 
 Example:
 
-    chamfer_mask_z(l=10.0, chamfer=2.0);
+    difference() {
+        down(5) cube(10);
+        chamfer_mask_z(l=10.1, chamfer=2.0);
+    }
 
 ![chamfer\_mask\_z](images/masks/chamfer_mask_z.png)
 
