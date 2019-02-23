@@ -1,4 +1,4 @@
-Routines to triangulate `polyhedron()` faces that have more than 3 vertexes.
+Functions to triangulate `polyhedron()` faces that have more than 3 vertexes.
 To use, include the following line at the top of your file:
 
     use <BOSL/triangulation.scad>
