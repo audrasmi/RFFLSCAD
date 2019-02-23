@@ -1,3 +1,9 @@
+Snap-together joiners to join parts without screws.
+To use, add the following line to the beginning of your file:
+
+    use <BOSL/joiners.scad>
+
+
 # Table of Contents
 
 - [Snap-together joiners](#snap-together-joiners)
