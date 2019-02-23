@@ -58,7 +58,8 @@ Common useful shapes and structured objects.
 Makes a cube that is offset along the given vector by half
 the cube's size.  For example, if v=[-1,1,0], the cube's
 front right edge will be centered at the origin.  It is
-recommended that you use the V_ constants fro `BOSL/constants.scad`.
+highly recommended that you use the V_ constants from
+`BOSL/constants.scad`.
 
 Arg      | What it does
 -------- | --------------------------
