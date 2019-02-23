@@ -401,10 +401,8 @@ Example:
 
 ### downcyl()
 
-- downcyl(h, r)
-- downcyl(h, r1, r2)
-- downcyl(h, d)
-- downcyl(h, d1, d2)
+- downcyl(h, r|d)
+- downcyl(h, r1|d1, r2|d2)
 
 Creates a cylinder with its top face centered at the origin.
 
@@ -430,10 +428,8 @@ Example:
 
 ### xcyl()
 
-- xcyl(l, r, [align])
-- xcyl(l, r1, r2, [align])
-- xcyl(l, d, [align])
-- xcyl(l, d1, d2, [align])
+- xcyl(l, r|d, [align])
+- xcyl(l, r1|d1, r2|d2, [align])
 
 Creates a cylinder oriented along the X axis.  Use like the
 built-in `cylinder()` module, except use `l` instead of `h`.
@@ -460,10 +456,8 @@ Examples:
 
 ### ycyl()
 
-- ycyl(l, r, [align])
-- ycyl(l, r1, r2, [align])
-- ycyl(l, d, [align])
-- ycyl(l, d1, d2, [align])
+- ycyl(l, r|d, [align])
+- ycyl(l, r1|d1, r2|d2, [align])
 
 Creates a cylinder oriented along the Y axis.  Use like the
 built-in `cylinder()` module, except use `l` instead of `h`.
@@ -490,10 +484,8 @@ Examples:
 
 ### zcyl()
 
-- zcyl(l, r, [align])
-- zcyl(l, r1, r2, [align])
-- zcyl(l, d, [align])
-- zcyl(l, d1, d2, [align])
+- zcyl(l, r|d, [align])
+- zcyl(l, r1|d1, r2|d2, [align])
 
 Creates a cylinder oriented along the Z axis.  Use like the
 built-in `cylinder()` module, except use `l` instead of `h`.
