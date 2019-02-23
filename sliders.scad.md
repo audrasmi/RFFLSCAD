@@ -1,4 +1,7 @@
-Sliders and Rails.
+Hourglass shaped rails and sliders.
+To use, add the following line to the beginning of your file:
+
+    use <BOSL/sliders.scad>
 
 
 # Table of Contents
