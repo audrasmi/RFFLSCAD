@@ -1,4 +1,8 @@
 Common useful shapes and structured objects.
+To use, add the following line to the beginning of your file:
+
+    use <BOSL/shapes.scad>
+
 
 ## Table of Contents
 
