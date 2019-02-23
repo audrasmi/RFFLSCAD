@@ -1,3 +1,9 @@
+Various modules to help debug creation of beziers and `polyhedron()`s.
+To use, add the following line to the beginning of your file:
+
+    use <BOSL/debug.scad>
+
+
 # Table of Contents
 
 - [Debugging modules](#debugging-modules)
