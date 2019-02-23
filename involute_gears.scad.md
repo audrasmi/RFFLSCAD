@@ -21,6 +21,10 @@ release it into the public domain.
 - http://gtrebaol.free.fr/doc/catia/spur_gear.html
 - http://www.cs.cmu.edu/~rapidproto/mechanisms/chpt7.html
 
+To use, add the following line to the beginning of your file:
+
+    use <BOSL/involute_gears.scad>
+
 
 ## Table of Contents
 
