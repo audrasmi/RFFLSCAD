@@ -1,4 +1,9 @@
 Quaternion math and modules.
+To use, add the following line to the beginning of your file:
+
+    use <BOSL/quaternions.scad>
+
+
 
 Quaternions are stored internally as a 4-value vector:
 
