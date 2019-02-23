@@ -11,6 +11,7 @@ Shapes that are useful for masking with `difference()` and `intersect()`.
 - [`chamfer() { ... }`](#chamfer---)
 - [`chamfer_hole_mask()`](#chamfer_hole_mask)
 - [`chamfer_cylinder_mask()`](#chamfer_cylinder_mask)
+- [`chamfer_hole_mask()`](#chamfer_hole_mask)
 - [`fillet_mask()`](#fillet_mask)
 - [`fillet_mask_x()`](#fillet_mask_x)
 - [`fillet_mask_y()`](#fillet_mask_y)
@@ -180,15 +181,19 @@ Example:
 
 
 ## chamfer\_cylinder\_mask()
+- chamfer\_cylinder\_mask(r|d, chamfer, [ang], [from\_end])
+
 Creates a mask that can be used to bevel/chamfer the end of a cylinder.
 Difference it from the cylinder to be chamferred.  The center of the mask object
 should align exactly with the center of the end of the cylinder to be chamferred.
 
-Arg     | What it is
-------- | -----------------
-r       | radius of hole to chamfer.
-d       | Diameter of hole to chamfer. Use instead of r.
-chamfer | size of the chamfer. (Default: 0.25)
+Arg       | What it is
+--------- | -----------------
+r         | radius of cylinder to chamfer.
+d         | Diameter of cylinder to chamfer. Use instead of r.
+chamfer   | size of the chamfer, inset from edge. (Default: 0.25)
+ang       | Angle of chamfer in degrees from top.  (Default: 45)
+from\_end | If true, chamfer size is measured from end of cylinder.  If false, chamfer is measured inset from the radius of the cylinder.  (Default: false)
 
 Example:
 
@@ -198,6 +203,34 @@ Example:
     }
 
 ![chamfer\_cylinder\_mask](images/masks/chamfer_cylinder_mask.png)
+
+
+## chamfer\_hole\_mask()
+- chamfer\_hole\_mask(r|d, chamfer, [ang], [from\_end])
+
+Create a mask that can be used to bevel/chamfer the end of a cylindrical
+hole.  Difference it from the object around the hole to be chamferred.
+The center of the mask object should align exactly with the center of
+the end of the hole to be chamferred.
+
+Arg       | What it is
+--------- | -----------------
+r         | Radius of hole to chamfer.
+d         | Diameter of hole to chamfer. Use instead of r.
+chamfer   | Size of the chamfer, inset from edge. (Default: 0.25)
+ang       | Angle of chamfer in degrees from vertical.  (Default: 45)
+from\_end | If true, chamfer size is measured from end of hole.  If false, chamfer is measured outset from the radius of the hole.  (Default: false)
+
+Example:
+
+    $fa=2; $fs=2;
+    difference() {
+        cube(100, center=true);
+        cylinder(d=50, h=100.1, center=true);
+        up(50) chamfer_hole_mask(d=50, chamfer=10);
+    }
+
+![chamfer\_hole\_mask](images/masks/chamfer_hole_mask.png)
 
 
 ## fillet\_mask()
