@@ -1,4 +1,7 @@
 This is the file that the most commonly used transformations, distributors, and manipulators are in.
+To use, add the following line to the beginning of your file:
+
+    use <BOSL/transforms.scad>
 
 
 # Table of Contents
