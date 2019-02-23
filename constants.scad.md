@@ -1,4 +1,9 @@
-Miscellaneous useful constants
+Miscellaneous useful constants.
+To use, add the following line to the beginning of your file:
+
+    include <BOSL/constants.scad>
+
+
 
 ## Vectors Constants
 

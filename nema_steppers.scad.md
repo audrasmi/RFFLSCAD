@@ -1,4 +1,8 @@
 Masks and models for NEMA stepper motors and mounts.
+To use, add the following line to the beginning of your file:
+
+    use <BOSL/stepper_motors.scad>
+
 
 
 # Table of Contents

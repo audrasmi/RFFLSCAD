@@ -1,3 +1,10 @@
+An attempt at modelling Phillips drive tips.
+To use, add the following line to the beginning of your file:
+
+    use <BOSL/phillips_drive.scad>
+
+
+
 # Table of Contents
 
 - [Phillips driver bits.](#phillips-driver-bits)

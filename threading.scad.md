@@ -1,4 +1,8 @@
 Generic Threaded Screw Rods and Nuts.
+To use, add the following line to the beginning of your file:
+
+    use <BOSL/threading.scad>
+
 
 
 # Table of Contents

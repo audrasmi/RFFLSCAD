@@ -1,4 +1,9 @@
-Linear Bearings.
+Clamps to hold LMxUU type linear bearings.
+To use, add the following line to the beginning of your file:
+
+    use <BOSL/linear_bearings.scad>
+
+
 
 # Table of Contents
 

@@ -1,4 +1,7 @@
 Math helper functions.
+To use, add the following line to the beginning of your file:
+
+    use <BOSL/math.scad>
 
 
 ## Table of Contents

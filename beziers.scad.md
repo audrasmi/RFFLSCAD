@@ -1,4 +1,8 @@
 Bezier functions and modules.
+To use, add the following line to the beginning of your file:
+
+    use <BOSL/beziers.scad>
+
 
 
 # Table of Contents

@@ -1,4 +1,8 @@
-Screws, Bolts, and Nuts.
+Metric Screws, Bolts, and Nuts.
+To use, add the following line to the beginning of your file:
+
+    use <BOSL/metric_screws.scad>
+
 
 # Table of Contents
 
