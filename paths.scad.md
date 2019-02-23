@@ -1,4 +1,8 @@
 2D and 3D polyline paths
+To use, add the following line to the beginning of your file:
+
+    use <BOSL/paths.scad>
+
 
 # Table of Contents
 
