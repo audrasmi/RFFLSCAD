@@ -9,7 +9,6 @@ Shapes that are useful for masking with `difference()` and `intersect()`.
 - [`chamfer_mask_y()`](#chamfer_mask_y)
 - [`chamfer_mask_z()`](#chamfer_mask_z)
 - [`chamfer() { ... }`](#chamfer---)
-- [`chamfer_hole_mask()`](#chamfer_hole_mask)
 - [`chamfer_cylinder_mask()`](#chamfer_cylinder_mask)
 - [`chamfer_hole_mask()`](#chamfer_hole_mask)
 - [`fillet_mask()`](#fillet_mask)
@@ -155,29 +154,6 @@ Examples:
 
 ![chamfer](images/masks/chamfer.png)
 
-
-
-## chamfer\_hole\_mask()
-
-Creates a mask that can be used to bevel/chamfer the edge of a circular hole.
-Difference it from the hole to be chamferred.  The center of the mask object
-should align exactly with the center of the end of the hole to be chamferred.
-
-Arg     | What it is
-------- | -----------------
-r       | radius of hole to chamfer.
-d       | Diameter of hole to chamfer. Use instead of r.
-chamfer | size of the chamfer. (Default: 0.25)
-
-Example:
-
-    difference() {
-        cube([150,150,100], center=true);
-        cylinder(r=50, h=100.1, center=true);
-        up(50) chamfer_hole_mask(r=50, chamfer=10);
-    }
-
-![chamfer\_hole\_mask](images/masks/chamfer_hole_mask.png)
 
 
 ## chamfer\_cylinder\_mask()
