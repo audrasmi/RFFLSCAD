@@ -69,6 +69,8 @@ v        | vector to offset along.
 Example:
 
     offsetcube([3,4,5], [-1,1,0]);
+
+    include <BOSL/constants.scad>
     offsetcube([3,4,5], V_LEFT+V_BACK);
 
 ![offsetcube](images/shapes/offsetcube.png)
