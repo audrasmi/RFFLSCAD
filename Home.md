@@ -25,6 +25,7 @@ The library files are as follows:
   - [`math.scad`](math.scad): Useful helper functions.
   - [`constants.scad`](constants.scad): Useful constants for vectors, edges, etc.
   - [`quaternions.scad`](quaternions.scad): Functions to work with quaternion rotations.
+  - [`triangulation.scad`](triangulation.scad): Functions to triangulate `polyhedron()` faces that have more than 3 vertices.
   - [`debug.scad`](debug.scad): Modules to help debug creation of beziers, `polygons()`s and `polyhedron()`s
 
 ## Terminology
