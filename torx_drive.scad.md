@@ -1,4 +1,9 @@
-Torx driver bits.
+An approximation of Torx driver bits.
+To use, add the following line to the beginning of your file:
+
+    use <BOSL/torx_drive.scad>
+
+
 
 ## Functions
 
