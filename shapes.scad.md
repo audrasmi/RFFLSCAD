@@ -20,7 +20,8 @@ To use, add the following line to the beginning of your file:
 - [Prisms and Such](#prisms-and-such)
     - [`prism()`](#prism)
     - [`trapezoid()`](#trapezoid)
-    - [`rtrapezoid()`](#rtrapezoid)
+    - [`prismoid()`](#prismoid)
+    - [`rounded_prismoid()`](#rounded_prismoid)
     - [`pyramid()`](#pyramid)
     - [`right_triangle()`](#right_triangle)
 - [Cylinder Variants](#cylinder-variants)
@@ -299,10 +300,14 @@ Example:
 
 
 ### trapezoid()
+**DEPRECATED**: renamed to `prismoid()`
 
-- trapezoid(size1, size2, h, [center])
 
-Creates a rectangular prismoid/frustum shape.
+### prismoid()
+
+- prismoid(size1, size2, h, [center])
+
+Creates a rectangular truncated pyramid/prismoid/frustum shape.
 
 Arg     | What it does
 ------- | -----------------------------------
@@ -313,19 +318,19 @@ center  | vertically center the prism if true.  Sits on top of XY plane if false
 
 Example:
 
-    trapezoid(size1=[2,6], size2=[4,0], h=4, center=false);
-    trapezoid(size1=[1,4], size2=[4,1], h=4, center=false);
+    prismoid(size1=[2,6], size2=[4,0], h=4, center=false);
+    prismoid(size1=[1,4], size2=[4,1], h=4, center=false);
 
-![trapezoid](images/shapes/trapezoid.png)
+![prismoid](images/shapes/prismoid.png)
 
 
 
-### rtrapezoid()
+### rounded\_prismoid()
 
-- rtrapezoid(size1, size2, h, r, [center])
-- rtrapezoid(size1, size2, h, r1, r2, [center])
+- rounded\_prismoid(size1, size2, h, r, [center])
+- rounded\_prismoid(size1, size2, h, r1, r2, [center])
 
-Creates a trapezoidal prism with rounded vertical edges.
+Creates a rectangular truncated pyramid/prismoid/frustum shape with rounded vertical edges.
 
 Arg     | What it does
 ------- | -----------------------------------
@@ -339,11 +344,11 @@ center  | Vertically center the prism if true.  Sits on top of XY plane if false
 
 Example:
 
-    rtrapezoid(size1=[40,40], size2=[0,0], h=40, r=5, center=false);
-    rtrapezoid(size1=[20,60], size2=[40,30], h=40, r1=5, r2=10, center=false);
-    rtrapezoid(size1=[40,60], size2=[35,55], h=40, r1=0, r2=10, center=true);
+    rounded_prismoid(size1=[40,40], size2=[0,0], h=40, r=5, center=false);
+    rounded_prismoid(size1=[20,60], size2=[40,30], h=40, r1=5, r2=10, center=false);
+    rounded_prismoid(size1=[40,60], size2=[35,55], h=40, r1=0, r2=10, center=true);
 
-![rtrapezoid](images/shapes/rtrapezoid.png)
+![rounded\_prismoid](images/shapes/rounded_prismoid.png)
 
 
 
