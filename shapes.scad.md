@@ -307,7 +307,7 @@ Example:
 
 - prismoid(size1, size2, h, [center])
 
-Creates a rectangular truncated pyramid/prismoid/frustum shape.
+Creates a rectangular prismoid/frustum shape.
 
 Arg     | What it does
 ------- | -----------------------------------
@@ -330,7 +330,7 @@ Example:
 - rounded\_prismoid(size1, size2, h, r, [center])
 - rounded\_prismoid(size1, size2, h, r1, r2, [center])
 
-Creates a rectangular truncated pyramid/prismoid/frustum shape with rounded vertical edges.
+Creates a rectangular prismoid/frustum shape with rounded vertical edges.
 
 Arg     | What it does
 ------- | -----------------------------------
