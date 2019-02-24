@@ -550,18 +550,29 @@ Example:
 
 ### tube()
 
-- tube(h, r, wall)
-- tube(h, r1, r2, wall)
+- tube(h, r|d, wall|ir|id)
+- tube(h, r|d, ir1|id1, ir2|id2)
+- tube(h, r1|d1, r2|d2, wall|ir|id)
+- tube(h, r1|d1, r2|d2, ir1|id1, ir2|id2)
 
-Makes a hollow tube with the given outer size and wall thickness.
+Makes a hollow tube.
 
 Arg    | What it does
 ------ | -----------------------------------
 h      | height of tube. (Default: 1)
 r      | Outer radius of tube.  (Default: 1)
-r1     | Outer radius of bottom of tube.  (Default: value of r)
-r2     | Outer radius of top of tube.  (Default: value of r)
+r1     | Outer radius of bottom of tube.
+r2     | Outer radius of top of tube.
+d      | Outer diameter of tube.
+d1     | Outer diameter of bottom of tube.
+d2     | Outer diameter of top of tube.
 wall   | horizontal thickness of tube wall. (Default 0.5)
+ir     | Inner radius of tube.  (Default: 1)
+ir1    | Inner radius of bottom of tube.
+ir2    | Inner radius of top of tube.
+id     | Inner diameter of tube.
+id1    | Inner diameter of bottom of tube.
+id2    | Inner diameter of top of tube.
 
 Example:
 
