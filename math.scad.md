@@ -131,6 +131,11 @@ Calculate OpenSCAD standard number of segments for a circle of radius `r`, based
 
 
 
+### first\_defined(v)
+Given an array of values, returns the first value that is not `undef`.
+
+
+
 ## List Manipulation
 
 ### cdr(list)

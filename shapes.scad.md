@@ -55,6 +55,25 @@ To use, add the following line to the beginning of your file:
 
 ## Cube Variants
 
+### cube2pt()
+
+- cube2pt(p1, p2)
+
+Makes a cube with opposing corners at two given points.
+
+Arg      | What it does
+-------- | --------------------------
+p1       | Coordinate point of one cube corner.
+p2       | Coordinate point of opposite cube corner.
+
+Example:
+
+    cube2pt([10,20,30], [40,-10,10]);
+
+![cube2pt](images/shapes/cube2pt.png)
+
+
+
 ### offsetcube()
 
 - offsetcube(size, v)
@@ -62,7 +81,7 @@ To use, add the following line to the beginning of your file:
 Makes a cube that is offset along the given vector by half
 the cube's size.  For example, if v=[-1,1,0], the cube's
 front right edge will be centered at the origin.  It is
-highly recommended that you use the V_ constants from
+highly recommended that you use the V\_ constants from
 `BOSL/constants.scad`.
 
 Arg      | What it does
@@ -550,9 +569,13 @@ Example:
 
 ### tube()
 
-- tube(h, r|d, wall|ir|id)
+- tube(h, r|d, wall)
+- tube(h, ir|id, wall)
+- tube(h, r1|d1, r2|d2, wall)
+- tube(h, ir1|id1, ir2|id2, wall)
+- tube(h, r|d, ir|id)
 - tube(h, r|d, ir1|id1, ir2|id2)
-- tube(h, r1|d1, r2|d2, wall|ir|id)
+- tube(h, r1|d1, r2|d2, ir|id)
 - tube(h, r1|d1, r2|d2, ir1|id1, ir2|id2)
 
 Makes a hollow tube.
