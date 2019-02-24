@@ -302,7 +302,7 @@ Example:
 
 - trapezoid(size1, size2, h, [center])
 
-Creates a trapezoidal prism.
+Creates a rectangular prismoid/frustum shape.
 
 Arg     | What it does
 ------- | -----------------------------------
