@@ -299,6 +299,33 @@ Example:
 
 
 
+### interior\_fillet()
+
+- interior\_fillet(l, r, [ang], [overlap])
+
+Creates a shape that can be unioned into a concave joint between
+two faces, to fillet them.  Center this part along the edge to
+be chamferred and union it in.
+
+Arg     | What it does
+------- | -----------------------------------
+l       | Length of edge to fillet.
+r       | Radius of fillet.
+ang     | Angle between faces to fillet.  Default: 90
+overlap | Overlap size for unioning with faces.  Default: 0.01
+
+Example:
+
+    union() {
+	translate([0,-5,-10]) upcube([20, 10, 30]);
+	translate([0,10,-5]) upcube([20, 20, 10]);
+	color("green") interior_fillet(l=20, r=10, ang=60);
+    }
+
+![interior\_fillet](images/shapes/interior_fillet.png)
+
+
+
 ### trapezoid()
 **DEPRECATED**: renamed to `prismoid()`
 
