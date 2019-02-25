@@ -7,6 +7,7 @@ To use, add the following line to the beginning of your file:
 ## Table of Contents
 
 - [Cube Variants](#cube-variants)
+    - [`cube2pt()`](#cube2pt)
     - [`offsetcube()`](#offsetcube)
     - [`leftcube()`](#leftcube)
     - [`rightcube()`](#rightcube)
@@ -19,6 +20,7 @@ To use, add the following line to the beginning of your file:
     - [`rcube()`](#rcube)
 - [Prisms and Such](#prisms-and-such)
     - [`prism()`](#prism)
+    - [`interior_fillet()`](#interior_fillet)
     - [`trapezoid()`](#trapezoid)
     - [`prismoid()`](#prismoid)
     - [`rounded_prismoid()`](#rounded_prismoid)
