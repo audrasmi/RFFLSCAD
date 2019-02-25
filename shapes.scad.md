@@ -319,9 +319,9 @@ overlap | Overlap size for unioning with faces.  Default: 0.01
 Example:
 
     union() {
-	translate([0,-5,-10]) upcube([20, 10, 30]);
-	translate([0,10,-5]) upcube([20, 20, 10]);
-	color("green") interior_fillet(l=20, r=10, ang=60);
+        translate([0,-5,-10]) upcube([20, 10, 30]);
+        translate([0,10,-5]) upcube([20, 20, 10]);
+        color("green") interior_fillet(l=20, r=10, ang=60);
     }
 
 ![interior\_fillet](images/shapes/interior_fillet.png)
