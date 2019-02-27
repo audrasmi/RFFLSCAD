@@ -5,6 +5,20 @@ To use, add the following line to the beginning of your file:
 
 
 
+## Table of Contents
+
+- [Functions](#functions)
+    - [`torx_outer_diam(size)`](#torx_outer_diamsize)
+    - [`torx_inner_diam(size)`](#torx_inner_diamsize)
+    - [`torx_depth(size)`](#torx_depthsize)
+    - [`torx_tip_radius(size)`](#torx_tip_radiussize)
+    - [`torx_rounding_radius(size)`](#torx_rounding_radiussize)
+- [Modules](#modules)
+    - [`torx_drive2d(size)`](#torx_drive2dsize)
+    - [`torx_drive(size, l, center)`](#torx_drivesize-l-center)
+
+
+
 ## Functions
 
 ### torx\_outer\_diam(size)

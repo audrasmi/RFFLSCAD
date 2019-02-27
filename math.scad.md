@@ -18,6 +18,7 @@ To use, add the following line to the beginning of your file:
     - [`quantdn(x, y)`](#quantdnx-y)
     - [`quantup(x, y)`](#quantupx-y)
     - [`segs(r)`](#segsr)
+    - [`first_defined(v)`](#first_definedv)
 - [List Manipulation](#list-manipulation)
     - [`cdr(list)`](#cdrlist)
     - [`slice(arr, st, end)`](#slicearr-st-end)

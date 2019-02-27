@@ -7,7 +7,9 @@ To use, add the following line to the beginning of your file:
 ## Table of Contents
 
 - [Cube Variants](#cube-variants)
+    - [`cuboid()`](#cuboid)
     - [`cube2pt()`](#cube2pt)
+    - [`span_cube()`](#span_cube)
     - [`offsetcube()`](#offsetcube)
     - [`leftcube()`](#leftcube)
     - [`rightcube()`](#rightcube)
@@ -20,13 +22,13 @@ To use, add the following line to the beginning of your file:
     - [`rcube()`](#rcube)
 - [Prisms and Such](#prisms-and-such)
     - [`prism()`](#prism)
-    - [`interior_fillet()`](#interior_fillet)
     - [`trapezoid()`](#trapezoid)
     - [`prismoid()`](#prismoid)
     - [`rounded_prismoid()`](#rounded_prismoid)
     - [`pyramid()`](#pyramid)
     - [`right_triangle()`](#right_triangle)
 - [Cylinder Variants](#cylinder-variants)
+    - [`cyl()`](#cyl)
     - [`chamf_cyl()`](#chamf_cyl)
     - [`chamferred_cylinder()`](#chamferred_cylinder)
     - [`downcyl()`](#downcyl)
@@ -51,12 +53,44 @@ To use, add the following line to the beginning of your file:
     - [`sparse_strut3d()`](#sparse_strut3d)
 - [Miscellaneous](#miscellaneous)
     - [`nil()`](#nil)
+    - [`interior_fillet()`](#interior_fillet)
     - [`slot()`](#slot)
     - [`arced_slot()`](#arced_slot)
 
 
 
 ## Cube Variants
+
+### cuboid()
+
+- cuboid(size, [align])
+- cuboid(size, chamfer, [edges], [trimcorners], [align])
+- cuboid(size, fillet, [edges], [trimcorners], [align])
+
+Creates a cube or cuboid object.
+
+Arg         | What it does
+----------- | --------------------------
+size        | The size of the cube.
+align       | The side of the origin to align to.  Use `V_` constants from `constants.scad`.
+chamfer     | Size of chamfer, inset from sides.  Default: No chamferring.
+fillet      | Radius of fillet for edge rounding.  Default: No filleting.
+edges       | Edges to chamfer/fillet.  Use `EDGE_` constants from `constants.scad`. Default: `EDGES_ALL`
+trimcorners | If true, rounds or chamfers corners where three chamferred/filleted edges meet.  Default: true
+
+Examples:
+
+    cuboid(40);
+    cuboid(40, align=V_UP+V_BACK);
+    cuboid([20,40,60]);
+    cuboid([30,40,60], chamfer=5);
+    cuboid([30,40,60], fillet=10);
+    cuboid([30,40,60], chamfer=5, edges=EDGE_TOP_FR+EDGE_TOP_RT+EDGE_FR_RT, $fn=24);
+    cuboid([30,40,60], fillet=5, edges=EDGE_TOP_FR+EDGE_TOP_RT+EDGE_FR_RT, $fn=24);
+
+![cuboid](images/shapes/cuboid.png)
+
+
 
 ### cube2pt()
 
@@ -77,9 +111,31 @@ Example:
 
 
 
+### span\_cube()
+
+- span\_cube(xspan, yspan, zspan)
+
+Creates a cube that spans the X, Y, and Z ranges given.
+
+Arg      | What it does
+-------- | --------------------------
+xspan    | [min, max] X axis range.
+yspan    | [min, max] Y axis range.
+zspan    | [min, max] Z axis range.
+
+Example:
+
+    span_cube([10,40], [-10, 20], [10,30]);
+
+![span\_cube](images/shapes/span_cube.png)
+
+
+
 ### offsetcube()
 
 - offsetcube(size, v)
+
+**DEPRECATED**:  Use cuboid() instead.
 
 Makes a cube that is offset along the given vector by half
 the cube's size.  For example, if v=[-1,1,0], the cube's
@@ -215,6 +271,9 @@ Example:
 
 - chamfcube(size, chamfer, [chamfaxes], [chamfcorners])
 
+
+**DEPRECATED**:  Use cuboid() instead.
+
 Makes a cube with chamfered edges.
 
 Arg          | What it does
@@ -236,6 +295,8 @@ Example:
 
 - rrect(size, r, [center])
 
+**DEPRECATED**:  Use cuboid() instead.
+
 Makes a cube with rounded (filletted) vertical edges.
 
 Arg      | What it does
@@ -256,6 +317,8 @@ Examples:
 ### rcube()
 
 - rcube(size, r, [center])
+
+**DEPRECATED**:  Use cuboid() instead.
 
 Makes a cube with rounded (filletted) edges and corners.
 
@@ -282,6 +345,8 @@ Examples:
 - prism(n, h, r, [circum])
 - prism(n, h, d, [circum])
 
+**DEPRECATED**:  Use cyl() instead.
+
 Creates a vertical prism with a given number of sides.
 
 Arg     | What it does
@@ -301,49 +366,24 @@ Example:
 
 
 
-### interior\_fillet()
-
-- interior\_fillet(l, r, [ang], [overlap])
-
-Creates a shape that can be unioned into a concave joint between
-two faces, to fillet them.  Center this part along the edge to
-be chamferred and union it in.
-
-Arg     | What it does
-------- | -----------------------------------
-l       | Length of edge to fillet.
-r       | Radius of fillet.
-ang     | Angle between faces to fillet.  Default: 90
-overlap | Overlap size for unioning with faces.  Default: 0.01
-
-Example:
-
-    union() {
-        translate([0,-5,-10]) upcube([20, 10, 30]);
-        translate([0,10,-5]) upcube([20, 20, 10]);
-        color("green") interior_fillet(l=20, r=10, ang=60);
-    }
-
-![interior\_fillet](images/shapes/interior_fillet.png)
-
-
-
 ### trapezoid()
 **DEPRECATED**: renamed to `prismoid()`
 
 
 ### prismoid()
 
-- prismoid(size1, size2, h, [center])
+- prismoid(size1, size2, h, [orient], [align])
 
-Creates a rectangular prismoid/frustum shape.
+Creates a rectangular prismoid shape.
 
 Arg     | What it does
 ------- | -----------------------------------
 size1   | [width, length] of the bottom of the prism.
 size2   | [width, length] of the top of the prism.
 h       | Height of the prism.
-center  | vertically center the prism if true.  Sits on top of XY plane if false.
+orient  | Orientation of the prismoid.  Use the `ORIENT_` constants from `constants.h`.  Default: vertical.
+align   | Alignment of the prismoid.  Use the `V_` constants from `constants.h`.  Default: centered.  The `center` argument overrides `align`.
+center  | Vertically center the prism.  DEPRECATED ARGUMENT.  Use `align` instead.
 
 Example:
 
@@ -356,10 +396,10 @@ Example:
 
 ### rounded\_prismoid()
 
-- rounded\_prismoid(size1, size2, h, r, [center])
-- rounded\_prismoid(size1, size2, h, r1, r2, [center])
+- rounded\_prismoid(size1, size2, h, r, [orient], [align])
+- rounded\_prismoid(size1, size2, h, r1, r2, [orient], [align])
 
-Creates a rectangular prismoid/frustum shape with rounded vertical edges.
+Creates a rectangular prismoid shape with rounded vertical edges.
 
 Arg     | What it does
 ------- | -----------------------------------
@@ -369,7 +409,9 @@ h       | Height of the prism.
 r       | Radius of vertical edge fillets.
 r1      | Radius of vertical edge fillets at bottom.
 r2      | Radius of vertical edge fillets at top.
-center  | Vertically center the prism if true.  Sits on top of XY plane if false.
+orient  | Orientation of the prismoid.  Use the `ORIENT_` constants from `constants.h`.  Default: vertical.
+align   | Alignment of the prismoid.  Use the `V_` constants from `constants.h`.  Default: centered.  The `center` argument overrides `align`.
+center  | Vertically center the prismoid.  DEPRECATED ARGUMENT.  Use `align` instead.
 
 Example:
 
@@ -386,6 +428,8 @@ Example:
 - pyramid(n, h, l, [circum])
 - pyramid(n, h, r, [circum])
 - pyramid(n, h, d, [circum])
+
+**DEPRECATED**:  Use cyl() instead.
 
 Creates a pyramidal prism with a given number of sides.
 
@@ -430,11 +474,65 @@ Examples:
 
 ## Cylinder Variants
 
+### cyl()
+
+#### Normal cylinder usage.
+- cyl(l, r|d, [circum], [chamfer], [fillet], [orient], [align], [realign])
+- cyl(l, r1|d1, r2|d2, [circum], [chamfer], [fillet], [orient], [align], [realign])
+
+#### Chamferred cylinder usage.
+- cyl(l, r|d, chamfer1, chamfer2, [chamfang], [circum], [orient], [align], [realign])
+- cyl(l, r1|d1, r2|d2, chamfer1, chamfer2, [chamfang], [circum], [orient], [align], [realign])
+- cyl(l, r|d, chamfer1, chamfer2, chamfang1, chamfang2, [circum], [orient], [align], [realign])
+- cyl(l, r1|d1, r2|d2, chamfer1, chamfer2, chamfang1, chamfang2, [circum], [orient], [align], [realign])
+
+#### Filleted cylinder usage.
+- cyl(l, r|d, fillet1, fillet2, [circum], [realign], [orient], [align])
+- cyl(l, r1|d1, r2|d2, fillet1, fillet2, [circum], [realign], [orient], [align])
+
+Creates cylinders in various alignments and orientations,
+with optional fillets and chamfers.
+
+Arg       | What it does
+--------- | -----------------------------------
+l         | Length of cylinder along axis.
+r         | Radius of cylinder.
+r1        | Radius of the axis-negative (X-, Y-, Z-) end of cylinder.
+r2        | Radius of the axis-positive (X+, Y+, Z+) end of cylinder.
+d         | Diameter of cylinder.
+d1        | Diameter of the axis-negative (X-, Y-, Z-) end of cylinder.
+d2        | Diameter of the axis-positive (X+, Y+, Z+) end of cylinder.
+circum    | If true, cylinder should circumscribe the circle of the given size.  Otherwise inscribes.  Default: false
+chamfer   | The size of the chamfers on the ends of the cylinder, inset from end.  Default: none.
+chamfer1  | The size of the chamfer on the axis-negative (X-, Y-, Z-) end of the cylinder, inset from end.  Default: none.
+chamfer2  | The size of the chamfer on the axis-positive (X+, Y+, Z+) end of the cylinder, inset from end.  Default: none.
+chamfang  | The angle in degrees of the chamfers on the ends of the cylinder, as measured towards the axis.  Default: half the edge angle.
+chamfang1 | The angle in degrees of the chamfers on the axis-negative (X-, Y-, Z-) end of the cylinder, as measured towards the axis.
+chamfang2 | The angle in degrees of the chamfers on the axis-positive (X+, Y+, Z+) end of the cylinder, as measured towards the axis.
+fillet    | The radius of the fillets on the ends of the cylinder.  Default: none.
+fillet1   | The radius of the fillet on the axis-negative end of the cylinder.
+fillet2   | The radius of the fillet on the axis-positive end of the cylinder.
+realign   | If true, rotate the cylinder by half the angle of one face.
+orient    | Orientation of the cylinder.  Use the ORIENT\_ constants from constants.h.  Default: vertical.
+align     | Alignment of the cylinder.  Use the V\_ constants from constants.h.  Default: centered.
+
+Examples:
+
+    cyl(l=100, r=25);
+    cyl(l=100, d=50, align=V_UP);
+    cyl(l=100, r=20, circum=true, realign=true);
+    cyl(l=40, d=50, orient=ORIENT_X, align=V_LEFT, chamfer=10);
+    cyl(l=100, d1=30, d2=75, orient=ORIENT_Y, fillet=10);
+
+
+
 ### chamf\_cyl()
 ### chamferred\_cylinder()
 
 - chamf\_cyl(h, r|d, chamfer|chamfedge, [center], [top], [bottom])
 - chamferred\_cylinder(h, r|d, chamfer|chamfedge, [center], [top], [bottom])
+
+**DEPRECATED**:  Use cyl() instead.
 
 Creates a cylinder with chamferred edges.
 
@@ -573,6 +671,8 @@ Examples:
 ### rcylinder()
 ### filleted\_cylinder()
 
+**DEPRECATED**:  Use cyl() instead.
+
 - rcylinder(h, r|d, fillet, [center])
 - rcylinder(h, r1|d1, r2|d2, fillet, [center])
 - filleted\_cylinder(h, r|d, fillet, [center])
@@ -603,14 +703,14 @@ Example:
 
 ### tube()
 
-- tube(h, r|d, wall)
-- tube(h, ir|id, wall)
-- tube(h, r1|d1, r2|d2, wall)
-- tube(h, ir1|id1, ir2|id2, wall)
-- tube(h, r|d, ir|id)
-- tube(h, r|d, ir1|id1, ir2|id2)
-- tube(h, r1|d1, r2|d2, ir|id)
-- tube(h, r1|d1, r2|d2, ir1|id1, ir2|id2)
+- tube(h, r|d, wall, [orient], [align])
+- tube(h, ir|id, wall, [orient], [align])
+- tube(h, r1|d1, r2|d2, wall, [orient], [align])
+- tube(h, ir1|id1, ir2|id2, wall, [orient], [align])
+- tube(h, r|d, ir|id, [orient], [align])
+- tube(h, r|d, ir1|id1, ir2|id2, [orient], [align])
+- tube(h, r1|d1, r2|d2, ir|id, [orient], [align])
+- tube(h, r1|d1, r2|d2, ir1|id1, ir2|id2, [orient], [align])
 
 Makes a hollow tube.
 
@@ -630,6 +730,8 @@ ir2    | Inner radius of top of tube.
 id     | Inner diameter of tube.
 id1    | Inner diameter of bottom of tube.
 id2    | Inner diameter of top of tube.
+orient | Orientation of the tube.  Use the `ORIENT_` constants from `constants.h`.  Default: vertical.
+align  | Alignment of the tube.  Use the `V_` constants from `constants.h`.  Default: centered.
 
 Example:
 
@@ -942,6 +1044,33 @@ Example:
 - nil()
 
 For when you MUST pass a child to a module, but you want it to be nothing.
+
+
+
+### interior\_fillet()
+
+- interior\_fillet(l, r, [ang], [overlap])
+
+Creates a shape that can be unioned into a concave joint between
+two faces, to fillet them.  Center this part along the edge to
+be chamferred and union it in.
+
+Arg     | What it does
+------- | -----------------------------------
+l       | Length of edge to fillet.
+r       | Radius of fillet.
+ang     | Angle between faces to fillet.  Default: 90
+overlap | Overlap size for unioning with faces.  Default: 0.01
+
+Example:
+
+    union() {
+        translate([0,-5,-10]) upcube([20, 10, 30]);
+        translate([0,10,-5]) upcube([20, 20, 10]);
+        color("green") interior_fillet(l=20, r=10, ang=60);
+    }
+
+![interior\_fillet](images/shapes/interior_fillet.png)
 
 
 

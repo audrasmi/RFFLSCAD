@@ -28,6 +28,7 @@ To use, add the following line to the beginning of your file:
 
 ## Table of Contents
 
+    - [Involute Spur Gears and Racks](#involute-spur-gears-and-racks)
 - [Terminology](#terminology)
 - [Modules](#modules)
     - [`gear()`](#gear)
@@ -42,7 +43,7 @@ To use, add the following line to the beginning of your file:
     - [`pitch_radius(mm_per_tooth, number_of_teeth)`](#pitch_radiusmm_per_tooth-number_of_teeth)
     - [`outer_radius(mm_per_tooth, number_of_teeth)`](#outer_radiusmm_per_tooth-number_of_teeth)
     - [`root_radius(mm_per_tooth, number_of_teeth, clearance)`](#root_radiusmm_per_tooth-number_of_teeth-clearance)
-    - [`base_radius(mm_per_tooth, number_of_teeth, clearance)`](#base_radiusmm_per_tooth-number_of_teeth-clearance)
+    - [`base_radius(mm_per_tooth, number_of_teeth, pressure_angle)`](#base_radiusmm_per_tooth-number_of_teeth-pressure_angle)
 
 
 

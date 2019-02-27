@@ -31,6 +31,7 @@ To use, add the following line to the beginning of your file:
     - [`xrot() { ... }`](#xrot---)
     - [`yrot() { ... }`](#yrot---)
     - [`zrot() { ... }`](#zrot---)
+    - [`rotate_from_to() { ... }`](#rotate_from_to---)
     - [`rot_copies() { ... }`](#rot_copies---)
     - [`xrot_copies() { ... }`](#xrot_copies---)
     - [`yrot_copies() { ... }`](#yrot_copies---)
@@ -465,6 +466,25 @@ Example:
     zrot(90) cube(size=[9,1,4], center=true);
 
 ![zrot](images/transforms/zrot.png)
+
+
+
+## rotate\_from\_to() { ... }
+Rotates all children so that the direction vector v1 will be rotated to the direction v2.
+
+Arg  | What it is
+---- | ----------------------
+v1   | Starting direction vector.
+v2   | Target direction vector.
+a    | Angle to rotate around v1 before rotating to v2.
+
+Example:
+
+    rotate_from_to(V_UP, V_RIGHT+V_DOWN) {
+        cylinder(h=10, d=1, center=false);
+    }
+
+![rotate\_from\_to](images/transforms/rotate_from_to.png)
 
 
 

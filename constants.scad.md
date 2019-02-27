@@ -5,6 +5,19 @@ To use, add the following line to the beginning of your file:
 
 
 
+## Table of Contents
+
+- [Vectors Constants](#vectors-constants)
+- [Edge Constants](#edge-constants)
+        - [Individual edges:](#individual-edges)
+        - [X-axis aligned edges.](#x-axis-aligned-edges)
+        - [Y-axis aligned edges.](#y-axis-aligned-edges)
+        - [Z-axis aligned edges.](#z-axis-aligned-edges)
+        - [Edges by face.](#edges-by-face)
+        - [Other edge sets.](#other-edge-sets)
+
+
+
 ## Vectors Constants
 
 Useful for `mirror()`, [`offsetcube()`](shapes.scad#offsetcube), `rotate()`, etc.
