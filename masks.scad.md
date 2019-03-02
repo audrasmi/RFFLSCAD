@@ -12,7 +12,7 @@ To use, add the following line to the beginning of your file:
 - [`chamfer_mask_y()`](#chamfer_mask_y)
 - [`chamfer_mask_z()`](#chamfer_mask_z)
 - [`chamfer() { ... }`](#chamfer---)
-- [`cylinder_mask()`](#cylinder_mask)
+- [`cylinder_mask() { ... }`](#cylinder_mask---)
 - [`chamfer_cylinder_mask()`](#chamfer_cylinder_mask)
 - [`chamfer_hole_mask()`](#chamfer_hole_mask)
 - [`fillet_mask()`](#fillet_mask)
@@ -186,7 +186,7 @@ Examples:
 
 
 
-## cylinder\_mask()
+## cylinder\_mask() { ... }
 
 **Standalone usage**:
 - cylinder\_mask(r|d, chamfer, [ang], [circum], [from\_end], [orient])
