@@ -200,8 +200,8 @@ If passed children, bevels/chamfers one or both ends of the cylindrical or
 conical region specified.  If passed no children, creates a mask designed to
 bevel/chamfer the ends of the region via `difference()`.  The center of the
 mask object should align exactly with the center of the region.  If only one
-of bevel1/bevel2 are given, the end of the one not given will not be
-chamferred.
+of `chamfer1`/`fillet1` or `chamfer2`/`fillet2` are given, the end of the one
+not given will not be chamfered or filleted.
 
 Arg        | What it is
 ---------- | -----------------
@@ -556,5 +556,4 @@ Example:
     }
 
 ![fillet\_hole\_mask](images/masks/fillet_hole_mask.png)
-
 
