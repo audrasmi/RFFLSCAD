@@ -477,19 +477,21 @@ Examples:
 
 ### cyl()
 
-#### Normal cylinder usage.
-- cyl(l, r|d, [circum], [chamfer], [fillet], [orient], [align], [realign])
-- cyl(l, r1|d1, r2|d2, [circum], [chamfer], [fillet], [orient], [align], [realign])
+**Normal cylinder usage:**
+    - cyl(l, r|d, [circum], [orient], [align], [realign])
+    - cyl(l, r1|d1, r2|d2, [circum], [orient], [align], [realign])
 
-#### Chamferred cylinder usage.
-- cyl(l, r|d, chamfer1, chamfer2, [chamfang], [circum], [orient], [align], [realign])
-- cyl(l, r1|d1, r2|d2, chamfer1, chamfer2, [chamfang], [circum], [orient], [align], [realign])
-- cyl(l, r|d, chamfer1, chamfer2, chamfang1, chamfang2, [circum], [orient], [align], [realign])
-- cyl(l, r1|d1, r2|d2, chamfer1, chamfer2, chamfang1, chamfang2, [circum], [orient], [align], [realign])
+**Chamferred cylinder usage:**
+    - cyl(l, r|d, chamfer, [chamfang], [from\_end], [circum], [orient], [align], [realign])
+    - cyl(l, r1|d1, r2|d2, chamfer1, chamfer2, chamfang1, chamfang2, [from\_end], [circum], [orient], [align], [realign])
 
-#### Filleted cylinder usage.
-- cyl(l, r|d, fillet1, fillet2, [circum], [realign], [orient], [align])
-- cyl(l, r1|d1, r2|d2, fillet1, fillet2, [circum], [realign], [orient], [align])
+**Filleted cylinder usage:**
+    - cyl(l, r|d, fillet, [circum], [orient], [align], [realign])
+    - cyl(l, r1|d1, r2|d2, fillet1, fillet2, [circum], [realign], [orient], [align])
+
+**Mixed usage:**
+    - cyl(l, r1|d1, r2|d2, fillet1, chamfer2, chamfang2, [from\_end], [circum], [orient], [align], [realign])
+    - cyl(l, r1|d1, r2|d2, chamfer1, fillet2, [chamfang1], [from\_end], [circum], [orient], [align], [realign])
 
 Creates cylinders in various alignments and orientations,
 with optional fillets and chamfers.
@@ -510,6 +512,7 @@ chamfer2  | The size of the chamfer on the axis-positive (X+, Y+, Z+) end of the
 chamfang  | The angle in degrees of the chamfers on the ends of the cylinder, as measured towards the axis.  Default: half the edge angle.
 chamfang1 | The angle in degrees of the chamfers on the axis-negative (X-, Y-, Z-) end of the cylinder, as measured towards the axis.
 chamfang2 | The angle in degrees of the chamfers on the axis-positive (X+, Y+, Z+) end of the cylinder, as measured towards the axis.
+from\_end | If true, chamfer is measured from the end of the cylinder, instead of inset from the edge.  Default: false.
 fillet    | The radius of the fillets on the ends of the cylinder.  Default: none.
 fillet1   | The radius of the fillet on the axis-negative end of the cylinder.
 fillet2   | The radius of the fillet on the axis-positive end of the cylinder.
@@ -520,10 +523,13 @@ align     | Alignment of the cylinder.  Use the V\_ constants from constants.h. 
 Examples:
 
     cyl(l=100, r=25);
-    cyl(l=100, d=50, align=V_UP);
-    cyl(l=100, r=20, circum=true, realign=true);
-    cyl(l=40, d=50, orient=ORIENT_X, align=V_LEFT, chamfer=10);
-    cyl(l=100, d1=30, d2=75, orient=ORIENT_Y, fillet=10);
+    cyl(l=100, r=25, orient=ORIENT_Y);
+    cyl(l=100, d1=50, d2=20);
+    cyl(l=100, r=25, chamfer=10);
+    cyl(l=100, r=25, fillet=10);
+    cyl(l=100, d1=50, d2=30, chamfer1=10, fillet2=8, from_end=true);
+
+![cyl](images/shapes/cyl.png)
 
 
 

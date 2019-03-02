@@ -7,10 +7,12 @@ To use, add the following line to the beginning of your file:
 ## Table of Contents
 
 - [`angle_pie_mask()`](#angle_pie_mask)
+- [`chamfer_mask()`](#chamfer_mask)
 - [`chamfer_mask_x()`](#chamfer_mask_x)
 - [`chamfer_mask_y()`](#chamfer_mask_y)
 - [`chamfer_mask_z()`](#chamfer_mask_z)
 - [`chamfer() { ... }`](#chamfer---)
+- [`cylinder_mask()`](#cylinder_mask)
 - [`chamfer_cylinder_mask()`](#chamfer_cylinder_mask)
 - [`chamfer_hole_mask()`](#chamfer_hole_mask)
 - [`fillet_mask()`](#fillet_mask)
@@ -51,6 +53,29 @@ Examples:
 
 
 
+## chamfer\_mask()
+Creates a shape that can be used to chamfer a 90 degree edge.
+Difference it from the object to be chamfered.  The center of
+the mask object should align exactly with the edge to be chamfered.
+
+Arg     | What it is
+------- | -----------------
+l       | Length of mask
+chamfer | Size of chamfer
+orient  | Orientation of the mask.  Use the `ORIENT_` constants from `constants.h`.  Default: vertical.
+align   | Alignment of the mask.  Use the `V_` constants from `constants.h`.  Default: centered.
+
+Example:
+
+    difference() {
+        down(5) cube(10);
+        chamfer_mask(l=10.1, chamfer=2.0);
+    }
+
+![chamfer\_mask](images/masks/chamfer_mask.png)
+
+
+
 ## chamfer\_mask\_x()
 Creates a shape that can be used to chamfer a 90 degree edge along the X axis.
 Difference it from the object to be chamfered.  The center of the mask
@@ -60,6 +85,7 @@ Arg     | What it is
 ------- | -----------------
 l       | Length of mask
 chamfer | Size of chamfer
+align   | Alignment of the mask.  Use the `V_` constants from `constants.h`.  Default: centered.
 
 Example:
 
@@ -81,6 +107,7 @@ Arg     | What it is
 ------- | -----------------
 l       | Length of mask
 chamfer | Size of chamfer
+align   | Alignment of the mask.  Use the `V_` constants from `constants.h`.  Default: centered.
 
 Example:
 
@@ -102,6 +129,7 @@ Arg     | What it is
 ------- | -----------------
 l       | Length of mask
 chamfer | Size of chamfer
+align   | Alignment of the mask.  Use the `V_` constants from `constants.h`.  Default: centered.
 
 Example:
 
@@ -123,7 +151,7 @@ chamfer | inset of the chamfer from the edge. (Default: 1)
 size    | The size of the rectangular cuboid we want to chamfer.
 edges   | which edges do we want to chamfer.  Recommend using EDGE constants from `constants.scad`.
 
-The easiest way to use the `edges` argument is with the EDGE 
+The easiest way to use the `edges` argument is with the `EDGE`
 constants from the file `constants.scad` like this:
 
     EDGES_LEFT + EDGE_TOP_BK - EDGE_FR_LF
@@ -158,12 +186,71 @@ Examples:
 
 
 
+## cylinder\_mask()
+
+**Standalone usage**:
+- cylinder\_mask(r|d, chamfer, [ang], [circum], [from\_end], [orient])
+- cylinder\_mask(r1|d1, r2/d2, [chamfer1], [chamfer2], [ang1], [ang2], [circum], [from\_end], [orient])
+
+**Usage with children**:
+- cylinder\_mask(r|d, chamfer, [ang], [circum], [from\_end], [orient]) { ... }
+- cylinder\_mask(r1|d1, r2/d2, [chamfer1], [chamfer2], [ang1], [ang2], [circum], [from\_end], [orient]) { ... }
+
+If passed children, bevels/chamfers one or both ends of the cylindrical or
+conical region specified.  If passed no children, creates a mask designed to
+bevel/chamfer the ends of the region via `difference()`.  The center of the
+mask object should align exactly with the center of the region.  If only one
+of bevel1/bevel2 are given, the end of the one not given will not be
+chamferred.
+
+Arg        | What it is
+---------- | -----------------
+l          | Length of the cylindrical/conical region.
+r          | Radius of the cylindrical region to chamfer.
+r1         | Radius of axis-negative end of the conical region to chamfer.
+r2         | Radius of axis-positive end of the conical region to chamfer.
+d          | Diameter of the cylindrical region to chamfer.
+d1         | Diameter of axis-negative end of the conical region to chamfer.
+d2         | Diameter of axis-positive end of the conical region to chamfer.
+chamfer    | Size of the chamfers. (Default: 0.25)
+chamfer1   | Size of the chamfer on the axis-negative end of the region.
+chamfer2   | Size of the chamfer on the axis-positive end of the region.
+chamfang   | Angle of chamfers in degrees from the region axis.  (Default: half the angle between the end plane and the side.)
+chamfang1  | Angle of chamfer on the axis-negative end of the region, in degrees from the length axis.
+chamfang2  | Angle of chamfer on the axis-positive end of the region, in degrees from the length axis.
+fillet     | The radius of the fillets on the ends of the region.  Default: none.
+fillet1    | The radius of the fillet on the axis-negative end of the region.
+fillet2    | The radius of the fillet on the axis-positive end of the region.
+circum     | If true, region will circumscribe the circles of the given radii/diameters.
+from\_end  | If true, chamfer size is measured from end of cylinder.  If false, chamfer is measured inset from the radius of the cylinder.  (Default: false)
+ends\_only | If true, only mask just the ends needed and not around the middle of the region.
+overage    | The extra thickness of the mask, to remove outliers.  Default: `10`.
+orient     | XYZ rotation angle triplet used to orient the mask.  Use the `ORIENT_` constants from `constants.h`.  Default: `ORIENT_Z`.
+align      | Alignment of the region.  Use the `V_` constants from `constants.scad`.  Default: `V_ZERO`.
+
+Examples:
+
+    difference() {
+        cylinder(h=100, r1=60, r2=30, center=true);
+        cylinder_mask(l=100, r1=60, r2=30, chamfer=10, from_end=true);
+    }
+
+    cylinder_mask(l=100, r=50, chamfer1=10, fillet2=10) {
+        cube([100,50,100], center=true);
+    }
+
+![cylinder\_mask](images/masks/cylinder_mask.png)
+
+
+
 ## chamfer\_cylinder\_mask()
+
 - chamfer\_cylinder\_mask(r|d, chamfer, [ang], [from\_end])
 
-Creates a mask that can be used to bevel/chamfer the end of a cylinder.
-Difference it from the cylinder to be chamferred.  The center of the mask object
-should align exactly with the center of the end of the cylinder to be chamferred.
+Create a mask that can be used to bevel/chamfer the end of a
+cylindrical region.  Difference it from the end of the region to
+be chamferred.  The center of the mask object should align exactly
+with the center of the end of the cylindrical region to be chamferred.
 
 Arg       | What it is
 --------- | -----------------
@@ -172,6 +259,7 @@ d         | Diameter of cylinder to chamfer. Use instead of r.
 chamfer   | size of the chamfer, inset from edge. (Default: 0.25)
 ang       | Angle of chamfer in degrees from top.  (Default: 45)
 from\_end | If true, chamfer size is measured from end of cylinder.  If false, chamfer is measured inset from the radius of the cylinder.  (Default: false)
+orient    | Euller angle triplet used to orient the mask.  Use the `ORIENT_` constants from `constants.h`.  Default: vertical.
 
 Example:
 
