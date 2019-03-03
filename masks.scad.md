@@ -247,7 +247,7 @@ Examples:
 
 - chamfer\_cylinder\_mask(r|d, chamfer, [ang], [from\_end])
 
-Create a mask that can be used to bevel/chamfer the end of a
+Create a mask that can be used to bevel/chamfer one end of a
 cylindrical region.  Difference it from the end of the region to
 be chamferred.  The center of the mask object should align exactly
 with the center of the end of the cylindrical region to be chamferred.
@@ -274,7 +274,7 @@ Example:
 ## chamfer\_hole\_mask()
 - chamfer\_hole\_mask(r|d, chamfer, [ang], [from\_end])
 
-Create a mask that can be used to bevel/chamfer the end of a cylindrical
+Create a mask that can be used to bevel/chamfer one end of a cylindrical
 hole.  Difference it from the object around the hole to be chamferred.
 The center of the mask object should align exactly with the center of
 the end of the hole to be chamferred.
@@ -509,7 +509,7 @@ Example:
 
 
 ## fillet\_cylinder\_mask()
-Create a mask that can be used to round the end of a cylinder.
+Create a mask that can be used to round one end of a cylinder.
 Difference it from the cylinder to be filleted.  The center of the
 mask object should align exactly with the center of the end of the
 cylinder to be filleted.
@@ -534,7 +534,7 @@ Example:
 
 
 ## fillet\_hole\_mask()
-Create a mask that can be used to round the edge of a circular hole.
+Create a mask that can be used to round one edge of a circular hole.
 Difference it from the hole to be filleted.  The center of the
 mask object should align exactly with the center of the end of the
 hole to be filleted.
