@@ -1,1146 +1,1618 @@
+# Library File shapes.scad
+
 Common useful shapes and structured objects.
-To use, add the following line to the beginning of your file:
+To use, add the following lines to the beginning of your file:
+```
+include <BOSL/constants.scad>
+use <BOSL/shapes.scad>
+```
 
-    use <BOSL/shapes.scad>
-    include <BOSL/constants.scad>
+---
 
+# Table of Contents
 
-## Table of Contents
-
-- [Cube Variants](#cube-variants)
+1. [Cuboids](#cuboids)
     - [`cuboid()`](#cuboid)
-    - [`cube2pt()`](#cube2pt)
     - [`span_cube()`](#span_cube)
-    - [`offsetcube()`](#offsetcube)
     - [`leftcube()`](#leftcube)
     - [`rightcube()`](#rightcube)
     - [`fwdcube()`](#fwdcube)
     - [`backcube()`](#backcube)
     - [`downcube()`](#downcube)
     - [`upcube()`](#upcube)
-    - [`chamfcube()`](#chamfcube)
-    - [`rrect()`](#rrect)
-    - [`rcube()`](#rcube)
-- [Prisms and Such](#prisms-and-such)
-    - [`prism()`](#prism)
-    - [`trapezoid()`](#trapezoid)
+
+2. [Prismoids](#prismoids)
     - [`prismoid()`](#prismoid)
     - [`rounded_prismoid()`](#rounded_prismoid)
-    - [`pyramid()`](#pyramid)
     - [`right_triangle()`](#right_triangle)
-- [Cylinder Variants](#cylinder-variants)
+
+3. [Cylindroids](#cylindroids)
     - [`cyl()`](#cyl)
-    - [`chamf_cyl()`](#chamf_cyl)
-    - [`chamferred_cylinder()`](#chamferred_cylinder)
     - [`downcyl()`](#downcyl)
     - [`xcyl()`](#xcyl)
     - [`ycyl()`](#ycyl)
     - [`zcyl()`](#zcyl)
-    - [`rcylinder()`](#rcylinder)
-    - [`filleted_cylinder()`](#filleted_cylinder)
     - [`tube()`](#tube)
     - [`torus()`](#torus)
-    - [`pie_slice()`](#pie_slice)
-- [3D Printing Constructs](#3d-printing-constructs)
+
+4. [Spheroids](#spheroids)
+    - [`staggered_sphere()`](#staggered_sphere)
+
+5. [3D Printing Shapes](#3d-printing-shapes)
     - [`teardrop2d()`](#teardrop2d)
     - [`teardrop()`](#teardrop)
     - [`onion()`](#onion)
     - [`narrowing_strut()`](#narrowing_strut)
-    - [`thinning_triangle()`](#thinning_triangle)
-    - [`thinning_brace()`](#thinning_brace)
     - [`thinning_wall()`](#thinning_wall)
-    - [`corrugated_wall()`](#corrugated_wall)
+    - [`braced_thinning_wall()`](#braced_thinning_wall)
+    - [`thinning_triangle()`](#thinning_triangle)
     - [`sparse_strut()`](#sparse_strut)
     - [`sparse_strut3d()`](#sparse_strut3d)
-- [Miscellaneous](#miscellaneous)
+    - [`corrugated_wall()`](#corrugated_wall)
+
+6. [Miscellaneous](#miscellaneous)
     - [`nil()`](#nil)
+    - [`noop()`](#noop)
+    - [`pie_slice()`](#pie_slice)
     - [`interior_fillet()`](#interior_fillet)
     - [`slot()`](#slot)
     - [`arced_slot()`](#arced_slot)
 
+7. [Deprecations](#deprecations)
+    - [`cube2pt()`](#cube2pt)
+    - [`offsetcube()`](#offsetcube)
+    - [`chamfcube()`](#chamfcube)
+    - [`rrect()`](#rrect)
+    - [`rcube()`](#rcube)
+    - [`trapezoid()`](#trapezoid)
+    - [`pyramid()`](#pyramid)
+    - [`prism()`](#prism)
+    - [`chamferred_cylinder()`](#chamferred_cylinder)
+    - [`chamf_cyl()`](#chamf_cyl)
+    - [`filleted_cylinder()`](#filleted_cylinder)
+    - [`rcylinder()`](#rcylinder)
+    - [`thinning_brace()`](#thinning_brace)
 
+---
 
-## Cube Variants
+# 1. Cuboids
 
 ### cuboid()
 
-- cuboid(size, [align])
-- cuboid(size, chamfer, [edges], [trimcorners], [align])
-- cuboid(size, fillet, [edges], [trimcorners], [align])
+**Description**:
+Creates a cube or cuboid object, with optional chamfering or filleting/rounding.
 
-Creates a cube or cuboid object.
+Argument        | What it does
+--------------- | ------------------------------
+`size`          | The size of the cube.
+`chamfer`       | Size of chamfer, inset from sides.  Default: No chamferring.
+`fillet`        | Radius of fillet for edge rounding.  Default: No filleting.
+`edges`         | Edges to chamfer/fillet.  Use `EDGE` constants from constants.scad. Default: `EDGES_ALL`
+`trimcorners`   | If true, rounds or chamfers corners where three chamferred/filleted edges meet.  Default: `true`
+`p1`            | Align the cuboid's corner at `p1`, if given.  Forces `align=V_UP+V_BACK+V_RIGHT`.
+`p2`            | If given with `p1`, defines the cornerpoints of the cuboid.
+`align`         | The side of the origin to align to.  Use `V_` constants from `constants.scad`.  Default: `V_CENTER`
+`center`        | If given, overrides `align`.  A true value sets `align=V_CENTER`, false sets `align=V_UP+V_BACK+V_RIGHT`.
 
-Arg         | What it does
------------ | --------------------------
-size        | The size of the cube.
-align       | The side of the origin to align to.  Use `V_` constants from `constants.scad`.
-chamfer     | Size of chamfer, inset from sides.  Default: No chamferring.
-fillet      | Radius of fillet for edge rounding.  Default: No filleting.
-edges       | Edges to chamfer/fillet.  Use `EDGE_` constants from `constants.scad`. Default: `EDGES_ALL`
-trimcorners | If true, rounds or chamfers corners where three chamferred/filleted edges meet.  Default: true
-
-Examples:
+**Example 1**: Simple regular cube.
 
     cuboid(40);
-    cuboid(40, align=V_UP+V_BACK);
-    cuboid([20,40,60]);
-    cuboid([30,40,60], chamfer=5);
-    cuboid([30,40,60], fillet=10);
-    cuboid([30,40,60], chamfer=5, edges=EDGE_TOP_FR+EDGE_TOP_RT+EDGE_FR_RT, $fn=24);
-    cuboid([30,40,60], fillet=5, edges=EDGE_TOP_FR+EDGE_TOP_RT+EDGE_FR_RT, $fn=24);
 
-![cuboid](images/shapes/cuboid.png)
+![cuboid() Example 1](images/shapes/cuboid.png)
 
+**Example 2**: Cube with minimum cornerpoint given.
 
+    cuboid(20, p1=[10,0,0]);
 
-### cube2pt()
+![cuboid() Example 2](images/shapes/cuboid_2.png)
 
-- cube2pt(p1, p2)
+**Example 3**: Rectangular cube, with given X, Y, and Z sizes.
 
-Makes a cube with opposing corners at two given points.
+    cuboid([20,40,50]);
 
-Arg      | What it does
--------- | --------------------------
-p1       | Coordinate point of one cube corner.
-p2       | Coordinate point of opposite cube corner.
+![cuboid() Example 3](images/shapes/cuboid_3.png)
 
-Example:
+**Example 4**: Rectangular cube defined by opposing cornerpoints.
 
-    cube2pt([10,20,30], [40,-10,10]);
+    cuboid(p1=[0,10,0], p2=[20,30,30]);
 
-![cube2pt](images/shapes/cube2pt.png)
+![cuboid() Example 4](images/shapes/cuboid_4.png)
 
+**Example 5**: Rectangular cube with chamferred edges and corners.
 
+    cuboid([30,40,50], chamfer=5);
+
+![cuboid() Example 5](images/shapes/cuboid_5.png)
+
+**Example 6**: Rectangular cube with chamferred edges, without trimmed corners.
+
+    cuboid([30,40,50], chamfer=5, trimcorners=false);
+
+![cuboid() Example 6](images/shapes/cuboid_6.png)
+
+**Example 7**: Rectangular cube with rounded edges and corners.
+
+    cuboid([30,40,50], fillet=10);
+
+![cuboid() Example 7](images/shapes/cuboid_7.png)
+
+**Example 8**: Rectangular cube with rounded edges, without trimmed corners.
+
+    cuboid([30,40,50], fillet=10, trimcorners=false);
+
+![cuboid() Example 8](images/shapes/cuboid_8.png)
+
+**Example 9**: Rectangular cube with only some edges chamferred.
+
+    cuboid([30,40,50], chamfer=5, edges=EDGE_TOP_FR+EDGE_TOP_RT+EDGE_FR_RT, $fn=24);
+
+![cuboid() Example 9](images/shapes/cuboid_9.png)
+
+**Example 10**: Rectangular cube with only some edges rounded.
+
+    cuboid([30,40,50], fillet=5, edges=EDGE_TOP_FR+EDGE_TOP_RT+EDGE_FR_RT, $fn=24);
+
+![cuboid() Example 10](images/shapes/cuboid_10.png)
+
+---
 
 ### span\_cube()
 
-- span\_cube(xspan, yspan, zspan)
-
+**Description**:
 Creates a cube that spans the X, Y, and Z ranges given.
 
-Arg      | What it does
--------- | --------------------------
-xspan    | [min, max] X axis range.
-yspan    | [min, max] Y axis range.
-zspan    | [min, max] Z axis range.
+Argument        | What it does
+--------------- | ------------------------------
+`xspan`         | [min, max] X axis range.
+`yspan`         | [min, max] Y axis range.
+`zspan`         | [min, max] Z axis range.
 
-Example:
+**Example**:
 
-    span_cube([10,40], [-10, 20], [10,30]);
+    span_cube([0,15], [5,10], [0, 10]);
 
-![span\_cube](images/shapes/span_cube.png)
+![span\_cube() Example](images/shapes/span_cube.png)
 
-
-
-### offsetcube()
-
-- offsetcube(size, v)
-
-**DEPRECATED**:  Use cuboid() instead.
-
-Makes a cube that is offset along the given vector by half
-the cube's size.  For example, if v=[-1,1,0], the cube's
-front right edge will be centered at the origin.  It is
-highly recommended that you use the V\_ constants from
-`BOSL/constants.scad`.
-
-Arg      | What it does
--------- | --------------------------
-size     | size of cube [X,Y,Z].  (Default: [1,1,1])
-v        | vector to offset along.
-
-Example:
-
-    offsetcube([3,4,5], [-1,1,0]);
-
-    include <BOSL/constants.scad>
-    offsetcube([3,4,5], V_LEFT+V_BACK);
-
-![offsetcube](images/shapes/offsetcube.png)
-
-
+---
 
 ### leftcube()
 
-- leftcube(size)
+**Usage**:
+- leftcube(size);
 
-Makes a cube that has its right face centered at the origin.
+**Description**:
+Makes a cube that is aligned on the left side of the origin.
 
-Arg      | What it does
--------- | --------------------------
-size     | size of cube [X,Y,Z].  (Default: [1,1,1])
+Argument        | What it does
+--------------- | ------------------------------
+`size`          | The size of the cube to make.
 
-Example:
+**Example**:
 
-    leftcube([10, 10, 10]);
+    leftcube([20,30,40]);
 
-![leftcube](images/shapes/leftcube.png)
+![leftcube() Example](images/shapes/leftcube.png)
 
-
+---
 
 ### rightcube()
 
-- rightcube(size)
+**Usage**:
+- rightcube(size);
 
-Makes a cube that has its left face centered at the origin.
+**Description**:
+Makes a cube that is aligned on the right side of the origin.
 
-Arg      | What it does
--------- | --------------------------
-size     | size of cube [X,Y,Z].  (Default: [1,1,1])
+Argument        | What it does
+--------------- | ------------------------------
+`size`          | The size of the cube to make.
 
-Example:
+**Example**:
 
-    rightcube([10, 10, 10]);
+    rightcube([20,30,40]);
 
-![rightcube](images/shapes/rightcube.png)
+![rightcube() Example](images/shapes/rightcube.png)
 
-
+---
 
 ### fwdcube()
 
-- fwdcube(size)
+**Usage**:
+- fwdcube(size);
 
-Makes a cube that has its back face centered at the origin.
+**Description**:
+Makes a cube that is aligned on the front side of the origin.
 
-Arg      | What it does
--------- | --------------------------
-size     | size of cube [X,Y,Z].  (Default: [1,1,1])
+Argument        | What it does
+--------------- | ------------------------------
+`size`          | The size of the cube to make.
 
-Example:
+**Example**:
 
-    fwdcube([10, 10, 10]);
+    fwdcube([20,30,40]);
 
-![fwdcube](images/shapes/fwdcube.png)
+![fwdcube() Example](images/shapes/fwdcube.png)
 
-
+---
 
 ### backcube()
 
-- backcube(size)
+**Usage**:
+- backcube(size);
 
-Makes a cube that has its front face centered at the origin.
+**Description**:
+Makes a cube that is aligned on the front side of the origin.
 
-Arg      | What it does
--------- | --------------------------
-size     | size of cube [X,Y,Z].  (Default: [1,1,1])
+Argument        | What it does
+--------------- | ------------------------------
+`size`          | The size of the cube to make.
 
-Example:
+**Example**:
 
-    backcube([10, 10, 10]);
+    backcube([20,30,40]);
 
-![backcube](images/shapes/backcube.png)
+![backcube() Example](images/shapes/backcube.png)
 
-
+---
 
 ### downcube()
 
-- downcube(size)
+**Usage**:
+- downcube(size);
 
-Makes a cube that has its top face centered at the origin.
+**Description**:
+Makes a cube that is aligned on the bottom side of the origin.
 
-Arg      | What it does
--------- | --------------------------
-size     | size of cube [X,Y,Z].  (Default: [1,1,1])
+Argument        | What it does
+--------------- | ------------------------------
+`size`          | The size of the cube to make.
 
-Example:
+**Example**:
 
-    downcube([10, 10, 10]);
+    downcube([20,30,40]);
 
-![downcube](images/shapes/downcube.png)
+![downcube() Example](images/shapes/downcube.png)
 
-
+---
 
 ### upcube()
 
-- upcube(size)
+**Usage**:
+- upcube(size);
 
-Makes a cube that has its bottom face centered at the origin.
+**Description**:
+Makes a cube that is aligned on the top side of the origin.
 
-Arg      | What it does
--------- | --------------------------
-size     | size of cube [X,Y,Z].  (Default: [1,1,1])
+Argument        | What it does
+--------------- | ------------------------------
+`size`          | The size of the cube to make.
 
-Example:
+**Example**:
 
-    upcube([4, 5, 3]);
+    upcube([20,30,40]);
 
-![upcube](images/shapes/upcube.png)
+![upcube() Example](images/shapes/upcube.png)
 
+---
 
-
-### chamfcube()
-
-- chamfcube(size, chamfer, [chamfaxes], [chamfcorners])
-
-
-**DEPRECATED**:  Use cuboid() instead.
-
-Makes a cube with chamfered edges.
-
-Arg          | What it does
------------- | --------------------------
-size         | size of cube [X,Y,Z].  (Default: [1,1,1])
-chamfer      | chamfer inset along axis.  (Default: 0.25)
-chamfaxes    | Array [X, Y, Z] of boolean values to specify which axis edges should be chamfered.
-chamfcorners | boolean to specify if corners should be flat chamferred.
-
-Example:
-
-    chamfcube(size=[10,20,30], chamfer=1, chamfaxes=[1,1,1], chamfcorners=true);
-
-![chamfcube](images/shapes/chamfcube.png)
-
-
-
-### rrect()
-
-- rrect(size, r, [center])
-
-**DEPRECATED**:  Use cuboid() instead.
-
-Makes a cube with rounded (filletted) vertical edges.
-
-Arg      | What it does
--------- | --------------------------
-size     | size of cube [X,Y,Z].  (Default: [1,1,1])
-r        | radius of edge/corner rounding.  (Default: 0.25)
-center   | if true, object will be centered.  If false, sits on top of XY plane.
-
-Examples:
-
-    rrect(size=[9,4,1], r=1, center=true);
-    rrect(size=[5,7,3], r=1, $fn=24);
-
-![rrect](images/shapes/rrect.png)
-
-
-
-### rcube()
-
-- rcube(size, r, [center])
-
-**DEPRECATED**:  Use cuboid() instead.
-
-Makes a cube with rounded (filletted) edges and corners.
-
-Arg      | What it does
--------- | --------------------------
-size     | size of cube [X,Y,Z].  (Default: [1,1,1])
-r        | radius of edge/corner rounding.  (Default: 0.25)
-center   | if true, object will be centered.  If false, sits on top of XY plane.
-
-Examples:
-
-    rcube(size=[9,4,1], r=0.333, $fn=24);
-    rcube(size=[5,7,3], r=1, center=true);
-
-![rcube](images/shapes/rcube.png)
-
-
-
-## Prisms and Such
-
-### prism()
-
-- prism(n, h, l, [circum])
-- prism(n, h, r, [circum])
-- prism(n, h, d, [circum])
-
-**DEPRECATED**:  Use cyl() instead.
-
-Creates a vertical prism with a given number of sides.
-
-Arg     | What it does
-------- | -----------------------------------
-n       | number of sides.
-h       | height of the prism.
-l       | length of one side of the prism. (optional)
-r       | radius of the prism. (optional)
-d       | diameter of the prism. (optional)
-circum  | prism circumscribes the circle of the given radius or diam.
-
-Example:
-
-    prism(n=6, h=3, d=4, circum=true);
-
-![prism](images/shapes/prism.png)
-
-
-
-### trapezoid()
-**DEPRECATED**: renamed to `prismoid()`
-
+# 2. Prismoids
 
 ### prismoid()
 
-- prismoid(size1, size2, h, [orient], [align])
+**Usage**:
+- prismoid(size1, size2, h, [shift], [orient], [align|center]);
 
+**Description**:
 Creates a rectangular prismoid shape.
 
-Arg     | What it does
-------- | -----------------------------------
-size1   | [width, length] of the bottom of the prism.
-size2   | [width, length] of the top of the prism.
-h       | Height of the prism.
-orient  | Orientation of the prismoid.  Use the `ORIENT_` constants from `constants.h`.  Default: vertical.
-align   | Alignment of the prismoid.  Use the `V_` constants from `constants.h`.  Default: centered.  The `center` argument overrides `align`.
-center  | Vertically center the prism.  DEPRECATED ARGUMENT.  Use `align` instead.
+Argument        | What it does
+--------------- | ------------------------------
+`size1`         | [width, length] of the axis-negative end of the prism.
+`size2`         | [width, length] of the axis-positive end of the prism.
+`h`             | Height of the prism.
+`shift`         | [x, y] amount to shift the center of the top with respect to the center of the bottom.
+`orient`        | Orientation of the prismoid.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_Z`.
+`align`         | Alignment of the prismoid by the axis-negative (size1) end.  Use the `V_` constants from `constants.scad`.  Default: `ALIGN_POS`.
+`center`        | If given, overrides `align`.  A true value sets `align=V_CENTER`, false sets `align=ALIGN_POS`.
 
-Example:
+**Example 1**: Rectangular Pyramid
 
-    prismoid(size1=[2,6], size2=[4,0], h=4, center=false);
-    prismoid(size1=[1,4], size2=[4,1], h=4, center=false);
+    prismoid(size1=[40,40], size2=[0,0], h=20);
 
-![prismoid](images/shapes/prismoid.png)
+![prismoid() Example 1](images/shapes/prismoid.png)
 
+**Example 2**: Prism
 
+    prismoid(size1=[40,40], size2=[0,40], h=20);
+
+![prismoid() Example 2](images/shapes/prismoid_2.png)
+
+**Example 3**: Truncated Pyramid
+
+    prismoid(size1=[35,50], size2=[20,30], h=20);
+
+![prismoid() Example 3](images/shapes/prismoid_3.png)
+
+**Example 4**: Wedge
+
+    prismoid(size1=[60,35], size2=[30,0], h=30);
+
+![prismoid() Example 4](images/shapes/prismoid_4.png)
+
+**Example 5**: Truncated Tetrahedron
+
+    prismoid(size1=[10,40], size2=[40,10], h=40);
+
+![prismoid() Example 5](images/shapes/prismoid_5.png)
+
+**Example 6**: Inverted Truncated Pyramid
+
+    prismoid(size1=[15,5], size2=[30,20], h=20);
+
+![prismoid() Example 6](images/shapes/prismoid_6.png)
+
+**Example 7**: Right Prism
+
+    prismoid(size1=[30,60], size2=[0,60], shift=[-15,0], h=30);
+
+![prismoid() Example 7](images/shapes/prismoid_7.png)
+
+**Example 8**: Shifting/Skewing
+
+    prismoid(size1=[50,30], size2=[20,20], h=20, shift=[15,5]);
+
+![prismoid() Example 8](images/shapes/prismoid_8.gif)
+
+---
 
 ### rounded\_prismoid()
 
-- rounded\_prismoid(size1, size2, h, r, [orient], [align])
-- rounded\_prismoid(size1, size2, h, r1, r2, [orient], [align])
-
+**Description**:
 Creates a rectangular prismoid shape with rounded vertical edges.
 
-Arg     | What it does
-------- | -----------------------------------
-size1   | Size [width, length] of the bottom of the prism.
-size2   | Size [width, length] of the top of the prism.
-h       | Height of the prism.
-r       | Radius of vertical edge fillets.
-r1      | Radius of vertical edge fillets at bottom.
-r2      | Radius of vertical edge fillets at top.
-orient  | Orientation of the prismoid.  Use the `ORIENT_` constants from `constants.h`.  Default: vertical.
-align   | Alignment of the prismoid.  Use the `V_` constants from `constants.h`.  Default: centered.  The `center` argument overrides `align`.
-center  | Vertically center the prismoid.  DEPRECATED ARGUMENT.  Use `align` instead.
+Argument        | What it does
+--------------- | ------------------------------
+`size1`         | [width, length] of the bottom of the prism.
+`size2`         | [width, length] of the top of the prism.
+`h`             | Height of the prism.
+`r`             | radius of vertical edge fillets.
+`r1`            | radius of vertical edge fillets at bottom.
+`r2`            | radius of vertical edge fillets at top.
+`shift`         | [x, y] amount to shift the center of the top with respect to the center of the bottom.
+`orient`        | Orientation of the prismoid.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_Z`.
+`align`         | Alignment of the prismoid by the axis-negative (`size1`) end.  Use the `V_` constants from `constants.scad`.  Default: `V_UP`.
+`center`        | vertically center the prism.  Overrides `align`.
 
-Example:
+**Example 1**: Rounded Pyramid
 
-    rounded_prismoid(size1=[40,40], size2=[0,0], h=40, r=5, center=false);
-    rounded_prismoid(size1=[20,60], size2=[40,30], h=40, r1=5, r2=10, center=false);
-    rounded_prismoid(size1=[40,60], size2=[35,55], h=40, r1=0, r2=10, center=true);
+    rounded_prismoid(size1=[40,40], size2=[0,0], h=25, r=5);
 
-![rounded\_prismoid](images/shapes/rounded_prismoid.png)
+![rounded\_prismoid() Example 1](images/shapes/rounded_prismoid.png)
 
+**Example 2**: Centered Rounded Pyramid
 
+    rounded_prismoid(size1=[40,40], size2=[0,0], h=25, r=5, center=true);
 
-### pyramid()
+![rounded\_prismoid() Example 2](images/shapes/rounded_prismoid_2.png)
 
-- pyramid(n, h, l, [circum])
-- pyramid(n, h, r, [circum])
-- pyramid(n, h, d, [circum])
+**Example 3**: Disparate Top and Bottom Radii
 
-**DEPRECATED**:  Use cyl() instead.
+    rounded_prismoid(size1=[40,60], size2=[40,60], h=20, r1=3, r2=10, $fn=24);
 
-Creates a pyramidal prism with a given number of sides.
+![rounded\_prismoid() Example 3](images/shapes/rounded_prismoid_3.png)
 
-Arg     | What it does
-------- | -----------------------------------
-n       | number of pyramid sides.
-h       | height of the pyramid.
-l       | length of one side of the pyramid. (optional)
-r       | radius of the base of the pyramid. (optional)
-d       | diameter of the base of the pyramid. (optional)
-circum  | base circumscribes the circle of the given radius or diam.
+**Example 4**: Shifting/Skewing
 
-Example:
+    rounded_prismoid(size1=[50,30], size2=[20,20], h=20, shift=[15,5], r=5);
 
-    pyramid(h=10, l=5, n=4);
-    pyramid(h=10, r=5, n=5);
-    pyramid(h=3, d=4, n=6, circum=true);
+![rounded\_prismoid() Example 4](images/shapes/rounded_prismoid_4.gif)
 
-![pyramid](images/shapes/pyramid.png)
-
-
+---
 
 ### right\_triangle()
 
-- right\_triangle(size, [center])
+**Usage**:
+- right\_triangle(size, [orient], [align|center]);
 
-Creates a right triangle, with the hypotenuse on the right (X+) side.
+**Description**:
+Creates a 3D right triangular prism.
 
-Arg     | What it does
-------- | -----------------------------------
-size    | [width, thickness, height]
-center  | true if triangle will be centered.
+Argument        | What it does
+--------------- | ------------------------------
+`size`          | [width, thickness, height]
+`orient`        | The axis to place the hypotenuse along.  Only accepts `ORIENT_X`, `ORIENT_Y`, or `ORIENT_Z` from `constants.scad`.  Default: `ORIENT_Y`.
+`align`         | The side of the origin to align to.  Use `V_` constants from `constants.scad`.  Default: `V_UP+V_BACK+V_RIGHT`.
+`center`        | If given, overrides `align`.  A true value sets `align=V_CENTER`, false sets `align=V_UP+V_BACK+V_RIGHT`.
 
-Examples:
+**Example 1**: Centered
 
-    right_triangle([4, 1, 6], center=true);
-    right_triangle([4, 1, 9]);
+    right_triangle([60, 10, 40], center=true);
 
-![right\_triangle](images/shapes/right_triangle.png)
+![right\_triangle() Example 1](images/shapes/right_triangle.png)
 
+**Example 2**: *Non*-Centered
 
+    right_triangle([60, 10, 40]);
 
-## Cylinder Variants
+![right\_triangle() Example 2](images/shapes/right_triangle_2.png)
+
+---
+
+# 3. Cylindroids
 
 ### cyl()
 
-**Normal cylinder usage:**
-    - cyl(l, r|d, [circum], [orient], [align], [realign])
-    - cyl(l, r1|d1, r2|d2, [circum], [orient], [align], [realign])
+**Normal Cylinders**:
+- cyl(l|h, r|d, [circum], [realign], [orient], [align], [center]);
+- cyl(l|h, r1|d1, r2/d2, [circum], [realign], [orient], [align], [center]);
 
-**Chamferred cylinder usage:**
-    - cyl(l, r|d, chamfer, [chamfang], [from\_end], [circum], [orient], [align], [realign])
-    - cyl(l, r1|d1, r2|d2, chamfer1, chamfer2, chamfang1, chamfang2, [from\_end], [circum], [orient], [align], [realign])
+**Chamferred Cylinders**:
+- cyl(l|h, r|d, chamfer, [chamfang], [from\_end], [circum], [realign], [orient], [align], [center]);
+- cyl(l|h, r|d, chamfer1, [chamfang1], [from\_end], [circum], [realign], [orient], [align], [center]);
+- cyl(l|h, r|d, chamfer2, [chamfang2], [from\_end], [circum], [realign], [orient], [align], [center]);
+- cyl(l|h, r|d, chamfer1, chamfer2, [chamfang1], [chamfang2], [from\_end], [circum], [realign], [orient], [align], [center]);
 
-**Filleted cylinder usage:**
-    - cyl(l, r|d, fillet, [circum], [orient], [align], [realign])
-    - cyl(l, r1|d1, r2|d2, fillet1, fillet2, [circum], [realign], [orient], [align])
+**Rounded/Filleted Cylinders**:
+- cyl(l|h, r|d, fillet, [circum], [realign], [orient], [align], [center]);
+- cyl(l|h, r|d, fillet1, [circum], [realign], [orient], [align], [center]);
+- cyl(l|h, r|d, fillet2, [circum], [realign], [orient], [align], [center]);
+- cyl(l|h, r|d, fillet1, fillet2, [circum], [realign], [orient], [align], [center]);
 
-**Mixed usage:**
-    - cyl(l, r1|d1, r2|d2, fillet1, chamfer2, chamfang2, [from\_end], [circum], [orient], [align], [realign])
-    - cyl(l, r1|d1, r2|d2, chamfer1, fillet2, [chamfang1], [from\_end], [circum], [orient], [align], [realign])
-
+**Description**:
 Creates cylinders in various alignments and orientations,
-with optional fillets and chamfers.
+with optional fillets and chamfers. You can use `r` and `l`
+interchangably, and all variants allow specifying size
+by either `r`|`d`, or `r1`|`d1` and `r2`|`d2`.
+Note that that chamfers and fillets cannot cross the
+midpoint of the cylinder's length.
 
-Arg       | What it does
---------- | -----------------------------------
-l         | Length of cylinder along axis.
-r         | Radius of cylinder.
-r1        | Radius of the axis-negative (X-, Y-, Z-) end of cylinder.
-r2        | Radius of the axis-positive (X+, Y+, Z+) end of cylinder.
-d         | Diameter of cylinder.
-d1        | Diameter of the axis-negative (X-, Y-, Z-) end of cylinder.
-d2        | Diameter of the axis-positive (X+, Y+, Z+) end of cylinder.
-circum    | If true, cylinder should circumscribe the circle of the given size.  Otherwise inscribes.  Default: false
-chamfer   | The size of the chamfers on the ends of the cylinder, inset from end.  Default: none.
-chamfer1  | The size of the chamfer on the axis-negative (X-, Y-, Z-) end of the cylinder, inset from end.  Default: none.
-chamfer2  | The size of the chamfer on the axis-positive (X+, Y+, Z+) end of the cylinder, inset from end.  Default: none.
-chamfang  | The angle in degrees of the chamfers on the ends of the cylinder, as measured towards the axis.  Default: half the edge angle.
-chamfang1 | The angle in degrees of the chamfers on the axis-negative (X-, Y-, Z-) end of the cylinder, as measured towards the axis.
-chamfang2 | The angle in degrees of the chamfers on the axis-positive (X+, Y+, Z+) end of the cylinder, as measured towards the axis.
-from\_end | If true, chamfer is measured from the end of the cylinder, instead of inset from the edge.  Default: false.
-fillet    | The radius of the fillets on the ends of the cylinder.  Default: none.
-fillet1   | The radius of the fillet on the axis-negative end of the cylinder.
-fillet2   | The radius of the fillet on the axis-positive end of the cylinder.
-realign   | If true, rotate the cylinder by half the angle of one face.
-orient    | Orientation of the cylinder.  Use the ORIENT\_ constants from constants.h.  Default: vertical.
-align     | Alignment of the cylinder.  Use the V\_ constants from constants.h.  Default: centered.
+Argument        | What it does
+--------------- | ------------------------------
+`l` / `h`       | Length of cylinder along oriented axis. (Default: 1.0)
+`r`             | Radius of cylinder.
+`r1`            | Radius of the negative (X-, Y-, Z-) end of cylinder.
+`r2`            | Radius of the positive (X+, Y+, Z+) end of cylinder.
+`d`             | Diameter of cylinder.
+`d1`            | Diameter of the negative (X-, Y-, Z-) end of cylinder.
+`d2`            | Diameter of the positive (X+, Y+, Z+) end of cylinder.
+`circum`        | If true, cylinder should circumscribe the circle of the given size.  Otherwise inscribes.  Default: `false`
+`chamfer`       | The size of the chamfers on the ends of the cylinder.  Default: none.
+`chamfer1`      | The size of the chamfer on the axis-negative end of the cylinder.  Default: none.
+`chamfer2`      | The size of the chamfer on the axis-positive end of the cylinder.  Default: none.
+`chamfang`      | The angle in degrees of the chamfers on the ends of the cylinder.
+`chamfang1`     | The angle in degrees of the chamfer on the axis-negative end of the cylinder.
+`chamfang2`     | The angle in degrees of the chamfer on the axis-positive end of the cylinder.
+`from_end`      | If true, chamfer is measured from the end of the cylinder, instead of inset from the edge.  Default: `false`.
+`fillet`        | The radius of the fillets on the ends of the cylinder.  Default: none.
+`fillet1`       | The radius of the fillet on the axis-negative end of the cylinder.
+`fillet2`       | The radius of the fillet on the axis-positive end of the cylinder.
+`realign`       | If true, rotate the cylinder by half the angle of one face.
+`orient`        | Orientation of the cylinder.  Use the `ORIENT_` constants from `constants.scad`.  Default: vertical.
+`align`         | Alignment of the cylinder.  Use the `V_` constants from `constants.scad`.  Default: centered.
+`center`        | If given, overrides `align`.  A true value sets `align=V_CENTER`, false sets `align=ALIGN_POS`.
 
-Examples:
+**Example 1**: By Radius
 
-    cyl(l=100, r=25);
-    cyl(l=100, r=25, orient=ORIENT_Y);
-    cyl(l=100, d1=50, d2=20);
-    cyl(l=100, r=25, chamfer=10);
-    cyl(l=100, r=25, fillet=10);
-    cyl(l=100, d1=50, d2=30, chamfer1=10, fillet2=8, from_end=true);
+    xdistribute(30) {
+        cyl(l=40, r=10);
+        cyl(l=40, r1=10, r2=5);
+    }
 
-![cyl](images/shapes/cyl.png)
+![cyl() Example 1](images/shapes/cyl.png)
 
+**Example 2**: By Diameter
 
+    xdistribute(30) {
+        cyl(l=40, d=25);
+        cyl(l=40, d1=25, d2=10);
+    }
 
-### chamf\_cyl()
-### chamferred\_cylinder()
+![cyl() Example 2](images/shapes/cyl_2.png)
 
-- chamf\_cyl(h, r|d, chamfer|chamfedge, [center], [top], [bottom])
-- chamferred\_cylinder(h, r|d, chamfer|chamfedge, [center], [top], [bottom])
+**Example 3**: Chamferring
 
-**DEPRECATED**:  Use cyl() instead.
+    xdistribute(60) {
+        // Shown Left to right.
+        cyl(l=40, d=40, chamfer=7);  // Default chamfang=45
+        cyl(l=40, d=40, chamfer=7, chamfang=30, from_end=false);
+        cyl(l=40, d=40, chamfer=7, chamfang=30, from_end=true);
+    }
 
-Creates a cylinder with chamferred edges.
+![cyl() Example 3](images/shapes/cyl_3.png)
 
-Arg       | What it does
---------- | -----------------------------------
-h         | height of cylinder. (Default: 1.0)
-r         | radius of cylinder. (Default: 1.0)
-d         | diameter of cylinder. (use instead of r)
-chamfer   | radial inset of the edge chamfer. (Default: 0.25)
-chamfedge | length of the chamfer edge. (Use instead of chamfer)
-center    | boolean.  If true, cylinder is centered. (Default: false)
-top       | boolean.  If true, chamfer the top edges. (Default: True)
-bottom    | boolean.  If true, chamfer the bottom edges. (Default: True)
+**Example 4**: Rounding/Filleting
 
-Example:
+    cyl(l=40, d=40, fillet=10);
 
-    chamf_cyl(h=50, d=40, chamfer=5, angle=45, bottom=false, center=true);
-    chamferred_cylinder(h=50, r=20, chamfedge=10, angle=30, center=true);
+![cyl() Example 4](images/shapes/cyl_4.png)
 
-![chamf\_cyl](images/shapes/chamf_cyl.png)
+**Example 5**: Heterogenous Chamfers and Fillets
 
+    ydistribute(80) {
+        // Shown Front to Back.
+        cyl(l=40, d=40, fillet1=15, orient=ORIENT_X);
+        cyl(l=40, d=40, chamfer2=5, orient=ORIENT_X);
+        cyl(l=40, d=40, chamfer1=12, fillet2=10, orient=ORIENT_X);
+    }
 
+![cyl() Example 5](images/shapes/cyl_5.png)
+
+**Example 6**: Putting it all together
+
+    cyl(l=40, d1=25, d2=15, chamfer1=10, chamfang1=30, from_end=true, fillet2=5);
+
+![cyl() Example 6](images/shapes/cyl_6.png)
+
+---
 
 ### downcyl()
 
-- downcyl(h, r|d)
-- downcyl(h, r1|d1, r2|d2)
+**Usage**:
+- downcyl(l|h, r|d);
+- downcyl(l|h, r1|d1, r2|d2);
 
-Creates a cylinder with its top face centered at the origin.
+**Description**:
+Creates a cylinder aligned below the origin.
 
-Arg  | What it does
----- | -----------------------------------
-h    | height of cylinder. (Default: 1.0)
-r    | radius of cylinder. (Default: 1.0)
-r1   | bottom radius of cone. (use with `r2` instead of `r`)
-r2   | top radius of cone. (use with `r1` instead of `r`)
-d    | diameter of cylinder. (use instead of `r`)
-d1   | bottom diameter of cone. (use with `d2` instead of `d` or `r`)
-d2   | top diameter of cone. (use with `d1` instead of `d` or `r`)
+Argument        | What it does
+--------------- | ------------------------------
+`l` / `h`       | Length of cylinder. (Default: 1.0)
+`r`             | Radius of cylinder.
+`r1`            | Bottom radius of cylinder.
+`r2`            | Top radius of cylinder.
+`d`             | Diameter of cylinder. (use instead of r)
+`d1`            | Bottom diameter of cylinder.
+`d2`            | Top diameter of cylinder.
 
-Example:
+**Example 1**: Cylinder
 
-    downcyl(r=10, h=50);
-    downcyl(r1=15, r2=5, h=45);
-    downcyl(d=15, h=40);
+    downcyl(r=20, h=40);
 
-![downcyl](images/shapes/downcyl.png)
+![downcyl() Example 1](images/shapes/downcyl.png)
 
+**Example 2**: Cone
 
+    downcyl(r1=10, r2=20, h=40);
+
+![downcyl() Example 2](images/shapes/downcyl_2.png)
+
+---
 
 ### xcyl()
 
-- xcyl(l, r|d, [align])
-- xcyl(l, r1|d1, r2|d2, [align])
+**Usage**:
+- xcyl(l|h, r|d, [align|center]);
+- xcyl(l|h, r1|d1, r2|d2, [align|center]);
 
-Creates a cylinder oriented along the X axis.  Use like the
-built-in `cylinder()` module, except use `l` instead of `h`.
+**Description**:
+Creates a cylinder oriented along the X axis.
 
-Arg   | What it does
------ | -----------------------------------
-l     | Length of cylinder. (Default: 1.0)
-r     | Radius of cylinder.
-r1    | Optional radius of left (X-) end of cylinder.
-r2    | Optional radius of right (X+) end of cylinder.
-d     | Optional diameter of cylinder. (use instead of r)
-d1    | Optional diameter of left (X-) end of cylinder.
-d2    | Optional diameter of right (X+) end of cylinder.
-align | Alignment relative to the origin.  `+1` for right of, `0` for centered, `-1` for left of.  Default: `0` (center)
+Argument        | What it does
+--------------- | ------------------------------
+`l` / `h`       | Length of cylinder along oriented axis. (Default: `1.0`)
+`r`             | Radius of cylinder.
+`r1`            | Optional radius of left (X-) end of cylinder.
+`r2`            | Optional radius of right (X+) end of cylinder.
+`d`             | Optional diameter of cylinder. (use instead of `r`)
+`d1`            | Optional diameter of left (X-) end of cylinder.
+`d2`            | Optional diameter of right (X+) end of cylinder.
+`align`         | The side of the origin to align to.  Use `V_` constants from `constants.scad`. Default: `V_CENTER`
+`center`        | If given, overrides `align`.  A `true` value sets `align=V_CENTER`, `false` sets `align=ALIGN_POS`.
 
-Examples:
+**Example 1**: By Radius
 
-    xcyl(d1=5, d2=15, l=20, align=-1);
-    xcyl(d=10, l=25);
+    ydistribute(50) {
+        xcyl(l=35, r=10);
+        xcyl(l=35, r1=15, r2=5);
+    }
 
-![xcyl](images/shapes/xcyl.png)
+![xcyl() Example 1](images/shapes/xcyl.png)
 
+**Example 2**: By Diameter
 
+    ydistribute(50) {
+        xcyl(l=35, d=20);
+        xcyl(l=35, d1=30, d2=10);
+    }
+
+![xcyl() Example 2](images/shapes/xcyl_2.png)
+
+---
 
 ### ycyl()
 
-- ycyl(l, r|d, [align])
-- ycyl(l, r1|d1, r2|d2, [align])
+**Usage**:
+- ycyl(l|h, r|d, [align|center]);
+- ycyl(l|h, r1|d1, r2|d2, [align|center]);
 
-Creates a cylinder oriented along the Y axis.  Use like the
-built-in `cylinder()` module, except use `l` instead of `h`.
+**Description**:
+Creates a cylinder oriented along the Y axis.
 
-Arg   | What it does
------ | -----------------------------------
-l     | length of cylinder. (Default: 1.0)
-r     | radius of cylinder.
-r1    | optional radius of front (Y-) end of cylinder.
-r2    | optional radius of back (Y+) end of cylinder.
-d     | optional diameter of cylinder. (use instead of r)
-d1    | optional diameter of front (Y-) end of cylinder.
-d2    | optional diameter of back (Y+) end of cylinder.
-align | Alignment relative to the origin.  `+1` for behind, `0` for centered, `-1` for before.  Default: `0` (center)
+Argument        | What it does
+--------------- | ------------------------------
+`l` / `h`       | Length of cylinder along oriented axis. (Default: `1.0`)
+`r`             | Radius of cylinder.
+`r1`            | Radius of front (Y-) end of cone.
+`r2`            | Radius of back (Y+) end of one.
+`d`             | Diameter of cylinder.
+`d1`            | Diameter of front (Y-) end of one.
+`d2`            | Diameter of back (Y+) end of one.
+`align`         | The side of the origin to align to.  Use `V_` constants from `constants.scad`. Default: `V_CENTER`
+`center`        | Overrides `align` if given.  If true, `align=V_CENTER`, if false, `align=ALIGN_POS`.
 
-Examples:
+**Example 1**: By Radius
 
-    ycyl(d1=5, d2=15, l=20, align=-1);
-    ycyl(d=10, l=25);
+    xdistribute(50) {
+        ycyl(l=35, r=10);
+        ycyl(l=35, r1=15, r2=5);
+    }
 
-![ycyl](images/shapes/ycyl.png)
+![ycyl() Example 1](images/shapes/ycyl.png)
 
+**Example 2**: By Diameter
 
+    xdistribute(50) {
+        ycyl(l=35, d=20);
+        ycyl(l=35, d1=30, d2=10);
+    }
+
+![ycyl() Example 2](images/shapes/ycyl_2.png)
+
+---
 
 ### zcyl()
 
-- zcyl(l, r|d, [align])
-- zcyl(l, r1|d1, r2|d2, [align])
+**Usage**:
+- zcyl(l|h, r|d, [align|center]);
+- zcyl(l|h, r1|d1, r2|d2, [align|center]);
 
-Creates a cylinder oriented along the Z axis.  Use like the
-built-in `cylinder()` module, except use `l` instead of `h`.
-This module exists for symmetry with `xcyl()` and `ycyl()`
+**Description**:
+Creates a cylinder oriented along the Z axis.
 
-Arg   | What it does
------ | -----------------------------------
-l     | length of cylinder. (Default: 1.0)
-r     | radius of cylinder.
-r1    | optional radius of bottom (Z-) end of cylinder.
-r2    | optional radius of top (Z+) end of cylinder.
-d     | optional diameter of cylinder. (use instead of r)
-d1    | optional diameter of bottom (Z-) end of cylinder.
-d2    | optional diameter of top (Z+) end of cylinder.
-align | Alignment relative to the origin.  `+1` for above, `0` for centered, `-1` for below.  Default: `0` (center)
+Argument        | What it does
+--------------- | ------------------------------
+`l` / `h`       | Length of cylinder along oriented axis. (Default: 1.0)
+`r`             | Radius of cylinder.
+`r1`            | Radius of front (Y-) end of cone.
+`r2`            | Radius of back (Y+) end of one.
+`d`             | Diameter of cylinder.
+`d1`            | Diameter of front (Y-) end of one.
+`d2`            | Diameter of back (Y+) end of one.
+`align`         | The side of the origin to align to.  Use `V_` constants from `constants.scad`. Default: `V_CENTER`
+`center`        | Overrides `align` if given.  If true, `align=V_CENTER`, if false, `align=ALIGN_POS`.
 
-Examples:
+**Example 1**: By Radius
 
-    zcyl(d1=5, d2=15, l=20, align=-1);
-    zcyl(d=10, l=25);
+    xdistribute(50) {
+        zcyl(l=35, r=10);
+        zcyl(l=35, r1=15, r2=5);
+    }
 
-![zcyl](images/shapes/zcyl.png)
+![zcyl() Example 1](images/shapes/zcyl.png)
 
+**Example 2**: By Diameter
 
+    xdistribute(50) {
+        zcyl(l=35, d=20);
+        zcyl(l=35, d1=30, d2=10);
+    }
 
-### rcylinder()
-### filleted\_cylinder()
+![zcyl() Example 2](images/shapes/zcyl_2.png)
 
-**DEPRECATED**:  Use cyl() instead.
-
-- rcylinder(h, r|d, fillet, [center])
-- rcylinder(h, r1|d1, r2|d2, fillet, [center])
-- filleted\_cylinder(h, r|d, fillet, [center])
-- filleted\_cylinder(h, r1|d1, r2|d2, fillet, [center])
-
-Creates a cylinder with filleted (rounded) ends.  If `r1`/`r2`
-or `d1`/`d2` are used, creates a cone with filleted ends.
-
-Arg     | What it does
-------- | -----------------------------------
-h       | height of cylinder. (Default: 1.0)
-r       | radius of cylinder. (Default: 1.0)
-d       | diameter of cylinder. (Use instead of `r`)
-r1      | radius of cylinder bottom. (Use with `r2` instead of `r`)
-r2      | radius of cylinder top. (Use with `r1` instead of `r`)
-d1      | diameter of cylinder bottom. (Use with `d2` instead of `d` or `r`)
-d2      | diameter of cylinder top. (Use with `d1` instead of `d` or `r`)
-fillet  | radius of the edge filleting. (Default: 0.25)
-center  | boolean.  If true, cylinder is centered. (Default: false)
-
-Example:
-
-    rcylinder(h=50, r=20, fillet=5, center=true, $fa=1, $fs=1);
-
-![rcylinder](images/shapes/rcylinder.png)
-
-
+---
 
 ### tube()
 
-- tube(h, r|d, wall, [orient], [align])
-- tube(h, ir|id, wall, [orient], [align])
-- tube(h, r1|d1, r2|d2, wall, [orient], [align])
-- tube(h, ir1|id1, ir2|id2, wall, [orient], [align])
-- tube(h, r|d, ir|id, [orient], [align])
-- tube(h, r|d, ir1|id1, ir2|id2, [orient], [align])
-- tube(h, r1|d1, r2|d2, ir|id, [orient], [align])
-- tube(h, r1|d1, r2|d2, ir1|id1, ir2|id2, [orient], [align])
+**Usage**:
+- tube(h, ir|id, wall, [realign], [orient], [align]);
+- tube(h, or|od, wall, [realign], [orient], [align]);
+- tube(h, ir|id, or|od, [realign], [orient], [align]);
+- tube(h, ir1|id1, ir2|id2, wall, [realign], [orient], [align]);
+- tube(h, or1|od1, or2|od2, wall, [realign], [orient], [align]);
+- tube(h, ir1|id1, ir2|id2, or1|od1, or2|od2, [realign], [orient], [align]);
 
-Makes a hollow tube.
+**Description**:
+Makes a hollow tube with the given outer size and wall thickness.
 
-Arg    | What it does
------- | -----------------------------------
-h      | height of tube. (Default: 1)
-r      | Outer radius of tube.  (Default: 1)
-r1     | Outer radius of bottom of tube.
-r2     | Outer radius of top of tube.
-d      | Outer diameter of tube.
-d1     | Outer diameter of bottom of tube.
-d2     | Outer diameter of top of tube.
-wall   | horizontal thickness of tube wall. (Default 0.5)
-ir     | Inner radius of tube.  (Default: 1)
-ir1    | Inner radius of bottom of tube.
-ir2    | Inner radius of top of tube.
-id     | Inner diameter of tube.
-id1    | Inner diameter of bottom of tube.
-id2    | Inner diameter of top of tube.
-orient | Orientation of the tube.  Use the `ORIENT_` constants from `constants.h`.  Default: vertical.
-align  | Alignment of the tube.  Use the `V_` constants from `constants.h`.  Default: centered.
+Argument        | What it does
+--------------- | ------------------------------
+`h`             | height of tube. (Default: 1)
+`or`            | Outer radius of tube.
+`or1`           | Outer radius of bottom of tube.  (Default: value of r)
+`or2`           | Outer radius of top of tube.  (Default: value of r)
+`od`            | Outer diameter of tube.
+`od1`           | Outer diameter of bottom of tube.
+`od2`           | Outer diameter of top of tube.
+`wall`          | horizontal thickness of tube wall. (Default 0.5)
+`ir`            | Inner radius of tube.
+`ir1`           | Inner radius of bottom of tube.
+`ir2`           | Inner radius of top of tube.
+`id`            | Inner diameter of tube.
+`id1`           | Inner diameter of bottom of tube.
+`id2`           | Inner diameter of top of tube.
+`realign`       | If true, rotate the tube by half the angle of one face.
+`orient`        | Orientation of the tube.  Use the `ORIENT_` constants from `constants.scad`.  Default: vertical.
+`align`         | Alignment of the tube.  Use the `V_` constants from `constants.scad`.  Default: centered.
 
-Example:
+**Example 1**: These all Produce the Same Tube
 
-    tube(h=6, r=4, wall=2, $fn=6);
-    tube(h=3, r1=5, r2=7, wall=2, center=true);
-    tube(h=3, r=4, wall=1, center=true);
+    tube(h=30, or=40, wall=5);
+    tube(h=30, ir=35, wall=5);
+    tube(h=30, or=40, ir=35);
+    tube(h=30, od=80, id=70);
 
-![tube](images/shapes/tube.png)
+![tube() Example 1](images/shapes/tube.png)
 
+**Example 2**: These all Produce the Same Conical Tube
 
+    tube(h=30, or1=40, or2=25, wall=5);
+    tube(h=30, ir1=35, or2=20, wall=5);
+    tube(h=30, or1=40, or2=25, ir1=35, ir2=20);
+
+![tube() Example 2](images/shapes/tube_2.png)
+
+**Example 3**: Circular Wedge
+
+    tube(h=30, or1=40, or2=30, ir1=20, ir2=30);
+
+![tube() Example 3](images/shapes/tube_3.png)
+
+---
 
 ### torus()
 
-- torus(r|d, r2|d2)
-- torus(ir|id, or|od)
+**Usage**:
+- torus(r|d, r2|d2, [orient], [align]);
+- torus(or|od, ir|id, [orient], [align]);
 
-Creates a torus shape.
+Argument        | What it does
+--------------- | ------------------------------
+`r`             | major radius of torus ring. (use with of 'r2', or 'd2')
+`r2`            | minor radius of torus ring. (use with of 'r', or 'd')
+`d`             | major diameter of torus ring. (use with of 'r2', or 'd2')
+`d2`            | minor diameter of torus ring. (use with of 'r', or 'd')
+`or`            | outer radius of the torus. (use with 'ir', or 'id')
+`ir`            | inside radius of the torus. (use with 'or', or 'od')
+`od`            | outer diameter of the torus. (use with 'ir' or 'id')
+`id`            | inside diameter of the torus. (use with 'or' or 'od')
+`orient`        | Orientation of the torus.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_Z`.
+`align`         | Alignment of the torus.  Use the `V_` constants from `constants.scad`.  Default: `V_CENTER`.
 
-Arg    | What it does
------- | -----------------------------------
-r      | major radius of torus ring. (use with of 'r2', or 'd2')
-r2     | minor radius of torus ring. (use with of 'r', or 'd')
-d      | major diameter of torus ring. (use with of 'r2', or 'd2')
-d2     | minor diameter of torus ring. (use with of 'r', or 'd')
-or     | outer radius of the torus. (use with 'ir', or 'id')
-ir     | inside radius of the torus. (use with 'or', or 'od')
-od     | outer diameter of the torus. (use with 'ir' or 'id')
-id     | inside diameter of the torus. (use with 'or' or 'od')
+**Example**:
 
-Example:
+    // These all produce the same torus.
+    torus(r=22.5, r2=7.5);
+    torus(d=45, d2=15);
+    torus(or=30, ir=15);
+    torus(od=60, id=30);
 
-    torus(r=30, r2=5);
-    torus(d=50, r2=5);
-    torus(d=60, d2=15);
-    torus(od=60, ir=15);
-    torus(or=30, ir=20, $fa=1, $fs=1);
+![torus() Example](images/shapes/torus.png)
 
-![torus](images/shapes/torus.png)
+---
 
+# 4. Spheroids
 
+### staggered\_sphere()
 
-### pie\_slice()
+**Usage**:
+- staggered\_sphere(r|d, [circum])
 
-- pie\_slice(ang, h, r|d, [center])
-- pie\_slice(ang, h, r1|d1, r2|d2, [center])
+**Description**:
+An alternate construction to the standard `sphere()` built-in, with different triangulation.
 
-Creates a pie slice shape.
+Argument        | What it does
+--------------- | ------------------------------
+`r`             | Radius of the sphere.
+`d`             | Diameter of the sphere.
+`circum`        | If true, circumscribes the perfect sphere of the given size.
 
-Arg    | What it does
------- | -----------------------------------
-ang    | pie slice angle in degrees.
-h      | height of pie slice.
-r      | radius of pie slice.
-r1     | bottom radius of pie slice.
-r2     | top radius of pie slice.
-d      | diameter of pie slice.
-d1     | bottom diameter of pie slice.
-d2     | top diameter of pie slice.
-center | if true, centers pie slice vertically. Default: false
+**Example**:
 
-Example:
+    staggered_sphere(d=100, circum=true, $fn=10);
 
-    pie_slice(ang=45, h=30, r1=100, r2=80);
+![staggered\_sphere() Example](images/shapes/staggered_sphere.png)
 
-![pie\_slice](images/shapes/pie_slice.png)
+---
 
-
-
-## 3D Printing Constructs
+# 5. 3D Printing Shapes
 
 ### teardrop2d()
 
-- teardrop2d(r|d, [ang], [cap\_h])
+**Usage**:
+- teardrop2d(r|d, [ang], [cap\_h]);
 
+**Description**:
 Makes a 2D teardrop shape. Useful for extruding into 3D printable holes.
 
-Arg    | What it does
------- | -----------------------------------
-r      | radius of circular part of teardrop.  (Default: 1)
-d      | diameter of spherical portion of bottom. (Use instead of r)
-ang    | angle of hat walls from the Y axis.  (Default: 45 degrees)
-cap\_h | if given, height above center where the shape will be truncated.
+Argument        | What it does
+--------------- | ------------------------------
+`r`             | radius of circular part of teardrop.  (Default: 1)
+`d`             | diameter of spherical portion of bottom. (Use instead of r)
+`ang`           | angle of hat walls from the Y axis.  (Default: 45 degrees)
+`cap_h`         | if given, height above center where the shape will be truncated.
 
-Example:
+**Example 1**: Typical Shape
 
     teardrop2d(r=30, ang=30);
-    teardrop2d(r=35, ang=45, cap_h=40);
 
-![teardrop2d](images/shapes/teardrop2d.png)
+![teardrop2d() Example 1](images/shapes/teardrop2d.png)
 
+**Example 2**: Crop Cap
 
+    teardrop2d(r=30, ang=30, cap_h=40);
+
+![teardrop2d() Example 2](images/shapes/teardrop2d_2.png)
+
+**Example 3**: Close Crop
+
+    teardrop2d(r=30, ang=30, cap_h=20);
+
+![teardrop2d() Example 3](images/shapes/teardrop2d_3.png)
+
+---
 
 ### teardrop()
 
-- teardrop(r|d, h, [ang], [cap\_h])
+**Usage**:
+- teardrop(r|d, l|h, [ang], [cap\_h], [orient], [align])
 
+**Description**:
 Makes a teardrop shape in the XZ plane. Useful for 3D printable holes.
 
-Arg    | What it does
------- | -----------------------------------
-r      | Radius of circular part of teardrop.  (Default: 1)
-d      | Diameter of spherical portion of bottom. (Use instead of r)
-h      | Thickness of teardrop. (Default: 1)
-ang    | Angle of hat walls from the Y axis.  (Default: 45 degrees)
-cap\_h | If given, height above center where the shape will be truncated.
+Argument        | What it does
+--------------- | ------------------------------
+`r`             | Radius of circular part of teardrop.  (Default: 1)
+`d`             | Diameter of circular portion of bottom. (Use instead of r)
+`l`             | Thickness of teardrop. (Default: 1)
+`ang`           | Angle of hat walls from the Z axis.  (Default: 45 degrees)
+`cap_h`         | If given, height above center where the shape will be truncated.
+`orient`        | Orientation of the shape.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_Y`.
+`align`         | Alignment of the shape.  Use the `V_` constants from `constants.scad`.  Default: `V_CENTER`.
 
-Example:
+**Example 1**: Typical Shape
 
-    teardrop(r=3, h=2, ang=30);
+    teardrop(r=30, h=10, ang=30);
 
-![teardrop](images/shapes/teardrop.png)
+![teardrop() Example 1](images/shapes/teardrop.png)
 
+**Example 2**: Crop Cap
 
+    teardrop(r=30, h=10, ang=30, cap_h=40);
+
+![teardrop() Example 2](images/shapes/teardrop_2.png)
+
+**Example 3**: Close Crop
+
+    teardrop(r=30, h=10, ang=30, cap_h=20);
+
+![teardrop() Example 3](images/shapes/teardrop_3.png)
+
+---
 
 ### onion()
 
-- onion(r|d, [maxang], [h])
-Created a sphere with a conical hat, to make a 3D teardrop.
+**Usage**:
+- onion(r|d, [maxang], [cap\_h], [orient], [align]);
 
-Arg    | What it does
------- | -----------------------------------
-r      | radius of spherical portion of the bottom. (Default: 1)
-d      | diameter of spherical portion of bottom. (Use instead of r)
-h      | height above sphere center to truncate teardrop shape. (Default: 1)
-maxang | angle of cone on top from vertical.
+**Description**:
+Creates a sphere with a conical hat, to make a 3D teardrop.
 
-Example:
+Argument        | What it does
+--------------- | ------------------------------
+`r`             | radius of spherical portion of the bottom. (Default: 1)
+`d`             | diameter of spherical portion of bottom.
+`cap_h`         | height above sphere center to truncate teardrop shape.
+`maxang`        | angle of cone on top from vertical.
+`orient`        | Orientation of the shape.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_Y`.
+`align`         | Alignment of the shape.  Use the `V_` constants from `constants.scad`.  Default: `V_CENTER`.
 
-    onion(h=15, r=10, maxang=30);
+**Example 1**: Typical Shape
 
-![onion](images/shapes/onion.png)
+    onion(r=30, maxang=30);
 
+![onion() Example 1](images/shapes/onion.png)
 
+**Example 2**: Crop Cap
+
+    onion(r=30, maxang=30, cap_h=40);
+
+![onion() Example 2](images/shapes/onion_2.png)
+
+**Example 3**: Close Crop
+
+    onion(r=30, maxang=30, cap_h=20);
+
+![onion() Example 3](images/shapes/onion_3.png)
+
+---
 
 ### narrowing\_strut()
 
-- narrowing\_strut(w, l, wall, [ang])
+**Usage**:
+- narrowing\_strut(w, l, wall, [ang], [orient], [align]);
 
+**Description**:
 Makes a rectangular strut with the top side narrowing in a triangle.
 The shape created may be likened to an extruded home plate from baseball.
 This is useful for constructing parts that minimize the need to support
 overhangs.
 
-Arg    | What it does
------- | -----------------------------------
-w      | Width (thickness) of the strut.
-l      | Length of the strut.
-wall   | height of rectangular portion of the strut.
-ang    | angle that the trianglar side will converge at.
+Argument        | What it does
+--------------- | ------------------------------
+`w`             | Width (thickness) of the strut.
+`l`             | Length of the strut.
+`wall`          | height of rectangular portion of the strut.
+`ang`           | angle that the trianglar side will converge at.
+`orient`        | Orientation of the length axis of the shape.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_Y`.
+`align`         | Alignment of the shape.  Use the `V_` constants from `constants.scad`.  Default: `V_CENTER`.
 
-Example:
+**Example**:
 
     narrowing_strut(w=10, l=100, wall=5, ang=30);
 
-![narrowing\_strut](images/shapes/narrowing_strut.png)
+![narrowing\_strut() Example](images/shapes/narrowing_strut.png)
 
-
-
-### thinning\_triangle()
-
-- thinning\_triangle(h, l, thick, wall, strut, [ang], [diagonly], [center])
-
-Makes a triangular wall with thick edges, which thins to a smaller width in
-the center, with angled supports to prevent critical overhangs.
-
-Arg      | What it does
--------- | -----------------------------------
-h        | Height of wall.
-l        | Length of wall.
-thick    | Thickness of wall.
-ang      | Maximum overhang angle of diagonal brace in degrees.  Default: 30
-strut    | The width of the diagonal brace.
-wall     | The thickness of the thinned portion of the wall.
-diagonly | Boolean, which denotes only the diagonal brace should be thick.  Default: false
-center   | If true, center at origin.  Else, align edges to Y and Z axes.  Default: true
-
-Examples:
-
-    thinning_triangle(h=50, l=100, thick=4, ang=30, strut=5, wall=2, diagonly=true);
-    thinning_triangle(h=60, l=75, thick=4, ang=30, strut=5, wall=2);
-
-![thinning\_triangle](images/shapes/thinning_triangle.png)
-
-
-
-### thinning\_brace()
-
-- thinning\_brace(h, l, thick, wall, strut, [ang], [center])
-
-Makes a triangular wall which thins to a smaller width in the center,
-with angled supports to prevent critical overhangs.  Basically an alias
-of `thinning_triangle()`, with `diagonly` set to true.
-
-Arg    | What it does
------- | -----------------------------------
-h      | height of wall.
-l      | length of wall.
-thick  | thickness of wall.
-wall   | the thickness of the thinned portion of the wall.
-strut  | the width of the diagonal brace.
-ang    | maximum overhang angle of diagonal brace.
-center | If true, center at origin.  Else, align edges to Y and Z axes.
-
-Example:
-
-    thinning_brace(h=50, l=100, thick=4, ang=30, strut=5, wall=2);
-
-![thinning\_brace](images/shapes/thinning_brace.png)
-
-
+---
 
 ### thinning\_wall()
 
-- thinning\_wall(h, l, thick, wall, strut, [ang])
+**Usage**:
+- thinning\_wall(h, l, thick, [ang], [strut], [wall], [orient], [align]);
 
+**Description**:
 Makes a rectangular wall which thins to a smaller width in the center,
 with angled supports to prevent critical overhangs.
 
-Arg    | What it does
------- | -----------------------------------
-h      | height of wall.
-l      | length of wall.
-thick  | thickness of wall.
-wall   | the thickness of the thinned portion of the wall.
-strut  | the width of the diagonal brace.
-ang    | maximum overhang angle of diagonal brace.
+Argument        | What it does
+--------------- | ------------------------------
+`h`             | height of wall.
+`l`             | length of wall.  If given as a vector of two numbers, specifies bottom and top lengths, respectively.
+`thick`         | thickness of wall.
+`ang`           | maximum overhang angle of diagonal brace.
+`strut`         | the width of the diagonal brace.
+`wall`          | the thickness of the thinned portion of the wall.
+`orient`        | Orientation of the length axis of the wall.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_X`.
+`align`         | Alignment of the shape.  Use the `V_` constants from `constants.scad`.  Default: `V_CENTER`.
 
-Example:
+**Example 1**: Typical Shape
 
-    thinning_wall(h=50, l=100, thick=4, ang=30, strut=5, wall=2);
+    thinning_wall(h=50, l=80, thick=4);
 
-![thinning\_wall](images/shapes/thinning_wall.png)
+![thinning\_wall() Example 1](images/shapes/thinning_wall.png)
 
+**Example 2**: Trapezoidal
 
+    thinning_wall(h=50, l=[80,50], thick=4);
 
-### corrugated\_wall()
+![thinning\_wall() Example 2](images/shapes/thinning_wall_2.png)
 
-- corrugated\_wall(h, l, thick, wall, strut)
+---
 
-Makes a corrugated wall which relieves contraction stress while still
-providing support strength.  Designed with 3D printing in mind.
+### braced\_thinning\_wall()
 
-Arg    | What it does
------- | -----------------------------------
-h      | height of strut wall.
-l      | length of strut wall.
-thick  | thickness of strut wall.
-wall   | thickness of corrugations.
-strut  | the width of the cross-braces.
+**Usage**:
+- braced\_thinning\_wall(h, l, thick, [ang], [strut], [wall], [orient], [align]);
 
-Example:
+**Description**:
+Makes a rectangular wall with cross-bracing, which thins to a smaller width in the center,
+with angled supports to prevent critical overhangs.
 
-    corrugated_wall(h=50, l=100, thick=4, strut=5, wall=2);
+Argument        | What it does
+--------------- | ------------------------------
+`h`             | height of wall.
+`l`             | length of wall.
+`thick`         | thickness of wall.
+`ang`           | maximum overhang angle of diagonal brace.
+`strut`         | the width of the diagonal brace.
+`wall`          | the thickness of the thinned portion of the wall.
+`orient`        | Orientation of the length axis of the wall.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_Y`.
+`align`         | Alignment of the shape.  Use the `V_` constants from `constants.scad`.  Default: `V_CENTER`.
 
-![corrugated\_wall](images/shapes/corrugated_wall.png)
+**Example**: Typical Shape
 
+    braced_thinning_wall(h=50, l=100, thick=5);
 
+![braced\_thinning\_wall() Example](images/shapes/braced_thinning_wall.png)
+
+---
+
+### thinning\_triangle()
+
+**Usage**:
+- thinning\_triangle(h, l, thick, [ang], [strut], [wall], [diagonly], [orient], [align|center]);
+
+**Description**:
+Makes a triangular wall with thick edges, which thins to a smaller width in
+the center, with angled supports to prevent critical overhangs.
+
+Argument        | What it does
+--------------- | ------------------------------
+`h`             | height of wall.
+`l`             | length of wall.
+`thick`         | thickness of wall.
+`ang`           | maximum overhang angle of diagonal brace.
+`strut`         | the width of the diagonal brace.
+`wall`          | the thickness of the thinned portion of the wall.
+`diagonly`      | boolean, which denotes only the diagonal side (hypotenuse) should be thick.
+`orient`        | Orientation of the length axis of the shape.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_Y`.
+`align`         | Alignment of the shape.  Use the `V_` constants from `constants.scad`.  Default: `V_CENTER`.
+`center`        | If true, centers shape.  If false, overrides `align` with `V_UP+V_BACK`.
+
+**Example 1**: Centered
+
+    thinning_triangle(h=50, l=80, thick=4, ang=30, strut=5, wall=2, center=true);
+
+![thinning\_triangle() Example 1](images/shapes/thinning_triangle.png)
+
+**Example 2**: All Braces
+
+    thinning_triangle(h=50, l=80, thick=4, ang=30, strut=5, wall=2, center=false);
+
+![thinning\_triangle() Example 2](images/shapes/thinning_triangle_2.png)
+
+**Example 3**: Diagonal Brace Only
+
+    thinning_triangle(h=50, l=80, thick=4, ang=30, strut=5, wall=2, diagonly=true, center=false);
+
+![thinning\_triangle() Example 3](images/shapes/thinning_triangle_3.png)
+
+---
 
 ### sparse\_strut()
 
-- sparse\_strut(h, l, thick, strut, [maxang], [max\_bridge])
+**Usage**:
+- sparse\_strut(h, l, thick, [strut], [maxang], [max\_bridge], [orient], [align])
 
-Makes an open rectangular strut with X-shaped cross-bracing, designed with 3D printing in mind.
+**Description**:
+Makes an open rectangular strut with X-shaped cross-bracing, designed to reduce
+the need for support material in 3D printing.
 
-Arg         | What it does
------------ | -----------------------------------
-h           | height of strut wall.
-l           | length of strut wall.
-thick       | thickness of strut wall.
-strut       | the width of the cross-braces.
-maxang      | maximum overhang angle of cross-braces.
-max\_bridge | maximum bridging distance between cross-braces.
+Argument        | What it does
+--------------- | ------------------------------
+`h`             | height of strut wall.
+`l`             | length of strut wall.
+`thick`         | thickness of strut wall.
+`maxang`        | maximum overhang angle of cross-braces.
+`max_bridge`    | maximum bridging distance between cross-braces.
+`strut`         | the width of the cross-braces.
+`orient`        | Orientation of the length axis of the shape.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_Y`.
+`align`         | Alignment of the shape.  Use the `V_` constants from `constants.scad`.  Default: `V_CENTER`.
 
-Example:
+**Example 1**: Typical Shape
 
-    sparse_strut(h=40, l=120, thick=4, maxang=30, strut=5, max_bridge=20);
+    sparse_strut(h=40, l=100, thick=3);
 
-![sparse\_strut](images/shapes/sparse_strut.png)
+![sparse\_strut() Example 1](images/shapes/sparse_strut.png)
 
+**Example 2**: Thinner Strut
 
+    sparse_strut(h=40, l=100, thick=3, strut=2);
+
+![sparse\_strut() Example 2](images/shapes/sparse_strut_2.png)
+
+**Example 3**: Larger maxang
+
+    sparse_strut(h=40, l=100, thick=3, strut=2, maxang=45);
+
+![sparse\_strut() Example 3](images/shapes/sparse_strut_3.png)
+
+**Example 4**: Longer max\_bridge
+
+    sparse_strut(h=40, l=100, thick=3, strut=2, maxang=45, max_bridge=30);
+
+![sparse\_strut() Example 4](images/shapes/sparse_strut_4.png)
+
+---
 
 ### sparse\_strut3d()
 
-- sparse\_strut3d(h, w, l, thick, strut, [maxang], [max\_bridge])
+**Usage**:
+- sparse\_strut3d(h, w, l, [thick], [maxang], [max\_bridge], [strut], [orient], [align]);
 
-Makes an open rigid strut with X-shaped cross-bracing, designed with 3D printing in mind.
+**Description**:
+Makes an open rectangular strut with X-shaped cross-bracing, designed to reduce the
+need for support material in 3D printing.
 
-Arg         | What it does
------------ | -----------------------------------
-h           | Z size of strut.
-w           | X size of strut.
-l           | Y size of strut.
-thick       | thickness of strut walls.
-strut       | the width of the cross-braces.
-maxang      | maximum overhang angle of cross-braces.
-max\_bridge | maximum bridging distance between cross-braces.
+Argument        | What it does
+--------------- | ------------------------------
+`h`             | Z size of strut.
+`w`             | X size of strut.
+`l`             | Y size of strut.
+`thick`         | thickness of strut walls.
+`maxang`        | maximum overhang angle of cross-braces.
+`max_bridge`    | maximum bridging distance between cross-braces.
+`strut`         | the width of the cross-braces.
+`orient`        | Orientation of the length axis of the shape.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_Y`.
+`align`         | Alignment of the shape.  Use the `V_` constants from `constants.scad`.  Default: `V_CENTER`.
 
-Example:
+**Example 1**: Typical Shape
 
-    sparse_strut3d(h=40, w=40, l=120, thick=4, maxang=30, strut=5, max_bridge=20);
+    sparse_strut3d(h=30, w=30, l=100);
 
-![sparse\_strut3d](images/shapes/sparse_strut3d.png)
+![sparse\_strut3d() Example 1](images/shapes/sparse_strut3d.png)
 
+**Example 2**: Thinner strut
 
+    sparse_strut3d(h=30, w=30, l=100, strut=2);
 
-## Miscellaneous
+![sparse\_strut3d() Example 2](images/shapes/sparse_strut3d_2.png)
+
+**Example 3**: Larger maxang
+
+    sparse_strut3d(h=30, w=30, l=100, strut=2, maxang=50);
+
+![sparse\_strut3d() Example 3](images/shapes/sparse_strut3d_3.png)
+
+**Example 4**: Smaller max\_bridge
+
+    sparse_strut3d(h=30, w=30, l=100, strut=2, maxang=50, max_bridge=20);
+
+![sparse\_strut3d() Example 4](images/shapes/sparse_strut3d_4.png)
+
+---
+
+### corrugated\_wall()
+
+**Usage**:
+- corrugated\_wall(h, l, thick, [strut], [wall], [orient], [align]);
+
+**Description**:
+Makes a corrugated wall which relieves contraction stress while still
+providing support strength.  Designed with 3D printing in mind.
+
+Argument        | What it does
+--------------- | ------------------------------
+`h`             | height of strut wall.
+`l`             | length of strut wall.
+`thick`         | thickness of strut wall.
+`strut`         | the width of the cross-braces.
+`wall`          | thickness of corrugations.
+`orient`        | Orientation of the length axis of the shape.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_Y`.
+`align`         | Alignment of the shape.  Use the `V_` constants from `constants.scad`.  Default: `V_CENTER`.
+
+**Example 1**: Typical Shape
+
+    corrugated_wall(h=50, l=100);
+
+![corrugated\_wall() Example 1](images/shapes/corrugated_wall.png)
+
+**Example 2**: Wider Strut
+
+    corrugated_wall(h=50, l=100, strut=8);
+
+![corrugated\_wall() Example 2](images/shapes/corrugated_wall_2.png)
+
+**Example 3**: Thicker Wall
+
+    corrugated_wall(h=50, l=100, strut=8, wall=3);
+
+![corrugated\_wall() Example 3](images/shapes/corrugated_wall_3.png)
+
+---
+
+# 6. Miscellaneous
 
 ### nil()
 
-- nil()
+**Description**:
+Useful when you MUST pass a child to a module, but you want it to be nothing.
 
-For when you MUST pass a child to a module, but you want it to be nothing.
+---
 
+### noop()
 
+**Description**:
+Passes through the children passed to it, with no action at all.
+Useful while debugging when you want to replace a command.
+
+---
+
+### pie\_slice()
+
+**Usage**:
+- pie\_slice(ang, l|h, r|d, [orient], [align|center]);
+- pie\_slice(ang, l|h, r1|d1, r2|d2, [orient], [align|center]);
+
+**Description**:
+Creates a pie slice shape.
+
+Argument        | What it does
+--------------- | ------------------------------
+`ang`           | pie slice angle in degrees.
+`h`             | height of pie slice.
+`r`             | radius of pie slice.
+`r1`            | bottom radius of pie slice.
+`r2`            | top radius of pie slice.
+`d`             | diameter of pie slice.
+`d1`            | bottom diameter of pie slice.
+`d2`            | top diameter of pie slice.
+`orient`        | Orientation of the pie slice.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_Z`.
+`align`         | Alignment of the pie slice.  Use the `V_` constants from `constants.scad`.  Default: `V_CENTER`.
+`center`        | If given, overrides `align`.  A true value sets `align=V_CENTER`, false sets `align=ALIGN_POS`.
+
+**Example 1**: Cylindrical Pie Slice
+
+    pie_slice(ang=45, l=20, r=30);
+
+![pie\_slice() Example 1](images/shapes/pie_slice.png)
+
+**Example 2**: Conical Pie Slice
+
+    pie_slice(ang=60, l=20, d1=50, d2=70);
+
+![pie\_slice() Example 2](images/shapes/pie_slice_2.png)
+
+---
 
 ### interior\_fillet()
 
-- interior\_fillet(l, r, [ang], [overlap])
+**Usage**:
+- interior\_fillet(l, r, [ang], [overlap], [orient], [align]);
 
-Creates a shape that can be unioned into a concave joint between
-two faces, to fillet them.  Center this part along the edge to
-be chamferred and union it in.
+**Description**:
+Creates a shape that can be unioned into a concave joint between two faces, to fillet them.
+Center this part along the concave edge to be chamferred and union it in.
 
-Arg     | What it does
-------- | -----------------------------------
-l       | Length of edge to fillet.
-r       | Radius of fillet.
-ang     | Angle between faces to fillet.  Default: 90
-overlap | Overlap size for unioning with faces.  Default: 0.01
+Argument        | What it does
+--------------- | ------------------------------
+`l`             | length of edge to fillet.
+`r`             | radius of fillet.
+`ang`           | angle between faces to fillet.
+`overlap`       | overlap size for unioning with faces.
+`orient`        | Orientation of the fillet.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_X`.
+`align`         | Alignment of the fillet.  Use the `V_` or `ALIGN_` constants from `constants.scad`.  Default: `V_CENTER`.
 
-Example:
+**Example 1**:
 
     union() {
-        translate([0,-5,-10]) upcube([20, 10, 30]);
-        translate([0,10,-5]) upcube([20, 20, 10]);
-        color("green") interior_fillet(l=20, r=10, ang=60);
+        translate([0,2,-4]) upcube([20, 4, 24]);
+        translate([0,-10,-4]) upcube([20, 20, 4]);
+        color("green") interior_fillet(l=20, r=10, orient=ORIENT_XNEG);
     }
 
-![interior\_fillet](images/shapes/interior_fillet.png)
+![interior\_fillet() Example 1](images/shapes/interior_fillet.png)
 
+**Example 2**:
 
+    interior_fillet(l=40, r=10, orient=ORIENT_Y_90);
+
+![interior\_fillet() Example 2](images/shapes/interior_fillet_2.png)
+
+---
 
 ### slot()
 
-- slot(p1, p2, h, r|d, [center])
-- slot(p1, p2, h, r1|d1, r2|d2, [center])
-- slot(l, h, r|d, [center])
-- slot(l, h, r1|d1, r2|d2, [center])
+**Usage**:
+- slot(h, l, r|d, [orient], [align|center]);
+- slot(h, p1, p2, r|d, [orient], [align|center]);
+- slot(h, l, r1|d1, r2|d2, [orient], [align|center]);
+- slot(h, p1, p2, r1|d1, r2|d2, [orient], [align|center]);
 
+**Description**:
 Makes a linear slot with rounded ends, appropriate for bolts to slide along.
 
-Arg    | What it does
------- | -----------------------------------
-p1     | center of starting circle of slot.  (Default: [0,0,0])
-p2     | center of ending circle of slot.  (Default: [1,0,0])
-l      | length of slot along the X axis.  Use instead of p1 and p2.
-h      | height of slot shape. (default: 1.0)
-r      | radius of slot circle. (default: 0.5)
-r1     | bottom radius of slot cone. (use instead of r)
-r2     | top radius of slot cone. (use instead of r)
-d      | diameter of slot circle. (default: 1.0)
-d1     | bottom diameter of slot cone. (use instead of d)
-d2     | top diameter of slot cone. (use instead of d)
-center | if true (default) centers vertically.  Else, drops flush with XY plane.
+Argument        | What it does
+--------------- | ------------------------------
+`p1`            | center of starting circle of slot.
+`p2`            | center of ending circle of slot.
+`l`             | length of slot along the X axis.
+`h`             | height of slot shape. (default: 10)
+`r`             | radius of slot circle. (default: 5)
+`r1`            | bottom radius of slot cone.
+`r2`            | top radius of slot cone.
+`d`             | diameter of slot circle.
+`d1`            | bottom diameter of slot cone.
+`d2`            | top diameter of slot cone.
 
-Examples:
+**Example 1**: Between Two Points
 
-    slot(l=50, h=5, d1=8, d2=10, center=false);
-    slot([0,0,0], [50,50,0], h=5, d=10);
+    slot([0,0,0], [50,50,0], r1=5, r2=10, h=5);
 
-![slot](images/shapes/slot.png)
+![slot() Example 1](images/shapes/slot.png)
 
+**Example 2**: By Length
 
+    slot(l=50, r1=5, r2=10, h=5);
+
+![slot() Example 2](images/shapes/slot_2.png)
+
+---
 
 ### arced\_slot()
 
-- arced\_slot(h, r|d, sr|sd, [cp], [sa], [ea])
-- arced\_slot(h, r1|d1, r2|d2, sr|sd, [cp], [sa], [ea])
-- arced\_slot(h, r|d, sr1|sd1, sr2|sd2, [cp], [sa], [ea])
-- arced\_slot(h, r1|d1, r2|d2, sr1|sd1, sr2|sd2, [cp], [sa], [ea])
+**Usage**:
+- arced\_slot(h, r|d, sr|sd, [sa], [ea], [orient], [align|center], [$fn2]);
+- arced\_slot(h, r|d, sr1|sd1, sr2|sd2, [sa], [ea], [orient], [align|center], [$fn2]);
 
+**Description**:
 Makes an arced slot, appropriate for bolts to slide along.
 
-Arg    | What it does
------- | -----------------------------------
-cp     | centerpoint of slot arc. (default: [0, 0, 0])
-h      | height of slot arc shape. (default: 1.0)
-r      | radius of slot arc. (default: 0.5)
-d      | diameter of slot arc. (default: 1.0)
-sr     | radius of slot channel. (default: 0.5)
-sd     | diameter of slot channel. (default: 0.5)
-sr1    | bottom radius of slot channel cone. (use instead of sr)
-sr2    | top radius of slot channel cone. (use instead of sr)
-sd1    | bottom diameter of slot channel cone. (use instead of sd)
-sd2    | top diameter of slot channel cone. (use instead of sd)
-sa     | starting angle. (Default: 0.0)
-ea     | ending angle. (Default: 90.0)
+Argument        | What it does
+--------------- | ------------------------------
+`cp`            | centerpoint of slot arc. (default: [0, 0, 0])
+`h`             | height of slot arc shape. (default: 1.0)
+`r`             | radius of slot arc. (default: 0.5)
+`d`             | diameter of slot arc. (default: 1.0)
+`sr`            | radius of slot channel. (default: 0.5)
+`sd`            | diameter of slot channel. (default: 0.5)
+`sr1`           | bottom radius of slot channel cone. (use instead of sr)
+`sr2`           | top radius of slot channel cone. (use instead of sr)
+`sd1`           | bottom diameter of slot channel cone. (use instead of sd)
+`sd2`           | top diameter of slot channel cone. (use instead of sd)
+`sa`            | starting angle. (Default: 0.0)
+`ea`            | ending angle. (Default: 90.0)
+`orient`        | Orientation of the arced slot.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_Z`.
+`align`         | Alignment of the arced slot.  Use the `V_` constants from `constants.scad`.  Default: `V_CENTER`.
+`center`        | If true, centers vertically.  If false, drops flush with XY plane.  Overrides `align`.
+`$fn2`          | The $fn value to use on the small round endcaps.  The major arcs are still based on $fn.  Default: $fn
 
-Examples:
+**Example 1**: Typical Arced Slot
 
-    arced_slot(r=100, h=10, sd1=30, sd2=10, sa=45, ea=180, $fa=5, $fs=2);
-    arced_slot(d=100, h=15, sd=10, sa=60, ea=280);
+    arced_slot(d=60, h=5, sd=10, sa=60, ea=280);
 
-![arced\_slot](images/shapes/arced_slot.png)
+![arced\_slot() Example 1](images/shapes/arced_slot.png)
+
+**Example 2**: Conical Arced Slot
+
+    arced_slot(r=60, h=5, sd1=10, sd2=15, sa=45, ea=180);
+
+![arced\_slot() Example 2](images/shapes/arced_slot_2.png)
+
+---
+
+# 7. Deprecations
+
+### cube2pt()
+
+**DEPRECATED, use `cuboid(p1,p2)` instead.**
+
+**Usage**:
+- cube2pt(p1,p2)
+
+**Description**:
+Creates a cube between two points.
+
+Argument        | What it does
+--------------- | ------------------------------
+`p1`            | Coordinate point of one cube corner.
+`p2`            | Coordinate point of opposite cube corner.
+
+---
+
+### offsetcube()
+
+**DEPRECATED, use `cuboid(..., align)` instead.**
+
+**Description**:
+Makes a cube that is offset along the given vector by half the cube's size.
+For example, if `v=[-1,1,0]`, the cube's front right edge will be centered at the origin.
+
+Argument        | What it does
+--------------- | ------------------------------
+`size`          | size of cube.
+`v`             | vector to offset along.
+
+---
+
+### chamfcube()
+
+**DEPRECATED, use `cuboid(..., chamfer, edges, trimcorners)` instead.**
+
+**Description**:
+Makes a cube with chamfered edges.
+
+Argument        | What it does
+--------------- | ------------------------------
+`size`          | Size of cube [X,Y,Z].  (Default: `[1,1,1]`)
+`chamfer`       | Chamfer inset along axis.  (Default: `0.25`)
+`chamfaxes`     | Array [X,Y,Z] of boolean values to specify which axis edges should be chamfered.
+`chamfcorners`  | Boolean to specify if corners should be flat chamferred.
+
+---
+
+### rrect()
+
+**DEPRECATED, use `cuboid(..., fillet, edges)` instead.**
+
+**Description**:
+Makes a cube with rounded (filletted) vertical edges. The `r` size will be
+limited to a maximum of half the length of the shortest XY side.
+
+Argument        | What it does
+--------------- | ------------------------------
+`size`          | Size of cube [X,Y,Z].  (Default: `[1,1,1]`)
+`r`             | Radius of edge/corner rounding.  (Default: `0.25`)
+`center`        | If true, object will be centered.  If false, sits on top of XY plane.
+
+---
+
+### rcube()
+
+**DEPRECATED, use `cuboid(..., fillet)` instead.**
+
+**Description**:
+Makes a cube with rounded (filletted) edges and corners.  The `r` size will be
+limited to a maximum of half the length of the shortest cube side.
+
+Argument        | What it does
+--------------- | ------------------------------
+`size`          | Size of cube [X,Y,Z].  (Default: `[1,1,1]`)
+`r`             | Radius of edge/corner rounding.  (Default: `0.25`)
+`center`        | If true, object will be centered.  If false, sits on top of XY plane.
+
+---
+
+### trapezoid()
+
+**DEPRECATED, use `prismoid()` instead.**
+
+**Usage**:
+- trapezoid(size1, size2, h, [shift], [orient], [align|center]);
+
+**Description**:
+Creates a rectangular prismoid shape.
+
+Argument        | What it does
+--------------- | ------------------------------
+`size1`         | [width, length] of the axis-negative end of the prism.
+`size2`         | [width, length] of the axis-positive end of the prism.
+`h`             | Height of the prism.
+`shift`         | [x, y] amount to shift the center of the top with respect to the center of the bottom.
+`orient`        | Orientation of the prismoid.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_Z`.
+`align`         | Alignment of the prismoid by the axis-negative (size1) end.  Use the `V_` constants from `constants.scad`.  Default: `V_UP`
+`center`        | If given, overrides `align`.  A true value sets `align=V_CENTER`, false sets `align=V_UP`.
+
+---
+
+### pyramid()
+
+**DEPRECATED, use `cyl(, r2=0, $fn=N)` instead.**
+
+**Usage**:
+- pyramid(n, h, l|r|d, [circum]);
+
+**Description**:
+Creates a pyramidal prism with a given number of sides.
+
+Argument        | What it does
+--------------- | ------------------------------
+`n`             | number of pyramid sides.
+`h`             | height of the pyramid.
+`l`             | length of one side of the pyramid. (optional)
+`r`             | radius of the base of the pyramid. (optional)
+`d`             | diameter of the base of the pyramid. (optional)
+`circum`        | base circumscribes the circle of the given radius or diam.
+
+---
+
+### prism()
+
+**DEPRECATED, use `cyl(..., $fn=N)` instead.**
+
+**Usage**:
+- prism(n, h, l|r|d, [circum]);
+
+**Description**:
+Creates a vertical prism with a given number of sides.
+
+Argument        | What it does
+--------------- | ------------------------------
+`n`             | number of sides.
+`h`             | height of the prism.
+`l`             | length of one side of the prism. (optional)
+`r`             | radius of the prism. (optional)
+`d`             | diameter of the prism. (optional)
+`circum`        | prism circumscribes the circle of the given radius or diam.
+
+---
+
+### chamferred\_cylinder()
+
+**DEPRECATED, use `cyl(..., chamfer)` instead.**
+
+**Usage**:
+- chamferred\_cylinder(h, r|d, chamfer|chamfedge, [top], [bottom], [center])
+
+**Description**:
+Creates a cylinder with chamferred (bevelled) edges.
+
+Argument        | What it does
+--------------- | ------------------------------
+`h`             | height of cylinder. (Default: 1.0)
+`r`             | radius of cylinder. (Default: 1.0)
+`d`             | diameter of cylinder. (use instead of r)
+`chamfer`       | radial inset of the edge chamfer. (Default: 0.25)
+`chamfedge`     | length of the chamfer edge. (Use instead of chamfer)
+`top`           | boolean.  If true, chamfer the top edges. (Default: True)
+`bottom`        | boolean.  If true, chamfer the bottom edges. (Default: True)
+`center`        | boolean.  If true, cylinder is centered. (Default: false)
+
+---
+
+### chamf\_cyl()
+
+**DEPRECATED, use `cyl(..., chamfer)` instead.**
+
+**Usage**:
+- chamf\_cyl(h, r|d, chamfer|chamfedge, [top], [bottom], [center])
+
+**Description**:
+Creates a cylinder with chamferred (bevelled) edges.  Basically a shortcut of `chamferred_cylinder()`
+
+Argument        | What it does
+--------------- | ------------------------------
+`h`             | height of cylinder. (Default: 1.0)
+`r`             | radius of cylinder. (Default: 1.0)
+`d`             | diameter of cylinder. (use instead of r)
+`chamfer`       | radial inset of the edge chamfer. (Default: 0.25)
+`chamfedge`     | length of the chamfer edge. (Use instead of chamfer)
+`top`           | boolean.  If true, chamfer the top edges. (Default: True)
+`bottom`        | boolean.  If true, chamfer the bottom edges. (Default: True)
+`center`        | boolean.  If true, cylinder is centered. (Default: false)
+
+---
+
+### filleted\_cylinder()
+
+**DEPRECATED, use `cyl(..., fillet)` instead.**
+
+**Usage**:
+- filleted\_cylinder(h, r|d, fillet, [center]);
+
+**Description**:
+Creates a cylinder with filletted (rounded) ends.
+
+Argument        | What it does
+--------------- | ------------------------------
+`h`             | height of cylinder. (Default: 1.0)
+`r`             | radius of cylinder. (Default: 1.0)
+`d`             | diameter of cylinder. (Use instead of r)
+`fillet`        | radius of the edge filleting. (Default: 0.25)
+`center`        | boolean.  If true, cylinder is centered. (Default: false)
+
+---
+
+### rcylinder()
+
+**DEPRECATED, use `cyl(..., fillet)` instead.**
+
+**Usage**:
+- rcylinder(h, r|d, fillet, [center]);
+
+**Description**:
+Creates a cylinder with filletted (rounded) ends.
+Basically a shortcut for `filleted_cylinder()`.
+
+Argument        | What it does
+--------------- | ------------------------------
+`h`             | height of cylinder. (Default: 1.0)
+`r`             | radius of cylinder. (Default: 1.0)
+`d`             | diameter of cylinder. (Use instead of r)
+`fillet`        | radius of the edge filleting. (Default: 0.25)
+`center`        | boolean.  If true, cylinder is centered. (Default: false)
+
+---
+
+### thinning\_brace()
+
+**DEPRECATED, use `thinning_triangle(..., diagonly=true)` instead.**
+
+**Usage**:
+- thinning\_brace(h, l, thick, [ang], [strut], [wall], [center])
+
+**Description**:
+Makes a triangular wall which thins to a smaller width in the center,
+with angled supports to prevent critical overhangs.  Basically an alias
+of thinning\_triangle(), with diagonly=true.
+
+Argument        | What it does
+--------------- | ------------------------------
+`h`             | height of wall.
+`l`             | length of wall.
+`thick`         | thickness of wall.
+`ang`           | maximum overhang angle of diagonal brace.
+`strut`         | the width of the diagonal brace.
+`wall`          | the thickness of the thinned portion of the wall.
+
+---
 

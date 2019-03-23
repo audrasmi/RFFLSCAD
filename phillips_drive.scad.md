@@ -1,39 +1,43 @@
-An attempt at modelling Phillips drive tips.
-To use, add the following line to the beginning of your file:
+# Library File phillips\_drive.scad
 
-    use <BOSL/phillips_drive.scad>
+Phillips driver bits
+To use, add these lines to the top of your file:
+```
+include <BOSL/constants.scad>
+use <BOSL/phillips_drive.scad>
+```
 
-
+---
 
 # Table of Contents
 
-- [Phillips driver bits.](#phillips-driver-bits)
-    - [`phillips_drive(size, shaft, l)`](#phillips_drivesize-shaft-l)
+1. [Modules](#modules)
+    - [`phillips_drive()`](#phillips_drive)
 
+---
 
+# 1. Modules
 
-# Phillips driver bits.
+### phillips\_drive()
 
-## phillips\_drive(size, shaft, l)
+**Description**:
 Creates a model of a phillips driver bit of a given named size.
-These are my best guess reverse-engineered measurements of
-the tip diameters of various phillips screwdriver sizes.
 
-Args  | What it does
------ | --------------
-size  | The size of the bit.  "#1", "#2", or "#3"
-shaft | The diameter of the drive bit's shaft.
-l     | The length of the drive bit.
+Argument        | What it does
+--------------- | ------------------------------
+`size`          | The size of the bit.  "#1", "#2", or "#3"
+`shaft`         | The diameter of the drive bit's shaft.
+`l`             | The length of the drive bit.
 
-Example:
+**Example**:
 
     xdistribute(10) {
-       phillips_drive(size="#1", shaft=4, l=30);
-       phillips_drive(size="#2", shaft=6, l=30);
-       phillips_drive(size="#3", shaft=6, l=30);
+       phillips_drive(size="#1", shaft=4, l=20);
+       phillips_drive(size="#2", shaft=6, l=20);
+       phillips_drive(size="#3", shaft=6, l=20);
     }
 
-![phillips\_drive](images/phillips_drive/phillips_drive.png)
+![phillips\_drive() Example](images/phillips_drive/phillips_drive.png)
 
-
+---
 

@@ -36,3 +36,18 @@ For purposes of these library files, the following terms apply:
 - **Back**/**Behind**: Towards Y+
 - **Bottom**/**Down**/**Below**: Towards Z-
 - **Top**/**Up**/**Above**: Towards Z+
+
+- **Axis-Positive**: Towards the negative end of the axis the object is oriented on.  IE: X-, Y-, or Z-.
+- **Axis-Negative**: Towards the negative end of the axis the object is oriented on.  IE: X-, Y-, or Z-.
+
+## Common Arguments:
+
+Args    | What it is
+------- | ----------------------------------------
+fillet  | Radius of rounding for interior or exterior edges.
+chamfer | Size of chamfers/bevels for interior or exterior edges.
+orient  | Axis a part should be oriented along.  Given as an XYZ triplet of rotation angles.  It is recommended that you use the `ORIENT_` constants from `constants.scad`.  Default is usually `ORIENT_Z` for vertical orientation.
+align   | Side of the origin that the part should be on.  Given as a vector away from the origin.  It is recommended that you use the `V_` constants from `constants.scad`.  Default is usually `V_ZERO` for centered.
+
+
+

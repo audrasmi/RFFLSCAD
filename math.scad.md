@@ -1,451 +1,1377 @@
+# Library File math.scad
+
 Math helper functions.
-To use, add the following line to the beginning of your file:
+To use, add the following lines to the beginning of your file:
+```
+use <BOSL/math.scad>
+```
 
-    use <BOSL/math.scad>
+---
 
+# Table of Contents
 
-## Table of Contents
+1. [Simple Calculations](#simple-calculations)
+    - [`quant()`](#quant)
+    - [`quantdn()`](#quantdn)
+    - [`quantup()`](#quantup)
+    - [`constrain()`](#constrain)
+    - [`posmod()`](#posmod)
+    - [`modrange()`](#modrange)
+    - [`segs()`](#segs)
+    - [`lerp()`](#lerp)
+    - [`hypot()`](#hypot)
+    - [`sinh()`](#sinh)
+    - [`cosh()`](#cosh)
+    - [`tanh()`](#tanh)
+    - [`asinh()`](#asinh)
+    - [`acosh()`](#acosh)
+    - [`atanh()`](#atanh)
+    - [`sum()`](#sum)
+    - [`sum_of_squares()`](#sum_of_squares)
+    - [`sum_of_sines()`](#sum_of_sines)
+    - [`mean()`](#mean)
 
-- [Miscellaneous](#miscellaneous)
-    - [`constrain(v, minval, maxval)`](#constrainv-minval-maxval)
-    - [`hypot(x, y)`](#hypotx-y)
-    - [`hypot3(x, y, z)`](#hypot3x-y-z)
-    - [`lerp(a, b, u)`](#lerpa-b-u)
-    - [`sum(v)`](#sumv)
-    - [`sum_of_squares(v)`](#sum_of_squaresv)
-    - [`sum_of_sines(a, sines)`](#sum_of_sinesa-sines)
-    - [`quant(x, y)`](#quantx-y)
-    - [`quantdn(x, y)`](#quantdnx-y)
-    - [`quantup(x, y)`](#quantupx-y)
-    - [`segs(r)`](#segsr)
-    - [`first_defined(v)`](#first_definedv)
-- [List Manipulation](#list-manipulation)
-    - [`cdr(list)`](#cdrlist)
-    - [`slice(arr, st, end)`](#slicearr-st-end)
-    - [`wrap_range(list, start, end)`](#wrap_rangelist-start-end)
-    - [`reverse(list)`](#reverselist)
-    - [`flatten(l)`](#flattenl)
-- [Vector Math](#vector-math)
-    - [`point3d(p)`](#point3dp)
-    - [`path3d(points)`](#path3dpoints)
-    - [`vmul(v1, v2)`](#vmulv1-v2)
-    - [`distance(p1, p2)`](#distancep1-p2)
-    - [`normalize(v)`](#normalizev)
-    - [`vector2d_angle(v1, v2)`](#vector2d_anglev1-v2)
-    - [`vector3d_angle(v1, v2)`](#vector3d_anglev1-v2)
-- [Matrix Math](#matrix-math)
-    - [`ident(n)`](#identn)
-    - [`mat3_to_mat4(m)`](#mat3_to_mat4m)
-    - [`matrix3_xrot(ang)`](#matrix3_xrotang)
-    - [`matrix4_xrot(ang)`](#matrix4_xrotang)
-    - [`matrix3_yrot(ang)`](#matrix3_yrotang)
-    - [`matrix4_yrot(ang)`](#matrix4_yrotang)
-    - [`matrix3_zrot(ang)`](#matrix3_zrotang)
-    - [`matrix4_zrot(ang)`](#matrix4_zrotang)
-    - [`matrix3_rot_by_axis(u, ang)`](#matrix3_rot_by_axisu-ang)
-    - [`matrix4_rot_by_axis(u, ang)`](#matrix4_rot_by_axisu-ang)
-- [Coordinate Transforms](#coordinate-transforms)
-    - [`translate_points(pts, v)`](#translate_pointspts-v)
-    - [`scale_points(pts, v, cp)`](#scale_pointspts-v-cp)
-    - [`rotate_points2d(pts, ang, cp)`](#rotate_points2dpts-ang-cp)
-    - [`rotate_points3d(pts, v, cp)`](#rotate_points3dpts-v-cp)
-    - [`rotate_points3d_around_axis(pts, ang, u, cp)`](#rotate_points3d_around_axispts-ang-u-cp)
-- [Coordinate System Conversions](#coordinate-system-conversions)
-    - [`polar_to_xy(r, theta)`](#polar_to_xyr-theta)
-    - [`xy_to_polar(x, y)`](#xy_to_polarx-y)
-    - [`cylindrical_to_xyz(r, theta, z)`](#cylindrical_to_xyzr-theta-z)
-    - [`xyz_to_cylindrical(x, y, z)`](#xyz_to_cylindricalx-y-z)
-    - [`spherical_to_xyz(r, theta, phi)`](#spherical_to_xyzr-theta-phi)
-    - [`xyz_to_spherical(x, y, z)`](#xyz_to_sphericalx-y-z)
-    - [`altaz_to_xyz(alt, az, r)`](#altaz_to_xyzalt-az-r)
-    - [`xyz_to_altaz(x, y, z)`](#xyz_to_altazx-y-z)
+2. [List/Array Operations](#listarray-operations)
+    - [`any()`](#any)
+    - [`all()`](#all)
+    - [`in_list()`](#in_list)
+    - [`slice()`](#slice)
+    - [`wrap_range()`](#wrap_range)
+    - [`reverse()`](#reverse)
+    - [`array_subindex()`](#array_subindex)
+    - [`array_zip()`](#array_zip)
+    - [`array_group()`](#array_group)
+    - [`flatten()`](#flatten)
 
+3. [Vector Manipulation](#vector-manipulation)
+    - [`vmul()`](#vmul)
+    - [`vdiv()`](#vdiv)
+    - [`vabs()`](#vabs)
+    - [`normalize()`](#normalize)
+    - [`vector2d_angle()`](#vector2d_angle)
+    - [`vector3d_angle()`](#vector3d_angle)
 
+4. [Coordinates Manipulation](#coordinates-manipulation)
+    - [`point2d()`](#point2d)
+    - [`path2d()`](#path2d)
+    - [`point3d()`](#point3d)
+    - [`path3d()`](#path3d)
+    - [`translate_points()`](#translate_points)
+    - [`scale_points()`](#scale_points)
+    - [`rotate_points2d()`](#rotate_points2d)
+    - [`rotate_points3d()`](#rotate_points3d)
+    - [`rotate_points3d_around_axis()`](#rotate_points3d_around_axis)
 
-## Miscellaneous
+5. [Coordinate Systems](#coordinate-systems)
+    - [`polar_to_xy()`](#polar_to_xy)
+    - [`xy_to_polar()`](#xy_to_polar)
+    - [`cylindrical_to_xyz()`](#cylindrical_to_xyz)
+    - [`xyz_to_cylindrical()`](#xyz_to_cylindrical)
+    - [`spherical_to_xyz()`](#spherical_to_xyz)
+    - [`xyz_to_spherical()`](#xyz_to_spherical)
+    - [`altaz_to_xyz()`](#altaz_to_xyz)
+    - [`xyz_to_altaz()`](#xyz_to_altaz)
 
-### constrain(v, minval, maxval)
-Returns the value of `v`, constrained to the range [`minval`, `maxval`], so that `minval` <= `v` <= `maxval`.
+6. [Matrix Manipulation](#matrix-manipulation)
+    - [`ident()`](#ident)
+    - [`mat3_to_mat4()`](#mat3_to_mat4)
+    - [`matrix3_translate()`](#matrix3_translate)
+    - [`matrix4_translate()`](#matrix4_translate)
+    - [`matrix3_scale()`](#matrix3_scale)
+    - [`matrix4_scale()`](#matrix4_scale)
+    - [`matrix3_zrot()`](#matrix3_zrot)
+    - [`matrix4_xrot()`](#matrix4_xrot)
+    - [`matrix4_yrot()`](#matrix4_yrot)
+    - [`matrix4_zrot()`](#matrix4_zrot)
+    - [`matrix4_rot_by_axis()`](#matrix4_rot_by_axis)
+    - [`matrix3_skew()`](#matrix3_skew)
+    - [`matrix4_skew_xy()`](#matrix4_skew_xy)
+    - [`matrix4_skew_xz()`](#matrix4_skew_xz)
+    - [`matrix4_skew_yz()`](#matrix4_skew_yz)
+    - [`matrix3_mult()`](#matrix3_mult)
+    - [`matrix4_mult()`](#matrix4_mult)
+    - [`matrix3_apply()`](#matrix3_apply)
+    - [`matrix4_apply()`](#matrix4_apply)
 
+7. [Geometry](#geometry)
+    - [`point_on_segment()`](#point_on_segment)
+    - [`point_left_of_segment()`](#point_left_of_segment)
+    - [`point_in_polygon()`](#point_in_polygon)
+    - [`pointlist_bounds()`](#pointlist_bounds)
 
+8. [Deprecations](#deprecations)
+    - [`Cpi()`](#cpi)
+    - [`hypot3()`](#hypot3)
+    - [`distance()`](#distance)
+    - [`cdr()`](#cdr)
 
-### hypot(x, y)
-Calculate hypotenuse length of 2D triangle.
+---
 
+# 1. Simple Calculations
 
+### quant()
 
-### hypot3(x, y, z)
-Calculate hypotenuse length of 3D triangle.
+**Description**:
+Quantize a value `x` to an integer multiple of `y`, rounding to the nearest multiple.
 
+Argument        | What it does
+--------------- | ------------------------------
+`x`             | The value to quantize.
+`y`             | The multiple to quantize to.
 
+---
 
-### lerp(a, b, u)
-Interpolate between two values or vectors, `a` and `b`.  The alpha value `u` is between 0 and 1.
-When `u` == 0, returns the value of `a`.  When `u` == 1, returns the value of `b`.
-When `u` is between 0 and 1, returns the interpolated value between `a` and `b`.
+### quantdn()
 
+**Description**:
+Quantize a value `x` to an integer multiple of `y`, rounding down to the previous multiple.
 
+Argument        | What it does
+--------------- | ------------------------------
+`x`             | The value to quantize.
+`y`             | The multiple to quantize to.
 
-### sum(v)
+---
+
+### quantup()
+
+**Description**:
+Quantize a value `x` to an integer multiple of `y`, rounding up to the next multiple.
+
+Argument        | What it does
+--------------- | ------------------------------
+`x`             | The value to quantize.
+`y`             | The multiple to quantize to.
+
+---
+
+### constrain()
+
+**Usage**:
+- constrain(v, minval, maxval);
+
+**Description**:
+Constrains value to a range of values between minval and maxval, inclusive.
+
+Argument        | What it does
+--------------- | ------------------------------
+`v`             | value to constrain.
+`minval`        | minimum value to return, if out of range.
+`maxval`        | maximum value to return, if out of range.
+
+---
+
+### posmod()
+
+**Usage**:
+- posmod(x,m)
+
+**Description**:
+Returns the positive modulo `m` of `x`.  Value returned will be in the range 0 ... `m`-1.
+This if useful for normalizing angles to 0 ... 360.
+
+Argument        | What it does
+--------------- | ------------------------------
+`x`             | The value to constrain.
+`m`             | Modulo value.
+
+---
+
+### modrange()
+
+**Usage**:
+- modrange(x, y, m, [step])
+
+**Description**:
+Returns a normalized list of values from `x` to `y`, by `step`, modulo `m`.  Wraps if `x` > `y`.
+
+Argument        | What it does
+--------------- | ------------------------------
+`x`             | The start value to constrain.
+`y`             | The end value to constrain.
+`m`             | Modulo value.
+`step`          | Step by this amount.
+
+**Example 1**:
+
+    echo(modrange(90,270,360, step=45));  // Outputs [90,135,180,225,270]
+
+**Example 2**:
+
+    echo(modrange(270,90,360, step=45));  // Outputs [270,315,0,45,90]
+
+**Example 3**:
+
+    echo(modrange(90,270,360, step=-45));  // Outputs [90,45,0,315,270]
+
+**Example 4**:
+
+    echo(modrange(270,90,360, step=-45));  // Outputs [270,225,180,135,90]
+
+---
+
+### segs()
+
+**Description**:
+Calculate the standard number of sides OpenSCAD would give a circle based on `$fn`, `$fa`, and `$fs`.
+
+Argument        | What it does
+--------------- | ------------------------------
+`r`             | Radius of circle to get the number of segments for.
+
+---
+
+### lerp()
+
+**Description**:
+Interpolate between two values or vectors.
+
+Argument        | What it does
+--------------- | ------------------------------
+`a`             | First value.
+`b`             | Second value.
+`u`             | The proportion from `a` to `b` to calculate.  Valid range is 0.0 to 1.0, inclusive.
+
+---
+
+### hypot()
+
+**Description**:
+Calculate hypotenuse length of a 2D or 3D triangle.
+
+Argument        | What it does
+--------------- | ------------------------------
+`x`             | Length on the X axis.
+`y`             | Length on the Y axis.
+`z`             | Length on the Z axis.
+
+---
+
+### sinh()
+
+**Description**:
+Takes a radians value `x`, and returns the hyperbolic sine of it.
+
+---
+
+### cosh()
+
+**Description**:
+Takes a radians value `x`, and returns the hyperbolic cosine of it.
+
+---
+
+### tanh()
+
+**Description**:
+Takes a radians value `x`, and returns the hyperbolic tangent of it.
+
+---
+
+### asinh()
+
+**Description**:
+Takes a value `x`, and returns the inverse hyperbolic sine of it in radians.
+
+---
+
+### acosh()
+
+**Description**:
+Takes a value `x`, and returns the inverse hyperbolic cosine of it in radians.
+
+---
+
+### atanh()
+
+**Description**:
+Takes a value `x`, and returns the inverse hyperbolic tangent of it in radians.
+
+---
+
+### sum()
+
+**Description**:
 Returns the sum of all entries in the given array.
 If passed an array of vectors, returns a vector of sums of each part.
 
-Examples:
+Argument        | What it does
+--------------- | ------------------------------
+`v`             | The vector to get the sum of.
+
+**Example**:
 
     sum([1,2,3]);  // returns 6.
-    sum([[1,2,3], [3,4,5], [5,6,7]]);  //returns [9, 12, 15]
+    sum([[1,2,3], [3,4,5], [5,6,7]]);  // returns [9, 12, 15]
 
+---
 
+### sum\_of\_squares()
 
-### sum\_of\_squares(v)
+**Description**:
 Returns the sum of the square of each element of a vector.
 
+Argument        | What it does
+--------------- | ------------------------------
+`v`             | The vector to get the sum of.
 
+**Example**:
 
-### sum\_of\_sines(a, sines)
-Gives the sum of a series of sines, at the angle `a`.
+    sum_of_squares([1,2,3]);  // returns 14.
 
-Arg   | What it is
------ | ---------------------
-a     | angle to get the value for.
-sines | array of [amplitude, frequency] pairs, where the frequency is the number of times the cycle repeats around the circle.
+---
 
+### sum\_of\_sines()
 
+**Usage**:
+- sum\_of\_sines(a,sines)
 
-### quant(x, y)
-Quantize a value `x` to an integer multiple of `y`, rounding to the nearest multiple.
+**Description**:
+Gives the sum of a series of sines, at a given angle.
 
+Argument        | What it does
+--------------- | ------------------------------
+`a`             | Angle to get the value for.
+`sines`         | List of [amplitude, frequency, offset] items, where the frequency is the number of times the cycle repeats around the circle.
 
+---
 
-### quantdn(x, y)
-Quantize the value `x` to an integer multiple of `y`, rounding down to the previous multiple.
+### mean()
 
+**Description**:
+Returns the mean of all entries in the given array.
+If passed an array of vectors, returns a vector of mean of each part.
 
+Argument        | What it does
+--------------- | ------------------------------
+`v`             | The list of values to get the mean of.
 
-### quantup(x, y)
-Quantize the value `x` to an integer multiple of `y`, rounding up to the next multiple.
+**Example**:
 
+    mean([2,3,4]);  // returns 4.5.
+    mean([[1,2,3], [3,4,5], [5,6,7]]);  // returns [4.5, 6, 7.5]
 
+---
 
-### segs(r)
-Calculate OpenSCAD standard number of segments for a circle of radius `r`, based on `$fn`, `$fa`, and `$fs`.
+# 2. List/Array Operations
 
+### any()
 
+**Description**:
+Returns true if any item in list `l` evaluates as true.
 
-### first\_defined(v)
-Given an array of values, returns the first value that is not `undef`.
+Argument        | What it does
+--------------- | ------------------------------
+`l`             | The list to test for true items.
 
+**Example**:
 
+    any([0,false,undef]);  // Returns false.
+    any([1,false,undef]);  // Returns true.
+    any([1,5,true]);       // Returns true.
 
-## List Manipulation
+---
 
-### cdr(list)
-Returns all but the first item of a given array.
+### all()
 
+**Description**:
+Returns true if all items in list `l` evaluate as true.
 
+Argument        | What it does
+--------------- | ------------------------------
+`l`             | The list to test for true items.
 
-### slice(arr, st, end)
-Returns a slice of the array `arr` from index `st` to `end`.
-An index of 0 is the array start, -1 is array end.
+**Example**:
 
+    all([0,false,undef]);  // Returns false.
+    all([1,false,undef]);  // Returns false.
+    all([1,5,true]);       // Returns true.
 
+---
 
-### wrap\_range(list, start, end)
-Returns a slice of the given array, wrapping around to the beginning, if end < start
+### in\_list()
 
+**Description**:
+Returns true if value `x` is in list `l`.
 
+Argument        | What it does
+--------------- | ------------------------------
+`x`             | The value to search for.
+`l`             | The list to search.
+`idx`           | If given, searches the given subindexes for matches for `x`.
 
-### reverse(list)
+**Example**:
+
+    in_list("bar", ["foo", "bar", "baz"]);  // Returns true.
+    in_list("bee", ["foo", "bar", "baz"]);  // Returns false.
+    in_list("bar", [[2,"foo"], [4,"bar"], [3,"baz"]], idx=1);  // Returns true.
+
+---
+
+### slice()
+
+**Description**:
+Returns a slice of a list.  The first item is index 0.
+Negative indexes are counted back from the end.  The last item is -1.
+
+Argument        | What it does
+--------------- | ------------------------------
+`arr`           | The array/list to get the slice of.
+`st`            | The index of the first item to return.
+`end`           | The index after the last item to return, unless negative, in which case the last item to return.
+
+**Example**:
+
+    slice([3,4,5,6,7,8,9], 3, 5);   // Returns [6,7]
+    slice([3,4,5,6,7,8,9], 2, -1);  // Returns [5,6,7,8,9]
+    slice([3,4,5,6,7,8,9], 1, 1);   // Returns []
+    slice([3,4,5,6,7,8,9], 6, -1);  // Returns [9]
+    slice([3,4,5,6,7,8,9], 2, -2);  // Returns [5,6,7,8]
+
+---
+
+### wrap\_range()
+
+**Usage**:
+- wrap\_range(list,start)
+- wrap\_range(list,start,end)
+
+**Description**:
+Returns a portion of a list, wrapping around past the beginning, if end<start.
+The first item is index 0. Negative indexes are counted back from the end.
+The last item is -1.  If only the `start` index is given, returns just the value
+at that position.
+
+Argument        | What it does
+--------------- | ------------------------------
+`list`          | The list to get the portion of.
+`start`         | The index of the first item.
+`end`           | The index of the last item.
+
+**Example**:
+
+    l = [3,4,5,6,7,8,9];
+    wrap_range(l, 5, 6);   // Returns [8,9]
+    wrap_range(l, 5, 8);   // Returns [8,9,3,4]
+    wrap_range(l, 5, 2);   // Returns [8,9,3,4,5]
+    wrap_range(l, -3, -1); // Returns [7,8,9]
+    wrap_range(l, 3, 3);   // Returns [6]
+    wrap_range(l, 4);      // Returns 7
+    wrap_range(l, -2);     // Returns 8
+    wrap_range(l, [1:3]);  // Returns [4,5,6]
+    wrap_range(l, [1,3]);  // Returns [4,6]
+
+---
+
+### reverse()
+
+**Description**:
 Reverses a list/array.
 
+Argument        | What it does
+--------------- | ------------------------------
+`list`          | The list to reverse.
 
+**Example**:
 
-### flatten(l)
-Takes an array of arrays and flattens it by one level.
+    reverse([3,4,5,6]);  // Returns [6,5,4,3]
 
-Example:
+---
 
-    flatten([[1,2,3], [4,5,[6,7,8]]]);
-    // returns [1,2,3,4,5,[6,7,8]]
+### array\_subindex()
 
+**Description**:
+For each array item, return the indexed subitem.
+Returns a list of the values of each vector at the specfied
+index list or range.  If the index list or range has
+only one entry the output list is flattened.
 
+Argument        | What it does
+--------------- | ------------------------------
+`v`             | The given list of lists.
+`idx`           | The index, list of indices, or range of indices to fetch.
 
-## Vector Math
+**Example**:
 
-### point3d(p)
-Returns a 3D vector/point from a 2D or 3D vector.
+    v = [[[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]];
+    array_subindex(v,2);      // Returns [3, 7, 11, 15]
+    array_subindex(v,[2,1]);  // Returns [[3, 2], [7, 6], [11, 10], [15, 14]]
+    array_subindex(v,[1:3]);  // Returns [[2, 3, 4], [6, 7, 8], [10, 11, 12], [14, 15, 16]]
 
+---
 
+### array\_zip()
 
-### path3d(points)
-Returns an array of 3D vectors/points from a 2D or 3D vector array.
+**Description**:
+Zips together corresponding items from two or more lists.
+Returns a list of grouped values.
 
+Argument        | What it does
+--------------- | ------------------------------
+`vecs`          | A list of two or more lists to zipper together.
+`dflt`          | The default value to fill in with if one or more lists if short.
 
+**Example**:
 
-### vmul(v1, v2)
-Multiplies corresponding elements in two vectors.
+    v1 = [1,2,3,4];
+    v2 = [5,6,7];
+    v3 = [8,9,10,11];
+    array_zip([v1,v2]);      // returns [[1,5], [2,6], [3,7], [4,undef]]
+    array_zip([v1,v2], 20);  // returns [[1,5], [2,6], [3,7], [4,20]]
+    array_zip([v1,v2,v3]);   // returns [[1,5,8], [2,6,9], [3,7,10], [4,undef,11]]
 
+---
 
-### distance(p1, p2)
-Returns the distance between a pair of 2D or 3D points.
+### array\_group()
 
+**Description**:
+Takes a flat array of values, and groups items in sets of `cnt` length.
+The opposite of this is `flatten()`.
 
+Argument        | What it does
+--------------- | ------------------------------
+`v`             | The list of items to group.
+`cnt`           | The number of items to put in each grouping.
+`dflt`          | The default value to fill in with is the list is not a multiple of `cnt` items long.
 
-### normalize(v)
-Returns unit length normalized version of vector `v`.
+**Example**:
 
+    v = [1,2,3,4,5,6];
+    array_group(v,2) returns [[1,2], [3,4], [5,6]]
+    array_group(v,3) returns [[1,2,3], [4,5,6]]
+    array_group(v,4,0) returns [[1,2,3,4], [5,6,0,0]]
 
+---
 
-### vector2d\_angle(v1, v2)
+### flatten()
+
+**Description**:
+Takes a list of list and flattens it by one level.
+
+Argument        | What it does
+--------------- | ------------------------------
+`l`             | List to flatten.
+
+**Example**:
+
+    flatten([[1,2,3], [4,5,[6,7,8]]]) returns [1,2,3,4,5,[6,7,8]]
+
+---
+
+# 3. Vector Manipulation
+
+### vmul()
+
+**Description**:
+Element-wise vector multiplication.  Multiplies each element of vector `v1` by
+the corresponding element of vector `v2`.  Returns a vector of the products.
+
+Argument        | What it does
+--------------- | ------------------------------
+`v1`            | The first vector.
+`v2`            | The second vector.
+
+**Example**:
+
+    vmul([3,4,5], [8,7,6]);  // Returns [24, 28, 30]
+
+---
+
+### vdiv()
+
+**Description**:
+Element-wise vector division.  Divides each element of vector `v1` by
+the corresponding element of vector `v2`.  Returns a vector of the quotients.
+
+Argument        | What it does
+--------------- | ------------------------------
+`v1`            | The first vector.
+`v2`            | The second vector.
+
+**Example**:
+
+    vdiv([24,28,30], [8,7,6]);  // Returns [3, 4, 5]
+
+---
+
+### vabs()
+
+**Description**:
+Returns a vector of the absolute value of each element of vector `v`.
+
+Argument        | What it does
+--------------- | ------------------------------
+`v`             | The vector to get the absolute values of.
+
+---
+
+### normalize()
+
+**Description**:
+Returns unit length normalized version of vector v.
+
+Argument        | What it does
+--------------- | ------------------------------
+`v`             | The vector to normalize.
+
+---
+
+### vector2d\_angle()
+
+**Usage**:
+- vector2d\_angle(v1,v2);
+
+**Description**:
 Returns angle in degrees between two 2D vectors.
 
+Argument        | What it does
+--------------- | ------------------------------
+`v1`            | First 2D vector.
+`v2`            | Second 2D vector.
 
+---
 
-### vector3d\_angle(v1, v2)
+### vector3d\_angle()
+
+**Usage**:
+- vector3d\_angle(v1,v2);
+
+**Description**:
 Returns angle in degrees between two 3D vectors.
 
+Argument        | What it does
+--------------- | ------------------------------
+`v1`            | First 3D vector.
+`v2`            | Second 3D vector.
 
+---
 
-## Matrix Math
+# 4. Coordinates Manipulation
 
-### ident(n)
-Create an identity matrix, for a given number of axes.
+### point2d()
 
+**Description**:
+Returns a 2D vector/point from a 2D or 3D vector.
+If given a 3D point, removes the Z coordinate.
 
+Argument        | What it does
+--------------- | ------------------------------
+`p`             | The coordinates to force into a 2D vector/point.
 
-### mat3\_to\_mat4(m)
-Takes a 3x3 matrix and returns its 4x4 transform matrix equivalent.
+---
 
+### path2d()
 
+**Description**:
+Returns a list of 2D vectors/points from a list of 2D or 3D vectors/points.
+If given a 3D point list, removes the Z coordinates from each point.
 
-### matrix3\_xrot(ang)
-Returns the 3x3 matrix to perform a rotation of ang degrees around the X axis.
+Argument        | What it does
+--------------- | ------------------------------
+`points`        | A list of 2D or 3D points/vectors.
 
+---
 
+### point3d()
 
-### matrix4\_xrot(ang)
-Returns the 4x4 matrix to perform a rotation of ang degrees around the X axis.
+**Description**:
+Returns a 3D vector/point from a 2D or 3D vector.
 
+Argument        | What it does
+--------------- | ------------------------------
+`p`             | The coordinates to force into a 3D vector/point.
 
+---
 
-### matrix3\_yrot(ang)
-Returns the 3x3 matrix to perform a rotation of ang degrees around the Y axis.
+### path3d()
 
+**Description**:
+Returns a list of 3D vectors/points from a list of 2D or 3D vectors/points.
 
+Argument        | What it does
+--------------- | ------------------------------
+`points`        | A list of 2D or 3D points/vectors.
 
-### matrix4\_yrot(ang)
-Returns the 4x4 matrix to perform a rotation of ang degrees around the Y axis.
+---
 
+### translate\_points()
 
+**Usage**:
+- translate\_points(pts, v);
 
-### matrix3\_zrot(ang)
-Returns the 3x3 matrix to perform a rotation of ang degrees around the Z axis.
+**Description**:
+Moves each point in an array by a given amount.
 
+Argument        | What it does
+--------------- | ------------------------------
+`pts`           | List of points to translate.
+`v`             | Amount to translate points by.
 
+---
 
-### matrix4\_zrot(ang)
-Returns the 4x4 matrix to perform a rotation of ang degrees around the Z axis.
+### scale\_points()
 
+**Usage**:
+- scale\_points(pts, v, [cp]);
 
+**Description**:
+Scales each point in an array by a given amount, around a given centerpoint.
 
-### matrix3\_rot\_by\_axis(u, ang)
-Returns the 3x3 matrix to perform a rotation of a vector around an axis.
+Argument        | What it does
+--------------- | ------------------------------
+`pts`           | List of points to scale.
+`v`             | A vector with a scaling factor for each axis.
+`cp`            | Centerpoint to scale around.
 
-Arg   | What it is
------ | ---------------------
-u     | axis vector to rotate around.
-ang   | number of degrees to rotate.
+---
 
+### rotate\_points2d()
 
+**Usage**:
+- rotate\_points2d(pts, ang, [cp]);
 
-### matrix4\_rot\_by\_axis(u, ang)
-Returns the 4x4 matrix to perform a rotation of a vector around an axis.
+**Description**:
+Rotates each 2D point in an array by a given amount, around an optional centerpoint.
 
-Arg   | What it is
------ | ---------------------
-u     | axis vector to rotate around.
-ang   | number of degrees to rotate.
+Argument        | What it does
+--------------- | ------------------------------
+`pts`           | List of 3D points to rotate.
+`ang`           | Angle to rotate by.
+`cp`            | 2D Centerpoint to rotate around.  Default: `[0,0]`
 
+---
 
+### rotate\_points3d()
 
-## Coordinate Transforms
+**Usage**:
+- rotate\_points3d(pts, v, [cp], [reverse]);
 
-### translate\_points(pts, v)
-Translates each point in the array `pts` by the vector `v`.
+**Description**:
+Rotates each 3D point in an array by a given amount, around a given centerpoint.
 
+Argument        | What it does
+--------------- | ------------------------------
+`pts`           | List of 3D points to rotate.
+`v`             | Vector of rotation angles for each axis, [X,Y,Z]
+`cp`            | 3D Centerpoint to rotate around.
+`reverse`       | If true, performs an exactly reversed rotation.
 
+---
 
-### scale\_points(pts, v, cp)
-Scales each point in the array `pts` by the [X,Y,Z] scale
-factors in vector `v`, around the centerpoint `cp`.
+### rotate\_points3d\_around\_axis()
 
+**Usage**:
+- rotate\_points3d\_around\_axis(pts, ang, u, [cp])
 
+**Description**:
+Rotates each 3D point in an array by a given amount, around a given centerpoint and axis.
 
-### rotate\_points2d(pts, ang, cp)
-Rotates each 2D point in the array `pts` by the angle `ang`,
-around the centerpoint `cp`.
+Argument        | What it does
+--------------- | ------------------------------
+`pts`           | List of 3D points to rotate.
+`ang`           | Angle to rotate by.
+`u`             | Vector of the axis to rotate around.
+`cp`            | 3D Centerpoint to rotate around.
 
+---
 
+# 5. Coordinate Systems
 
-### rotate\_points3d(pts, v, cp)
-Rotates each 3D point in the array `pts` by the Euller angles
-[X,Y,Z], around the centerpoint `cp`.
+### polar\_to\_xy()
 
+**Usage**:
+- polar\_to\_xy(r, theta);
+- polar\_to\_xy([r, theta]);
 
-
-### rotate\_points3d\_around\_axis(pts, ang, u, cp)
-Rotates each 3D point in the array `pts` by the angle `ang`,
-around the centerpoint `cp` and the axis `u`.
-
-
-
-## Coordinate System Conversions
-
-### polar\_to\_xy(r, theta)
-
-Convert polar coordinates to cartesian coordinates.
+**Description**:
+Convert polar coordinates to 2D cartesian coordinates.
 Returns [X,Y] cartesian coordinates.
 
-Args  | What it does
------ | --------------------------------------
-r     | Radius of polar coordinate.
-theta | Angle in degrees, counter-clockwise of X+.
+Argument        | What it does
+--------------- | ------------------------------
+`r`             | distance from the origin.
+`theta`         | angle in degrees, counter-clockwise of X+.
 
-Examples:
+**Example 1**:
 
     xy = polar_to_xy(20,30);
+
+**Example 2**:
+
     xy = polar_to_xy([40,60]);
 
+---
 
+### xy\_to\_polar()
 
-### xy\_to\_polar(x, y)
+**Usage**:
+- xy\_to\_polar(x,y);
+- xy\_to\_polar([X,Y]);
 
-Convert cartesian coordinates to polar coordinates.
-Returns [radius, theta] where theta is the angle
-counter-clockwise of X+, and radius is the distance
-from the origin.
+**Description**:
+Convert 2D cartesian coordinates to polar coordinates.
+Returns [radius, theta] where theta is the angle counter-clockwise of X+.
 
-Args  | What it does
------ | --------------------------------------
-x     | X coordinate.
-y     | Y coordinate.
+Argument        | What it does
+--------------- | ------------------------------
+`x`             | X coordinate.
+`y`             | Y coordinate.
 
-Examples:
+**Example 1**:
 
     plr = xy_to_polar(20,30);
+
+**Example 2**:
+
     plr = xy_to_polar([40,60]);
 
+---
 
+### cylindrical\_to\_xyz()
 
-### cylindrical\_to\_xyz(r, theta, z)
+**Usage**:
+- cylindrical\_to\_xyz(r, theta, z)
+- cylindrical\_to\_xyz([r, theta, z])
 
-Convert cylindrical coordinates to cartesian coordinates.
-Returns [X,Y,Z] cartesian coordinates.
+**Description**:
+Convert cylindrical coordinates to 3D cartesian coordinates.  Returns [X,Y,Z] cartesian coordinates.
 
-Args  | What it does
------ | --------------------------------------
-r     | Distance from the Z axis.
-theta | Angle in degrees, counter-clockwise of X+ on the XY plane.
-z     | Height above XY plane.
+Argument        | What it does
+--------------- | ------------------------------
+`r`             | distance from the Z axis.
+`theta`         | angle in degrees, counter-clockwise of X+ on the XY plane.
+`z`             | Height above XY plane.
 
-Examples:
+**Example 1**:
 
     xyz = cylindrical_to_xyz(20,30,40);
+
+**Example 2**:
+
     xyz = cylindrical_to_xyz([40,60,50]);
 
+---
 
+### xyz\_to\_cylindrical()
 
-### xyz\_to\_cylindrical(x, y, z)
+**Usage**:
+- xyz\_to\_cylindrical(x,y,z)
+- xyz\_to\_cylindrical([X,Y,Z])
 
-Convert cartesian coordinates to cylindrical coordinates.
+**Description**:
+Convert 3D cartesian coordinates to cylindrical coordinates.
 Returns [radius,theta,Z]. Theta is the angle counter-clockwise
 of X+ on the XY plane.  Z is height above the XY plane.
 
-Args  | What it does
------ | --------------------------------------
-x     | X coordinate.
-y     | Y coordinate.
-z     | Z coordinate.
+Argument        | What it does
+--------------- | ------------------------------
+`x`             | X coordinate.
+`y`             | Y coordinate.
+`z`             | Z coordinate.
 
-Examples:
+**Example 1**:
 
     cyl = xyz_to_cylindrical(20,30,40);
+
+**Example 2**:
+
     cyl = xyz_to_cylindrical([40,50,70]);
 
+---
 
+### spherical\_to\_xyz()
 
-### spherical\_to\_xyz(r, theta, phi)
+**Usage**:
+- spherical\_to\_xyz(r, theta, phi);
+- spherical\_to\_xyz([r, theta, phi]);
 
-Convert spherical coordinates to cartesian coordinates.
+**Description**:
+Convert spherical coordinates to 3D cartesian coordinates.
 Returns [X,Y,Z] cartesian coordinates.
 
-Args  | What it does
------ | --------------------------------------
-r     | Distance from origin.
-theta | Angle in degrees, counter-clockwise of X+ on the XY plane.
-phi   | Angle in degrees from the vertical Z+ axis.
+Argument        | What it does
+--------------- | ------------------------------
+`r`             | distance from origin.
+`theta`         | angle in degrees, counter-clockwise of X+ on the XY plane.
+`phi`           | angle in degrees from the vertical Z+ axis.
 
-Examples:
+**Example 1**:
 
     xyz = spherical_to_xyz(20,30,40);
+
+**Example 2**:
+
     xyz = spherical_to_xyz([40,60,50]);
 
+---
 
+### xyz\_to\_spherical()
 
-### xyz\_to\_spherical(x, y, z)
+**Usage**:
+- xyz\_to\_spherical(x,y,z)
+- xyz\_to\_spherical([X,Y,Z])
 
-Convert cartesian coordinates to spherical coordinates.
+**Description**:
+Convert 3D cartesian coordinates to spherical coordinates.
 Returns [r,theta,phi], where phi is the angle from the Z+ pole,
 and theta is degrees counter-clockwise of X+ on the XY plane.
 
-Args  | What it does
------ | --------------------------------------
-x     | X coordinate.
-y     | Y coordinate.
-z     | Z coordinate.
+Argument        | What it does
+--------------- | ------------------------------
+`x`             | X coordinate.
+`y`             | Y coordinate.
+`z`             | Z coordinate.
 
-Examples:
+**Example 1**:
 
     sph = xyz_to_spherical(20,30,40);
+
+**Example 2**:
+
     sph = xyz_to_spherical([40,50,70]);
 
+---
 
+### altaz\_to\_xyz()
 
-### altaz\_to\_xyz(alt, az, r)
+**Usage**:
+- altaz\_to\_xyz(alt, az, r);
+- altaz\_to\_xyz([alt, az, r]);
 
-Convert altitude/azimuth/range coordinates to cartesian coordinates.
+**Description**:
+Convert altitude/azimuth/range coordinates to 3D cartesian coordinates.
 Returns [X,Y,Z] cartesian coordinates.
 
-Args  | What it does
------ | --------------------------------------
-alt   | Altitude angle in degrees above the XY plane.
-az    | Azimuth angle in degrees clockwise of Y+ on the XY plane.
-r     | Distance from origin.
+Argument        | What it does
+--------------- | ------------------------------
+`alt`           | altitude angle in degrees above the XY plane.
+`az`            | azimuth angle in degrees clockwise of Y+ on the XY plane.
+`r`             | distance from origin.
 
-Examples:
+**Example 1**:
 
     xyz = altaz_to_xyz(20,30,40);
+
+**Example 2**:
+
     xyz = altaz_to_xyz([40,60,50]);
 
+---
 
+### xyz\_to\_altaz()
 
-### xyz\_to\_altaz(x, y, z)
+**Usage**:
+- xyz\_to\_altaz(x,y,z);
+- xyz\_to\_altaz([X,Y,Z]);
 
-Convert cartesian coordinates to altitude/azimuth/range coordinates.
+**Description**:
+Convert 3D cartesian coordinates to altitude/azimuth/range coordinates.
 Returns [altitude,azimuth,range], where altitude is angle above the
 XY plane, azimuth is degrees clockwise of Y+ on the XY plane, and
 range is the distance from the origin.
 
-Args  | What it does
------ | --------------------------------------
-x     | X coordinate.
-y     | Y coordinate.
-z     | Z coordinate.
+Argument        | What it does
+--------------- | ------------------------------
+`x`             | X coordinate.
+`y`             | Y coordinate.
+`z`             | Z coordinate.
 
-Examples:
+**Example 1**:
 
     aa = xyz_to_altaz(20,30,40);
+
+**Example 2**:
+
     aa = xyz_to_altaz([40,50,70]);
 
+---
 
+# 6. Matrix Manipulation
+
+### ident()
+
+**Description**:
+Create an `n` by `n` identity matrix.
+
+Argument        | What it does
+--------------- | ------------------------------
+`n`             | The size of the identity matrix square, `n` by `n`.
+
+---
+
+### mat3\_to\_mat4()
+
+**Description**:
+Takes a 3x3 matrix and returns its 4x4 equivalent.
+
+---
+
+### matrix3\_translate()
+
+**Description**:
+Returns the 3x3 matrix to perform a 2D translation.
+
+Argument        | What it does
+--------------- | ------------------------------
+`v`             | 2D Offset to translate by.  [X,Y]
+
+---
+
+### matrix4\_translate()
+
+**Description**:
+Returns the 4x4 matrix to perform a 3D translation.
+
+Argument        | What it does
+--------------- | ------------------------------
+`v`             | 3D offset to translate by.  [X,Y,Z]
+
+---
+
+### matrix3\_scale()
+
+**Description**:
+Returns the 3x3 matrix to perform a 2D scaling transformation.
+
+Argument        | What it does
+--------------- | ------------------------------
+`v`             | 2D vector of scaling factors.  [X,Y]
+
+---
+
+### matrix4\_scale()
+
+**Description**:
+Returns the 4x4 matrix to perform a 3D scaling transformation.
+
+Argument        | What it does
+--------------- | ------------------------------
+`v`             | 3D vector of scaling factors.  [X,Y,Z]
+
+---
+
+### matrix3\_zrot()
+
+**Description**:
+Returns the 3x3 matrix to perform a rotation of a 2D vector around the Z axis.
+
+Argument        | What it does
+--------------- | ------------------------------
+`ang`           | Number of degrees to rotate.
+
+---
+
+### matrix4\_xrot()
+
+**Description**:
+Returns the 4x4 matrix to perform a rotation of a 3D vector around the X axis.
+
+Argument        | What it does
+--------------- | ------------------------------
+`ang`           | number of degrees to rotate.
+
+---
+
+### matrix4\_yrot()
+
+**Description**:
+Returns the 4x4 matrix to perform a rotation of a 3D vector around the Y axis.
+
+Argument        | What it does
+--------------- | ------------------------------
+`ang`           | Number of degrees to rotate.
+
+---
+
+### matrix4\_zrot()
+
+**Usage**:
+- matrix4\_zrot(ang)
+
+**Description**:
+Returns the 4x4 matrix to perform a rotation of a 3D vector around the Z axis.
+
+Argument        | What it does
+--------------- | ------------------------------
+`ang`           | number of degrees to rotate.
+
+---
+
+### matrix4\_rot\_by\_axis()
+
+**Usage**:
+- matrix4\_rot\_by\_axis(u, ang);
+
+**Description**:
+Returns the 4x4 matrix to perform a rotation of a 3D vector around an axis.
+
+Argument        | What it does
+--------------- | ------------------------------
+`u`             | 3D axis vector to rotate around.
+`ang`           | number of degrees to rotate.
+
+---
+
+### matrix3\_skew()
+
+**Usage**:
+- matrix3\_skew(xa, ya)
+
+**Description**:
+Returns the 3x3 matrix to skew a 2D vector along the XY plane.
+
+Argument        | What it does
+--------------- | ------------------------------
+`xa`            | Skew angle, in degrees, in the direction of the X axis.
+`ya`            | Skew angle, in degrees, in the direction of the Y axis.
+
+---
+
+### matrix4\_skew\_xy()
+
+**Usage**:
+- matrix4\_skew\_xy(xa, ya)
+
+**Description**:
+Returns the 4x4 matrix to perform a skew transformation along the XY plane..
+
+Argument        | What it does
+--------------- | ------------------------------
+`xa`            | Skew angle, in degrees, in the direction of the X axis.
+`ya`            | Skew angle, in degrees, in the direction of the Y axis.
+
+---
+
+### matrix4\_skew\_xz()
+
+**Usage**:
+- matrix4\_skew\_xz(xa, za)
+
+**Description**:
+Returns the 4x4 matrix to perform a skew transformation along the XZ plane.
+
+Argument        | What it does
+--------------- | ------------------------------
+`xa`            | Skew angle, in degrees, in the direction of the X axis.
+`za`            | Skew angle, in degrees, in the direction of the Z axis.
+
+---
+
+### matrix4\_skew\_yz()
+
+**Usage**:
+- matrix4\_skew\_yz(ya, za)
+
+**Description**:
+Returns the 4x4 matrix to perform a skew transformation along the YZ plane.
+
+Argument        | What it does
+--------------- | ------------------------------
+`ya`            | Skew angle, in degrees, in the direction of the Y axis.
+`za`            | Skew angle, in degrees, in the direction of the Z axis.
+
+---
+
+### matrix3\_mult()
+
+**Usage**:
+- matrix3\_mult(matrices)
+
+**Description**:
+Returns a 3x3 transformation matrix which results from applying each matrix in `matrices` in order.
+
+Argument        | What it does
+--------------- | ------------------------------
+`matrices`      | A list of 3x3 matrices.
+`m`             | Optional starting matrix to apply everything to.
+
+---
+
+### matrix4\_mult()
+
+**Usage**:
+- matrix4\_mult(matrices)
+
+**Description**:
+Returns a 4x4 transformation matrix which results from applying each matrix in `matrices` in order.
+
+Argument        | What it does
+--------------- | ------------------------------
+`matrices`      | A list of 4x4 matrices.
+`m`             | Optional starting matrix to apply everything to.
+
+---
+
+### matrix3\_apply()
+
+**Usage**:
+- matrix3\_apply(pts, matrices)
+
+**Description**:
+Given a list of transformation matrices, applies them in order to the points in the point list.
+
+Argument        | What it does
+--------------- | ------------------------------
+`pts`           | A list of 2D points to transform.
+`matrices`      | A list of 3x3 matrices to apply, in order.
+
+**Example**:
+
+    npts = matrix3_apply(
+        pts = [for (x=[0:3]) [5*x,0]],
+        matrices =[
+            matrix3_scale([3,1]),
+            matrix3_rot(90),
+            matrix3_translate([5,5])
+        ]
+    );  // Returns [[5,5], [5,20], [5,35], [5,50]]
+
+---
+
+### matrix4\_apply()
+
+**Usage**:
+- matrix4\_apply(pts, matrices)
+
+**Description**:
+Given a list of transformation matrices, applies them in order to the points in the point list.
+
+Argument        | What it does
+--------------- | ------------------------------
+`pts`           | A list of 3D points to transform.
+`matrices`      | A list of 4x4 matrices to apply, in order.
+
+**Example**:
+
+    npts = matrix4_apply(
+      pts = [for (x=[0:3]) [5*x,0,0]],
+      matrices =[
+        matrix4_scale([2,1,1]),
+        matrix4_zrot(90),
+        matrix4_translate([5,5,10])
+      ]
+    );  // Returns [[5,5,10], [5,15,10], [5,25,10], [5,35,10]]
+
+---
+
+# 7. Geometry
+
+### point\_on\_segment()
+
+**Usage**:
+- point\_on\_segment(point, edge);
+
+**Description**:
+Determine if the point is on the line segment between two points.
+Returns true if yes, and false if not.
+
+Argument        | What it does
+--------------- | ------------------------------
+`point`         | The point to check colinearity of.
+`edge`          | Array of two points forming the line segment to test against.
+
+---
+
+### point\_left\_of\_segment()
+
+**Usage**:
+- point\_left\_of\_segment(point, edge);
+
+**Description**:
+Return >0 if point is left of the line defined by edge.
+Return =0 if point is on the line.
+Return <0 if point is right of the line.
+
+Argument        | What it does
+--------------- | ------------------------------
+`point`         | The point to check position of.
+`edge`          | Array of two points forming the line segment to test against.
+
+---
+
+### point\_in\_polygon()
+
+**Usage**:
+- point\_in\_polygon(point, path)
+
+**Description**:
+This function tests whether the given point is inside, outside or on the boundary of
+the specified polygon using the Winding Number method.  (http://geomalgorithms.com/a03-\_inclusion.html)
+The polygon is given as a list of points, not including the repeated end point.
+Returns -1 if the point is outside the polyon.
+Returns 0 if the point is on the boundary.
+Returns 1 if the point lies in the interior.
+The polygon does not need to be simple: it can have self-intersections.
+But the polygon cannot have holes (it must be simply connected).
+Rounding error may give mixed results for points on or near the boundary.
+
+Argument        | What it does
+--------------- | ------------------------------
+`point`         | The point to check position of.
+`path`          | The list of 2D path points forming the perimeter of the polygon.
+
+---
+
+### pointlist\_bounds()
+
+**Usage**:
+- pointlist\_bounds(pts);
+
+**Description**:
+Finds the bounds containing all the points in pts.
+Returns [[minx, miny, minz], [maxx, maxy, maxz]]
+
+Argument        | What it does
+--------------- | ------------------------------
+`pts`           | List of points.
+
+---
+
+# 8. Deprecations
+
+### Cpi()
+
+**DEPRECATED, use `PI` instead.**
+
+**Description**:
+Returns the value of pi.
+
+---
+
+### hypot3()
+
+**DEPRECATED, use `norm([x,y,z])` instead.**
+
+**Description**:
+Calculate hypotenuse length of 3D triangle.
+
+Argument        | What it does
+--------------- | ------------------------------
+`x`             | Length on the X axis.
+`y`             | Length on the Y axis.
+`z`             | Length on the Z axis.
+
+---
+
+### distance()
+
+**DEPRECATED, use `norm(p2-p1)` instead.  It's shorter.**
+
+**Description**:
+Returns the distance between a pair of 2D or 3D points.
+
+---
+
+### cdr()
+
+**DEPRECATED, use `slice(list,1,-1)` instead.**
+
+**Description**:
+Returns all but the first item of a given array.
+
+Argument        | What it does
+--------------- | ------------------------------
+`list`          | The list to get the tail of.
+
+---
 

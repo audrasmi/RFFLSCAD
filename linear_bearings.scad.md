@@ -1,79 +1,94 @@
-Clamps to hold LMxUU type linear bearings.
-To use, add the following line to the beginning of your file:
+# Library File linear\_bearings.scad
 
-    use <BOSL/linear_bearings.scad>
+Linear Bearing clips/holders.
+To use, add these lines to the top of your file:
+```
+include <BOSL/constants.scad>
+use <BOSL/linear_bearings.scad>
+```
 
-
+---
 
 # Table of Contents
 
-- [Functions](#functions)
-    - [`get_lmXuu_bearing_diam(size)`](#get_lmxuu_bearing_diamsize)
-    - [`get_lmXuu_bearing_length(size)`](#get_lmxuu_bearing_lengthsize)
-- [Modules](#modules)
+1. [Functions](#functions)
+    - [`get_lmXuu_bearing_diam()`](#get_lmxuu_bearing_diam)
+    - [`get_lmXuu_bearing_length()`](#get_lmxuu_bearing_length)
     - [`linear_bearing_housing()`](#linear_bearing_housing)
     - [`lmXuu_housing()`](#lmxuu_housing)
 
+---
 
+# 1. Functions
 
-# Functions
+### get\_lmXuu\_bearing\_diam()
 
-## get\_lmXuu\_bearing\_diam(size)
-Given a shaft diameter, returns the outer diameter of the standard LMxUU
-linear bearing for that shaft.
+**Description**:
+Get outside diameter, in mm, of a standard lmXuu bearing.
 
+Argument        | What it does
+--------------- | ------------------------------
+`size`          | Inner size of lmXuu bearing, in mm.
 
+---
 
-## get\_lmXuu\_bearing\_length(size)
-Given a shaft diameter, returns the length of the standard LMxUU
-linear bearing for that shaft.
+### get\_lmXuu\_bearing\_length()
 
+**Description**:
+Get length, in mm, of a standard lmXuu bearing.
 
+Argument        | What it does
+--------------- | ------------------------------
+`size`          | Inner size of lmXuu bearing, in mm.
 
-# Modules
+---
 
-## linear\_bearing\_housing()
-Creates a model of a clamp to hold an arbitrary linear bearing cartridge.
+### linear\_bearing\_housing()
 
-Arg       | What it is
---------- | -------------------------------
-d         | Diameter of linear bearing. (Default: 15)
-l         | Length of linear bearing. (Default: 24)
-tab       | Clamp tab height. (Default: 7)
-tabwall   | Clamp Tab thickness. (Default: 5)
-wall      | Wall thickness of clamp housing. (Default: 3)
-gap       | Gap in clamp. (Default: 5)
-screwsize | Size of screw to use to tighten clamp. (Default: 3)
+**Description**:
+Creates a model of a clamp to hold a generic linear bearing cartridge.
 
-Examples:
+Argument        | What it does
+--------------- | ------------------------------
+`d`             | Diameter of linear bearing. (Default: 15)
+`l`             | Length of linear bearing. (Default: 24)
+`tab`           | Clamp tab height. (Default: 7)
+`tabwall`       | Clamp Tab thickness. (Default: 5)
+`wall`          | Wall thickness of clamp housing. (Default: 3)
+`gap`           | Gap in clamp. (Default: 5)
+`screwsize`     | Size of screw to use to tighten clamp. (Default: 3)
+`orient`        | Orientation of the housing.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_X`.
+`align`         | Alignment of the housing by the axis-negative (size1) end.  Use the `V_` constants from `constants.scad`.  Default: `V_UP`
 
-    linear_bearing_housing(d=15, l=24);
+**Example**:
 
     linear_bearing_housing(d=19, l=29, wall=2, tab=6, screwsize=2.5);
 
-![linear\_bearing\_housing](images/linear_bearings/linear_bearing_housing.png)
+![linear\_bearing\_housing() Example](images/linear_bearings/linear_bearing_housing.png)
 
+---
 
+### lmXuu\_housing()
 
-## lmXuu\_housing()
-Creates a model of a clamp to hold a LMxUU linear bearing cartridge.
+**Description**:
+Creates a model of a clamp to hold a standard sized lmXuu linear bearing cartridge.
 
-Arg       | What it is
---------- | -------------------------------
-size      | Shaft diameter that LMxUU bearing is for.
-tab       | Clamp tab height. (Default: 7)
-tabwall   | Clamp Tab thickness. (Default: 5)
-wall      | Wall thickness of clamp housing. (Default: 3)
-gap       | Gap in clamp. (Default: 5)
-screwsize | Size of screw to use to tighten clamp. (Default: 3)
+Argument        | What it does
+--------------- | ------------------------------
+`size`          | Standard lmXuu inner size.
+`tab`           | Clamp tab height.  Default: 7
+`tabwall`       | Clamp Tab thickness.  Default: 5
+`wall`          | Wall thickness of clamp housing.  Default: 3
+`gap`           | Gap in clamp.  Default: 5
+`screwsize`     | Size of screw to use to tighten clamp.  Default: 3
+`orient`        | Orientation of the housing.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_X`.
+`align`         | Alignment of the housing by the axis-negative (size1) end.  Use the `V_` constants from `constants.scad`.  Default: `V_UP`
 
-Examples:
+**Example**:
 
-	lmXuu_housing(size=8);
+    lmXuu_housing(size=10, wall=2, tab=6, screwsize=2.5);
 
-	lmXuu_housing(size=10, wall=2, tab=6, screwsize=2.5);
+![lmXuu\_housing() Example](images/linear_bearings/lmXuu_housing.png)
 
-![lmXuu\_housing](images/linear_bearings/lmXuu_housing.png)
-
-
+---
 

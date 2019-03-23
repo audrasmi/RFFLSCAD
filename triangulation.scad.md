@@ -1,36 +1,114 @@
-Functions to triangulate `polyhedron()` faces that have more than 3 vertexes.
-To use, include the following line at the top of your file:
+# Library File triangulation.scad
 
-    use <BOSL/triangulation.scad>
+Functions to triangulate polyhedron faces.
+To use, add the following lines to the beginning of your file:
+```
+use <BOSL/triangulation.scad>
+```
 
+---
 
 # Table of Contents
 
-- [`triangulate_face(points, face)`](#triangulate_facepoints-face)
-- [`triangulate_faces(points, faces)`](#triangulate_facespoints-faces)
+1. [Functions](#functions)
+    - [`face_normal()`](#face_normal)
+    - [`find_convex_vertex()`](#find_convex_vertex)
+    - [`point_in_ear()`](#point_in_ear)
+    - [`normalize_vertex_perimeter()`](#normalize_vertex_perimeter)
+    - [`is_only_noncolinear_vertex()`](#is_only_noncolinear_vertex)
+    - [`triangulate_face()`](#triangulate_face)
+    - [`triangulate_faces()`](#triangulate_faces)
 
+---
 
+# 1. Functions
 
-## triangulate\_face(points, face)
-Triangulates a face if it is bound by more than three vertices.
-Returns a list of faces, where each face is a list of 3 vertex
-indices.
+### face\_normal()
 
-Args     | What it does
--------- | ------------------------
-points   | The vertex points for the polyhedron.
-face     | A list of vertex indices for the given face.
+**Description**:
+Given an array of vertices (`points`), and a list of indexes into the
+vertex array (`face`), returns the normal vector of the face.
 
+Argument        | What it does
+--------------- | ------------------------------
+`points`        | Array of vertices for the polyhedron.
+`face`          | The face, given as a list of indices into the vertex array `points`.
 
+---
 
-## triangulate\_faces(points, faces)
-Triangulates each given face if it is bound by more than
-three vertices.  Returns a list of faces, where each face
-is a list of 3 vertex indices.
+### find\_convex\_vertex()
 
-Args     | What it does
--------- | ------------------------
-points   | The vertex points for the polyhedron.
-faces    | A list of faces, where each face is a list of vertex indices.
+**Description**:
+Returns the index of a convex point on the given face.
 
+Argument        | What it does
+--------------- | ------------------------------
+`points`        | Array of vertices for the polyhedron.
+`face`          | The face, given as a list of indices into the vertex array `points`.
+`facenorm`      | The normal vector of the face.
+
+---
+
+### point\_in\_ear()
+
+**Description**:
+Determine if a point is in a clipable convex ear.
+
+Argument        | What it does
+--------------- | ------------------------------
+`points`        | Array of vertices for the polyhedron.
+`face`          | The face, given as a list of indices into the vertex array `points`.
+
+---
+
+### normalize\_vertex\_perimeter()
+
+**Description**:
+Removes the last item in an array if it is the same as the first item.
+
+Argument        | What it does
+--------------- | ------------------------------
+`v`             | The array to normalize.
+
+---
+
+### is\_only\_noncolinear\_vertex()
+
+**Description**:
+Given a face in a polyhedron, and a vertex in that face, returns true
+if that vertex is the only non-colinear vertex in the face.
+
+Argument        | What it does
+--------------- | ------------------------------
+`points`        | Array of vertices for the polyhedron.
+`facelist`      | The face, given as a list of indices into the vertex array `points`.
+`vertex`        | The index into `facelist`, of the vertex to test.
+
+---
+
+### triangulate\_face()
+
+**Description**:
+Given a face in a polyhedron, subdivides the face into triangular faces.
+Returns an array of faces, where each face is a list of three vertex indices.
+
+Argument        | What it does
+--------------- | ------------------------------
+`points`        | Array of vertices for the polyhedron.
+`face`          | The face, given as a list of indices into the vertex array `points`.
+
+---
+
+### triangulate\_faces()
+
+**Description**:
+Subdivides all faces for the given polyhedron that have more than three vertices.
+Returns an array of faces where each face is a list of three vertex array indices.
+
+Argument        | What it does
+--------------- | ------------------------------
+`points`        | Array of vertices for the polyhedron.
+`faces`         | Array of faces for the polyhedron. Each face is a list of 3 or more indices into the `points` array.
+
+---
 

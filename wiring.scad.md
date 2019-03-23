@@ -1,55 +1,91 @@
+# Library File wiring.scad
+
 Rendering for wiring bundles
-To use, add the following line to the beginning of your file:
+To use, include the following line at the top of your file:
+```
+use <BOSL/wiring.scad>
+```
 
-    use <BOSL/wiring.scad>
-
-
+---
 
 # Table of Contents
 
-- [Functions](#functions)
-    - [`hex_offset_ring(wirediam, lev=0)`](#hex_offset_ringwirediam-lev0)
-    - [`hex_offsets(wires, wirediam)`](#hex_offsetswires-wirediam)
-- [Modules](#modules)
+1. [Functions](#functions)
+    - [`hex_offset_ring()`](#hex_offset_ring)
+    - [`hex_offsets()`](#hex_offsets)
+
+2. [Modules](#modules)
     - [`wiring()`](#wiring)
 
+---
 
+# 1. Functions
 
-# Functions
+### hex\_offset\_ring()
 
-## hex\_offset\_ring(wirediam, lev=0)
-Returns an array of 1 or 6 2D points that form a ring, based on wirediam and ring lev.
-Level 0 returns a single point at 0,0.  All greater levels return 6 points.
+**Usage**:
+- hex\_offset\_ring(d, lev)
 
+**Description**:
+Returns a hexagonal ring of points, with a spacing of `d`.
+If `lev=0`, returns a single point at `[0,0]`.  All greater
+levels return 6 times `lev` points.
 
+Argument        | What it does
+--------------- | ------------------------------
+`d`             | Base unit diameter to build rings upon.
+`lev`           | How many rings to produce.
 
-## hex\_offsets(wires, wirediam)
-Returns an array of 2D centerpoints for each of a bundle of wires of given diameter.
+**Example**:
 
+    hex_offset_ring(d=1, lev=3); // Returns a hex ring of 18 points.
 
+---
 
-# Modules
+### hex\_offsets()
 
-## wiring()
+**Usage**:
+- hex\_offsets(n, d)
+
+**Description**:
+Returns the centerpoints for the optimal hexagonal packing
+of at least `n` circular items, of diameter `d`.  Will return
+enough points to fill out the last ring, even if that is more
+than `n` points.
+
+Argument        | What it does
+--------------- | ------------------------------
+`n`             | Number of items to bundle.
+`d`             | How far to space each point away from others.
+
+---
+
+# 2. Modules
+
+### wiring()
+
+**Usage**:
+- wiring(path, wires, [wirediam], [fillet], [wirenum], [bezsteps]);
+
+**Description**:
 Returns a 3D object representing a bundle of wires that follow a given path,
 with the corners filleted to a given radius.  There are 17 base wire colors.
 If you have more than 17 wires, colors will get re-used.
 
-Arg       | What it is
---------- | -------------------------------------
-path      | The 3D polyline path that the wire bundle should follow.
-wires     | The number of wires in the wiring bundle.
-wirediam  | The diameter of each wire in the bundle.
-fillet    | The radius that the path corners will be filleted to.
-wirenum   | The first wire's offset into the color table.
-bezsteps  | The corner fillets in the path will be converted into this number of segments.
+Argument        | What it does
+--------------- | ------------------------------
+`path`          | The 3D polyline path that the wire bundle should follow.
+`wires`         | The number of wires in the wiring bundle.
+`wirediam`      | The diameter of each wire in the bundle.
+`fillet`        | The radius that the path corners will be filleted to.
+`wirenum`       | The first wire's offset into the color table.
+`bezsteps`      | The corner fillets in the path will be converted into this number of segments.
 
-Example:
+**Example**:
 
-    path = [[50,0,-50], [50,50,-50], [0,50,-50], [0,0,-50], [0,0,0]];
-    wiring(path, fillet=10, wires=13);
+    wiring([[50,0,-50], [50,50,-50], [0,50,-50], [0,0,-50], [0,0,0]], fillet=10, wires=13);
 
-![wiring()](images/wiring/wiring.png)
+![wiring() Example](images/wiring/wiring.png)
 
-
+---
 

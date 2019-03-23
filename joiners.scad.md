@@ -1,251 +1,360 @@
-Snap-together joiners to join parts without screws.
-To use, add the following line to the beginning of your file:
+# Library File joiners.scad
 
-    use <BOSL/joiners.scad>
+Snap-together joiners.
+To use, add the following lines to the beginning of your file:
+```
+include <BOSL/constants.scad>
+use <BOSL/joiners.scad>
+```
 
+---
 
 # Table of Contents
 
-- [Snap-together joiners](#snap-together-joiners)
+1. [Half Joiners](#half-joiners)
     - [`half_joiner_clear()`](#half_joiner_clear)
     - [`half_joiner()`](#half_joiner)
     - [`half_joiner2()`](#half_joiner2)
+
+2. [Full Joiners](#full-joiners)
     - [`joiner_clear()`](#joiner_clear)
     - [`joiner()`](#joiner)
+
+3. [Full Joiners Pairs/Sets](#full-joiners-pairssets)
     - [`joiner_pair_clear()`](#joiner_pair_clear)
     - [`joiner_pair()`](#joiner_pair)
+
+4. [Full Joiners Quads/Sets](#full-joiners-quadssets)
     - [`joiner_quad_clear()`](#joiner_quad_clear)
     - [`joiner_quad()`](#joiner_quad)
 
+---
 
+# 1. Half Joiners
 
-# Snap-together joiners
-These joiners are useful for making snap-together parts.
+### half\_joiner\_clear()
 
+**Usage**:
+- half\_joiner\_clear(h, w, [a], [clearance], [overlap], [orient], [align])
 
+**Description**:
+Creates a mask to clear an area so that a half\_joiner can be placed there.
 
-## half\_joiner\_clear()
-Creates a shape used to clear a volume to prepare to place a `half_joiner()` or `half_joiner2()`
+Argument        | What it does
+--------------- | ------------------------------
+`h`             | Height of the joiner to clear space for.
+`w`             | Width of the joiner to clear space for.
+`a`             | Overhang angle of the joiner.
+`clearance`     | Extra width to clear.
+`overlap`       | Extra depth to clear.
+`orient`        | Orientation of the shape.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_Y`.
+`align`         | Alignment of the shape by the axis-negative (size1) end.  Use the `V_` constants from `constants.scad`.  Default: `V_CENTER`.
 
-![half\_joiner\_clear()](images/joiners/half_joiner_clear.png)
+**Example**:
 
-Arg       | What it is
---------- | ------------------------
-h         | Height of joiner.
-w         | Width of joiner.
-a         | Overhang angle of joiner in degrees.  (default 30)
-clearance | Extra side clearance for joiner.  (default 0)
+    half_joiner_clear(orient=ORIENT_X);
 
-Example:
+![half\_joiner\_clear() Example](images/joiners/half_joiner_clear.png)
 
-    difference() {
-        cube(size=30, center=true);
-        back(15) half_joiner_clear(h=30, w=10, clearance=2);
-    }
+---
 
+### half\_joiner()
 
+**Usage**:
+- half\_joiner(h, w, l, [a], [screwsize], [guides], [slop], [orient], [align])
 
-## half\_joiner()
-Creates a joiner shape that is designed to mate with a `half_joiner2()` shape.
+**Description**:
+Creates a half\_joiner object that can be attached to half\_joiner2 object.
 
-![half\_joiner()](images/joiners/half_joiner.png)
+Argument        | What it does
+--------------- | ------------------------------
+`h`             | Height of the half\_joiner.
+`w`             | Width of the half\_joiner.
+`l`             | Length of the backing to the half\_joiner.
+`a`             | Overhang angle of the half\_joiner.
+`screwsize`     | Diameter of screwhole.
+`guides`        | If true, create sliding alignment guides.
+`slop`          | Printer specific slop value to make parts fit more closely.
+`orient`        | Orientation of the shape.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_Y`.
+`align`         | Alignment of the shape by the axis-negative (size1) end.  Use the `V_` constants from `constants.scad`.  Default: `V_CENTER`.
 
-Arg       | What it is
---------- | ------------------------
-h         | Height of joiner.
-w         | Width of joiner.
-l         | Length extended from the back of the joiner.
-a         | Overhang angle of joiner in degrees.  (default 30)
-screwsize | Size of screwhole through the joiner. (default none)
-guides    | If true (default), add guides to center mating of joiners.
-slop      | Slight adjustment spacing to allow for vagarities of various printers.
+**Example**:
 
-Example:
+    half_joiner(screwsize=3, orient=ORIENT_X);
 
-    union() {
-        difference() {
-            cube(size=30, center=true);
-            back(15) half_joiner_clear(h=30, w=10, clearance=2);
-        }
-        back(15) half_joiner(h=30, w=10, l=15, screwsize=3);
-    }
+![half\_joiner() Example](images/joiners/half_joiner.png)
 
+---
 
+### half\_joiner2()
 
-## half\_joiner2()
-Creates a joiner shape that is designed to mate with a `half_joiner()` shape.
+**Usage**:
+- half\_joiner2(h, w, l, [a], [screwsize], [guides], [orient], [align])
 
-![half\_joiner2()](images/joiners/half_joiner2.png)
+**Description**:
+Creates a half\_joiner2 object that can be attached to half\_joiner object.
 
-Arg       | What it is
---------- | ------------------------
-h         | Height of joiner.
-w         | Width of joiner.
-l         | Length extended from the back of the joiner.
-a         | Overhang angle of joiner in degrees.  (default 30)
-screwsize | Size of screwhole through the joiner. (default none)
-guides    | If true (default), add guides to center mating of joiners.
-slop      | Slight adjustment spacing to allow for vagarities of various printers.
+Argument        | What it does
+--------------- | ------------------------------
+`h`             | Height of the half\_joiner.
+`w`             | Width of the half\_joiner.
+`l`             | Length of the backing to the half\_joiner.
+`a`             | Overhang angle of the half\_joiner.
+`screwsize`     | Diameter of screwhole.
+`guides`        | If true, create sliding alignment guides.
+`orient`        | Orientation of the shape.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_Y`.
+`align`         | Alignment of the shape by the axis-negative (size1) end.  Use the `V_` constants from `constants.scad`.  Default: `V_CENTER`.
 
-Example:
+**Example**:
 
-    union() {
-        difference() {
-            cube(size=30, center=true);
-            back(15) half_joiner_clear(h=30, w=10, clearance=2);
-        }
-        back(15) half_joiner2(h=30, w=10, l=15, screwsize=3);
-    }
+    half_joiner2(screwsize=3, orient=ORIENT_X);
 
+![half\_joiner2() Example](images/joiners/half_joiner2.png)
 
+---
 
-## joiner\_clear()
-Creates a shape used to clear a volume to prepare to place a `joiner()`.
+# 2. Full Joiners
 
-![joiner\_clear()](images/joiners/joiner_clear.png)
+### joiner\_clear()
 
-Arg       | What it is
---------- | ------------------------
-h         | Height of joiner.
-w         | Width of joiner.
-a         | Overhang angle of joiner in degrees.  (default 30)
-clearance | Extra side clearance for joiner.  (default 0)
+**Usage**:
+- joiner\_clear(h, w, [a], [clearance], [overlap], [orient], [align])
 
-Example:
+**Description**:
+Creates a mask to clear an area so that a joiner can be placed there.
 
-    difference() {
-        cube(size=50, center=true);
-        back(25) joiner_clear(h=50, w=10, clearance=2);
-    }
+Argument        | What it does
+--------------- | ------------------------------
+`h`             | Height of the joiner to clear space for.
+`w`             | Width of the joiner to clear space for.
+`a`             | Overhang angle of the joiner.
+`clearance`     | Extra width to clear.
+`overlap`       | Extra depth to clear.
+`orient`        | Orientation of the shape.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_Y`.
+`align`         | Alignment of the shape by the axis-negative (size1) end.  Use the `V_` constants from `constants.scad`.  Default: `V_CENTER`.
 
+**Example**:
 
+    joiner_clear(orient=ORIENT_X);
 
-## joiner()
-Creates a joiner shape that is designed to mate with another rotated `joiner()` shape.
+![joiner\_clear() Example](images/joiners/joiner_clear.png)
 
-![joiner()](images/joiners/joiner.png)
+---
 
-Arg       | What it is
---------- | ------------------------
-h         | Height of joiner.
-w         | Width of joiner.
-l         | Length extended from the back of the joiner.
-a         | Overhang angle of joiner in degrees.  (default 30)
-screwsize | Size of screwhole through the joiner. (default none)
-guides    | If true (default), add guides to center mating of joiners.
-slop      | Slight adjustment spacing to allow for vagarities of various printers.
+### joiner()
 
-Example:
+**Usage**:
+- joiner(h, w, l, [a], [screwsize], [guides], [slop], [orient], [align])
 
-    union() {
-        difference() {
-            cube(size=50, center=true);
-            back(25) joiner_clear(h=50, w=10, clearance=2);
-        }
-        back(25) joiner(h=50, w=10, l=10, screwsize=3);
-    }
+**Description**:
+Creates a joiner object that can be attached to another joiner object.
 
+Argument        | What it does
+--------------- | ------------------------------
+`h`             | Height of the joiner.
+`w`             | Width of the joiner.
+`l`             | Length of the backing to the joiner.
+`a`             | Overhang angle of the joiner.
+`screwsize`     | Diameter of screwhole.
+`guides`        | If true, create sliding alignment guides.
+`slop`          | Printer specific slop value to make parts fit more closely.
+`orient`        | Orientation of the shape.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_Y`.
+`align`         | Alignment of the shape by the axis-negative (size1) end.  Use the `V_` constants from `constants.scad`.  Default: `V_CENTER`.
 
+**Example 1**:
 
-## joiner\_pair\_clear()
-Creates shapes used to clear a volume to prepare to place a `joiner_pair()`.
+    joiner(screwsize=3, orient=ORIENT_X);
 
-![joiner\_pair\_clear()](images/joiners/joiner_pair_clear.png)
+![joiner() Example 1](images/joiners/joiner.png)
 
-Arg       | What it is
---------- | ------------------------
-spacing   | Spacing along X axis between the pair of joiners.
-h         | Height of joiner.
-w         | Width of joiner.
-a         | Overhang angle of joiner in degrees.  (default 30)
-clearance | Extra side clearance for joiner.  (default 0)
+**Example 2**:
 
-Example:
+    joiner(w=10, l=10, h=40, orient=ORIENT_X) cuboid([10, 10*2, 40], align=V_LEFT);
 
-    difference() {
-        cube(size=50, center=true);
-        joiner_pair_clear(spacing=40, h=50, w=10, clearance=2);
-    }
+![joiner() Example 2](images/joiners/joiner_2.png)
 
+---
 
+# 3. Full Joiners Pairs/Sets
 
-## joiner\_pair()
-Creates a pair of joiner shapes that are designed to mate with another `joiner_pair()`.
+### joiner\_pair\_clear()
 
-![joiner\_pair()](images/joiners/joiner_pair.png)
+**Usage**:
+- joiner\_pair\_clear(spacing, [n], [h], [w], [a], [clearance], [overlap], [orient], [align])
 
-Arg       | What it is
---------- | ------------------------
-spacing   | Spacing along X axis between the pair of joiners.
-h         | Height of joiner.
-w         | Width of joiner.
-l         | Length extended from the back of the joiner.
-a         | Overhang angle of joiner in degrees.  (default 30)
-screwsize | Size of screwhole through the joiner. (default none)
-guides    | If true (default), add guides to center mating of joiners.
-slop      | Slight adjustment spacing to allow for vagarities of various printers.
+**Description**:
+Creates a mask to clear an area so that a pair of joiners can be placed there.
 
-Example:
+Argument        | What it does
+--------------- | ------------------------------
+`spacing`       | Spacing between joiner centers.
+`h`             | Height of the joiner to clear space for.
+`w`             | Width of the joiner to clear space for.
+`a`             | Overhang angle of the joiner.
+`n`             | Number of joiners (2 by default) to clear for.
+`clearance`     | Extra width to clear.
+`overlap`       | Extra depth to clear.
+`orient`        | Orientation of the shape.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_Y`.
+`align`         | Alignment of the shape by the axis-negative (size1) end.  Use the `V_` constants from `constants.scad`.  Default: `V_CENTER`.
 
-    union() {
-        difference() {
-            cube(size=50, center=true);
-            joiner_pair_clear(spacing=40, h=50, w=10, clearance=2);
-        }
-        joiner_pair(spacing=40, h=50, w=10, l=10, screwsize=3);
-    }
+**Example 1**:
 
+    joiner_pair_clear(spacing=50, n=2);
 
+![joiner\_pair\_clear() Example 1](images/joiners/joiner_pair_clear.png)
 
-## joiner\_quad\_clear()
-Creates shapes used to clear a volume to prepare to place a `joiner_quad()`.
+**Example 2**:
 
-![joiner\_quad\_clear()](images/joiners/joiner_quad_clear.png)
+    joiner_pair_clear(spacing=50, n=3);
 
-Arg       | What it is
---------- | ------------------------
-xspacing  | Spacing along X axis between pairs of joiners.
-yspacing  | Spacing along Y axis between opposing pairs of joiners.
-h         | Height of joiner.
-w         | Width of joiner.
-a         | Overhang angle of joiner in degrees.  (default 30)
-clearance | Extra side clearance for joiner.  (default 0)
+![joiner\_pair\_clear() Example 2](images/joiners/joiner_pair_clear_2.png)
 
-Example:
+---
 
-    difference() {
-        cube(size=50, center=true);
-        joiner_quad_clear(xspacing=40, yspacing=50, h=50, w=10, clearance=2);
-    }
+### joiner\_pair()
 
+**Usage**:
+- joiner\_pair(h, w, l, [a], [screwsize], [guides], [slop], [orient], [align])
 
+**Description**:
+Creates a joiner\_pair object that can be attached to other joiner\_pairs .
 
-## joiner\_quad()
-Creates two pairs of opposing joiner shapes that are designed to mate with other `joiner_pair()`s.
+Argument        | What it does
+--------------- | ------------------------------
+`spacing`       | Spacing between joiner centers.
+`h`             | Height of the joiners.
+`w`             | Width of the joiners.
+`l`             | Length of the backing to the joiners.
+`a`             | Overhang angle of the joiners.
+`n`             | Number of joiners in a row.  Default: 2
+`alternate`     | If true (default), each joiner alternates it's orientation.  If alternate is "alt", do opposite alternating orientations.
+`screwsize`     | Diameter of screwhole.
+`guides`        | If true, create sliding alignment guides.
+`slop`          | Printer specific slop value to make parts fit more closely.
+`orient`        | Orientation of the shape.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_Y`.
+`align`         | Alignment of the shape by the axis-negative (size1) end.  Use the `V_` constants from `constants.scad`.  Default: `V_CENTER`.
 
-![joiner\_quad()](images/joiners/joiner_quad.png)
+**Example 1**:
 
-Arg       | What it is
---------- | ------------------------
-xspacing  | Spacing along X axis between pairs of joiners.
-yspacing  | Spacing along Y axis between opposing pairs of joiners.
-h         | Height of joiner.
-w         | Width of joiner.
-l         | Length extended from the back of the joiner.
-a         | Overhang angle of joiner in degrees.  (default 30)
-screwsize | Size of screwhole through the joiner. (default none)
-guides    | If true (default), add guides to center mating of joiners.
-slop      | Slight adjustment spacing to allow for vagarities of various printers.
+    joiner_pair(spacing=50, l=10, orient=ORIENT_X) cuboid([10, 50+10-0.1, 40], align=V_LEFT);
 
-Example:
+![joiner\_pair() Example 1](images/joiners/joiner_pair.png)
 
-    union() {
-        difference() {
-            cube(size=50, center=true);
-            joiner_quad_clear(xspacing=40, yspacing=50, h=50, w=10, clearance=2);
-        }
-        joiner_quad(xspacing=40, yspacing=50, h=50, w=10, l=10, screwsize=3);
-    }
+**Example 2**:
 
+    joiner_pair(spacing=50, l=10, n=2, orient=ORIENT_X);
 
+![joiner\_pair() Example 2](images/joiners/joiner_pair_2.png)
+
+**Example 3**:
+
+    joiner_pair(spacing=50, l=10, n=3, alternate=false, orient=ORIENT_X);
+
+![joiner\_pair() Example 3](images/joiners/joiner_pair_3.png)
+
+**Example 4**:
+
+    joiner_pair(spacing=50, l=10, n=3, alternate=true, orient=ORIENT_X);
+
+![joiner\_pair() Example 4](images/joiners/joiner_pair_4.png)
+
+**Example 5**:
+
+    joiner_pair(spacing=50, l=10, n=3, alternate="alt", orient=ORIENT_X);
+
+![joiner\_pair() Example 5](images/joiners/joiner_pair_5.png)
+
+---
+
+# 4. Full Joiners Quads/Sets
+
+### joiner\_quad\_clear()
+
+**Usage**:
+- joiner\_quad\_clear(spacing, [n], [h], [w], [a], [clearance], [overlap], [orient], [align])
+
+**Description**:
+Creates a mask to clear an area so that a pair of joiners can be placed there.
+
+Argument        | What it does
+--------------- | ------------------------------
+`spacing1`      | Spacing between joiner centers.
+`spacing2`      | Spacing between back-to-back pairs/sets of joiners.
+`h`             | Height of the joiner to clear space for.
+`w`             | Width of the joiner to clear space for.
+`a`             | Overhang angle of the joiner.
+`n`             | Number of joiners in a row.  Default: 2
+`clearance`     | Extra width to clear.
+`overlap`       | Extra depth to clear.
+`orient`        | Orientation of the shape.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_Y`.
+`align`         | Alignment of the shape by the axis-negative (size1) end.  Use the `V_` constants from `constants.scad`.  Default: `V_CENTER`.
+
+**Example 1**:
+
+    joiner_quad_clear(spacing1=50, spacing2=50, n=2);
+
+![joiner\_quad\_clear() Example 1](images/joiners/joiner_quad_clear.png)
+
+**Example 2**:
+
+    joiner_quad_clear(spacing1=50, spacing2=50, n=3);
+
+![joiner\_quad\_clear() Example 2](images/joiners/joiner_quad_clear_2.png)
+
+---
+
+### joiner\_quad()
+
+**Usage**:
+- joiner\_quad(h, w, l, [a], [screwsize], [guides], [slop], [orient], [align])
+
+**Description**:
+Creates a joiner\_quad object that can be attached to other joiner\_pairs .
+
+Argument        | What it does
+--------------- | ------------------------------
+`spacing`       | Spacing between joiner centers.
+`h`             | Height of the joiners.
+`w`             | Width of the joiners.
+`l`             | Length of the backing to the joiners.
+`a`             | Overhang angle of the joiners.
+`n`             | Number of joiners in a row.  Default: 2
+`alternate`     | If true (default), each joiner alternates it's orientation.  If alternate is "alt", do opposite alternating orientations.
+`screwsize`     | Diameter of screwhole.
+`guides`        | If true, create sliding alignment guides.
+`slop`          | Printer specific slop value to make parts fit more closely.
+`orient`        | Orientation of the shape.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_Y`.
+`align`         | Alignment of the shape by the axis-negative (size1) end.  Use the `V_` constants from `constants.scad`.  Default: `V_CENTER`.
+
+**Example 1**:
+
+    joiner_quad(spacing1=50, spacing2=50, l=10, orient=ORIENT_X) cuboid([50, 50+10-0.1, 40]);
+
+![joiner\_quad() Example 1](images/joiners/joiner_quad.png)
+
+**Example 2**:
+
+    joiner_quad(spacing1=50, spacing2=50, l=10, n=2, orient=ORIENT_X);
+
+![joiner\_quad() Example 2](images/joiners/joiner_quad_2.png)
+
+**Example 3**:
+
+    joiner_quad(spacing1=50, spacing2=50, l=10, n=3, alternate=false, orient=ORIENT_X);
+
+![joiner\_quad() Example 3](images/joiners/joiner_quad_3.png)
+
+**Example 4**:
+
+    joiner_quad(spacing1=50, spacing2=50, l=10, n=3, alternate=true, orient=ORIENT_X);
+
+![joiner\_quad() Example 4](images/joiners/joiner_quad_4.png)
+
+**Example 5**:
+
+    joiner_quad(spacing1=50, spacing2=50, l=10, n=3, alternate="alt", orient=ORIENT_X);
+
+![joiner\_quad() Example 5](images/joiners/joiner_quad_5.png)
+
+---
 

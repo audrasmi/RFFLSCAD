@@ -1,54 +1,75 @@
-Hourglass shaped rails and sliders.
-To use, add the following line to the beginning of your file:
+# Library File sliders.scad
 
-    use <BOSL/sliders.scad>
+Simple V-groove based sliders and rails.
+To use, add these lines to the beginning of your file:
+```
+include <BOSL/constants.scad>
+use <BOSL/sliders.scad>
+```
 
+---
 
 # Table of Contents
 
-- [Modules](#modules)
+1. [Modules](#modules)
     - [`slider()`](#slider)
     - [`rail()`](#rail)
 
+---
 
+# 1. Modules
 
-# Modules
+### slider()
 
-## slider()
-Creates a slider.
+**Usage**:
+- slider(l, w, h, [base], [wall], [ang], [slop], [orient], [align])
 
-Arg   | What it is
------ | -------------------------
-l     | Length of the slider, that goes along the axis of the rail.
-w     | Width of the slider.
-h     | Height of the V groove of the rail to match.
-base  | Height of base that the slider sits on.
-wall  | Thickness of the walls around the slider.
-ang   | Overhang angle of the V groove slider.
-slop  | Slight adjustment for vagarities of individual printers.
+**Description**:
+Creates a slider to match a V-groove rail.
 
-Example:
-    slider(l=30, base=10, wall=4, slop=0.2);
+Argument        | What it does
+--------------- | ------------------------------
+`l`             | Length (long axis) of slider.
+`w`             | Width of slider.
+`h`             | Height of slider.
+`base`          | Height of slider base.
+`wall`          | Width of wall behind each side of the slider.
+`ang`           | Overhang angle for slider, to facilitate supportless printig.
+`slop`          | Printer-specific slop value to make parts fit exactly.
+`orient`        | Orientation of the slider.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_Y`.
+`align`         | Alignment of the slider.  Use the `V_` constants from `constants.scad`.  Default: `V_UP`.
 
-![slider](images/sliders/slider.png)
+**Example**:
 
+    slider(l=30, base=10, wall=4, slop=0.2, orient=ORIENT_Y);
 
+![slider() Example](images/sliders/slider.png)
 
-## rail()
-Creates a rail that a slider can slide along.
+---
 
-Arg     | What it is
-------- | -------------------------
-l       | Length of the slider, that goes along the axis of the rail.
-w       | Width of the slider.
-h       | Height of the V groove of the rail.
-chamfer | Amount to chamfer edges of the rail.
-ang     | Overhang angle of the V groove.
+### rail()
 
-Example:
+**Usage**:
+- rail(l, w, h, [chamfer], [ang], [orient], [align])
+
+**Description**:
+Creates a V-groove rail.
+
+Argument        | What it does
+--------------- | ------------------------------
+`l`             | Length (long axis) of slider.
+`w`             | Width of slider.
+`h`             | Height of slider.
+`chamfer`       | Size of chamfer at end of rail.
+`ang`           | Overhang angle for slider, to facilitate supportless printig.
+`orient`        | Orientation of the rail.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_Y`.
+`align`         | Alignment of the rail.  Use the `V_` constants from `constants.scad`.  Default: `V_UP`.
+
+**Example**:
 
     rail(l=100, w=10, h=10);
 
-![rail](images/sliders/rail.png)
+![rail() Example](images/sliders/rail.png)
 
+---
 

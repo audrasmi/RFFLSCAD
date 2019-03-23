@@ -1,76 +1,121 @@
-An approximation of Torx driver bits.
-To use, add the following line to the beginning of your file:
+# Library File torx\_drive.scad
 
-    use <BOSL/torx_drive.scad>
+Torx driver bits
+To use, add these lines to the top of your file:
+```
+include <BOSL/constants.scad>
+use <BOSL/torx_drive.scad>
+```
 
+---
 
+# Table of Contents
 
-## Table of Contents
+1. [Functions](#functions)
+    - [`torx_outer_diam()`](#torx_outer_diam)
+    - [`torx_inner_diam()`](#torx_inner_diam)
+    - [`torx_depth()`](#torx_depth)
+    - [`torx_tip_radius()`](#torx_tip_radius)
+    - [`torx_rounding_radius()`](#torx_rounding_radius)
 
-- [Functions](#functions)
-    - [`torx_outer_diam(size)`](#torx_outer_diamsize)
-    - [`torx_inner_diam(size)`](#torx_inner_diamsize)
-    - [`torx_depth(size)`](#torx_depthsize)
-    - [`torx_tip_radius(size)`](#torx_tip_radiussize)
-    - [`torx_rounding_radius(size)`](#torx_rounding_radiussize)
-- [Modules](#modules)
-    - [`torx_drive2d(size)`](#torx_drive2dsize)
-    - [`torx_drive(size, l, center)`](#torx_drivesize-l-center)
+2. [Modules](#modules)
+    - [`torx_drive2d()`](#torx_drive2d)
+    - [`torx_drive()`](#torx_drive)
 
+---
 
+# 1. Functions
 
-## Functions
+### torx\_outer\_diam()
 
-### torx\_outer\_diam(size)
-Given a Torx size, returns the outer diameter of the Torx profile.
+**Description**:
+Get the typical outer diameter of Torx profile.
 
+Argument        | What it does
+--------------- | ------------------------------
+`size`          | Torx size.
 
-### torx\_inner\_diam(size)
-Given a Torx size, returns the inner diameter of the Torx profile.
+---
 
+### torx\_inner\_diam()
 
-### torx\_depth(size)
-Given a Torx size, returns the typical drive depth.
+**Description**:
+Get typical inner diameter of Torx profile.
 
+Argument        | What it does
+--------------- | ------------------------------
+`size`          | Torx size.
 
-### torx\_tip\_radius(size)
-Given a Torx size, returns the minor tip rounding radius of the Torx profile.
+---
 
+### torx\_depth()
 
-### torx\_rounding\_radius(size)
-Given a Torx size, returns the major rounding radius of the Torx profile.
+**Description**:
+Gets typical drive hole depth.
 
-## Modules
+Argument        | What it does
+--------------- | ------------------------------
+`size`          | Torx size.
 
-### torx\_drive2d(size)
-Given a Torx bit size, creates a torx bit 2D profile.
+---
 
-| Args | What it does |
-| ---- | ------------ |
-| size | Torx size.   |
+### torx\_tip\_radius()
 
-Example:
+**Description**:
+Gets minor rounding radius of Torx profile.
 
-    torx_drive2d(size=30, $fs=1, $fa=1);
+Argument        | What it does
+--------------- | ------------------------------
+`size`          | Torx size.
 
-![torx\_drive2d()](images/torx_drive/torx_drive2d.png)
+---
 
+### torx\_rounding\_radius()
 
-### torx\_drive(size, l, center)
+**Description**:
+Gets major rounding radius of Torx profile.
 
+Argument        | What it does
+--------------- | ------------------------------
+`size`          | Torx size.
+
+---
+
+# 2. Modules
+
+### torx\_drive2d()
+
+**Description**:
+Creates a torx bit 2D profile.
+
+Argument        | What it does
+--------------- | ------------------------------
+`size`          | Torx size.
+
+**Example**:
+
+    torx_drive2d(size=30, $fa=1, $fs=1);
+
+![torx\_drive2d() Example](images/torx_drive/torx_drive2d.png)
+
+---
+
+### torx\_drive()
+
+**Description**:
 Creates a torx bit tip.
 
-Args   | What it does
------- | ----------------------
-size   | Torx size.
-l      | Length of bit.
-center | If true, centers bit vertically.
+Argument        | What it does
+--------------- | ------------------------------
+`size`          | Torx size.
+`l`             | Length of bit.
+`center`        | If true, centers bit vertically.
 
-Example:
+**Example**:
 
-    torx_drive(size=30, l=10, $fs=1, $fa=1);
+    torx_drive(size=30, l=10, $fa=1, $fs=1);
 
-![torx\_drive()](images/torx_drive/torx_drive.png)
+![torx\_drive() Example](images/torx_drive/torx_drive.png)
 
-
+---
 
