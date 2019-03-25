@@ -694,7 +694,8 @@ Argument        | What it does
 - spread(p1, p2, spacing) ...
 
 **Description**:
-Evenly distributes `n` copies of the children along a line.
+Evenly distributes `n` copies of all children along a line.
+Copies every child at each position.
 
 Argument        | What it does
 --------------- | ------------------------------
@@ -737,6 +738,15 @@ Argument        | What it does
     spread(spacing=[5,5,0], n=5) cube(size=[3,2,1],center=true);
 
 ![spread() Example 5](images/transforms/spread_5.png)
+
+**Example 6**:
+
+    spread(l=30, n=4) {
+        cube(size=[1,3,1],center=true);
+        cube(size=[3,1,1],center=true);
+    }
+
+![spread() Example 6](images/transforms/spread_6.png)
 
 ---
 
@@ -784,6 +794,15 @@ Argument        | What it does
 
 ![xspread() Example 4](images/transforms/xspread_4.png)
 
+**Example 5**:
+
+    xspread(30, n=4) {
+        cube(size=[1,3,1],center=true);
+        cube(size=[3,1,1],center=true);
+    }
+
+![xspread() Example 5](images/transforms/xspread_5.png)
+
 ---
 
 ### yspread()
@@ -829,6 +848,15 @@ Argument        | What it does
     yspread(n=5, l=40, p1=[0,0]) sphere(3);
 
 ![yspread() Example 4](images/transforms/yspread_4.png)
+
+**Example 5**:
+
+    yspread(30, n=4) {
+        cube(size=[1,3,1],center=true);
+        cube(size=[3,1,1],center=true);
+    }
+
+![yspread() Example 5](images/transforms/yspread_5.png)
 
 ---
 
@@ -876,6 +904,15 @@ Argument        | What it does
 
 ![zspread() Example 4](images/transforms/zspread_4.png)
 
+**Example 5**:
+
+    zspread(30, n=4) {
+        cube(size=[1,3,1],center=true);
+        cube(size=[3,1,1],center=true);
+    }
+
+![zspread() Example 5](images/transforms/zspread_5.png)
+
 ---
 
 ### distribute()
@@ -886,6 +923,7 @@ Argument        | What it does
 
 **Description**:
 Spreads out each individual child along the direction `dir`.
+Every child is placed at a different position, in order.
 This is useful for laying out groups of disparate objects
 where you only really care about the spacing between them.
 
@@ -916,6 +954,7 @@ Argument        | What it does
 
 **Description**:
 Spreads out each individual child along the X axis.
+Every child is placed at a different position, in order.
 This is useful for laying out groups of disparate objects
 where you only really care about the spacing between them.
 
@@ -945,6 +984,7 @@ Argument        | What it does
 
 **Description**:
 Spreads out each individual child along the Y axis.
+Every child is placed at a different position, in order.
 This is useful for laying out groups of disparate objects
 where you only really care about the spacing between them.
 
@@ -974,6 +1014,7 @@ Argument        | What it does
 
 **Description**:
 Spreads out each individual child along the Z axis.
+Every child is placed at a different position, in order.
 This is useful for laying out groups of disparate objects
 where you only really care about the spacing between them.
 
@@ -1015,7 +1056,7 @@ Argument        | What it does
 `rows`          | How many rows of copies to make.  If staggered, count both staggered and unstaggered rows.
 `stagger`       | If true, make a staggered (hexagonal) grid.  If false, make square grid.  If "alt", makes alternate staggered pattern.  Default: false
 `scale`         | [X,Y] scaling factors to reshape grid.
-`in_poly`       | If given a list of polygon points, only creates copies whose center would be inside the polygon.
+`in_poly`       | If given a list of polygon points, only creates copies whose center would be inside the polygon.  Polygon can be concave and/or self crossing.
 `orient`        | Orientation axis for the grid.  Orientation is NOT applied to individual children.
 `align`         | Alignment of the grid.  Alignment is NOT applies to individual children.
 
