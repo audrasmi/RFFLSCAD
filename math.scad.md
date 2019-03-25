@@ -36,9 +36,14 @@ use <BOSL/math.scad>
     - [`all()`](#all)
     - [`in_list()`](#in_list)
     - [`slice()`](#slice)
-    - [`wrap_range()`](#wrap_range)
+    - [`select()`](#select)
     - [`reverse()`](#reverse)
     - [`array_subindex()`](#array_subindex)
+    - [`array_shortest()`](#array_shortest)
+    - [`array_longest()`](#array_longest)
+    - [`array_pad()`](#array_pad)
+    - [`array_trim()`](#array_trim)
+    - [`array_fit()`](#array_fit)
     - [`array_zip()`](#array_zip)
     - [`array_group()`](#array_group)
     - [`flatten()`](#flatten)
@@ -104,6 +109,7 @@ use <BOSL/math.scad>
     - [`hypot3()`](#hypot3)
     - [`distance()`](#distance)
     - [`cdr()`](#cdr)
+    - [`wrap_range()`](#wrap_range)
 
 ---
 
@@ -430,11 +436,11 @@ Argument        | What it does
 
 ---
 
-### wrap\_range()
+### select()
 
 **Usage**:
-- wrap\_range(list,start)
-- wrap\_range(list,start,end)
+- select(list,start)
+- select(list,start,end)
 
 **Description**:
 Returns a portion of a list, wrapping around past the beginning, if end<start.
@@ -451,15 +457,15 @@ Argument        | What it does
 **Example**:
 
     l = [3,4,5,6,7,8,9];
-    wrap_range(l, 5, 6);   // Returns [8,9]
-    wrap_range(l, 5, 8);   // Returns [8,9,3,4]
-    wrap_range(l, 5, 2);   // Returns [8,9,3,4,5]
-    wrap_range(l, -3, -1); // Returns [7,8,9]
-    wrap_range(l, 3, 3);   // Returns [6]
-    wrap_range(l, 4);      // Returns 7
-    wrap_range(l, -2);     // Returns 8
-    wrap_range(l, [1:3]);  // Returns [4,5,6]
-    wrap_range(l, [1,3]);  // Returns [4,6]
+    select(l, 5, 6);   // Returns [8,9]
+    select(l, 5, 8);   // Returns [8,9,3,4]
+    select(l, 5, 2);   // Returns [8,9,3,4,5]
+    select(l, -3, -1); // Returns [7,8,9]
+    select(l, 3, 3);   // Returns [6]
+    select(l, 4);      // Returns 7
+    select(l, -2);     // Returns 8
+    select(l, [1:3]);  // Returns [4,5,6]
+    select(l, [1,3]);  // Returns [4,6]
 
 ---
 
@@ -500,25 +506,101 @@ Argument        | What it does
 
 ---
 
+### array\_shortest()
+
+**Description**:
+Returns the length of the shortest list in a list of list.
+
+Argument        | What it does
+--------------- | ------------------------------
+`vecs`          | A list of lists.
+
+---
+
+### array\_longest()
+
+**Description**:
+Returns the length of the longest list in a list of list.
+
+Argument        | What it does
+--------------- | ------------------------------
+`vecs`          | A list of lists.
+
+---
+
+### array\_pad()
+
+**Description**:
+If the list `v` is shorter than `minlen` length, pad it to length with the value given in `fill`.
+
+Argument        | What it does
+--------------- | ------------------------------
+`v`             | A list.
+`minlen`        | The minimum length to pad the list to.
+`fill`          | The value to pad the list with.
+
+---
+
+### array\_trim()
+
+**Description**:
+If the list `v` is longer than `maxlen` length, truncates it to be `maxlen` items long.
+
+Argument        | What it does
+--------------- | ------------------------------
+`v`             | A list.
+`minlen`        | The minimum length to pad the list to.
+
+---
+
+### array\_fit()
+
+**Description**:
+If the list `v` is longer than `length` items long, truncates it to be exactly `length` items long.
+If the list `v` is shorter than `length` items long, pad it to length with the value given in `fill`.
+
+Argument        | What it does
+--------------- | ------------------------------
+`v`             | A list.
+`minlen`        | The minimum length to pad the list to.
+`fill`          | The value to pad the list with.
+
+---
+
 ### array\_zip()
+
+**Usage**:
+- array\_zip(v1, v2, v3, [fit], [fill]);
+- array\_zip(vecs, [fit], [fill]);
 
 **Description**:
 Zips together corresponding items from two or more lists.
-Returns a list of grouped values.
+Returns a list of lists, where each sublist contains corresponding
+items from each of the imput lists.  `[[A1, B1, C1], [A2, B2, C2], ...]`
 
 Argument        | What it does
 --------------- | ------------------------------
 `vecs`          | A list of two or more lists to zipper together.
-`dflt`          | The default value to fill in with if one or more lists if short.
+`fit`           | If `fit=="short"`, the zips together up to the length of the shortest list in vecs.  If `fit=="long"`, then pads all lists to the length of the longest, using the value in `fill`.  If `fit==false`, then requires all lists to be the same length.  Default: false.
+`fill`          | The default value to fill in with if one or more lists if short.  Default: undef
 
-**Example**:
+**Example 1**:
 
     v1 = [1,2,3,4];
     v2 = [5,6,7];
     v3 = [8,9,10,11];
-    array_zip([v1,v2]);      // returns [[1,5], [2,6], [3,7], [4,undef]]
-    array_zip([v1,v2], 20);  // returns [[1,5], [2,6], [3,7], [4,20]]
-    array_zip([v1,v2,v3]);   // returns [[1,5,8], [2,6,9], [3,7,10], [4,undef,11]]
+    array_zip(v1,v3);                       // returns [[1,8], [2,9], [3,10], [4,11]]
+    array_zip([v1,v3]);                     // returns [[1,8], [2,9], [3,10], [4,11]]
+    array_zip([v1,v2], fit="short");        // returns [[1,5], [2,6], [3,7]]
+    array_zip([v1,v2], fit="long");         // returns [[1,5], [2,6], [3,7], [4,undef]]
+    array_zip([v1,v2], fit="long, fill=0);  // returns [[1,5], [2,6], [3,7], [4,0]]
+    array_zip([v1,v2,v3], fit="long");      // returns [[1,5,8], [2,6,9], [3,7,10], [4,undef,11]]
+
+**Example 2**:
+
+    v1 = [[1,2,3], [4,5,6], [7,8,9]];
+    v2 = [[20,19,18], [17,16,15], [14,13,12]];
+    array_zip(v1,v2);    // Returns [[1,2,3,20,19,18], [4,5,6,17,16,15], [7,8,9,14,13,12]]
 
 ---
 
@@ -1372,6 +1454,28 @@ Returns all but the first item of a given array.
 Argument        | What it does
 --------------- | ------------------------------
 `list`          | The list to get the tail of.
+
+---
+
+### wrap\_range()
+
+**DEPRECATED, use `select()` instead.**
+
+**Usage**:
+- wrap\_range(list,start)
+- wrap\_range(list,start,end)
+
+**Description**:
+Returns a portion of a list, wrapping around past the beginning, if end<start.
+The first item is index 0. Negative indexes are counted back from the end.
+The last item is -1.  If only the `start` index is given, returns just the value
+at that position.
+
+Argument        | What it does
+--------------- | ------------------------------
+`list`          | The list to get the portion of.
+`start`         | The index of the first item.
+`end`           | The index of the last item.
 
 ---
 

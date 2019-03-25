@@ -23,6 +23,7 @@ use <compat.scad>
     - [`first_defined()`](#first_defined)
     - [`any_defined()`](#any_defined)
     - [`scalar_vec3()`](#scalar_vec3)
+    - [`f_echo()`](#f_echo)
 
 2. [Modules](#modules)
     - [`assert_in_list()`](#assert_in_list)
@@ -146,6 +147,13 @@ Argument        | What it does
 --------------- | ------------------------------
 `v`             | Value to return vector from.
 `dflt`          | Default value to set empty vector parts from.
+
+---
+
+### f\_echo()
+
+**Description**:
+If possible, echo a message from a function.
 
 ---
 
