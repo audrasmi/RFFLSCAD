@@ -741,7 +741,7 @@ Argument        | What it does
 
 **Example 6**:
 
-    spread(l=30, n=4) {
+    spread(l=20, n=3) {
         cube(size=[1,3,1],center=true);
         cube(size=[3,1,1],center=true);
     }
@@ -796,7 +796,7 @@ Argument        | What it does
 
 **Example 5**:
 
-    xspread(30, n=4) {
+    xspread(10, n=3) {
         cube(size=[1,3,1],center=true);
         cube(size=[3,1,1],center=true);
     }
@@ -851,7 +851,7 @@ Argument        | What it does
 
 **Example 5**:
 
-    yspread(30, n=4) {
+    yspread(10, n=3) {
         cube(size=[1,3,1],center=true);
         cube(size=[3,1,1],center=true);
     }
@@ -906,7 +906,7 @@ Argument        | What it does
 
 **Example 5**:
 
-    zspread(30, n=4) {
+    zspread(10, n=3) {
         cube(size=[1,3,1],center=true);
         cube(size=[3,1,1],center=true);
     }
