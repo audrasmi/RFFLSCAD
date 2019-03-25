@@ -584,7 +584,7 @@ Argument        | What it does
 **Description**:
 Zips together corresponding items from two or more lists.
 Returns a list of lists, where each sublist contains corresponding
-items from each of the imput lists.  `[[A1, B1, C1], [A2, B2, C2], ...]`
+items from each of the input lists.  `[[A1, B1, C1], [A2, B2, C2], ...]`
 
 Argument        | What it does
 --------------- | ------------------------------
@@ -636,7 +636,7 @@ Argument        | What it does
 ### flatten()
 
 **Description**:
-Takes a list of list and flattens it by one level.
+Takes a list of lists and flattens it by one level.
 
 Argument        | What it does
 --------------- | ------------------------------
