@@ -53,8 +53,7 @@ use <BOSL/math.scad>
     - [`vdiv()`](#vdiv)
     - [`vabs()`](#vabs)
     - [`normalize()`](#normalize)
-    - [`vector2d_angle()`](#vector2d_angle)
-    - [`vector3d_angle()`](#vector3d_angle)
+    - [`vector_angle()`](#vector_angle)
 
 4. [Coordinates Manipulation](#coordinates-manipulation)
     - [`point2d()`](#point2d)
@@ -110,6 +109,8 @@ use <BOSL/math.scad>
     - [`distance()`](#distance)
     - [`cdr()`](#cdr)
     - [`wrap_range()`](#wrap_range)
+    - [`vector2d_angle()`](#vector2d_angle)
+    - [`vector3d_angle()`](#vector3d_angle)
 
 ---
 
@@ -705,33 +706,18 @@ Argument        | What it does
 
 ---
 
-### vector2d\_angle()
+### vector\_angle()
 
 **Usage**:
-- vector2d\_angle(v1,v2);
+- vector\_angle(v1,v2);
 
 **Description**:
-Returns angle in degrees between two 2D vectors.
+Returns angle in degrees between two vectors of similar dimensions.
 
 Argument        | What it does
 --------------- | ------------------------------
-`v1`            | First 2D vector.
-`v2`            | Second 2D vector.
-
----
-
-### vector3d\_angle()
-
-**Usage**:
-- vector3d\_angle(v1,v2);
-
-**Description**:
-Returns angle in degrees between two 3D vectors.
-
-Argument        | What it does
---------------- | ------------------------------
-`v1`            | First 3D vector.
-`v2`            | Second 3D vector.
+`v1`            | First vector.
+`v2`            | Second vector.
 
 ---
 
@@ -1483,6 +1469,40 @@ Argument        | What it does
 `list`          | The list to get the portion of.
 `start`         | The index of the first item.
 `end`           | The index of the last item.
+
+---
+
+### vector2d\_angle()
+
+**DEPRECATED, use `vector_angle()` instead.**
+
+**Usage**:
+- vector2d\_angle(v1,v2);
+
+**Description**:
+Returns angle in degrees between two 2D vectors.
+
+Argument        | What it does
+--------------- | ------------------------------
+`v1`            | First 2D vector.
+`v2`            | Second 2D vector.
+
+---
+
+### vector3d\_angle()
+
+**DEPRECATED, use `vector_angle()` instead.**
+
+**Usage**:
+- vector3d\_angle(v1,v2);
+
+**Description**:
+Returns angle in degrees between two 3D vectors.
+
+Argument        | What it does
+--------------- | ------------------------------
+`v1`            | First 3D vector.
+`v2`            | Second 3D vector.
 
 ---
 
