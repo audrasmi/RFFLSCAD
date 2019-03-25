@@ -256,42 +256,42 @@ Argument        | What it does
 ### sinh()
 
 **Description**:
-Takes a radians value `x`, and returns the hyperbolic sine of it.
+Takes a value `x`, and returns the hyperbolic sine of it.
 
 ---
 
 ### cosh()
 
 **Description**:
-Takes a radians value `x`, and returns the hyperbolic cosine of it.
+Takes a value `x`, and returns the hyperbolic cosine of it.
 
 ---
 
 ### tanh()
 
 **Description**:
-Takes a radians value `x`, and returns the hyperbolic tangent of it.
+Takes a value `x`, and returns the hyperbolic tangent of it.
 
 ---
 
 ### asinh()
 
 **Description**:
-Takes a value `x`, and returns the inverse hyperbolic sine of it in radians.
+Takes a value `x`, and returns the inverse hyperbolic sine of it.
 
 ---
 
 ### acosh()
 
 **Description**:
-Takes a value `x`, and returns the inverse hyperbolic cosine of it in radians.
+Takes a value `x`, and returns the inverse hyperbolic cosine of it.
 
 ---
 
 ### atanh()
 
 **Description**:
-Takes a value `x`, and returns the inverse hyperbolic tangent of it in radians.
+Takes a value `x`, and returns the inverse hyperbolic tangent of it.
 
 ---
 
