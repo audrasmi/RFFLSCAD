@@ -365,6 +365,7 @@ Argument        | What it does
 
 **Description**:
 Returns true if any item in list `l` evaluates as true.
+If `l` is a lists of lists, `any()` is applied recursively to each sublist.
 
 Argument        | What it does
 --------------- | ------------------------------
@@ -375,6 +376,8 @@ Argument        | What it does
     any([0,false,undef]);  // Returns false.
     any([1,false,undef]);  // Returns true.
     any([1,5,true]);       // Returns true.
+    any([[0,0], [0,0]]);   // Returns false.
+    any([[0,0], [1,0]]);   // Returns true.
 
 ---
 
@@ -382,6 +385,7 @@ Argument        | What it does
 
 **Description**:
 Returns true if all items in list `l` evaluate as true.
+If `l` is a lists of lists, `all()` is applied recursively to each sublist.
 
 Argument        | What it does
 --------------- | ------------------------------
@@ -392,6 +396,9 @@ Argument        | What it does
     all([0,false,undef]);  // Returns false.
     all([1,false,undef]);  // Returns false.
     all([1,5,true]);       // Returns true.
+    all([[0,0], [0,0]]);   // Returns false.
+    all([[0,0], [1,0]]);   // Returns false.
+    all([[1,1], [1,1]]);   // Returns true.
 
 ---
 
