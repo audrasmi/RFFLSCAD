@@ -10,10 +10,10 @@ include <BOSL/constants.scad>
 
 # Table of Contents
 
-1. [General Constants](#general-constants)
+1. [General Constants](#1-general-constants)
     - [PRINTER_SLOP](#printer_slop)
 
-2. [Directional Vectors](#directional-vectors)
+2. [Directional Vectors](#2-directional-vectors)
     - [V_LEFT](#v_left)
     - [V_RIGHT](#v_right)
     - [V_FWD](#v_fwd)
@@ -24,7 +24,7 @@ include <BOSL/constants.scad>
     - [V_ALLNEG](#v_allneg)
     - [V_ZERO](#v_zero)
 
-3. [Vector Aliases](#vector-aliases)
+3. [Vector Aliases](#3-vector-aliases)
     - [V_CENTER](#v_center)
     - [V_ABOVE](#v_above)
     - [V_BELOW](#v_below)
@@ -35,40 +35,44 @@ include <BOSL/constants.scad>
     - [V_FRONT](#v_front)
     - [V_REAR](#v_rear)
 
-4. [Pre-Orientation Alignments](#pre-orientation-alignments)
+4. [Pre-Orientation Alignments](#4-pre-orientation-alignments)
     - [ALIGN_POS](#align_pos)
     - [ALIGN_CENTER](#align_center)
     - [ALIGN_NEG](#align_neg)
 
-5. [Standard Orientations](#standard-orientations)
+5. [Standard Orientations](#5-standard-orientations)
+    - [ORIENT_X](#orient_x)
     - [ORIENT_Y](#orient_y)
     - [ORIENT_Z](#orient_z)
     - [ORIENT_XNEG](#orient_xneg)
     - [ORIENT_YNEG](#orient_yneg)
     - [ORIENT_ZNEG](#orient_zneg)
 
-6. [Orientations Rotated 90º](#orientations-rotated-90)
+6. [Orientations Rotated 90º](#6-orientations-rotated-90)
+    - [ORIENT_X_90](#orient_x_90)
     - [ORIENT_Y_90](#orient_y_90)
     - [ORIENT_Z_90](#orient_z_90)
     - [ORIENT_XNEG_90](#orient_xneg_90)
     - [ORIENT_YNEG_90](#orient_yneg_90)
     - [ORIENT_ZNEG_90](#orient_zneg_90)
 
-7. [Orientations Rotated 180º](#orientations-rotated-180)
+7. [Orientations Rotated 180º](#7-orientations-rotated-180)
+    - [ORIENT_X_180](#orient_x_180)
     - [ORIENT_Y_180](#orient_y_180)
     - [ORIENT_Z_180](#orient_z_180)
     - [ORIENT_XNEG_180](#orient_xneg_180)
     - [ORIENT_YNEG_180](#orient_yneg_180)
     - [ORIENT_ZNEG_180](#orient_zneg_180)
 
-8. [Orientations Rotated 270º](#orientations-rotated-270)
+8. [Orientations Rotated 270º](#8-orientations-rotated-270)
+    - [ORIENT_X_270](#orient_x_270)
     - [ORIENT_Y_270](#orient_y_270)
     - [ORIENT_Z_270](#orient_z_270)
     - [ORIENT_XNEG_270](#orient_xneg_270)
     - [ORIENT_YNEG_270](#orient_yneg_270)
     - [ORIENT_ZNEG_270](#orient_zneg_270)
 
-9. [Individual Edges](#individual-edges)
+9. [Individual Edges](#9-individual-edges)
     - [EDGE_TOP_BK](#edge_top_bk)
     - [EDGE_TOP_FR](#edge_top_fr)
     - [EDGE_BOT_FR](#edge_bot_fr)
@@ -82,7 +86,7 @@ include <BOSL/constants.scad>
     - [EDGE_FR_LF](#edge_fr_lf)
     - [EDGE_FR_RT](#edge_fr_rt)
 
-10. [Sets of Edges](#sets-of-edges)
+10. [Sets of Edges](#10-sets-of-edges)
     - [EDGES_X_TOP](#edges_x_top)
     - [EDGES_X_BOT](#edges_x_bot)
     - [EDGES_X_FR](#edges_x_fr)
@@ -107,7 +111,7 @@ include <BOSL/constants.scad>
     - [EDGES_NONE](#edges_none)
     - [EDGES_ALL](#edges_all)
 
-11. [Edge Helpers](#edge-helpers)
+11. [Edge Helpers](#11-edge-helpers)
     - [EDGE_OFFSETS](#edge_offsets)
     - [`corner_edge_count()`](#corner_edge_count)
 
@@ -416,6 +420,13 @@ rotation angles for rotating a vertical shape into the given orientations.
 
 ![Standard Orientations Figure 1](images/constants/figure1.gif)
 
+### ORIENT\_X
+
+**Description**:
+Orient along the X axis.
+
+---
+
 ### ORIENT\_Y
 
 **Description**:
@@ -459,6 +470,13 @@ rotation angles for rotating a vertical shape into the given orientations.
 **Figure 2**: Orientations Rotated 90º
 
 ![Orientations Rotated 90º Figure 2](images/constants/figure2.gif)
+
+### ORIENT\_X\_90
+
+**Description**:
+Orient along the X axis, then rotate 90 degrees counter-clockwise on that axis, as seen when facing the origin from that axis orientation.
+
+---
 
 ### ORIENT\_Y\_90
 
@@ -504,6 +522,13 @@ rotation angles for rotating a vertical shape into the given orientations.
 
 ![Orientations Rotated 180º Figure 3](images/constants/figure3.gif)
 
+### ORIENT\_X\_180
+
+**Description**:
+Orient along the X axis, then rotate 180 degrees counter-clockwise on that axis, as seen when facing the origin from that axis orientation.
+
+---
+
 ### ORIENT\_Y\_180
 
 **Description**:
@@ -547,6 +572,13 @@ rotation angles for rotating a vertical shape into the given orientations.
 **Figure 4**: Orientations Rotated 270º
 
 ![Orientations Rotated 270º Figure 4](images/constants/figure4.gif)
+
+### ORIENT\_X\_270
+
+**Description**:
+Orient along the X axis, then rotate 270 degrees counter-clockwise on that axis, as seen when facing the origin from that axis orientation.
+
+---
 
 ### ORIENT\_Y\_270
 
