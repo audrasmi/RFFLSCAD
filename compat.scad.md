@@ -166,6 +166,7 @@ If possible, echo a message from a function.
 
 **Description**:
 Emulates the newer OpenSCAD `assert()` with an `in_list()` test.
+You can also use this as a function call from a function.
 
 Argument        | What it does
 --------------- | ------------------------------
@@ -182,7 +183,9 @@ Argument        | What it does
 - assertion(succ, msg);
 
 **Description**:
-Backwards compatible assert() semi-replacement.  If `succ` is false, then print an error with `msg`.
+Backwards compatible assert() semi-replacement.
+If `succ` is false, then print an error with `msg`.
+You can also use this as a function call from a function.
 
 Argument        | What it does
 --------------- | ------------------------------
@@ -198,6 +201,7 @@ Argument        | What it does
 
 **Description**:
 Emulates printing of an error message.  The text will be shaded red.
+You can also use this as a function call from a function.
 
 Argument        | What it does
 --------------- | ------------------------------
@@ -213,6 +217,7 @@ Argument        | What it does
 
 **Description**:
 Emulates printing of a warning message.  The text will be shaded yellow.
+You can also use this as a function call from a function.
 
 Argument        | What it does
 --------------- | ------------------------------
@@ -228,6 +233,7 @@ Argument        | What it does
 
 **Description**:
 Show module deprecation warnings.
+You can also use this as a function call from a function.
 
 Argument        | What it does
 --------------- | ------------------------------
@@ -242,11 +248,12 @@ Argument        | What it does
 - deprecate(name, arg, [suggest]);
 
 **Description**:
-Show module argument deprecation warnings.
+Show argument deprecation warnings.
+You can also use this as a function call from a function.
 
 Argument        | What it does
 --------------- | ------------------------------
-`name`          | The name of the module the deprecated argument is used in.
+`name`          | The name of the module/function the deprecated argument is used in.
 `arg`           | The name of the deprecated argument.
 `suggest`       | If given, the argument to recommend using instead.
 
