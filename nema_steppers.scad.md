@@ -11,7 +11,7 @@ use <BOSL/nema_steppers.scad>
 
 # Table of Contents
 
-1. [Functions](#functions)
+1. [Functions](#1-functions)
     - [`nema_motor_width()`](#nema_motor_width)
     - [`nema_motor_plinth_height()`](#nema_motor_plinth_height)
     - [`nema_motor_plinth_diam()`](#nema_motor_plinth_diam)
@@ -19,14 +19,14 @@ use <BOSL/nema_steppers.scad>
     - [`nema_motor_screw_size()`](#nema_motor_screw_size)
     - [`nema_motor_screw_depth()`](#nema_motor_screw_depth)
 
-2. [Motor Models](#motor-models)
+2. [Motor Models](#2-motor-models)
     - [`nema11_stepper()`](#nema11_stepper)
     - [`nema14_stepper()`](#nema14_stepper)
     - [`nema17_stepper()`](#nema17_stepper)
     - [`nema23_stepper()`](#nema23_stepper)
     - [`nema34_stepper()`](#nema34_stepper)
 
-3. [Masking Modules](#masking-modules)
+3. [Masking Modules](#3-masking-modules)
     - [`nema_mount_holes()`](#nema_mount_holes)
     - [`nema11_mount_holes()`](#nema11_mount_holes)
     - [`nema14_mount_holes()`](#nema14_mount_holes)

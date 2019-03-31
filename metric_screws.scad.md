@@ -11,7 +11,7 @@ use <BOSL/metric_screws.scad>
 
 # Table of Contents
 
-1. [Functions](#functions)
+1. [Functions](#1-functions)
     - [`get_metric_bolt_head_size()`](#get_metric_bolt_head_size)
     - [`get_metric_bolt_head_height()`](#get_metric_bolt_head_height)
     - [`get_metric_socket_cap_diam()`](#get_metric_socket_cap_diam)
@@ -25,7 +25,7 @@ use <BOSL/metric_screws.scad>
     - [`get_metric_nut_size()`](#get_metric_nut_size)
     - [`get_metric_nut_thickness()`](#get_metric_nut_thickness)
 
-2. [Modules](#modules)
+2. [Modules](#2-modules)
     - [`screw()`](#screw)
     - [`metric_bolt()`](#metric_bolt)
     - [`metric_nut()`](#metric_nut)

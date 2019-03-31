@@ -11,14 +11,14 @@ use <BOSL/torx_drive.scad>
 
 # Table of Contents
 
-1. [Functions](#functions)
+1. [Functions](#1-functions)
     - [`torx_outer_diam()`](#torx_outer_diam)
     - [`torx_inner_diam()`](#torx_inner_diam)
     - [`torx_depth()`](#torx_depth)
     - [`torx_tip_radius()`](#torx_tip_radius)
     - [`torx_rounding_radius()`](#torx_rounding_radius)
 
-2. [Modules](#modules)
+2. [Modules](#2-modules)
     - [`torx_drive2d()`](#torx_drive2d)
     - [`torx_drive()`](#torx_drive)
 

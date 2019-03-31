@@ -11,7 +11,7 @@ use <BOSL/linear_bearings.scad>
 
 # Table of Contents
 
-1. [Functions](#functions)
+1. [Functions](#1-functions)
     - [`get_lmXuu_bearing_diam()`](#get_lmxuu_bearing_diam)
     - [`get_lmXuu_bearing_length()`](#get_lmxuu_bearing_length)
     - [`linear_bearing_housing()`](#linear_bearing_housing)

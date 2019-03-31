@@ -11,7 +11,7 @@ use <BOSL/shapes.scad>
 
 # Table of Contents
 
-1. [Cuboids](#cuboids)
+1. [Cuboids](#1-cuboids)
     - [`cuboid()`](#cuboid)
     - [`span_cube()`](#span_cube)
     - [`leftcube()`](#leftcube)
@@ -21,12 +21,12 @@ use <BOSL/shapes.scad>
     - [`downcube()`](#downcube)
     - [`upcube()`](#upcube)
 
-2. [Prismoids](#prismoids)
+2. [Prismoids](#2-prismoids)
     - [`prismoid()`](#prismoid)
     - [`rounded_prismoid()`](#rounded_prismoid)
     - [`right_triangle()`](#right_triangle)
 
-3. [Cylindroids](#cylindroids)
+3. [Cylindroids](#3-cylindroids)
     - [`cyl()`](#cyl)
     - [`downcyl()`](#downcyl)
     - [`xcyl()`](#xcyl)
@@ -35,10 +35,10 @@ use <BOSL/shapes.scad>
     - [`tube()`](#tube)
     - [`torus()`](#torus)
 
-4. [Spheroids](#spheroids)
+4. [Spheroids](#4-spheroids)
     - [`staggered_sphere()`](#staggered_sphere)
 
-5. [3D Printing Shapes](#3d-printing-shapes)
+5. [3D Printing Shapes](#5-3d-printing-shapes)
     - [`teardrop2d()`](#teardrop2d)
     - [`teardrop()`](#teardrop)
     - [`onion()`](#onion)
@@ -50,7 +50,7 @@ use <BOSL/shapes.scad>
     - [`sparse_strut3d()`](#sparse_strut3d)
     - [`corrugated_wall()`](#corrugated_wall)
 
-6. [Miscellaneous](#miscellaneous)
+6. [Miscellaneous](#6-miscellaneous)
     - [`nil()`](#nil)
     - [`noop()`](#noop)
     - [`pie_slice()`](#pie_slice)
@@ -58,7 +58,7 @@ use <BOSL/shapes.scad>
     - [`slot()`](#slot)
     - [`arced_slot()`](#arced_slot)
 
-7. [Deprecations](#deprecations)
+7. [Deprecations](#7-deprecations)
     - [`cube2pt()`](#cube2pt)
     - [`offsetcube()`](#offsetcube)
     - [`chamfcube()`](#chamfcube)

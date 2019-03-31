@@ -27,9 +27,9 @@ use <BOSL/involute_gears.scad>
 
 # Table of Contents
 
-1. [Terminology](#terminology)
+1. [Terminology](#1-terminology)
 
-2. [Functions](#functions)
+2. [Functions](#2-functions)
     - [`circular_pitch()`](#circular_pitch)
     - [`diametral_pitch()`](#diametral_pitch)
     - [`module_value()`](#module_value)
@@ -40,7 +40,7 @@ use <BOSL/involute_gears.scad>
     - [`root_radius()`](#root_radius)
     - [`base_radius()`](#base_radius)
 
-3. [Modules](#modules)
+3. [Modules](#3-modules)
     - [`gear_tooth_profile()`](#gear_tooth_profile)
     - [`gear2d()`](#gear2d)
     - [`gear()`](#gear)

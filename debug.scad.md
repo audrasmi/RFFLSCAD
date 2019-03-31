@@ -11,7 +11,7 @@ use <BOSL/debug.scad>
 
 # Table of Contents
 
-1. [Debugging Polyhedrons](#debugging-polyhedrons)
+1. [Debugging Polyhedrons](#1-debugging-polyhedrons)
     - [`debug_vertices()`](#debug_vertices)
     - [`debug_faces()`](#debug_faces)
     - [`debug_polyhedron()`](#debug_polyhedron)

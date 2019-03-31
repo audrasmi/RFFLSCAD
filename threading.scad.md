@@ -11,23 +11,23 @@ use <BOSL/threading.scad>
 
 # Table of Contents
 
-1. [Generic Trapezoidal Threading](#generic-trapezoidal-threading)
+1. [Generic Trapezoidal Threading](#1-generic-trapezoidal-threading)
     - [`trapezoidal_threaded_rod()`](#trapezoidal_threaded_rod)
     - [`trapezoidal_threaded_nut()`](#trapezoidal_threaded_nut)
 
-2. [Triangular Threading](#triangular-threading)
+2. [Triangular Threading](#2-triangular-threading)
     - [`threaded_rod()`](#threaded_rod)
     - [`threaded_nut()`](#threaded_nut)
 
-3. [Metric Trapezoidal Threading](#metric-trapezoidal-threading)
+3. [Metric Trapezoidal Threading](#3-metric-trapezoidal-threading)
     - [`metric_trapezoidal_threaded_rod()`](#metric_trapezoidal_threaded_rod)
     - [`metric_trapezoidal_threaded_nut()`](#metric_trapezoidal_threaded_nut)
 
-4. [ACME Trapezoidal Threading](#acme-trapezoidal-threading)
+4. [ACME Trapezoidal Threading](#4-acme-trapezoidal-threading)
     - [`acme_threaded_rod()`](#acme_threaded_rod)
     - [`acme_threaded_nut()`](#acme_threaded_nut)
 
-5. [Square Threading](#square-threading)
+5. [Square Threading](#5-square-threading)
     - [`square_threaded_rod()`](#square_threaded_rod)
     - [`square_threaded_nut()`](#square_threaded_nut)
 

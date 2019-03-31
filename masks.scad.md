@@ -11,11 +11,11 @@ use <BOSL/masks.scad>
 
 # Table of Contents
 
-1. [General Masks](#general-masks)
+1. [General Masks](#1-general-masks)
     - [`angle_pie_mask()`](#angle_pie_mask)
     - [`cylinder_mask()`](#cylinder_mask)
 
-2. [Chamfers](#chamfers)
+2. [Chamfers](#2-chamfers)
     - [`chamfer_mask()`](#chamfer_mask)
     - [`chamfer_mask_x()`](#chamfer_mask_x)
     - [`chamfer_mask_y()`](#chamfer_mask_y)
@@ -24,7 +24,7 @@ use <BOSL/masks.scad>
     - [`chamfer_cylinder_mask()`](#chamfer_cylinder_mask)
     - [`chamfer_hole_mask()`](#chamfer_hole_mask)
 
-3. [Filleting/Rounding](#filletingrounding)
+3. [Filleting/Rounding](#3-filletingrounding)
     - [`fillet_mask()`](#fillet_mask)
     - [`fillet_mask_x()`](#fillet_mask_x)
     - [`fillet_mask_y()`](#fillet_mask_y)

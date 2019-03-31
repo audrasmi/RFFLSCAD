@@ -10,7 +10,7 @@ use <BOSL/triangulation.scad>
 
 # Table of Contents
 
-1. [Functions](#functions)
+1. [Functions](#1-functions)
     - [`face_normal()`](#face_normal)
     - [`find_convex_vertex()`](#find_convex_vertex)
     - [`point_in_ear()`](#point_in_ear)

@@ -11,7 +11,7 @@ use <BOSL/phillips_drive.scad>
 
 # Table of Contents
 
-1. [Modules](#modules)
+1. [Modules](#1-modules)
     - [`phillips_drive()`](#phillips_drive)
 
 ---

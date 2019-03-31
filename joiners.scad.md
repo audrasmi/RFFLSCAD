@@ -11,20 +11,20 @@ use <BOSL/joiners.scad>
 
 # Table of Contents
 
-1. [Half Joiners](#half-joiners)
+1. [Half Joiners](#1-half-joiners)
     - [`half_joiner_clear()`](#half_joiner_clear)
     - [`half_joiner()`](#half_joiner)
     - [`half_joiner2()`](#half_joiner2)
 
-2. [Full Joiners](#full-joiners)
+2. [Full Joiners](#2-full-joiners)
     - [`joiner_clear()`](#joiner_clear)
     - [`joiner()`](#joiner)
 
-3. [Full Joiners Pairs/Sets](#full-joiners-pairssets)
+3. [Full Joiners Pairs/Sets](#3-full-joiners-pairssets)
     - [`joiner_pair_clear()`](#joiner_pair_clear)
     - [`joiner_pair()`](#joiner_pair)
 
-4. [Full Joiners Quads/Sets](#full-joiners-quadssets)
+4. [Full Joiners Quads/Sets](#4-full-joiners-quadssets)
     - [`joiner_quad_clear()`](#joiner_quad_clear)
     - [`joiner_quad()`](#joiner_quad)
 

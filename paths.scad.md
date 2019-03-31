@@ -11,17 +11,18 @@ use <BOSL/paths.scad>
 
 # Table of Contents
 
-1. [Functions](#functions)
+1. [Functions](#1-functions)
     - [`simplify2d_path()`](#simplify2d_path)
     - [`simplify3d_path()`](#simplify3d_path)
+    - [`path_length()`](#path_length)
     - [`path2d_regular_ngon()`](#path2d_regular_ngon)
     - [`path3d_spiral()`](#path3d_spiral)
     - [`points_along_path3d()`](#points_along_path3d)
 
-2. [2D Modules](#2d-modules)
+2. [2D Modules](#2-2d-modules)
     - [`modulated_circle()`](#modulated_circle)
 
-3. [3D Modules](#3d-modules)
+3. [3D Modules](#3-3d-modules)
     - [`extrude_from_to()`](#extrude_from_to)
     - [`extrude_2d_hollow()`](#extrude_2d_hollow)
     - [`extrude_2dpath_along_spiral()`](#extrude_2dpath_along_spiral)
@@ -61,6 +62,25 @@ Argument        | What it does
 --------------- | ------------------------------
 `path`          | A list of 3D path points.
 `eps`           | Largest angle delta between segments to count as colinear.  Default: 1e-6
+
+---
+
+### path\_length()
+
+**Usage**:
+- path3d\_length(path)
+
+**Description**:
+Returns the length of the path.
+
+Argument        | What it does
+--------------- | ------------------------------
+`path`          | The list of points of the path to measure.
+
+**Example**:
+
+    path = [[0,0], [5,35], [60,-25], [80,0]];
+    echo(path_length(path));
 
 ---
 

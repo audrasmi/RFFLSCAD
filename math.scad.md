@@ -10,7 +10,7 @@ use <BOSL/math.scad>
 
 # Table of Contents
 
-1. [Simple Calculations](#simple-calculations)
+1. [Simple Calculations](#1-simple-calculations)
     - [`quant()`](#quant)
     - [`quantdn()`](#quantdn)
     - [`quantup()`](#quantup)
@@ -31,14 +31,21 @@ use <BOSL/math.scad>
     - [`sum_of_sines()`](#sum_of_sines)
     - [`mean()`](#mean)
 
-2. [List/Array Operations](#listarray-operations)
+2. [Comparisons and Logic](#2-comparisons-and-logic)
+    - [`compare_vals()`](#compare_vals)
+    - [`compare_lists()`](#compare_lists)
     - [`any()`](#any)
     - [`all()`](#all)
+    - [`count_true()`](#count_true)
+
+3. [List/Array Operations](#3-listarray-operations)
+    - [`replist()`](#replist)
     - [`in_list()`](#in_list)
     - [`slice()`](#slice)
     - [`select()`](#select)
     - [`reverse()`](#reverse)
     - [`array_subindex()`](#array_subindex)
+    - [`list_range()`](#list_range)
     - [`array_shortest()`](#array_shortest)
     - [`array_longest()`](#array_longest)
     - [`array_pad()`](#array_pad)
@@ -47,15 +54,18 @@ use <BOSL/math.scad>
     - [`array_zip()`](#array_zip)
     - [`array_group()`](#array_group)
     - [`flatten()`](#flatten)
+    - [`sort()`](#sort)
+    - [`unique()`](#unique)
+    - [`array_dim()`](#array_dim)
 
-3. [Vector Manipulation](#vector-manipulation)
+4. [Vector Manipulation](#4-vector-manipulation)
     - [`vmul()`](#vmul)
     - [`vdiv()`](#vdiv)
     - [`vabs()`](#vabs)
     - [`normalize()`](#normalize)
     - [`vector_angle()`](#vector_angle)
 
-4. [Coordinates Manipulation](#coordinates-manipulation)
+5. [Coordinates Manipulation](#5-coordinates-manipulation)
     - [`point2d()`](#point2d)
     - [`path2d()`](#path2d)
     - [`point3d()`](#point3d)
@@ -66,7 +76,7 @@ use <BOSL/math.scad>
     - [`rotate_points3d()`](#rotate_points3d)
     - [`rotate_points3d_around_axis()`](#rotate_points3d_around_axis)
 
-5. [Coordinate Systems](#coordinate-systems)
+6. [Coordinate Systems](#6-coordinate-systems)
     - [`polar_to_xy()`](#polar_to_xy)
     - [`xy_to_polar()`](#xy_to_polar)
     - [`cylindrical_to_xyz()`](#cylindrical_to_xyz)
@@ -76,7 +86,7 @@ use <BOSL/math.scad>
     - [`altaz_to_xyz()`](#altaz_to_xyz)
     - [`xyz_to_altaz()`](#xyz_to_altaz)
 
-6. [Matrix Manipulation](#matrix-manipulation)
+7. [Matrix Manipulation](#7-matrix-manipulation)
     - [`ident()`](#ident)
     - [`mat3_to_mat4()`](#mat3_to_mat4)
     - [`matrix3_translate()`](#matrix3_translate)
@@ -97,13 +107,13 @@ use <BOSL/math.scad>
     - [`matrix3_apply()`](#matrix3_apply)
     - [`matrix4_apply()`](#matrix4_apply)
 
-7. [Geometry](#geometry)
+8. [Geometry](#8-geometry)
     - [`point_on_segment()`](#point_on_segment)
     - [`point_left_of_segment()`](#point_left_of_segment)
     - [`point_in_polygon()`](#point_in_polygon)
     - [`pointlist_bounds()`](#pointlist_bounds)
 
-8. [Deprecations](#deprecations)
+9. [Deprecations](#9-deprecations)
     - [`Cpi()`](#cpi)
     - [`hypot3()`](#hypot3)
     - [`distance()`](#distance)
@@ -360,7 +370,42 @@ Argument        | What it does
 
 ---
 
-# 2. List/Array Operations
+# 2. Comparisons and Logic
+
+### compare\_vals()
+
+**Usage**:
+- compare\_vals(a, b);
+
+**Description**:
+Compares two values.  If types don't match, then
+undef < boolean < scalar < string < list
+Lists are compared recursively.
+
+Argument        | What it does
+--------------- | ------------------------------
+`a`             | First value to compare.
+`b`             | Second value to compare.
+
+---
+
+### compare\_lists()
+
+**Usage**:
+- compare\_lists(a, b)
+
+**Description**:
+Compare contents of two lists.
+Returns <0 if `a`<`b`.
+Returns >0 if `a`>`b`.
+Returns 0 if `a`==`b`.
+
+Argument        | What it does
+--------------- | ------------------------------
+`a`             | First list to compare.
+`b`             | Second list to compare.
+
+---
 
 ### any()
 
@@ -400,6 +445,61 @@ Argument        | What it does
     all([[0,0], [0,0]]);   // Returns false.
     all([[0,0], [1,0]]);   // Returns false.
     all([[1,1], [1,1]]);   // Returns true.
+
+---
+
+### count\_true()
+
+**Usage**:
+- count\_true(l)
+
+**Description**:
+Returns the number of items in `l` that evaluate as true.
+If `l` is a lists of lists, this is applied recursively to each
+sublist.  Returns the total count of items that evaluate as true
+in all recursive sublists.
+
+Argument        | What it does
+--------------- | ------------------------------
+`l`             | The list to test for true items.
+`nmax`          | If given, stop counting if `nmax` items evaluate as true.
+
+**Example**:
+
+    count_true([0,false,undef]);  // Returns 0.
+    count_true([1,false,undef]);  // Returns 1.
+    count_true([1,5,false]);      // Returns 2.
+    count_true([1,5,true]);       // Returns 3.
+    count_true([[0,0], [0,0]]);   // Returns 0.
+    count_true([[0,0], [1,0]]);   // Returns 1.
+    count_true([[1,1], [1,1]]);   // Returns 4.
+    count_true([[1,1], [1,1]], nmax=3);  // Returns 3.
+
+---
+
+# 3. List/Array Operations
+
+### replist()
+
+**Usage**:
+- replist(val, n)
+
+**Description**:
+Generates a list or array of `n` copies of the given `list`.
+If the count `n` is given as a list of counts, then this creates a
+multi-dimensional array, filled with `val`.
+
+Argument        | What it does
+--------------- | ------------------------------
+`val`           | The value to repeat to make the list or array.
+`n`             | The number of copies to make of `val`.
+
+**Example**:
+
+    replist(1, 4);        // Returns [1,1,1,1]
+    replist(8, [2,3]);    // Returns [[8,8,8], [8,8,8]]
+    replist(0, [2,2,3]);  // Returns [[[0,0,0],[0,0,0]], [[0,0,0],[0,0,0]]]
+    replist([1,2,3],3);   // Returns [[1,2,3], [1,2,3], [1,2,3]]
 
 ---
 
@@ -514,10 +614,43 @@ Argument        | What it does
 
 ---
 
+### list\_range()
+
+**Usage**:
+- list\_range(n, [s], [e], [step])
+- list\_range(e, [step])
+- list\_range(s, e, [step])
+
+**Description**:
+Returns a list, counting up from starting value `s`, by `step` increments,
+until either `n` values are in the list, or it reaches the end value `e`.
+
+Argument        | What it does
+--------------- | ------------------------------
+`n`             | Desired number of values in returned list, if given.
+`s`             | Starting value.  Default: 0
+`e`             | Ending value to stop at, if given.
+`step`          | Amount to increment each value.  Default: 1
+
+**Example**:
+
+    list_range(4);                  // Returns [0,1,2,3]
+    list_range(n=4, step=2);        // Returns [0,2,4,6]
+    list_range(n=4, s=3, step=3);   // Returns [3,6,9,12]
+    list_range(n=4, s=3, e=9, step=3);  // Returns [3,6,9]
+    list_range(e=3);                // Returns [0,1,2,3]
+    list_range(e=6, step=2);        // Returns [0,2,4,6]
+    list_range(s=3, e=5);           // Returns [3,4,5]
+    list_range(s=3, e=8, step=2);   // Returns [3,5,7]
+    list_range(s=4, e=8, step=2);   // Returns [4,6,8]
+    list_range(n=4, s=[3,4], step=[2,3]);  // Returns [[3,4], [5,7], [7,10], [9,13]]
+
+---
+
 ### array\_shortest()
 
 **Description**:
-Returns the length of the shortest list in a list of list.
+Returns the length of the shortest sublist in a list of lists.
 
 Argument        | What it does
 --------------- | ------------------------------
@@ -528,7 +661,7 @@ Argument        | What it does
 ### array\_longest()
 
 **Description**:
-Returns the length of the longest list in a list of list.
+Returns the length of the longest sublist in a list of lists.
 
 Argument        | What it does
 --------------- | ------------------------------
@@ -648,7 +781,79 @@ Argument        | What it does
 
 ---
 
-# 3. Vector Manipulation
+### sort()
+
+**Usage**:
+- sort(arr, [idx])
+
+**Description**:
+Sorts the given list using `compare_vals()`.
+
+Argument        | What it does
+--------------- | ------------------------------
+`arr`           | The list to sort.
+`idx`           | If given, the index, range, or list of indices of sublist items to compare.
+
+**Example**:
+
+    l = [45,2,16,37,8,3,9,23,89,12,34];
+    sorted = sort(l);  // Returns [2,3,8,9,12,16,23,34,37,45,89]
+
+---
+
+### unique()
+
+**Usage**:
+- unique(arr);
+
+**Description**:
+Returns a sorted list with all repeated items removed.
+
+Argument        | What it does
+--------------- | ------------------------------
+`arr`           | The list to uniquify.
+
+---
+
+### array\_dim()
+
+**Usage**:
+- array\_dim(v, [depth])
+
+**Description**:
+Returns the size of a multi-dimensional array.  Returns a list of
+dimension lengths.  The length of `v` is the dimension `0`.  The
+length of the items in `v` is dimension `1`.  The length of the
+items in the items in `v` is dimension `2`, etc.  For each dimension,
+if the length of items at that depth is inconsistent, `undef` will
+be returned.  If no items of that dimension depth exist, `0` is
+returned.  Otherwise, the consistent length of items in that
+dimensional depth is returned.
+
+Argument        | What it does
+--------------- | ------------------------------
+`v`             | Array to get dimensions of.
+`depth`         | Dimension to get size of.  If not given, returns a list of dimension lengths.
+
+**Example 1**:
+
+    array_dim([[[1,2,3],[4,5,6]],[[7,8,9],[10,11,12]]]);     // Returns [2,2,3]
+
+**Example 2**:
+
+    array_dim([[[1,2,3],[4,5,6]],[[7,8,9],[10,11,12]]], 0);  // Returns 2
+
+**Example 3**:
+
+    array_dim([[[1,2,3],[4,5,6]],[[7,8,9],[10,11,12]]], 2);  // Returns 3
+
+**Example 4**:
+
+    array_dim([[[1,2,3],[4,5,6]],[[7,8,9]]]);                // Returns [2,undef,3]
+
+---
+
+# 4. Vector Manipulation
 
 ### vmul()
 
@@ -721,7 +926,7 @@ Argument        | What it does
 
 ---
 
-# 4. Coordinates Manipulation
+# 5. Coordinates Manipulation
 
 ### point2d()
 
@@ -850,7 +1055,7 @@ Argument        | What it does
 
 ---
 
-# 5. Coordinate Systems
+# 6. Coordinate Systems
 
 ### polar\_to\_xy()
 
@@ -1061,7 +1266,7 @@ Argument        | What it does
 
 ---
 
-# 6. Matrix Manipulation
+# 7. Matrix Manipulation
 
 ### ident()
 
@@ -1329,7 +1534,7 @@ Argument        | What it does
 
 ---
 
-# 7. Geometry
+# 8. Geometry
 
 ### point\_on\_segment()
 
@@ -1402,7 +1607,7 @@ Argument        | What it does
 
 ---
 
-# 8. Deprecations
+# 9. Deprecations
 
 ### Cpi()
 

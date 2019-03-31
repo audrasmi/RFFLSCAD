@@ -10,7 +10,7 @@ use <BOSL/quaternions.scad>
 
 # Table of Contents
 
-1. [Quaternions](#quaternions)
+1. [Quaternions](#1-quaternions)
     - [`Quat()`](#quat)
     - [`QuatX()`](#quatx)
     - [`QuatY()`](#quaty)

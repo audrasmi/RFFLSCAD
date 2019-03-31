@@ -10,7 +10,7 @@ use <compat.scad>
 
 # Table of Contents
 
-1. [Functions](#functions)
+1. [Functions](#1-functions)
     - [`default()`](#default)
     - [`is_def()`](#is_def)
     - [`is_str()`](#is_str)
@@ -25,7 +25,7 @@ use <compat.scad>
     - [`scalar_vec3()`](#scalar_vec3)
     - [`f_echo()`](#f_echo)
 
-2. [Modules](#modules)
+2. [Modules](#2-modules)
     - [`assert_in_list()`](#assert_in_list)
     - [`assertion()`](#assertion)
     - [`echo_error()`](#echo_error)

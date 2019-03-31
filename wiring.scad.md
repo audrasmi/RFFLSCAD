@@ -10,11 +10,11 @@ use <BOSL/wiring.scad>
 
 # Table of Contents
 
-1. [Functions](#functions)
+1. [Functions](#1-functions)
     - [`hex_offset_ring()`](#hex_offset_ring)
     - [`hex_offsets()`](#hex_offsets)
 
-2. [Modules](#modules)
+2. [Modules](#2-modules)
     - [`wiring()`](#wiring)
 
 ---

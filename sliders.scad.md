@@ -11,7 +11,7 @@ use <BOSL/sliders.scad>
 
 # Table of Contents
 
-1. [Modules](#modules)
+1. [Modules](#1-modules)
     - [`slider()`](#slider)
     - [`rail()`](#rail)
 
