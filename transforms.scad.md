@@ -11,7 +11,7 @@ use <BOSL/transforms.scad>
 
 # Table of Contents
 
-1. [Translations](#translations)
+1. [Translations](#1-translations)
     - [`move()`](#move)
     - [`xmove()`](#xmove)
     - [`ymove()`](#ymove)
@@ -23,13 +23,13 @@ use <BOSL/transforms.scad>
     - [`down()`](#down)
     - [`up()`](#up)
 
-2. [Rotations](#rotations)
+2. [Rotations](#2-rotations)
     - [`rot()`](#rot)
     - [`xrot()`](#xrot)
     - [`yrot()`](#yrot)
     - [`zrot()`](#zrot)
 
-3. [Scaling and Mirroring](#scaling-and-mirroring)
+3. [Scaling and Mirroring](#3-scaling-and-mirroring)
     - [`xscale()`](#xscale)
     - [`yscale()`](#yscale)
     - [`zscale()`](#zscale)
@@ -37,12 +37,12 @@ use <BOSL/transforms.scad>
     - [`yflip()`](#yflip)
     - [`zflip()`](#zflip)
 
-4. [Skewing](#skewing)
+4. [Skewing](#4-skewing)
     - [`skew_xy() / skew_z()`](#skew_xy--skew_z)
     - [`skew_yz() / skew_x()`](#skew_yz--skew_x)
     - [`skew_xz() / skew_y()`](#skew_xz--skew_y)
 
-5. [Translational Distributors](#translational-distributors)
+5. [Translational Distributors](#5-translational-distributors)
     - [`place_copies()`](#place_copies)
     - [`spread()`](#spread)
     - [`xspread()`](#xspread)
@@ -55,7 +55,7 @@ use <BOSL/transforms.scad>
     - [`grid2d()`](#grid2d)
     - [`grid3d()`](#grid3d)
 
-6. [Rotational Distributors](#rotational-distributors)
+6. [Rotational Distributors](#6-rotational-distributors)
     - [`rot_copies()`](#rot_copies)
     - [`xrot_copies()`](#xrot_copies)
     - [`yrot_copies()`](#yrot_copies)
@@ -66,13 +66,13 @@ use <BOSL/transforms.scad>
     - [`arc_of()`](#arc_of)
     - [`ovoid_spread()`](#ovoid_spread)
 
-7. [Reflectional Distributors](#reflectional-distributors)
+7. [Reflectional Distributors](#7-reflectional-distributors)
     - [`mirror_copy()`](#mirror_copy)
     - [`xflip_copy()`](#xflip_copy)
     - [`yflip_copy()`](#yflip_copy)
     - [`zflip_copy()`](#zflip_copy)
 
-8. [Mutators](#mutators)
+8. [Mutators](#8-mutators)
     - [`half_of()`](#half_of)
     - [`top_half()`](#top_half)
     - [`bottom_half()`](#bottom_half)
@@ -83,10 +83,10 @@ use <BOSL/transforms.scad>
     - [`chain_hull()`](#chain_hull)
     - [`extrude_arc()`](#extrude_arc)
 
-9. [Miscellaneous](#miscellaneous)
+9. [Miscellaneous](#9-miscellaneous)
     - [`orient_and_align()`](#orient_and_align)
 
-10. [Deprecations](#deprecations)
+10. [Deprecations](#10-deprecations)
     - [`translate_copies()`](#translate_copies)
     - [`line_of()`](#line_of)
     - [`grid_of()`](#grid_of)
@@ -1449,7 +1449,7 @@ Argument        | What it does
 ### xring()
 
 **Usage**:
-- xring(r, n, [sa], [cp], [rot]) ...
+- xring(n, r, [sa], [cp], [rot]) ...
 
 **Description**:
 Distributes `n` copies of the given children on a circle of radius `r`
@@ -1459,9 +1459,10 @@ starting angle `sa`.
 
 Argument        | What it does
 --------------- | ------------------------------
-`n`             | number of copies of children to distribute around the circle. (Default: 2)
-`r`             | radius of ring to distribute children around. (Default: 0)
-`sa`            | start angle for first (unrotated) copy.  (Default: 0)
+`n`             | Number of copies of children to distribute around the circle. (Default: 2)
+`r`             | Radius of ring to distribute children around. (Default: 0)
+`sa`            | Start angle for first (unrotated) copy.  (Default: 0)
+`cp`            | Centerpoint of ring.  Default: [0,0,0]
 `rot`           | If true, rotate each copy to keep the same side towards the center of the ring.  Default: true.
 
 **Side Effects**:
@@ -1491,7 +1492,7 @@ Argument        | What it does
 ### yring()
 
 **Usage**:
-- yring(r, n, [sa], [cp], [rot]) ...
+- yring(n, r, [sa], [cp], [rot]) ...
 
 **Description**:
 Distributes `n` copies of the given children on a circle of radius `r`
@@ -1501,9 +1502,10 @@ starting angle `sa`.
 
 Argument        | What it does
 --------------- | ------------------------------
-`n`             | number of copies of children to distribute around the circle. (Default: 2)
-`r`             | radius of ring to distribute children around. (Default: 0)
-`sa`            | start angle for first (unrotated) copy.  (Default: 0)
+`n`             | Number of copies of children to distribute around the circle. (Default: 2)
+`r`             | Radius of ring to distribute children around. (Default: 0)
+`sa`            | Start angle for first (unrotated) copy.  (Default: 0)
+`cp`            | Centerpoint of ring.  Default: [0,0,0]
 `rot`           | If true, rotate each copy to keep the same side towards the center of the ring.  Default: true.
 
 **Side Effects**:
@@ -1546,7 +1548,7 @@ Argument        | What it does
 `n`             | Number of copies of children to distribute around the circle. (Default: 2)
 `r`             | Radius of ring to distribute children around. (Default: 0)
 `sa`            | Start angle for first (unrotated) copy.  (Default: 0)
-`cp`            | Centerpoint of the ring.
+`cp`            | Centerpoint of ring.  Default: [0,0,0]
 `rot`           | If true, rotate each copy to keep the same side towards the center of the ring.  Default: true.
 
 **Side Effects**:
