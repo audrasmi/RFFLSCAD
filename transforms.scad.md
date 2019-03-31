@@ -1849,7 +1849,7 @@ Slices an object at a cut plane, and masks away everything that is on one side.
 Argument        | What it does
 --------------- | ------------------------------
 `v`             | Normal of plane to slice at.  Keeps everything on the side the normal points to.  Default: [0,0,1] (V\_UP)
-`cp`            | A point that is on the cut plane.  This can be used to shift where it slices the object at.  Default: [0,0,0]
+`cp`            | If given as a scalar, moves the cut plane along the normal by the given amount.  If given as a point, specifies a point on the cut plane.  This can be used to shift where it slices the object at.  Default: [0,0,0]
 `s`             | Mask size to use.  Use a number larger than twice your object's largest axis.  If you make this too large, it messes with centering your view.  Default: 100
 
 **Example 1**:
@@ -1876,7 +1876,7 @@ Slices an object at a horizontal X-Y cut plane, and masks away everything that i
 
 Argument        | What it does
 --------------- | ------------------------------
-`cp`            | A point that is on the cut plane.  This can be used to shift where it slices the object at.  Default: [0,0,0]
+`cp`            | If given as a scalar, moves the cut plane up by the given amount.  If given as a point, specifies a point on the cut plane.  Default: [0,0,0]
 `s`             | Mask size to use.  Use a number larger than twice your object's largest axis.  If you make this too large, it messes with centering your view.  Default: 100
 
 **Example 1**:
@@ -1887,9 +1887,15 @@ Argument        | What it does
 
 **Example 2**:
 
-    top_half(cp=[0,0,-5]) sphere(r=20);
+    top_half(cp=5) sphere(r=20);
 
 ![top\_half() Example 2](images/transforms/top_half_2.gif)
+
+**Example 3**:
+
+    top_half(cp=[0,0,-8]) sphere(r=20);
+
+![top\_half() Example 3](images/transforms/top_half_3.gif)
 
 ---
 
@@ -1903,7 +1909,7 @@ Slices an object at a horizontal X-Y cut plane, and masks away everything that i
 
 Argument        | What it does
 --------------- | ------------------------------
-`cp`            | A point that is on the cut plane.  This can be used to shift where it slices the object at.  Default: [0,0,0]
+`cp`            | If given as a scalar, moves the cut plane down by the given amount.  If given as a point, specifies a point on the cut plane.  Default: [0,0,0]
 `s`             | Mask size to use.  Use a number larger than twice your object's largest axis.  If you make this too large, it messes with centering your view.  Default: 100
 
 **Example 1**:
@@ -1930,7 +1936,7 @@ Slices an object at a vertical Y-Z cut plane, and masks away everything that is 
 
 Argument        | What it does
 --------------- | ------------------------------
-`cp`            | A point that is on the cut plane.  This can be used to shift where it slices the object at.  Default: [0,0,0]
+`cp`            | If given as a scalar, moves the cut plane left by the given amount.  If given as a point, specifies a point on the cut plane.  Default: [0,0,0]
 `s`             | Mask size to use.  Use a number larger than twice your object's largest axis.  If you make this too large, it messes with centering your view.  Default: 100
 
 **Example 1**:
@@ -1957,7 +1963,7 @@ Slices an object at a vertical Y-Z cut plane, and masks away everything that is 
 
 Argument        | What it does
 --------------- | ------------------------------
-`cp`            | A point that is on the cut plane.  This can be used to shift where it slices the object at.  Default: [0,0,0]
+`cp`            | If given as a scalar, moves the cut plane right by the given amount.  If given as a point, specifies a point on the cut plane.  Default: [0,0,0]
 `s`             | Mask size to use.  Use a number larger than twice your object's largest axis.  If you make this too large, it messes with centering your view.  Default: 100
 
 **Example 1**:
@@ -1968,9 +1974,15 @@ Argument        | What it does
 
 **Example 2**:
 
-    right_half(cp=[-5,0,0]) sphere(r=20);
+    right_half(cp=-5) sphere(r=20);
 
 ![right\_half() Example 2](images/transforms/right_half_2.gif)
+
+**Example 3**:
+
+    right_half(cp=[-5,0,0]) sphere(r=20);
+
+![right\_half() Example 3](images/transforms/right_half_3.gif)
 
 ---
 
@@ -1984,7 +1996,7 @@ Slices an object at a vertical X-Z cut plane, and masks away everything that is 
 
 Argument        | What it does
 --------------- | ------------------------------
-`cp`            | A point that is on the cut plane.  This can be used to shift where it slices the object at.  Default: [0,0,0]
+`cp`            | If given as a scalar, moves the cut plane forward by the given amount.  If given as a point, specifies a point on the cut plane.  Default: [0,0,0]
 `s`             | Mask size to use.  Use a number larger than twice your object's largest axis.  If you make this too large, it messes with centering your view.  Default: 100
 
 **Example 1**:
@@ -1995,9 +2007,15 @@ Argument        | What it does
 
 **Example 2**:
 
-    front_half(cp=[0,5,0]) sphere(r=20);
+    front_half(cp=5) sphere(r=20);
 
 ![front\_half() Example 2](images/transforms/front_half_2.gif)
+
+**Example 3**:
+
+    front_half(cp=[0,5,0]) sphere(r=20);
+
+![front\_half() Example 3](images/transforms/front_half_3.gif)
 
 ---
 
@@ -2011,7 +2029,7 @@ Slices an object at a vertical X-Z cut plane, and masks away everything that is 
 
 Argument        | What it does
 --------------- | ------------------------------
-`cp`            | A point that is on the cut plane.  This can be used to shift where it slices the object at.  Default: [0,0,0]
+`cp`            | If given as a scalar, moves the cut plane back by the given amount.  If given as a point, specifies a point on the cut plane.  Default: [0,0,0]
 `s`             | Mask size to use.  Use a number larger than twice your object's largest axis.  If you make this too large, it messes with centering your view.  Default: 100
 
 **Example 1**:
@@ -2022,9 +2040,15 @@ Argument        | What it does
 
 **Example 2**:
 
-    back_half(cp=[0,-10,0]) sphere(r=20);
+    back_half(cp=8) sphere(r=20);
 
 ![back\_half() Example 2](images/transforms/back_half_2.png)
+
+**Example 3**:
+
+    back_half(cp=[0,-10,0]) sphere(r=20);
+
+![back\_half() Example 3](images/transforms/back_half_3.png)
 
 ---
 
