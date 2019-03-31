@@ -602,13 +602,20 @@ Argument        | What it does
 --------------- | ------------------------------
 `xa`            | skew angle towards the X direction.
 `ya`            | skew angle towards the Y direction.
+`planar`        | If true, this becomes a 2D operation.
 
-**Example**:
+**Example 1**:
 
     #cube(size=10);
     skew_xy(xa=30, ya=15) cube(size=10);
 
-![skew\_xy() / skew\_z() Example](images/transforms/skew_xyskew_z.gif)
+![skew\_xy() / skew\_z() Example 1](images/transforms/skew_xyskew_z.gif)
+
+**Example 2**:
+
+    skew_xy(xa=15,ya=30,planar=true) square(30);
+
+![skew\_xy() / skew\_z() Example 2](images/transforms/skew_xyskew_z_2.png)
 
 ---
 
@@ -1851,6 +1858,7 @@ Argument        | What it does
 `v`             | Normal of plane to slice at.  Keeps everything on the side the normal points to.  Default: [0,0,1] (V\_UP)
 `cp`            | If given as a scalar, moves the cut plane along the normal by the given amount.  If given as a point, specifies a point on the cut plane.  This can be used to shift where it slices the object at.  Default: [0,0,0]
 `s`             | Mask size to use.  Use a number larger than twice your object's largest axis.  If you make this too large, it messes with centering your view.  Default: 100
+`planar`        | If true, this becomes a 2D operation.  When planar, a `v` of `V_UP` or `V_DOWN` becomes equivalent of `V_BACK` and `V_FWD` respectively.
 
 **Example 1**:
 
@@ -1863,6 +1871,12 @@ Argument        | What it does
     half_of(V_DOWN+V_LEFT, s=200) sphere(d=150);
 
 ![half\_of() Example 2](images/transforms/half_of_2.png)
+
+**Example 3**:
+
+    half_of([1,1], planar=true) circle(d=50);
+
+![half\_of() Example 3](images/transforms/half_of_3.png)
 
 ---
 
@@ -1878,6 +1892,7 @@ Argument        | What it does
 --------------- | ------------------------------
 `cp`            | If given as a scalar, moves the cut plane up by the given amount.  If given as a point, specifies a point on the cut plane.  Default: [0,0,0]
 `s`             | Mask size to use.  Use a number larger than twice your object's largest axis.  If you make this too large, it messes with centering your view.  Default: 100
+`planar`        | If true, this becomes equivalent to a planar `back_half()`.
 
 **Example 1**:
 
@@ -1897,6 +1912,12 @@ Argument        | What it does
 
 ![top\_half() Example 3](images/transforms/top_half_3.gif)
 
+**Example 4**:
+
+    top_half(planar=true) circle(r=20);
+
+![top\_half() Example 4](images/transforms/top_half_4.png)
+
 ---
 
 ### bottom\_half()
@@ -1911,6 +1932,7 @@ Argument        | What it does
 --------------- | ------------------------------
 `cp`            | If given as a scalar, moves the cut plane down by the given amount.  If given as a point, specifies a point on the cut plane.  Default: [0,0,0]
 `s`             | Mask size to use.  Use a number larger than twice your object's largest axis.  If you make this too large, it messes with centering your view.  Default: 100
+`planar`        | If true, this becomes equivalent to a planar `front_half()`.
 
 **Example 1**:
 
@@ -1920,9 +1942,21 @@ Argument        | What it does
 
 **Example 2**:
 
-    bottom_half(cp=[0,0,10]) sphere(r=20);
+    bottom_half(cp=-10) sphere(r=20);
 
 ![bottom\_half() Example 2](images/transforms/bottom_half_2.png)
+
+**Example 3**:
+
+    bottom_half(cp=[0,0,10]) sphere(r=20);
+
+![bottom\_half() Example 3](images/transforms/bottom_half_3.png)
+
+**Example 4**:
+
+    bottom_half(planar=true) circle(r=20);
+
+![bottom\_half() Example 4](images/transforms/bottom_half_4.png)
 
 ---
 
@@ -1938,6 +1972,7 @@ Argument        | What it does
 --------------- | ------------------------------
 `cp`            | If given as a scalar, moves the cut plane left by the given amount.  If given as a point, specifies a point on the cut plane.  Default: [0,0,0]
 `s`             | Mask size to use.  Use a number larger than twice your object's largest axis.  If you make this too large, it messes with centering your view.  Default: 100
+`planar`        | If true, this becomes a 2D operation.
 
 **Example 1**:
 
@@ -1947,9 +1982,21 @@ Argument        | What it does
 
 **Example 2**:
 
-    left_half(cp=[8,0,0]) sphere(r=20);
+    left_half(cp=-8) sphere(r=20);
 
 ![left\_half() Example 2](images/transforms/left_half_2.png)
+
+**Example 3**:
+
+    left_half(cp=[8,0,0]) sphere(r=20);
+
+![left\_half() Example 3](images/transforms/left_half_3.png)
+
+**Example 4**:
+
+    left_half(planar=true) circle(r=20);
+
+![left\_half() Example 4](images/transforms/left_half_4.png)
 
 ---
 
@@ -1965,6 +2012,7 @@ Argument        | What it does
 --------------- | ------------------------------
 `cp`            | If given as a scalar, moves the cut plane right by the given amount.  If given as a point, specifies a point on the cut plane.  Default: [0,0,0]
 `s`             | Mask size to use.  Use a number larger than twice your object's largest axis.  If you make this too large, it messes with centering your view.  Default: 100
+`planar`        | If true, this becomes a 2D operation.
 
 **Example 1**:
 
@@ -1984,6 +2032,12 @@ Argument        | What it does
 
 ![right\_half() Example 3](images/transforms/right_half_3.gif)
 
+**Example 4**:
+
+    right_half(planar=true) circle(r=20);
+
+![right\_half() Example 4](images/transforms/right_half_4.png)
+
 ---
 
 ### front\_half()
@@ -1998,6 +2052,7 @@ Argument        | What it does
 --------------- | ------------------------------
 `cp`            | If given as a scalar, moves the cut plane forward by the given amount.  If given as a point, specifies a point on the cut plane.  Default: [0,0,0]
 `s`             | Mask size to use.  Use a number larger than twice your object's largest axis.  If you make this too large, it messes with centering your view.  Default: 100
+`planar`        | If true, this becomes a 2D operation.
 
 **Example 1**:
 
@@ -2017,6 +2072,12 @@ Argument        | What it does
 
 ![front\_half() Example 3](images/transforms/front_half_3.gif)
 
+**Example 4**:
+
+    front_half(planar=true) circle(r=20);
+
+![front\_half() Example 4](images/transforms/front_half_4.png)
+
 ---
 
 ### back\_half()
@@ -2031,6 +2092,7 @@ Argument        | What it does
 --------------- | ------------------------------
 `cp`            | If given as a scalar, moves the cut plane back by the given amount.  If given as a point, specifies a point on the cut plane.  Default: [0,0,0]
 `s`             | Mask size to use.  Use a number larger than twice your object's largest axis.  If you make this too large, it messes with centering your view.  Default: 100
+`planar`        | If true, this becomes a 2D operation.
 
 **Example 1**:
 
@@ -2049,6 +2111,12 @@ Argument        | What it does
     back_half(cp=[0,-10,0]) sphere(r=20);
 
 ![back\_half() Example 3](images/transforms/back_half_3.png)
+
+**Example 4**:
+
+    back_half(planar=true) circle(r=20);
+
+![back\_half() Example 4](images/transforms/back_half_4.png)
 
 ---
 
