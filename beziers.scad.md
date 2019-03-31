@@ -19,7 +19,27 @@ use <BOSL/beziers.scad>
     - [`bezier_segment_length()`](#bezier_segment_length)
     - [`fillet3pts()`](#fillet3pts)
 
-3. [Patch Functions](#3-patch-functions)
+3. [Path Functions](#3-path-functions)
+    - [`bezier_path_point()`](#bezier_path_point)
+    - [`bezier_path_closest_point()`](#bezier_path_closest_point)
+    - [`bezier_path_length()`](#bezier_path_length)
+    - [`bezier_polyline()`](#bezier_polyline)
+    - [`fillet_path()`](#fillet_path)
+    - [`bezier_close_to_axis()`](#bezier_close_to_axis)
+    - [`bezier_offset()`](#bezier_offset)
+
+4. [Path Modules](#4-path-modules)
+    - [`bezier_polygon()`](#bezier_polygon)
+    - [`linear_extrude_bezier()`](#linear_extrude_bezier)
+    - [`revolve_bezier()`](#revolve_bezier)
+    - [`rotate_extrude_bezier()`](#rotate_extrude_bezier)
+    - [`revolve_bezier_solid_to_axis()`](#revolve_bezier_solid_to_axis)
+    - [`revolve_bezier_offset_shell()`](#revolve_bezier_offset_shell)
+    - [`extrude_2d_shapes_along_bezier()`](#extrude_2d_shapes_along_bezier)
+    - [`extrude_bezier_along_bezier()`](#extrude_bezier_along_bezier)
+    - [`trace_bezier()`](#trace_bezier)
+
+5. [Patch Functions](#5-patch-functions)
     - [`bezier_patch_point()`](#bezier_patch_point)
     - [`bezier_triangle_point()`](#bezier_triangle_point)
     - [`bezier_patch()`](#bezier_patch)
@@ -32,27 +52,7 @@ use <BOSL/beziers.scad>
     - [`patches_translate()`](#patches_translate)
     - [`patches_scale()`](#patches_scale)
     - [`patches_rotate()`](#patches_rotate)
-    - [`bezier_surface_vertices_and_faces()`](#bezier_surface_vertices_and_faces)
-
-4. [Path Functions](#4-path-functions)
-    - [`bezier_path_point()`](#bezier_path_point)
-    - [`bezier_path_closest_point()`](#bezier_path_closest_point)
-    - [`bezier_path_length()`](#bezier_path_length)
-    - [`bezier_polyline()`](#bezier_polyline)
-    - [`fillet_path()`](#fillet_path)
-    - [`bezier_close_to_axis()`](#bezier_close_to_axis)
-    - [`bezier_offset()`](#bezier_offset)
-
-5. [Modules](#5-modules)
-    - [`bezier_polygon()`](#bezier_polygon)
-    - [`revolve_bezier()`](#revolve_bezier)
-    - [`rotate_extrude_bezier()`](#rotate_extrude_bezier)
-    - [`revolve_bezier_solid_to_axis()`](#revolve_bezier_solid_to_axis)
-    - [`revolve_bezier_offset_shell()`](#revolve_bezier_offset_shell)
-    - [`extrude_2d_shapes_along_bezier()`](#extrude_2d_shapes_along_bezier)
-    - [`extrude_bezier_along_bezier()`](#extrude_bezier_along_bezier)
-    - [`linear_extrude_bezier()`](#linear_extrude_bezier)
-    - [`trace_bezier()`](#trace_bezier)
+    - [`bezier_surface()`](#bezier_surface)
 
 6. [Bezier Surface Modules](#6-bezier-surface-modules)
     - [`bezier_polyhedron()`](#bezier_polyhedron)
@@ -211,280 +211,7 @@ Argument        | What it does
 
 ---
 
-# 3. Patch Functions
-
-### bezier\_patch\_point()
-
-**Usage**:
-- bezier\_patch\_point(patch, u, v)
-
-**Description**:
-Given a square 2-dimensional array of (N+1) by (N+1) points size,
-that represents a Bezier Patch of degree N, returns a point on that
-surface, at positions `u`, and `v`.  A cubic bezier patch will be 4x4
-points in size.  If given a non-square array, each direction will have
-its own degree.
-
-Argument        | What it does
---------------- | ------------------------------
-`patch`         | The 2D array of endpoints and control points for this bezier patch.
-`u`             | The proportion of the way along the first dimension of the patch to find the point of.  0<=`u`<=1
-`v`             | The proportion of the way along the second dimension of the patch to find the point of.  0<=`v`<=1
-
----
-
-### bezier\_triangle\_point()
-
-**Usage**:
-- bezier\_triangle\_point(tri, u, v)
-
-**Description**:
-Given a triangular 2-dimensional array of N+1 by (for the first row) N+1 points,
-that represents a Bezier triangular patch of degree N, returns a point on
-that surface, at positions `u`, and `v`.  A cubic bezier triangular patch
-will have a list of 4 points in the first row, 3 in the second, 2 in the
-third, and 1 in the last row.
-
-Argument        | What it does
---------------- | ------------------------------
-`tri`           | Triangular bezier patch to get point on.
-`u`             | The proportion of the way along the first dimension of the triangular patch to find the point of.  0<=`u`<=1
-`v`             | The proportion of the way along the second dimension of the triangular patch to find the point of.  0<=`v`<=(1-`u`)
-
----
-
-### bezier\_patch()
-
-**Usage**:
-- bezier\_patch(patch, [splinesteps], [vertices], [faces]);
-
-**Description**:
-Calculate vertices and faces for forming a partial polyhedron
-from the given bezier rectangular patch.  Returns a list containing
-two elements.  The first is the list of unique vertices.  The
-second is the list of faces, where each face is a list of indices
-into the list of vertices.  You can chain calls to this, to add
-more vertices and faces for multiple bezier patches, to stitch
-them together into a complete polyhedron.
-
-Argument        | What it does
---------------- | ------------------------------
-`patch`         | The rectangular array of endpoints and control points for this bezier patch.
-`splinesteps`   | Number of steps to divide each bezier segment into.  Default: 16
-`vertices`      | Vertex list to add new points to.  Default: []
-`faces`         | Face list to add new faces to.  Default: []
-
----
-
-### bezier\_triangle()
-
-**Usage**:
-- bezier\_triangle(tri, [splinesteps], [vertices], [faces]);
-
-**Description**:
-Calculate vertices and faces for forming a partial polyhedron
-from the given bezier triangular patch.  Returns a list containing
-two elements.  The first is the list of unique vertices.  The
-second is the list of faces, where each face is a list of indices
-into the list of vertices.  You can chain calls to this, to add
-more vertices and faces for multiple bezier patches, to stitch
-them together into a complete polyhedron.
-
-Argument        | What it does
---------------- | ------------------------------
-`tri`           | The triangular array of endpoints and control points for this bezier patch.
-`splinesteps`   | Number of steps to divide each bezier segment into.  Default: 16
-`vertices`      | Vertex list to add new points to.  Default: []
-`faces`         | Face list to add new faces to.  Default: []
-
-**Example**:
-
-    tri = [
-        [[-50,-33,0], [-25,16,-50], [0,66,0]],
-        [[0,-33,-50], [25,16,-50]],
-        [[50,-33,0]]
-    ];
-    vnf = bezier_triangle(tri, splinesteps=16);
-    polyhedron(points=vnf[0], faces=vnf[1]);
-
-![bezier\_triangle() Example](images/beziers/bezier_triangle.png)
-
----
-
-### bezier\_patch\_flat()
-
-**Usage**:
-- bezier\_patch\_flat(size, [N], [orient], [trans]);
-
-**Description**:
-Returns a flat rectangular bezier patch of degree `N`, centered on the XY plane.
-
-Argument        | What it does
---------------- | ------------------------------
-`size`          | 2D XY size of the patch.
-`N`             | Degree of the patch to generate.  Since this is flat, a degree of 1 should usually be sufficient.
-`orient`        | The orientation to rotate the edge patch into.  Use the `ORIENT` constants in `BOSL/constants.scad`.
-`trans`         | Amount to translate patch, after rotating to `orient`.
-
----
-
-### patch\_reverse()
-
-**Usage**:
-- patch\_reverse(patch)
-
-**Description**:
-Reverses the patch, so that the faces generated from it are flipped back to front.
-
-Argument        | What it does
---------------- | ------------------------------
-`patch`         | The patch to reverse.
-
----
-
-### patch\_translate()
-
-**Usage**:
-- patch\_translate(patch, v)
-
-**Description**:
-Translates all coordinates in a rectangular or triangular patch by a given amount.
-
-Argument        | What it does
---------------- | ------------------------------
-`patch`         | The patch to translate.
-`v`             | Vector to translate by.
-
----
-
-### patch\_scale()
-
-**Usage**:
-- patch\_scale(patch, v, [cp])
-
-**Description**:
-Scales all coordinates in a rectangular or triangular patch by a given amount.
-
-Argument        | What it does
---------------- | ------------------------------
-`patch`         | The patch to scale.
-`v`             | [X,Y,Z] scaling factors.
-`cp`            | Centerpoint to scale around.
-
----
-
-### patch\_rotate()
-
-**Usage**:
-- patch\_rotate(patch, a, [cp])
-- patch\_rotate(patch, a, v, [cp])
-
-**Description**:
-Rotates all coordinates in a rectangular or triangular patch by a given amount.
-
-Argument        | What it does
---------------- | ------------------------------
-`patch`         | The patch to rotate.
-`a`             | Rotation angle(s) in degrees.
-`v`             | Vector axis to rotate round.
-`cp`            | Centerpoint to rotate around.
-
----
-
-### patches\_translate()
-
-**Usage**:
-- patches\_translate(patch, v, [cp])
-
-**Description**:
-Translates all coordinates in each of a list of rectangular or triangular patches.
-
-Argument        | What it does
---------------- | ------------------------------
-`patches`       | List of patches to translate.
-`v`             | Vector to translate by.
-
----
-
-### patches\_scale()
-
-**Usage**:
-- patches\_scale(patch, v, [cp])
-
-**Description**:
-Scales all coordinates in each of a list of rectangular or triangular patches.
-
-Argument        | What it does
---------------- | ------------------------------
-`patches`       | List of patches to scale.
-`v`             | [X,Y,Z] scaling factors.
-`cp`            | Centerpoint to scale around.
-
----
-
-### patches\_rotate()
-
-**Usage**:
-- patches\_rotate(patch, a, [cp])
-- patches\_rotate(patch, a, v, [cp])
-
-**Description**:
-Rotates all coordinates in each of a list of rectangular or triangular patches.
-
-Argument        | What it does
---------------- | ------------------------------
-`patches`       | List of patches to rotate.
-`a`             | Rotation angle(s) in degrees.
-`v`             | Vector axis to rotate round.
-`cp`            | Centerpoint to rotate around.
-
----
-
-### bezier\_surface\_vertices\_and\_faces()
-
-**Usage**:
-- bezier\_surface\_vertices\_and\_faces(patches, [splinesteps], [vertices], [faces]);
-
-**Description**:
-Calculate vertices and faces for forming a (possibly partial)
-polyhedron from the given rectangular and triangular bezier
-patches.  Returns a list containing two elements.  The first is
-the list of unique vertices.  The second is the list of faces,
-where each face is a list of indices into the list of vertices.
-You can chain calls to this, to add more vertices and faces for
-multiple bezier patches, to stitch them together into a complete
-polyhedron.
-
-Argument        | What it does
---------------- | ------------------------------
-`patches`       | A list of rectangular bezier patches.
-`tris`          | A list of triangular bezier patches.
-`splinesteps`   | Number of steps to divide each bezier segment into.  Default: 16
-`vertices`      | Vertex list to add new points to.  Default: []
-`faces`         | Face list to add new faces to.  Default: []
-
-**Example**:
-
-    patch1 = [
-    	[[18,18,0], [33,  0,  0], [ 67,  0,  0], [ 82, 18,0]],
-    	[[ 0,40,0], [ 0,  0,100], [100,  0, 20], [100, 40,0]],
-    	[[ 0,60,0], [ 0,100,100], [100,100, 20], [100, 60,0]],
-    	[[18,82,0], [33,100,  0], [ 67,100,  0], [ 82, 82,0]],
-    ];
-    patch2 = [
-    	[[18,18,0], [33,  0,  0], [ 67,  0,  0], [ 82, 18,0]],
-    	[[ 0,40,0], [ 0,  0,-50], [100,  0,-50], [100, 40,0]],
-    	[[ 0,60,0], [ 0,100,-50], [100,100,-50], [100, 60,0]],
-    	[[18,82,0], [33,100,  0], [ 67,100,  0], [ 82, 82,0]],
-    ];
-    vnf = bezier_surface_vertices_and_faces(patches=[patch1, patch2], splinesteps=16);
-    polyhedron(points=vnf[0], faces=vnf[1]);
-
-![bezier\_surface\_vertices\_and\_faces() Example](images/beziers/bezier_surface_vertices_and_faces.png)
-
----
-
-# 4. Path Functions
+# 3. Path Functions
 
 ### bezier\_path\_point()
 
@@ -668,7 +395,7 @@ Argument        | What it does
 
 ---
 
-# 5. Modules
+# 4. Path Modules
 
 ### bezier\_polygon()
 
@@ -697,6 +424,43 @@ Argument        | What it does
     linear_extrude(height=0.1) bezier_polygon(bez, N=3);
 
 ![bezier\_polygon() Example](images/beziers/bezier_polygon.png)
+
+---
+
+### linear\_extrude\_bezier()
+
+**Usage**:
+- linear\_extrude\_bezier(bezier, height, [splinesteps], [N], [center], [convexity], [twist], [slices], [scale], [orient], [align]);
+
+**Description**:
+Takes a closed 2D bezier path, centered on the XY plane, and
+extrudes it linearly upwards, forming a solid.
+
+Argument        | What it does
+--------------- | ------------------------------
+`bezier`        | Array of 2D points of a bezier path, to be extruded.
+`splinesteps`   | Number of steps to divide each bezier segment into. default=16
+`N`             | The degree of the bezier curves.  Cubic beziers have N=3.  Default: 3
+`convexity`     | max number of walls a line could pass through, for preview.  default=10
+`twist`         | Angle in degrees to twist over the length of extrusion.  default=0
+`scale`         | Relative size of top of extrusion to the bottom.  default=1.0
+`slices`        | Number of vertical slices to use for twisted extrusion.  default=20
+`center`        | If true, the extruded solid is centered vertically at z=0.
+`orient`        | Orientation of the extrusion.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_Z`.
+`align`         | Alignment of the extrusion.  Use the `V_` constants from `constants.scad`.  Default: `ALIGN_POS`.
+
+**Example**:
+
+    bez = [
+        [-10,   0],  [-15,  -5],
+        [ -5, -10],  [  0, -10],  [ 5, -10],
+        [ 10,  -5],  [ 15,   0],  [10,   5],
+        [  5,  10],  [  0,  10],  [-5,  10],
+        [ 25, -15],  [-10,   0]
+    ];
+    linear_extrude_bezier(bez, height=20, splinesteps=32);
+
+![linear\_extrude\_bezier() Example](images/beziers/linear_extrude_bezier.png)
 
 ---
 
@@ -843,7 +607,7 @@ Argument        | What it does
         fwd(10/2) circle(r=8);
     }
 
-![extrude\_2d\_shapes\_along\_bezier() Example](images/beziers/extrude_2d_shapes_along_bezier.gif)
+![extrude\_2d\_shapes\_along\_bezier() Example](images/beziers/extrude_2d_shapes_along_bezier.png)
 
 ---
 
@@ -881,43 +645,6 @@ Argument        | What it does
 
 ---
 
-### linear\_extrude\_bezier()
-
-**Usage**:
-- linear\_extrude\_bezier(bezier, height, [splinesteps], [N], [center], [convexity], [twist], [slices], [scale], [orient], [align]);
-
-**Description**:
-Takes a closed 2D bezier path, centered on the XY plane, and
-extrudes it linearly upwards, forming a solid.
-
-Argument        | What it does
---------------- | ------------------------------
-`bezier`        | Array of 2D points of a bezier path, to be extruded.
-`splinesteps`   | Number of steps to divide each bezier segment into. default=16
-`N`             | The degree of the bezier curves.  Cubic beziers have N=3.  Default: 3
-`convexity`     | max number of walls a line could pass through, for preview.  default=10
-`twist`         | Angle in degrees to twist over the length of extrusion.  default=0
-`scale`         | Relative size of top of extrusion to the bottom.  default=1.0
-`slices`        | Number of vertical slices to use for twisted extrusion.  default=20
-`center`        | If true, the extruded solid is centered vertically at z=0.
-`orient`        | Orientation of the extrusion.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_Z`.
-`align`         | Alignment of the extrusion.  Use the `V_` constants from `constants.scad`.  Default: `ALIGN_POS`.
-
-**Example**:
-
-    bez = [
-        [-10,   0],  [-15,  -5],
-        [ -5, -10],  [  0, -10],  [ 5, -10],
-        [ 10,  -5],  [ 15,   0],  [10,   5],
-        [  5,  10],  [  0,  10],  [-5,  10],
-        [ 25, -15],  [-10,   0]
-    ];
-    linear_extrude_bezier(bez, height=20, splinesteps=32);
-
-![linear\_extrude\_bezier() Example](images/beziers/linear_extrude_bezier.png)
-
----
-
 ### trace\_bezier()
 
 **Description**:
@@ -941,6 +668,326 @@ Argument        | What it does
     trace_bezier(bez, N=3, size=0.5);
 
 ![trace\_bezier() Example](images/beziers/trace_bezier.png)
+
+---
+
+# 5. Patch Functions
+
+### bezier\_patch\_point()
+
+**Usage**:
+- bezier\_patch\_point(patch, u, v)
+
+**Description**:
+Given a square 2-dimensional array of (N+1) by (N+1) points size,
+that represents a Bezier Patch of degree N, returns a point on that
+surface, at positions `u`, and `v`.  A cubic bezier patch will be 4x4
+points in size.  If given a non-square array, each direction will have
+its own degree.
+
+Argument        | What it does
+--------------- | ------------------------------
+`patch`         | The 2D array of endpoints and control points for this bezier patch.
+`u`             | The proportion of the way along the first dimension of the patch to find the point of.  0<=`u`<=1
+`v`             | The proportion of the way along the second dimension of the patch to find the point of.  0<=`v`<=1
+
+**Example**:
+
+    patch = [
+        [[-50, 50,  0], [-16, 50,  20], [ 16, 50,  20], [50, 50,  0]],
+        [[-50, 16, 20], [-16, 16,  40], [ 16, 16,  40], [50, 16, 20]],
+        [[-50,-16, 20], [-16,-16,  40], [ 16,-16,  40], [50,-16, 20]],
+        [[-50,-50,  0], [-16,-50,  20], [ 16,-50,  20], [50,-50,  0]]
+    ];
+    trace_bezier_patches(patches=[patch], size=1, showcps=true);
+    pt = bezier_patch_point(patch, 0.6, 0.75);
+    translate(pt) color("magenta") sphere(d=3, $fn=12);
+
+![bezier\_patch\_point() Example](images/beziers/bezier_patch_point.png)
+
+---
+
+### bezier\_triangle\_point()
+
+**Usage**:
+- bezier\_triangle\_point(tri, u, v)
+
+**Description**:
+Given a triangular 2-dimensional array of N+1 by (for the first row) N+1 points,
+that represents a Bezier triangular patch of degree N, returns a point on
+that surface, at positions `u`, and `v`.  A cubic bezier triangular patch
+will have a list of 4 points in the first row, 3 in the second, 2 in the
+third, and 1 in the last row.
+
+Argument        | What it does
+--------------- | ------------------------------
+`tri`           | Triangular bezier patch to get point on.
+`u`             | The proportion of the way along the first dimension of the triangular patch to find the point of.  0<=`u`<=1
+`v`             | The proportion of the way along the second dimension of the triangular patch to find the point of.  0<=`v`<=(1-`u`)
+
+**Example**:
+
+    tri = [
+        [[-50,-33,0], [-25,16,40], [20,66,20]],
+        [[0,-33,30], [25,16,30]],
+        [[50,-33,0]]
+    ];
+    trace_bezier_patches(tris=[tri], size=1, showcps=true);
+    pt = bezier_triangle_point(tri, 0.5, 0.2);
+    translate(pt) color("magenta") sphere(d=3, $fn=12);
+
+![bezier\_triangle\_point() Example](images/beziers/bezier_triangle_point.png)
+
+---
+
+### bezier\_patch()
+
+**Usage**:
+- bezier\_patch(patch, [splinesteps], [vertices], [faces]);
+
+**Description**:
+Calculate vertices and faces for forming a partial polyhedron
+from the given bezier rectangular patch.  Returns a list containing
+two elements.  The first is the list of unique vertices.  The
+second is the list of faces, where each face is a list of indices
+into the list of vertices.  You can chain calls to this, to add
+more vertices and faces for multiple bezier patches, to stitch
+them together into a complete polyhedron.
+
+Argument        | What it does
+--------------- | ------------------------------
+`patch`         | The rectangular array of endpoints and control points for this bezier patch.
+`splinesteps`   | Number of steps to divide each bezier segment into.  Default: 16
+`vertices`      | Vertex list to add new points to.  Default: []
+`faces`         | Face list to add new faces to.  Default: []
+
+**Example**:
+
+    patch = [
+        [[-50, 50,  0], [-16, 50, -20], [ 16, 50,  20], [50, 50,  0]],
+        [[-50, 16, 20], [-16, 16, -20], [ 16, 16,  20], [50, 16, 20]],
+        [[-50,-16, 20], [-16,-16,  20], [ 16,-16, -20], [50,-16, 20]],
+        [[-50,-50,  0], [-16,-50,  20], [ 16,-50, -20], [50,-50,  0]]
+    ];
+    vnf = bezier_patch(patch, splinesteps=16);
+    polyhedron(points=vnf[0], faces=vnf[1]);
+
+![bezier\_patch() Example](images/beziers/bezier_patch.png)
+
+---
+
+### bezier\_triangle()
+
+**Usage**:
+- bezier\_triangle(tri, [splinesteps], [vertices], [faces]);
+
+**Description**:
+Calculate vertices and faces for forming a partial polyhedron
+from the given bezier triangular patch.  Returns a list containing
+two elements.  The first is the list of unique vertices.  The
+second is the list of faces, where each face is a list of indices
+into the list of vertices.  You can chain calls to this, to add
+more vertices and faces for multiple bezier patches, to stitch
+them together into a complete polyhedron.
+
+Argument        | What it does
+--------------- | ------------------------------
+`tri`           | The triangular array of endpoints and control points for this bezier patch.
+`splinesteps`   | Number of steps to divide each bezier segment into.  Default: 16
+`vertices`      | Vertex list to add new points to.  Default: []
+`faces`         | Face list to add new faces to.  Default: []
+
+**Example**:
+
+    tri = [
+        [[-50,-33,0], [-25,16,50], [0,66,0]],
+        [[0,-33,50], [25,16,50]],
+        [[50,-33,0]]
+    ];
+    vnf = bezier_triangle(tri, splinesteps=16);
+    polyhedron(points=vnf[0], faces=vnf[1]);
+
+![bezier\_triangle() Example](images/beziers/bezier_triangle.png)
+
+---
+
+### bezier\_patch\_flat()
+
+**Usage**:
+- bezier\_patch\_flat(size, [N], [orient], [trans]);
+
+**Description**:
+Returns a flat rectangular bezier patch of degree `N`, centered on the XY plane.
+
+Argument        | What it does
+--------------- | ------------------------------
+`size`          | 2D XY size of the patch.
+`N`             | Degree of the patch to generate.  Since this is flat, a degree of 1 should usually be sufficient.
+`orient`        | The orientation to rotate the edge patch into.  Use the `ORIENT` constants in `BOSL/constants.scad`.
+`trans`         | Amount to translate patch, after rotating to `orient`.
+
+**Example**:
+
+    patch = bezier_patch_flat(size=[100,100], N=3);
+    trace_bezier_patches([patch], size=1, showcps=true);
+
+![bezier\_patch\_flat() Example](images/beziers/bezier_patch_flat.png)
+
+---
+
+### patch\_reverse()
+
+**Usage**:
+- patch\_reverse(patch)
+
+**Description**:
+Reverses the patch, so that the faces generated from it are flipped back to front.
+
+Argument        | What it does
+--------------- | ------------------------------
+`patch`         | The patch to reverse.
+
+---
+
+### patch\_translate()
+
+**Usage**:
+- patch\_translate(patch, v)
+
+**Description**:
+Translates all coordinates in a rectangular or triangular patch by a given amount.
+
+Argument        | What it does
+--------------- | ------------------------------
+`patch`         | The patch to translate.
+`v`             | Vector to translate by.
+
+---
+
+### patch\_scale()
+
+**Usage**:
+- patch\_scale(patch, v, [cp])
+
+**Description**:
+Scales all coordinates in a rectangular or triangular patch by a given amount.
+
+Argument        | What it does
+--------------- | ------------------------------
+`patch`         | The patch to scale.
+`v`             | [X,Y,Z] scaling factors.
+`cp`            | Centerpoint to scale around.
+
+---
+
+### patch\_rotate()
+
+**Usage**:
+- patch\_rotate(patch, a, [cp])
+- patch\_rotate(patch, a, v, [cp])
+
+**Description**:
+Rotates all coordinates in a rectangular or triangular patch by a given amount.
+
+Argument        | What it does
+--------------- | ------------------------------
+`patch`         | The patch to rotate.
+`a`             | Rotation angle(s) in degrees.
+`v`             | Vector axis to rotate round.
+`cp`            | Centerpoint to rotate around.
+
+---
+
+### patches\_translate()
+
+**Usage**:
+- patches\_translate(patch, v, [cp])
+
+**Description**:
+Translates all coordinates in each of a list of rectangular or triangular patches.
+
+Argument        | What it does
+--------------- | ------------------------------
+`patches`       | List of patches to translate.
+`v`             | Vector to translate by.
+
+---
+
+### patches\_scale()
+
+**Usage**:
+- patches\_scale(patch, v, [cp])
+
+**Description**:
+Scales all coordinates in each of a list of rectangular or triangular patches.
+
+Argument        | What it does
+--------------- | ------------------------------
+`patches`       | List of patches to scale.
+`v`             | [X,Y,Z] scaling factors.
+`cp`            | Centerpoint to scale around.
+
+---
+
+### patches\_rotate()
+
+**Usage**:
+- patches\_rotate(patch, a, [cp])
+- patches\_rotate(patch, a, v, [cp])
+
+**Description**:
+Rotates all coordinates in each of a list of rectangular or triangular patches.
+
+Argument        | What it does
+--------------- | ------------------------------
+`patches`       | List of patches to rotate.
+`a`             | Rotation angle(s) in degrees.
+`v`             | Vector axis to rotate round.
+`cp`            | Centerpoint to rotate around.
+
+---
+
+### bezier\_surface()
+
+**Usage**:
+- bezier\_surface(patches, [splinesteps], [vertices], [faces]);
+
+**Description**:
+Calculate vertices and faces for forming a (possibly partial)
+polyhedron from the given rectangular and triangular bezier
+patches.  Returns a list containing two elements.  The first is
+the list of unique vertices.  The second is the list of faces,
+where each face is a list of indices into the list of vertices.
+You can chain calls to this, to add more vertices and faces for
+multiple bezier patches, to stitch them together into a complete
+polyhedron.
+
+Argument        | What it does
+--------------- | ------------------------------
+`patches`       | A list of rectangular bezier patches.
+`tris`          | A list of triangular bezier patches.
+`splinesteps`   | Number of steps to divide each bezier segment into.  Default: 16
+`vertices`      | Vertex list to add new points to.  Default: []
+`faces`         | Face list to add new faces to.  Default: []
+
+**Example**:
+
+    patch1 = [
+    	[[18,18,0], [33,  0,  0], [ 67,  0,  0], [ 82, 18,0]],
+    	[[ 0,40,0], [ 0,  0,100], [100,  0, 20], [100, 40,0]],
+    	[[ 0,60,0], [ 0,100,100], [100,100, 20], [100, 60,0]],
+    	[[18,82,0], [33,100,  0], [ 67,100,  0], [ 82, 82,0]],
+    ];
+    patch2 = [
+    	[[18,18,0], [33,  0,  0], [ 67,  0,  0], [ 82, 18,0]],
+    	[[ 0,40,0], [ 0,  0,-50], [100,  0,-50], [100, 40,0]],
+    	[[ 0,60,0], [ 0,100,-50], [100,100,-50], [100, 60,0]],
+    	[[18,82,0], [33,100,  0], [ 67,100,  0], [ 82, 82,0]],
+    ];
+    vnf = bezier_surface(patches=[patch1, patch2], splinesteps=16);
+    polyhedron(points=vnf[0], faces=vnf[1]);
+
+![bezier\_surface() Example](images/beziers/bezier_surface.png)
 
 ---
 
