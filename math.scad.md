@@ -64,6 +64,7 @@ use <BOSL/math.scad>
     - [`vabs()`](#vabs)
     - [`normalize()`](#normalize)
     - [`vector_angle()`](#vector_angle)
+    - [`vector_axis()`](#vector_axis)
 
 5. [Coordinates Manipulation](#5-coordinates-manipulation)
     - [`point2d()`](#point2d)
@@ -74,7 +75,6 @@ use <BOSL/math.scad>
     - [`scale_points()`](#scale_points)
     - [`rotate_points2d()`](#rotate_points2d)
     - [`rotate_points3d()`](#rotate_points3d)
-    - [`rotate_points3d_around_axis()`](#rotate_points3d_around_axis)
 
 6. [Coordinate Systems](#6-coordinate-systems)
     - [`polar_to_xy()`](#polar_to_xy)
@@ -121,6 +121,7 @@ use <BOSL/math.scad>
     - [`wrap_range()`](#wrap_range)
     - [`vector2d_angle()`](#vector2d_angle)
     - [`vector3d_angle()`](#vector3d_angle)
+    - [`rotate_points3d_around_axis()`](#rotate_points3d_around_axis)
 
 ---
 
@@ -926,6 +927,21 @@ Argument        | What it does
 
 ---
 
+### vector\_axis()
+
+**Usage**:
+- vector\_xis(v1,v2);
+
+**Description**:
+Returns the vector perpendicular to both of the given vectors.
+
+Argument        | What it does
+--------------- | ------------------------------
+`v1`            | First vector.
+`v2`            | Second vector.
+
+---
+
 # 5. Coordinates Manipulation
 
 ### point2d()
@@ -1025,33 +1041,21 @@ Argument        | What it does
 
 **Usage**:
 - rotate\_points3d(pts, v, [cp], [reverse]);
+- rotate\_points3d(pts, v, axis, [cp], [reverse]);
+- rotate\_points3d(pts, from, to, v, [cp], [reverse]);
 
 **Description**:
 Rotates each 3D point in an array by a given amount, around a given centerpoint.
 
 Argument        | What it does
 --------------- | ------------------------------
-`pts`           | List of 3D points to rotate.
-`v`             | Vector of rotation angles for each axis, [X,Y,Z]
-`cp`            | 3D Centerpoint to rotate around.
+`pts`           | List of points to rotate.
+`v`             | Rotation angle(s) in degrees.
+`axis`          | If given, axis vector to rotate around.
+`cp`            | Centerpoint to rotate around.
+`from`          | If given, the vector to rotate something from.  Used with `to`.
+`to`            | If given, the vector to rotate something to.  Used with `from`.
 `reverse`       | If true, performs an exactly reversed rotation.
-
----
-
-### rotate\_points3d\_around\_axis()
-
-**Usage**:
-- rotate\_points3d\_around\_axis(pts, ang, u, [cp])
-
-**Description**:
-Rotates each 3D point in an array by a given amount, around a given centerpoint and axis.
-
-Argument        | What it does
---------------- | ------------------------------
-`pts`           | List of 3D points to rotate.
-`ang`           | Angle to rotate by.
-`u`             | Vector of the axis to rotate around.
-`cp`            | 3D Centerpoint to rotate around.
 
 ---
 
@@ -1708,6 +1712,25 @@ Argument        | What it does
 --------------- | ------------------------------
 `v1`            | First 3D vector.
 `v2`            | Second 3D vector.
+
+---
+
+### rotate\_points3d\_around\_axis()
+
+**DEPRECATED, use `rotate_points3d(pts, v=ang, axis=u, cp=cp)` instead.**
+
+**Usage**:
+- rotate\_points3d\_around\_axis(pts, ang, u, [cp])
+
+**Description**:
+Rotates each 3D point in an array by a given amount, around a given centerpoint and axis.
+
+Argument        | What it does
+--------------- | ------------------------------
+`pts`           | List of 3D points to rotate.
+`ang`           | Angle to rotate by.
+`u`             | Vector of the axis to rotate around.
+`cp`            | 3D Centerpoint to rotate around.
 
 ---
 
