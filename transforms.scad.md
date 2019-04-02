@@ -760,18 +760,18 @@ Argument        | What it does
 ### xspread()
 
 **Usage**:
-- xspread(spacing, [n], [p1]) ...
-- xspread(l, [n], [p1]) ...
+- xspread(spacing, [n], [sp]) ...
+- xspread(l, [n], [sp]) ...
 
 **Description**:
-Spreads out `n` copies of the children along the X axis.
+Spreads out `n` copies of the children along a line on the X axis.
 
 Argument        | What it does
 --------------- | ------------------------------
 `spacing`       | spacing between copies. (Default: 1.0)
 `n`             | Number of copies to spread out. (Default: 2)
 `l`             | Length to spread copies over.
-`p1`            | Starting point of line if given.  If not, line is centered at origin.
+`sp`            | If given, copies will be spread on a line to the right of starting position `sp`.  If not given, copies will be spread along a line that is centered at [0,0,0].
 
 **Side Effects**:
 - `$pos` is set to the relative centerpoint of each child copy, and can be used to modify each child individually.
@@ -797,7 +797,7 @@ Argument        | What it does
 
 **Example 4**:
 
-    xspread(n=5, l=40, p1=[0,0]) sphere(3);
+    xspread(n=4, l=30, sp=[0,10,0]) sphere(3);
 
 ![xspread() Example 4](images/transforms/xspread_4.png)
 
@@ -815,18 +815,18 @@ Argument        | What it does
 ### yspread()
 
 **Usage**:
-- yspread(spacing, [n], [p1]) ...
-- yspread(l, [n], [p1]) ...
+- yspread(spacing, [n], [sp]) ...
+- yspread(l, [n], [sp]) ...
 
 **Description**:
-Spreads out `n` copies of the children along the Y axis.
+Spreads out `n` copies of the children along a line on the Y axis.
 
 Argument        | What it does
 --------------- | ------------------------------
 `spacing`       | spacing between copies. (Default: 1.0)
 `n`             | Number of copies to spread out. (Default: 2)
 `l`             | Length to spread copies over.
-`p1`            | Starting point of line if given.  If not, line is centered at origin.
+`sp`            | If given, copies will be spread on a line back from starting position `sp`.  If not given, copies will be spread along a line that is centered at [0,0,0].
 
 **Side Effects**:
 - `$pos` is set to the relative centerpoint of each child copy, and can be used to modify each child individually.
@@ -852,7 +852,7 @@ Argument        | What it does
 
 **Example 4**:
 
-    yspread(n=5, l=40, p1=[0,0]) sphere(3);
+    yspread(n=4, l=30, sp=[10,0,0]) sphere(3);
 
 ![yspread() Example 4](images/transforms/yspread_4.png)
 
@@ -870,18 +870,18 @@ Argument        | What it does
 ### zspread()
 
 **Usage**:
-- zspread(spacing, [n], [p1]) ...
-- zspread(l, [n], [p1]) ...
+- zspread(spacing, [n], [sp]) ...
+- zspread(l, [n], [sp]) ...
 
 **Description**:
-Spreads out `n` copies of the children along the Z axis.
+Spreads out `n` copies of the children along a line on the Z axis.
 
 Argument        | What it does
 --------------- | ------------------------------
 `spacing`       | spacing between copies. (Default: 1.0)
 `n`             | Number of copies to spread out. (Default: 2)
 `l`             | Length to spread copies over.
-`p1`            | Starting point of line if given.  If not, line is centered at origin.
+`sp`            | If given, copies will be spread on a line up from starting position `sp`.  If not given, copies will be spread along a line that is centered at [0,0,0].
 
 **Side Effects**:
 - `$pos` is set to the relative centerpoint of each child copy, and can be used to modify each child individually.
@@ -907,7 +907,7 @@ Argument        | What it does
 
 **Example 4**:
 
-    zspread(n=5, l=40, p1=[0,0]) sphere(3);
+    zspread(n=4, l=30, sp=[10,0,0]) sphere(3);
 
 ![zspread() Example 4](images/transforms/zspread_4.png)
 
