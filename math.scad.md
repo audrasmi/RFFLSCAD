@@ -88,6 +88,7 @@ use <BOSL/math.scad>
 
 7. [Matrix Manipulation](#7-matrix-manipulation)
     - [`ident()`](#ident)
+    - [`matrix_transpose()`](#matrix_transpose)
     - [`mat3_to_mat4()`](#mat3_to_mat4)
     - [`matrix3_translate()`](#matrix3_translate)
     - [`matrix4_translate()`](#matrix4_translate)
@@ -379,9 +380,7 @@ Argument        | What it does
 - compare\_vals(a, b);
 
 **Description**:
-Compares two values.  If types don't match, then
-undef < boolean < scalar < string < list
-Lists are compared recursively.
+Compares two values.  Lists are compared recursively.
 
 Argument        | What it does
 --------------- | ------------------------------
@@ -1280,6 +1279,30 @@ Create an `n` by `n` identity matrix.
 Argument        | What it does
 --------------- | ------------------------------
 `n`             | The size of the identity matrix square, `n` by `n`.
+
+---
+
+### matrix\_transpose()
+
+**Description**:
+Returns the transposition of the given matrix.
+
+**Example**:
+
+    m = [
+        [11,12,13,14],
+        [21,22,23,24],
+        [31,32,33,34],
+        [41,42,43,44]
+    ];
+    tm = matrix_transpose(m);
+    // Returns:
+    // [
+    //     [11,21,31,41],
+    //     [12,22,32,42],
+    //     [13,23,33,43],
+    //     [14,24,34,44]
+    // ]
 
 ---
 
