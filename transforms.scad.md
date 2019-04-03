@@ -83,10 +83,14 @@ use <BOSL/transforms.scad>
     - [`chain_hull()`](#chain_hull)
     - [`extrude_arc()`](#extrude_arc)
 
-9. [Miscellaneous](#9-miscellaneous)
+9. [2D Mutators](#9-2d-mutators)
+    - [`round2d()`](#round2d)
+    - [`shell2d()`](#shell2d)
+
+10. [Miscellaneous](#10-miscellaneous)
     - [`orient_and_align()`](#orient_and_align)
 
-10. [Deprecations](#10-deprecations)
+11. [Deprecations](#11-deprecations)
     - [`translate_copies()`](#translate_copies)
     - [`line_of()`](#line_of)
     - [`grid_of()`](#grid_of)
@@ -2178,7 +2182,123 @@ Argument        | What it does
 
 ---
 
-# 9. Miscellaneous
+# 9. 2D Mutators
+
+### round2d()
+
+**Usage**:
+- round2d(r) ...
+- round2d(or) ...
+- round2d(ir) ...
+- round2d(or, ir) ...
+
+**Description**:
+Rounds an arbitrary 2d objects.  Giving `r` rounds all concave and
+convex corners.  Giving just `ir` rounds just concave corners.
+Giving just `or` rounds convex corners.  Giving both `ir` and `or`
+can let you round to different radii for concave and convex corners.
+The 2d object must not have any parts narrower than twice the `or`
+radius.  Such parts will disappear.
+
+Argument        | What it does
+--------------- | ------------------------------
+`r`             | Radius to round all concave and convex corners to.
+`or`            | Radius to round only outside (convex) corners to.  Use instead of `r`.
+`ir`            | Radius to round/fillet only inside (concave) corners to.  Use instead of `r`.
+
+**Example 1**:
+
+    round2d(r=10) {square([40,100], center=true); square([100,40], center=true);}
+
+![round2d() Example 1](images/transforms/round2d.png)
+
+**Example 2**:
+
+    round2d(or=10) {square([40,100], center=true); square([100,40], center=true);}
+
+![round2d() Example 2](images/transforms/round2d_2.png)
+
+**Example 3**:
+
+    round2d(ir=10) {square([40,100], center=true); square([100,40], center=true);}
+
+![round2d() Example 3](images/transforms/round2d_3.png)
+
+**Example 4**:
+
+    round2d(or=16,ir=8) {square([40,100], center=true); square([100,40], center=true);}
+
+![round2d() Example 4](images/transforms/round2d_4.png)
+
+---
+
+### shell2d()
+
+**Usage**:
+- shell2d(thickness, [or], [ir], [fill], [round])
+
+**Description**:
+Creates a hollow shell from 2d children, with optional rounding.
+
+Argument        | What it does
+--------------- | ------------------------------
+`thickness`     | Thickness of the shell.  Positive to expand outward, negative to shrink inward, or a two-element list to do both.
+`or`            | Radius to round convex corners/pointy bits on the outside of the shell.
+`ir`            | Radius to round/fillet concave corners on the outside of the shell.
+`round`         | Radius to round convex corners/pointy bits on the inside of the shell.
+`fill`          | Radius to round/fillet concave corners on the inside of the shell.
+
+**Example 1**:
+
+    shell2d(10) {square([40,100], center=true); square([100,40], center=true);}
+
+![shell2d() Example 1](images/transforms/shell2d.png)
+
+**Example 2**:
+
+    shell2d(-10) {square([40,100], center=true); square([100,40], center=true);}
+
+![shell2d() Example 2](images/transforms/shell2d_2.png)
+
+**Example 3**:
+
+    shell2d([-10,10]) {square([40,100], center=true); square([100,40], center=true);}
+
+![shell2d() Example 3](images/transforms/shell2d_3.png)
+
+**Example 4**:
+
+    shell2d(10,or=10) {square([40,100], center=true); square([100,40], center=true);}
+
+![shell2d() Example 4](images/transforms/shell2d_4.png)
+
+**Example 5**:
+
+    shell2d(10,ir=10) {square([40,100], center=true); square([100,40], center=true);}
+
+![shell2d() Example 5](images/transforms/shell2d_5.png)
+
+**Example 6**:
+
+    shell2d(10,round=10) {square([40,100], center=true); square([100,40], center=true);}
+
+![shell2d() Example 6](images/transforms/shell2d_6.png)
+
+**Example 7**:
+
+    shell2d(10,fill=10) {square([40,100], center=true); square([100,40], center=true);}
+
+![shell2d() Example 7](images/transforms/shell2d_7.png)
+
+**Example 8**:
+
+    shell2d(8,or=16,ir=8,round=16,fill=8) {square([40,100], center=true); square([100,40], center=true);}
+
+![shell2d() Example 8](images/transforms/shell2d_8.png)
+
+---
+
+# 10. Miscellaneous
 
 ### orient\_and\_align()
 
@@ -2213,7 +2333,7 @@ Argument        | What it does
 
 ---
 
-# 10. Deprecations
+# 11. Deprecations
 
 ### translate\_copies()
 
