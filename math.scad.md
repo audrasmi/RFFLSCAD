@@ -381,6 +381,7 @@ Argument        | What it does
 
 **Description**:
 Compares two values.  Lists are compared recursively.
+Results are undefined if the two values are not of similar types.
 
 Argument        | What it does
 --------------- | ------------------------------
@@ -397,8 +398,9 @@ Argument        | What it does
 **Description**:
 Compare contents of two lists.
 Returns <0 if `a`<`b`.
-Returns >0 if `a`>`b`.
 Returns 0 if `a`==`b`.
+Returns >0 if `a`>`b`.
+Results are undefined if elements are not of similar types.
 
 Argument        | What it does
 --------------- | ------------------------------
@@ -787,7 +789,7 @@ Argument        | What it does
 - sort(arr, [idx])
 
 **Description**:
-Sorts the given list using `compare_vals()`.
+Sorts the given list using `compare_vals()`.  Results are undefined if list elements are not of similar type.
 
 Argument        | What it does
 --------------- | ------------------------------
