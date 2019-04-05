@@ -51,10 +51,12 @@ use <BOSL/math.scad>
     - [`array_pad()`](#array_pad)
     - [`array_trim()`](#array_trim)
     - [`array_fit()`](#array_fit)
+    - [`enumerate()`](#enumerate)
     - [`array_zip()`](#array_zip)
     - [`array_group()`](#array_group)
     - [`flatten()`](#flatten)
     - [`sort()`](#sort)
+    - [`sortidx()`](#sortidx)
     - [`unique()`](#unique)
     - [`array_dim()`](#array_dim)
 
@@ -213,19 +215,19 @@ Argument        | What it does
 
 **Example 1**:
 
-    echo(modrange(90,270,360, step=45));  // Outputs [90,135,180,225,270]
+    modrange(90,270,360, step=45);   // Outputs [90,135,180,225,270]
 
 **Example 2**:
 
-    echo(modrange(270,90,360, step=45));  // Outputs [270,315,0,45,90]
+    modrange(270,90,360, step=45);   // Outputs [270,315,0,45,90]
 
 **Example 3**:
 
-    echo(modrange(90,270,360, step=-45));  // Outputs [90,45,0,315,270]
+    modrange(90,270,360, step=-45);  // Outputs [90,45,0,315,270]
 
 **Example 4**:
 
-    echo(modrange(270,90,360, step=-45));  // Outputs [270,225,180,135,90]
+    modrange(270,90,360, step=-45);  // Outputs [270,225,180,135,90]
 
 ---
 
@@ -367,8 +369,8 @@ Argument        | What it does
 
 **Example**:
 
-    mean([2,3,4]);  // returns 4.5.
-    mean([[1,2,3], [3,4,5], [5,6,7]]);  // returns [4.5, 6, 7.5]
+    mean([2,3,4]);  // returns 3.
+    mean([[1,2,3], [3,4,5], [5,6,7]]);  // returns [3, 4, 5]
 
 ---
 
@@ -710,6 +712,25 @@ Argument        | What it does
 
 ---
 
+### enumerate()
+
+**Description**:
+Returns a list, with each item of the given list `l` numbered in a sublist.
+Something like: `[[0,l[0]], [1,l[1]], [2,l[2]], ...]`
+
+Argument        | What it does
+--------------- | ------------------------------
+`l`             | List to enumerate.
+`idx`           | If given, enumerates just the given subindex items of `l`.
+
+**Example**:
+
+    enumerate(["a","b","c"]);  // Returns: [[0,"a"], [1,"b"], [2,"c"]]
+    enumerate([[88,"a"],[76,"b"],[21,"c"]], idx=1);  // Returns: [[0,"a"], [1,"b"], [2,"c"]]
+    enumerate([["cat","a",12],["dog","b",10],["log","c",14]], idx=[1:2]);  // Returns: [[0,"a",12], [1,"b",10], [2,"c",14]]
+
+---
+
 ### array\_zip()
 
 **Usage**:
@@ -800,6 +821,35 @@ Argument        | What it does
 
     l = [45,2,16,37,8,3,9,23,89,12,34];
     sorted = sort(l);  // Returns [2,3,8,9,12,16,23,34,37,45,89]
+
+---
+
+### sortidx()
+
+**Description**:
+Given a list, calculates the sort order of the list, and returns
+a list of indexes into the original list in that sorted order.
+If you iterate the returned list in order, and use the list items
+to index into the original list, you will be iterating the original
+values in sorted order.
+
+**Example 1**:
+
+    lst = ["d","b","e","c"];
+    idxs = sortidx(lst);  // Returns: [1,3,0,2]
+    ordered = [for (i=idxs) lst[i]];  // Returns: ["b", "c", "d", "e"]
+
+**Example 2**:
+
+    lst = [
+    	["foo", 88, [0,0,1], false],
+    	["bar", 90, [0,1,0], true],
+    	["baz", 89, [1,0,0], false],
+    	["qux", 23, [1,1,1], true]
+    ];
+    idxs1 = sortidx(lst, idx=1); // Returns: [3,0,2,1]
+    idxs2 = sortidx(lst, idx=0); // Returns: [1,2,0,3]
+    idxs3 = sortidx(lst, idx=[1,3]); // Returns: [3,0,2,1]
 
 ---
 
