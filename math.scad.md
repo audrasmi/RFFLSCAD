@@ -17,6 +17,8 @@ use <BOSL/math.scad>
     - [`constrain()`](#constrain)
     - [`posmod()`](#posmod)
     - [`modrange()`](#modrange)
+    - [`gaussian_rand()`](#gaussian_rand)
+    - [`log_rand()`](#log_rand)
     - [`segs()`](#segs)
     - [`lerp()`](#lerp)
     - [`hypot()`](#hypot)
@@ -228,6 +230,37 @@ Argument        | What it does
 **Example 4**:
 
     modrange(270,90,360, step=-45);  // Outputs [270,225,180,135,90]
+
+---
+
+### gaussian\_rand()
+
+**Usage**:
+- gaussian\_rand(mean, stddev)
+
+**Description**:
+Returns a random number with a gaussian/normal distribution.
+
+Argument        | What it does
+--------------- | ------------------------------
+`mean`          | The average random number returned.
+`stddev`        | The standard deviation of the numbers to be returned.
+
+---
+
+### log\_rand()
+
+**Usage**:
+- log\_rand(minval, maxval, factor);
+
+**Description**:
+Returns a single random number, with a logarithmic distribution.
+
+Argument        | What it does
+--------------- | ------------------------------
+`minval`        | Minimum value to return.
+`maxval`        | Maximum value to return.  `minval` <= X < `maxval`.
+`factor`        | Log factor to use.  Values of X are returned `factor` times more often than X+1.
 
 ---
 
