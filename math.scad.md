@@ -10,7 +10,10 @@ use <BOSL/math.scad>
 
 # Table of Contents
 
-1. [Simple Calculations](#1-simple-calculations)
+1. [Math Constants](#1-math-constants)
+    - [PHI](#phi)
+
+2. [Simple Calculations](#2-simple-calculations)
     - [`quant()`](#quant)
     - [`quantdn()`](#quantdn)
     - [`quantup()`](#quantup)
@@ -33,14 +36,14 @@ use <BOSL/math.scad>
     - [`sum_of_sines()`](#sum_of_sines)
     - [`mean()`](#mean)
 
-2. [Comparisons and Logic](#2-comparisons-and-logic)
+3. [Comparisons and Logic](#3-comparisons-and-logic)
     - [`compare_vals()`](#compare_vals)
     - [`compare_lists()`](#compare_lists)
     - [`any()`](#any)
     - [`all()`](#all)
     - [`count_true()`](#count_true)
 
-3. [List/Array Operations](#3-listarray-operations)
+4. [List/Array Operations](#4-listarray-operations)
     - [`replist()`](#replist)
     - [`in_list()`](#in_list)
     - [`slice()`](#slice)
@@ -62,7 +65,7 @@ use <BOSL/math.scad>
     - [`unique()`](#unique)
     - [`array_dim()`](#array_dim)
 
-4. [Vector Manipulation](#4-vector-manipulation)
+5. [Vector Manipulation](#5-vector-manipulation)
     - [`vmul()`](#vmul)
     - [`vdiv()`](#vdiv)
     - [`vabs()`](#vabs)
@@ -70,7 +73,7 @@ use <BOSL/math.scad>
     - [`vector_angle()`](#vector_angle)
     - [`vector_axis()`](#vector_axis)
 
-5. [Coordinates Manipulation](#5-coordinates-manipulation)
+6. [Coordinates Manipulation](#6-coordinates-manipulation)
     - [`point2d()`](#point2d)
     - [`path2d()`](#path2d)
     - [`point3d()`](#point3d)
@@ -80,7 +83,7 @@ use <BOSL/math.scad>
     - [`rotate_points2d()`](#rotate_points2d)
     - [`rotate_points3d()`](#rotate_points3d)
 
-6. [Coordinate Systems](#6-coordinate-systems)
+7. [Coordinate Systems](#7-coordinate-systems)
     - [`polar_to_xy()`](#polar_to_xy)
     - [`xy_to_polar()`](#xy_to_polar)
     - [`cylindrical_to_xyz()`](#cylindrical_to_xyz)
@@ -90,7 +93,7 @@ use <BOSL/math.scad>
     - [`altaz_to_xyz()`](#altaz_to_xyz)
     - [`xyz_to_altaz()`](#xyz_to_altaz)
 
-7. [Matrix Manipulation](#7-matrix-manipulation)
+8. [Matrix Manipulation](#8-matrix-manipulation)
     - [`ident()`](#ident)
     - [`matrix_transpose()`](#matrix_transpose)
     - [`mat3_to_mat4()`](#mat3_to_mat4)
@@ -112,13 +115,13 @@ use <BOSL/math.scad>
     - [`matrix3_apply()`](#matrix3_apply)
     - [`matrix4_apply()`](#matrix4_apply)
 
-8. [Geometry](#8-geometry)
+9. [Geometry](#9-geometry)
     - [`point_on_segment()`](#point_on_segment)
     - [`point_left_of_segment()`](#point_left_of_segment)
     - [`point_in_polygon()`](#point_in_polygon)
     - [`pointlist_bounds()`](#pointlist_bounds)
 
-9. [Deprecations](#9-deprecations)
+10. [Deprecations](#10-deprecations)
     - [`Cpi()`](#cpi)
     - [`hypot3()`](#hypot3)
     - [`distance()`](#distance)
@@ -130,7 +133,16 @@ use <BOSL/math.scad>
 
 ---
 
-# 1. Simple Calculations
+# 1. Math Constants
+
+### PHI
+
+**Description**:
+The golden ratio phi.
+
+---
+
+# 2. Simple Calculations
 
 ### quant()
 
@@ -407,7 +419,7 @@ Argument        | What it does
 
 ---
 
-# 2. Comparisons and Logic
+# 3. Comparisons and Logic
 
 ### compare\_vals()
 
@@ -514,7 +526,7 @@ Argument        | What it does
 
 ---
 
-# 3. List/Array Operations
+# 4. List/Array Operations
 
 ### replist()
 
@@ -938,7 +950,7 @@ Argument        | What it does
 
 ---
 
-# 4. Vector Manipulation
+# 5. Vector Manipulation
 
 ### vmul()
 
@@ -1026,7 +1038,7 @@ Argument        | What it does
 
 ---
 
-# 5. Coordinates Manipulation
+# 6. Coordinates Manipulation
 
 ### point2d()
 
@@ -1143,7 +1155,7 @@ Argument        | What it does
 
 ---
 
-# 6. Coordinate Systems
+# 7. Coordinate Systems
 
 ### polar\_to\_xy()
 
@@ -1354,7 +1366,7 @@ Argument        | What it does
 
 ---
 
-# 7. Matrix Manipulation
+# 8. Matrix Manipulation
 
 ### ident()
 
@@ -1646,7 +1658,7 @@ Argument        | What it does
 
 ---
 
-# 8. Geometry
+# 9. Geometry
 
 ### point\_on\_segment()
 
@@ -1719,7 +1731,7 @@ Argument        | What it does
 
 ---
 
-# 9. Deprecations
+# 10. Deprecations
 
 ### Cpi()
 
