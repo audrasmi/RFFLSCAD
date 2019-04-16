@@ -20,8 +20,9 @@
 - [wiring.scad](wiring.scad)
 
 ### [Miscellaneous](Home#miscellaneous)
-- [math.scad](math.scad)
 - [constants.scad](constants.scad)
+- [math.scad](math.scad)
+- [convex\_hull.scad](convex_hull.scad)
 - [quaternions.scad](quaternions.scad)
 - [triangulation.scad](triangulation.scad)
 - [debug.scad](debug.scad)

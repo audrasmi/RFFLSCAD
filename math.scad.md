@@ -12,12 +12,15 @@ use <BOSL/math.scad>
 
 1. [Math Constants](#1-math-constants)
     - [PHI](#phi)
+    - [EPSILON](#epsilon)
 
 2. [Simple Calculations](#2-simple-calculations)
     - [`quant()`](#quant)
     - [`quantdn()`](#quantdn)
     - [`quantup()`](#quantup)
     - [`constrain()`](#constrain)
+    - [`min_index()`](#min_index)
+    - [`max_index()`](#max_index)
     - [`posmod()`](#posmod)
     - [`modrange()`](#modrange)
     - [`gaussian_rand()`](#gaussian_rand)
@@ -63,6 +66,7 @@ use <BOSL/math.scad>
     - [`sort()`](#sort)
     - [`sortidx()`](#sortidx)
     - [`unique()`](#unique)
+    - [`list_remove()`](#list_remove)
     - [`array_dim()`](#array_dim)
 
 5. [Vector Manipulation](#5-vector-manipulation)
@@ -86,6 +90,8 @@ use <BOSL/math.scad>
 7. [Coordinate Systems](#7-coordinate-systems)
     - [`polar_to_xy()`](#polar_to_xy)
     - [`xy_to_polar()`](#xy_to_polar)
+    - [`xyz_to_planar()`](#xyz_to_planar)
+    - [`planar_to_xyz()`](#planar_to_xyz)
     - [`cylindrical_to_xyz()`](#cylindrical_to_xyz)
     - [`xyz_to_cylindrical()`](#xyz_to_cylindrical)
     - [`spherical_to_xyz()`](#spherical_to_xyz)
@@ -120,6 +126,17 @@ use <BOSL/math.scad>
     - [`point_left_of_segment()`](#point_left_of_segment)
     - [`point_in_polygon()`](#point_in_polygon)
     - [`pointlist_bounds()`](#pointlist_bounds)
+    - [`triangle_area2d()`](#triangle_area2d)
+    - [`right_of_line2d()`](#right_of_line2d)
+    - [`collinear()`](#collinear)
+    - [`collinear_indexed()`](#collinear_indexed)
+    - [`plane3pt()`](#plane3pt)
+    - [`plane3pt_indexed()`](#plane3pt_indexed)
+    - [`distance_from_plane()`](#distance_from_plane)
+    - [`coplanar()`](#coplanar)
+    - [`in_front_of_plane()`](#in_front_of_plane)
+    - [`simplify_path()`](#simplify_path)
+    - [`simplify_path_indexed()`](#simplify_path_indexed)
 
 10. [Deprecations](#10-deprecations)
     - [`Cpi()`](#cpi)
@@ -139,6 +156,13 @@ use <BOSL/math.scad>
 
 **Description**:
 The golden ratio phi.
+
+---
+
+### EPSILON
+
+**Description**:
+A really small value useful in comparing FP numbers.  ie: abs(a-b)<EPSILON
 
 ---
 
@@ -193,6 +217,26 @@ Argument        | What it does
 `v`             | value to constrain.
 `minval`        | minimum value to return, if out of range.
 `maxval`        | maximum value to return, if out of range.
+
+---
+
+### min\_index()
+
+**Usage**:
+- min\_index(vals);
+
+**Description**:
+Returns the index of the minimal value in the given list.
+
+---
+
+### max\_index()
+
+**Usage**:
+- max\_index(vals);
+
+**Description**:
+Returns the index of the maximum value in the given list.
 
 ---
 
@@ -912,6 +956,21 @@ Argument        | What it does
 
 ---
 
+### list\_remove()
+
+**Usage**:
+- list\_remove(list, elements)
+
+**Description**:
+Remove all items from `list` whose indexes are in `elements`.
+
+Argument        | What it does
+--------------- | ------------------------------
+`list`          | The list to remove items from.
+`elements`      | The list of indexes of items to remove.
+
+---
+
 ### array\_dim()
 
 **Usage**:
@@ -1204,6 +1263,35 @@ Argument        | What it does
 **Example 2**:
 
     plr = xy_to_polar([40,60]);
+
+---
+
+### xyz\_to\_planar()
+
+**Usage**:
+- xyz\_to\_planar(point, a, b, c);
+
+**Description**:
+Given three points defining a plane, returns the projected planar
+[X,Y] coordinates of the closest point to a 3D `point`.  The origin
+of the planar coordinate system [0,0] will be at point `a`, and the
+Y+ axis direction will be towards point `b`.  This coordinate system
+can be useful in taking a set of nearly coplanar points, and converting
+them to a pure XY set of coordinates for manipulation, before convering
+them back to the original 3D plane.
+
+---
+
+### planar\_to\_xyz()
+
+**Usage**:
+- planar\_to\_xyz(point, a, b, c);
+
+**Description**:
+Given three points defining a plane, converts a planar [X,Y]
+coordinate to the actual corresponding 3D point on the plane.
+The origin of the planar coordinate system [0,0] will be at point
+`a`, and the Y+ axis direction will be towards point `b`.
 
 ---
 
@@ -1728,6 +1816,199 @@ Returns [[minx, miny, minz], [maxx, maxy, maxz]]
 Argument        | What it does
 --------------- | ------------------------------
 `pts`           | List of points.
+
+---
+
+### triangle\_area2d()
+
+**Usage**:
+- triangle\_area2d(a,b,c);
+
+**Description**:
+Returns the area of a triangle formed between three vertices.
+Result will be negative if the points are in clockwise order.
+
+**Example 1**:
+
+    triangle_area2d([0,0], [5,10], [10,0]);  // Returns -50
+
+**Example 2**:
+
+    triangle_area2d([10,0], [5,10], [0,0]);  // Returns 50
+
+---
+
+### right\_of\_line2d()
+
+**Usage**:
+- right\_of\_line2d(line, pt)
+
+**Description**:
+Returns true if the given point is to the left of the given line.
+
+Argument        | What it does
+--------------- | ------------------------------
+`line`          | A list of two points.
+`pt`            | The point to test.
+
+---
+
+### collinear()
+
+**Usage**:
+- collinear(a, b, c, [eps]);
+
+**Description**:
+Returns true if three points are co-linear.
+
+Argument        | What it does
+--------------- | ------------------------------
+`a`             | First point.
+`b`             | Second point.
+`c`             | Third point.
+`eps`           | Acceptable max angle variance.  Default: EPSILON (1e-9) degrees.
+
+---
+
+### collinear\_indexed()
+
+**Usage**:
+- collinear\_indexed(points, a, b, c, [eps]);
+
+**Description**:
+Returns true if three points are co-linear.
+
+Argument        | What it does
+--------------- | ------------------------------
+`points`        | A list of points.
+`a`             | Index in `points` of first point.
+`b`             | Index in `points` of second point.
+`c`             | Index in `points` of third point.
+`eps`           | Acceptable max angle variance.  Default: EPSILON (1e-9) degrees.
+
+---
+
+### plane3pt()
+
+**Usage**:
+- plane3pt(p1, p2, p3);
+
+**Description**:
+Generates the cartesian equation of a plane from three non-colinear points on the plane.
+Returns [A,B,C,D] where Ax+By+Cz+D=0 is the equation of a plane.
+
+Argument        | What it does
+--------------- | ------------------------------
+`p1`            | The first point on the plane.
+`p2`            | The second point on the plane.
+`p3`            | The third point on the plane.
+
+---
+
+### plane3pt\_indexed()
+
+**Usage**:
+- plane3pt\_indexed(points, i1, i2, i3);
+
+**Description**:
+Given a list of points, and the indexes of three of those points,
+generates the cartesian equation of a plane that those points all
+lie on.  Requires that the three indexed points be non-collinear.
+Returns [A,B,C,D] where Ax+By+Cz+D=0 is the equation of a plane.
+
+Argument        | What it does
+--------------- | ------------------------------
+`points`        | A list of points.
+`i1`            | The index into `points` of the first point on the plane.
+`i2`            | The index into `points` of the second point on the plane.
+`i3`            | The index into `points` of the third point on the plane.
+
+---
+
+### distance\_from\_plane()
+
+**Usage**:
+- distance\_from\_plane(plane, point)
+
+**Description**:
+Given a plane as [A,B,C,D] where the cartesian equation for that plane
+is Ax+By+Cz+D=0, determines how far from that plane the given point is.
+The returned distance will be positive if the point is in front of the
+plane; on the same side of the plane as the normal of that plane points
+towards.  If the point is behind the plane, then the distance returned
+will be negative.  The normal of the plane is the same as [A,B,C].
+
+Argument        | What it does
+--------------- | ------------------------------
+`plane`         | The [A,B,C,D] values for the equation of the plane.
+`point`         | The point to test.
+
+---
+
+### coplanar()
+
+**Usage**:
+- coplanar(plane, point);
+
+**Description**:
+Given a plane as [A,B,C,D] where the cartesian equation for that plane
+is Ax+By+Cz+D=0, determines if the given point is on that plane.
+Returns true if the point is on that plane.
+
+Argument        | What it does
+--------------- | ------------------------------
+`plane`         | The [A,B,C,D] values for the equation of the plane.
+`point`         | The point to test.
+
+---
+
+### in\_front\_of\_plane()
+
+**Usage**:
+- in\_front\_of\_plane(plane, point);
+
+**Description**:
+Given a plane as [A,B,C,D] where the cartesian equation for that plane
+is Ax+By+Cz+D=0, determines if the given point is on the side of that
+plane that the normal points towards.  The normal of the plane is the
+same as [A,B,C].
+
+Argument        | What it does
+--------------- | ------------------------------
+`plane`         | The [A,B,C,D] values for the equation of the plane.
+`point`         | The point to test.
+
+---
+
+### simplify\_path()
+
+**Usage**:
+- simplify\_path(path, [eps])
+
+**Description**:
+Takes a path and removes unnecessary collinear points.
+
+Argument        | What it does
+--------------- | ------------------------------
+`path`          | A list of 2D path points.
+`eps`           | Largest angle variance allowed.  Default: EPSILON (1-e9) degrees.
+
+---
+
+### simplify\_path\_indexed()
+
+**Usage**:
+- simplify\_path\_indexed(path, eps)
+
+**Description**:
+Takes a list of points, and a path as a list of indexes into `points`,
+and removes all path points that are unecessarily collinear.
+
+Argument        | What it does
+--------------- | ------------------------------
+`points`        | A list of points.
+`path`          | A list of indexes into `points` that forms a path.
+`eps`           | Largest angle variance allowed.  Default: EPSILON (1-e9) degrees.
 
 ---
 

@@ -22,8 +22,9 @@ The library files are as follows:
   - [`wiring.scad`](wiring.scad): Modules to render routed bundles of wires.
 
 ### Miscellaneous
-  - [`math.scad`](math.scad): Useful helper functions.
   - [`constants.scad`](constants.scad): Useful constants for vectors, edges, etc.
+  - [`math.scad`](math.scad): Useful helper functions.
+  - [`convex_hull.scad`](convex_hull.scad): Functions to create 2D and 3D convex hulls.
   - [`quaternions.scad`](quaternions.scad): Functions to work with quaternion rotations.
   - [`triangulation.scad`](triangulation.scad): Functions to triangulate `polyhedron()` faces that have more than 3 vertices.
   - [`debug.scad`](debug.scad): Modules to help debug creation of beziers, `polygons()`s and `polyhedron()`s
