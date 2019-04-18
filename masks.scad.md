@@ -646,7 +646,7 @@ Argument        | What it does
 ### fillet\_hole\_mask()
 
 **Usage**:
-- fillet\_hole\_mask(r, fillet, [xtilt], [ytilt]);
+- fillet\_hole\_mask(r|d, fillet, [xtilt], [ytilt]);
 
 **Description**:
 Create a mask that can be used to round the edge of a circular hole.
@@ -656,10 +656,11 @@ hole to be filletted.
 
 Argument        | What it does
 --------------- | ------------------------------
-`r`             | radius of hole to fillet. (Default: 1.0)
-`fillet`        | radius of the edge filleting. (Default: 0.25)
-`xtilt`         | angle of tilt of end of cylinder in the X direction. (Default: 0)
-`ytilt`         | angle of tilt of end of cylinder in the Y direction. (Default: 0)
+`r`             | Radius of hole to fillet.
+`d`             | Diameter of hole to fillet.
+`fillet`        | Radius of the filleting. (Default: 0.25)
+`xtilt`         | Angle of tilt of end of cylinder in the X direction. (Default: 0)
+`ytilt`         | Angle of tilt of end of cylinder in the Y direction. (Default: 0)
 `overage`       | The extra thickness of the mask.  Default: `0.1`.
 
 **Example 1**:
