@@ -334,8 +334,9 @@ Argument        | What it does
 `chamfer`       | Size of the chamfer. (Default: 0.25)
 `ang`           | Angle of chamfer in degrees from vertical.  (Default: 45)
 `from_end`      | If true, chamfer size is measured from end of hole.  If false, chamfer is measured outset from the radius of the hole.  (Default: false)
+`overage`       | The extra thickness of the mask.  Default: `0.1`.
 
-**Example**:
+**Example 1**:
 
     difference() {
         cube(100, center=true);
@@ -343,7 +344,13 @@ Argument        | What it does
         up(50) #chamfer_hole_mask(d=50, chamfer=10);
     }
 
-![chamfer\_hole\_mask() Example](images/masks/chamfer_hole_mask.png)
+![chamfer\_hole\_mask() Example 1](images/masks/chamfer_hole_mask.png)
+
+**Example 2**:
+
+    chamfer_hole_mask(d=100, chamfer=25, ang=30, overage=10);
+
+![chamfer\_hole\_mask() Example 2](images/masks/chamfer_hole_mask_2.png)
 
 ---
 
@@ -653,16 +660,23 @@ Argument        | What it does
 `fillet`        | radius of the edge filleting. (Default: 0.25)
 `xtilt`         | angle of tilt of end of cylinder in the X direction. (Default: 0)
 `ytilt`         | angle of tilt of end of cylinder in the Y direction. (Default: 0)
+`overage`       | The extra thickness of the mask.  Default: `0.1`.
 
-**Example**:
+**Example 1**:
 
     difference() {
       cube([150,150,100], center=true);
       cylinder(r=50, h=100.1, center=true);
-      up(50) #fillet_hole_mask(r=50, fillet=10, xtilt=0, ytilt=0);
+      up(50) #fillet_hole_mask(r=50, fillet=10);
     }
 
-![fillet\_hole\_mask() Example](images/masks/fillet_hole_mask.png)
+![fillet\_hole\_mask() Example 1](images/masks/fillet_hole_mask.png)
+
+**Example 2**:
+
+    fillet_hole_mask(r=40, fillet=20, $fa=2, $fs=2);
+
+![fillet\_hole\_mask() Example 2](images/masks/fillet_hole_mask_2.png)
 
 ---
 
