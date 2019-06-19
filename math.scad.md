@@ -730,7 +730,7 @@ Argument        | What it does
     list_range(4);                  // Returns [0,1,2,3]
     list_range(n=4, step=2);        // Returns [0,2,4,6]
     list_range(n=4, s=3, step=3);   // Returns [3,6,9,12]
-    list_range(n=4, s=3, e=9, step=3);  // Returns [3,6,9]
+    list_range(n=5, s=0, e=10);     // Returns [0, 2.5, 5, 7.5, 10]
     list_range(e=3);                // Returns [0,1,2,3]
     list_range(e=6, step=2);        // Returns [0,2,4,6]
     list_range(s=3, e=5);           // Returns [3,4,5]
