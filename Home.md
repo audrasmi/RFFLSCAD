@@ -38,8 +38,8 @@ For purposes of these library files, the following terms apply:
 - **Bottom**/**Down**/**Below**: Towards Z-
 - **Top**/**Up**/**Above**: Towards Z+
 
-- **Axis-Positive**: Towards the negative end of the axis the object is oriented on.  IE: X-, Y-, or Z-.
 - **Axis-Negative**: Towards the negative end of the axis the object is oriented on.  IE: X-, Y-, or Z-.
+- **Axis-Positive**: Towards the positive end of the axis the object is oriented on.  IE: X+, Y+, or Z+.
 
 ## Common Arguments:
 
