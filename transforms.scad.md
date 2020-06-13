@@ -1208,7 +1208,7 @@ Argument        | What it does
 `rots`          | A list of [X,Y,Z] rotation angles in degrees.  If `v` is given, this will be a list of scalar angles in degrees to rotate around `v`.
 `v`             | If given, this is the vector to rotate around.
 `cp`            | Centerpoint to rotate around.
-`n`             | Optional number of evenly distributed copies, rotated around the ring.
+`n`             | Optional number of evenly distributed copies, rotated around the ring.  If given, overrides `rots` argument.
 `sa`            | Starting angle, in degrees.  For use with `n`.  Angle is in degrees counter-clockwise.
 `delta`         | [X,Y,Z] amount to move away from cp before rotating.  Makes rings of copies.
 `subrot`        | If false, don't sub-rotate children as they are copied around the ring.
@@ -1280,7 +1280,7 @@ Argument        | What it does
 --------------- | ------------------------------
 `rots`          | Optional array of rotation angles, in degrees, to make copies at.
 `cp`            | Centerpoint to rotate around.
-`n`             | Optional number of evenly distributed copies to be rotated around the ring.
+`n`             | Optional number of evenly distributed copies to be rotated around the ring.  If given, overrides `rots` argument.
 `sa`            | Starting angle, in degrees.  For use with `n`.  Angle is in degrees counter-clockwise from Y+, when facing the origin from X+.  First unrotated copy is placed at that angle.
 `r`             | Radius to move children back, away from cp, before rotating.  Makes rings of copies.
 `subrot`        | If false, don't sub-rotate children as they are copied around the ring.
@@ -1344,7 +1344,7 @@ Argument        | What it does
 --------------- | ------------------------------
 `rots`          | Optional array of rotation angles, in degrees, to make copies at.
 `cp`            | Centerpoint to rotate around.
-`n`             | Optional number of evenly distributed copies to be rotated around the ring.
+`n`             | Optional number of evenly distributed copies to be rotated around the ring.  If given, overrides `rots` argument.
 `sa`            | Starting angle, in degrees.  For use with `n`.  Angle is in degrees counter-clockwise from X-, when facing the origin from Y+.
 `r`             | Radius to move children left, away from cp, before rotating.  Makes rings of copies.
 `subrot`        | If false, don't sub-rotate children as they are copied around the ring.
@@ -1408,7 +1408,7 @@ Argument        | What it does
 --------------- | ------------------------------
 `rots`          | Optional array of rotation angles, in degrees, to make copies at.
 `cp`            | Centerpoint to rotate around.
-`n`             | Optional number of evenly distributed copies to be rotated around the ring.
+`n`             | Optional number of evenly distributed copies to be rotated around the ring.  If given, overrides `rots` argument.
 `sa`            | Starting angle, in degrees.  For use with `n`.  Angle is in degrees counter-clockwise from X+, when facing the origin from Z+.
 `r`             | Radius to move children right, away from cp, before rotating.  Makes rings of copies.
 `subrot`        | If false, don't sub-rotate children as they are copied around the ring.
