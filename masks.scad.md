@@ -401,7 +401,6 @@ Argument        | What it does
 `l`             | Length of mask.
 `r`             | Radius of the fillet.
 `align`         | Alignment of the mask.  Use the `V_` constants from `constants.h`.  Default: centered.
-`center`        | If true, centers vertically.  If false, lift up to sit on top of the XY plane.  Overrides `align`.
 
 **Example**:
 
@@ -430,7 +429,6 @@ Argument        | What it does
 `l`             | Length of mask.
 `r`             | Radius of the fillet.
 `align`         | Alignment of the mask.  Use the `V_` constants from `constants.h`.  Default: centered.
-`center`        | If true, centers vertically.  If false, lift up to sit on top of the XY plane.  Overrides `align`.
 
 **Example**:
 
@@ -459,7 +457,6 @@ Argument        | What it does
 `l`             | Length of mask.
 `r`             | Radius of the fillet.
 `align`         | Alignment of the mask.  Use the `V_` constants from `constants.h`.  Default: centered.
-`center`        | If true, centers vertically.  If false, lift up to sit on top of the XY plane.  Overrides `align`.
 
 **Example**:
 
