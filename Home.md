@@ -1,5 +1,4 @@
 ## Installation
-
 1. Download the .zip or .tar.gz release file for this library.
 2. Unpack it. It should create a BOSL-v1.0 directory with the library files within it.
 3. Rename the directory to BOSL.
@@ -8,6 +7,7 @@
     - Linux: $HOME/.local/share/OpenSCAD/libraries/
     - Mac OS X: $HOME/Documents/OpenSCAD/libraries/
 5. Restart OpenSCAD.
+
 
 ## Belfry OpenScad Library Documentation
 The library files are as follows:
