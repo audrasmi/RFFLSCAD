@@ -8,7 +8,6 @@
     - Mac OS X: $HOME/Documents/OpenSCAD/libraries/
 5. Restart OpenSCAD.
 
-
 ## Belfry OpenScad Library Documentation
 The library files are as follows:
 
