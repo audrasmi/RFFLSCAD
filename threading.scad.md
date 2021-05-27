@@ -62,7 +62,7 @@ Argument        | What it does
 `bevel2`        | if true, bevel the axis-positive end of the thread.  Default: false
 `starts`        | The number of lead starts.  Default = 1
 `internal`      | If true, make this a mask for making internal threads.
-`slop`          | printer slop calibration to allow for tight fitting of parts.  Default: `PRINTER_SLOP`
+`slop`          | printer slop calibration to allow for tight fitting of parts.  Default: `PRINTER_SLOP`<br/>It is effective only for `internal=true`.
 `profile`       | The shape of a thread, if not a symmetric trapezoidal form.  Given as a 2D path, where X is between -1/2 and 1/2, representing the pitch distance, and Y is 0 for the peak, and `-depth/pitch` for the valleys.  The segment between the end of one thread profile and the start of the next is automatic, so the start and end coordinates should not both be at the same Y at X = ±1/2.  This path is scaled up by the pitch size in both dimensions when making the final threading.  This overrides the `thread_angle` and `thread_depth` options.
 `orient`        | Orientation of the rod.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_Z`.
 `align`         | Alignment of the rod.  Use the `V_` constants from `constants.scad`.  Default: `V_CENTER`.
@@ -189,7 +189,7 @@ Argument        | What it does
 `bevel1`        | if true, bevel the axis-negative end of the thread.  Default: false
 `bevel2`        | if true, bevel the axis-positive end of the thread.  Default: false
 `internal`      | If true, make this a mask for making internal threads.
-`slop`          | printer slop calibration to allow for tight fitting of parts.  Default: `PRINTER_SLOP`
+`slop`          | printer slop calibration to allow for tight fitting of parts.  Default: `PRINTER_SLOP`<br/>It is effective only for `internal=true`.
 `orient`        | Orientation of the rod.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_Z`.
 `align`         | Alignment of the rod.  Use the `V_` constants from `constants.scad`.  Default: `V_CENTER`.
 
@@ -258,7 +258,7 @@ Argument        | What it does
 `bevel1`        | if true, bevel the axis-negative end of the thread.  Default: false
 `bevel2`        | if true, bevel the axis-positive end of the thread.  Default: false
 `internal`      | If true, this is a mask for making internal threads.
-`slop`          | printer slop calibration to allow for tight fitting of parts.  default=0.2
+`slop`          | printer slop calibration to allow for tight fitting of parts.  default=0.2<br/>It is effective only for `internal=true`.
 `orient`        | Orientation of the rod.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_Z`.
 `align`         | Alignment of the rod.  Use the `V_` constants from `constants.scad`.  Default: `V_CENTER`.
 
