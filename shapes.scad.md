@@ -732,7 +732,8 @@ Argument        | What it does
 `id2`           | Inner diameter of top of tube.
 `realign`       | If true, rotate the tube by half the angle of one face.
 `orient`        | Orientation of the tube.  Use the `ORIENT_` constants from `constants.scad`.  Default: vertical.
-`align`         | Alignment of the tube.  Use the `V_` constants from `constants.scad`.  Default: centered.
+`align`         | Alignment of the tube.  Use the `V_` constants from `constants.scad`.  Default: `ALIGN_POS`.
+`center`        | Overrides `align` if given.  If true, `align=V_CENTER`, if false, `align=ALIGN_POS`.
 
 **Example 1**: These all Produce the Same Tube
 
