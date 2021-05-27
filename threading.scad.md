@@ -228,7 +228,7 @@ Argument        | What it does
 `pitch`         | Length between threads.
 `left_handed`   | if true, create left-handed threads.  Default = false
 `bevel`         | if true, bevel the thread ends.  Default: false
-`slop`          | printer slop calibration to allow for tight fitting of parts.  default=0.2
+`slop`          | printer slop calibration to allow for tight fitting of parts.  Default: `PRINTER_SLOP`
 `orient`        | Orientation of the nut.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_Z`.
 `align`         | Alignment of the nut.  Use the `V_` constants from `constants.scad`.  Default: `V_CENTER`.
 
@@ -258,7 +258,7 @@ Argument        | What it does
 `bevel1`        | if true, bevel the axis-negative end of the thread.  Default: false
 `bevel2`        | if true, bevel the axis-positive end of the thread.  Default: false
 `internal`      | If true, this is a mask for making internal threads.
-`slop`          | printer slop calibration to allow for tight fitting of parts.  default=0.2<br/>It is effective only for `internal=true`.
+`slop`          | printer slop calibration to allow for tight fitting of parts.  Default: `PRINTER_SLOP`<br/>It is effective only for `internal=true`.
 `orient`        | Orientation of the rod.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_Z`.
 `align`         | Alignment of the rod.  Use the `V_` constants from `constants.scad`.  Default: `V_CENTER`.
 
@@ -297,7 +297,7 @@ Argument        | What it does
 `pitch`         | Length between threads.
 `left_handed`   | if true, create left-handed threads.  Default = false
 `bevel`         | if true, bevel the thread ends.  Default: false
-`slop`          | printer slop calibration to allow for tight fitting of parts.  default=0.2
+`slop`          | printer slop calibration to allow for tight fitting of parts.  Default: `PRINTER_SLOP`
 `orient`        | Orientation of the nut.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_Z`.
 `align`         | Alignment of the nit.  Use the `V_` constants from `constants.scad`.  Default: `V_CENTER`.
 
@@ -360,7 +360,7 @@ Argument        | What it does
 `left_handed`   | if true, create left-handed threads.  Default = false
 `bevel`         | if true, bevel the thread ends.  Default: false
 `starts`        | The number of lead starts.  Default = 1
-`slop`          | printer slop calibration to allow for tight fitting of parts.  default=0.2
+`slop`          | printer slop calibration to allow for tight fitting of parts.  Default: `PRINTER_SLOP`
 `orient`        | Orientation of the nut.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_Z`.
 `align`         | Alignment of the nut.  Use the `V_` constants from `constants.scad`.  Default: `V_CENTER`.
 
@@ -432,7 +432,7 @@ Argument        | What it does
 `thread_angle`  | The pressure angle profile angle of the threads.  Default = 14.5 degree ACME profile.
 `left_handed`   | if true, create left-handed threads.  Default = false
 `bevel`         | if true, bevel the thread ends.  Default: false
-`slop`          | printer slop calibration to allow for tight fitting of parts.  default=0.2
+`slop`          | printer slop calibration to allow for tight fitting of parts.  Default: `PRINTER_SLOP`
 `orient`        | Orientation of the nut.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_Z`.
 `align`         | Alignment of the nut.  Use the `V_` constants from `constants.scad`.  Default: `V_CENTER`.
 
@@ -501,7 +501,7 @@ Argument        | What it does
 `left_handed`   | if true, create left-handed threads.  Default = false
 `bevel`         | if true, bevel the thread ends.  Default: false
 `starts`        | The number of lead starts.  Default = 1
-`slop`          | printer slop calibration to allow for tight fitting of parts.  default=0.2
+`slop`          | printer slop calibration to allow for tight fitting of parts.  Default: `PRINTER_SLOP`
 `orient`        | Orientation of the nut.  Use the `ORIENT_` constants from `constants.scad`.  Default: `ORIENT_Z`.
 `align`         | Alignment of the nut.  Use the `V_` constants from `constants.scad`.  Default: `V_CENTER`.
 
