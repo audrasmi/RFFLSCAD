@@ -1296,7 +1296,7 @@ Argument        | What it does
 --------------- | ------------------------------
 `p1`            | center of starting circle of slot.
 `p2`            | center of ending circle of slot.
-`l`             | length of slot along the X axis.
+`l`             | distance between center points of starting and ending circle.
 `h`             | height of slot shape. (default: 10)
 `r`             | radius of slot circle. (default: 5)
 `r1`            | bottom radius of slot cone.
